@@ -1,9 +1,55 @@
-html {
-    font-family: Arial, Helvetica;
+body {
+    margin: 0;
 }
 
-.banana {
-    .pineapple {
-        color: red;
+:root {
+    --chrome: #333;
+    --chrome-text: #eee;
+    --content-horiz-padding: 1em;
+    --base: #eee;
+    --text: #333;
+
+    --rgb-font: Hammersmith One;
+
+    --body-font: Montserrat, Arial, Helvetica;
+}
+
+.theme-container {
+    font-family: var(--body-font);
+
+    &.dark {
+        --base: #333;
+        --text: #eee;
     }
+}
+
+.theme-container {
+    min-height: 100vh;
+    background: var(--base);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    padding: var(--content-horiz-padding);
+}
+
+main.markdown {
+    flex-grow: 1;
+    & > div {
+        /* markdown wraps everything in a position:relative div that i don't know the effects off - negate it */
+        display: contents;
+    }
+}
+
+h1 {
+    font-family: var(--rgb-font);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+section {
+    padding: var(--content-horiz-padding);
 }
