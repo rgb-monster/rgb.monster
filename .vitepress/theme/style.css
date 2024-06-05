@@ -1,0 +1,9 @@
+html {
+    font-family: Arial, Helvetica;
+}
+
+.banana {
+    .pineapple {
+        color: red;
+    }
+}
