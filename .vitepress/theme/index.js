@@ -1,7 +1,7 @@
 // https://vitepress.dev/guide/custom-theme
 import Layout from "./Layout.vue";
 import "./destyle.css";
-import "./style.css";
+import "./style.scss";
 
 /** @type {import('vitepress').Theme} */
 export default {

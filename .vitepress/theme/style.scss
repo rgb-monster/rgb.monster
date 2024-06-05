@@ -38,6 +38,10 @@ main.markdown {
     & > div {
         /* markdown wraps everything in a position:relative div that i don't know the effects off - negate it */
         display: contents;
+
+        & > div {
+            display: contents;
+        }
     }
 
     h1,

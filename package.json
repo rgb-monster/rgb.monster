@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "sass": "^1.77.4",
         "vitepress": "^1.2.3",
         "vue": "^3.4.27"
     },
@@ -9,6 +10,8 @@
         "preview": "vitepress preview"
     },
     "dependencies": {
-        "markdown-it-container": "^4.0.0"
+        "axios": "^1.7.2",
+        "markdown-it-container": "^4.0.0",
+        "py-datetime": "^0.8.4"
     }
 }

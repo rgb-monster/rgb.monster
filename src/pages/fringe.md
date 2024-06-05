@@ -3,4 +3,8 @@ title: Edinburgh Fringe 2024
 page: fringe
 ---
 
-Here are all our current fringe shows
+<script setup>
+    import FringePage from "./FringePage.vue";
+</script>
+
+<FringePage />

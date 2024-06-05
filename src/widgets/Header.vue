@@ -8,11 +8,11 @@
         <a href="/whats-on" :class="{current: frontmatter.page == 'whats-on'}">What's On</a>
         <a href="/kids" :class="{current: frontmatter.page == 'kids'}">Kids</a>
         <a href="/card" :class="{current: frontmatter.page == 'card'}">Card</a>
-        <a href="/fringe" :class="{current: frontmatter.page == 'fringe'}">Fringe</a>
+        <a href="/fringe" :class="{current: frontmatter.page == 'fringe'}">Edinburgh Fringe 2024</a>
     </header>
 </template>
 
-<style>
+<style type="text/scss">
     header.site {
         display: flex;
         gap: 5px;

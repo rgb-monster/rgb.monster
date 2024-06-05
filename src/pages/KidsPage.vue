@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: "Btn",
+        name: "KidsPage",
         props: {
             // these are optional props for if your button has a linkable state
             route: String,
@@ -24,7 +24,7 @@
     </header>
 </template>
 
-<style>
+<style type="text/scss">
     .kids-header {
         display: grid;
         justify-content: center;

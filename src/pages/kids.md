@@ -8,3 +8,9 @@ page: kids
 </script>
 
 <KidsPage />
+
+
+* pg hits
+* best of kids comedy: the big show
+* inside the robot
+* kids can heckle
