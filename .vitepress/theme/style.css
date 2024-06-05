@@ -1,7 +1,3 @@
-body {
-    margin: 0;
-}
-
 :root {
     --chrome: #333;
     --chrome-text: #eee;
@@ -37,19 +33,38 @@ section {
 
 main.markdown {
     flex-grow: 1;
+    line-height: 1.5em;
+
     & > div {
         /* markdown wraps everything in a position:relative div that i don't know the effects off - negate it */
         display: contents;
     }
-}
 
-h1 {
-    font-family: var(--rgb-font);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.025em;
-}
+    h1,
+    h2 {
+        font-family: var(--rgb-font);
+        font-weight: 400;
+    }
 
-section {
-    padding: var(--content-horiz-padding);
+    h1 {
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    section {
+        padding: var(--content-horiz-padding);
+
+        ul {
+            padding-left: 1em;
+
+            li {
+                list-style: disc;
+            }
+        }
+    }
 }

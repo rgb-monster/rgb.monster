@@ -1,5 +1,6 @@
 ---
 title: What's on
+page: whats-on
 ---
 
 ::: section

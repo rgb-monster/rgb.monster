@@ -8,7 +8,6 @@ export default defineConfig({
     description: "Unusual Comedy Production",
     head: [
         ["link", {rel: "icon", href: "/favicon.png"}],
-        ["link", {rel: "style", href: "/destyle.css"}],
         ["link", {rel: "preconnect", href: "https://fonts.googleapis.com"}],
         ["link", {rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: ""}],
         ["link", {href: "https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap", rel: "stylesheet"}],

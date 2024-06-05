@@ -1,9 +1,14 @@
+<script setup>
+    import {useData} from "vitepress";
+    const {theme, page, frontmatter} = useData();
+</script>
+
 <template>
     <header class="site">
-        <a href="/whats-on">What's On</a>
-        <a href="/kids">Kids</a>
-        <a href="/card">Card</a>
-        <a href="/fringe">Fringe</a>
+        <a href="/whats-on" :class="{current: frontmatter.page == 'whats-on'}">What's On</a>
+        <a href="/kids" :class="{current: frontmatter.page == 'kids'}">Kids</a>
+        <a href="/card" :class="{current: frontmatter.page == 'card'}">Card</a>
+        <a href="/fringe" :class="{current: frontmatter.page == 'fringe'}">Fringe</a>
     </header>
 </template>
 
@@ -20,15 +25,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--chrome-text);
 
         a {
-            color: var(--chrome-text);
             padding: 10px;
 
             font-family: var(--rgb-font);
             text-decoration: none;
             font-weight: 400;
             font-size: 1.2em;
+
+            &.current {
+                color: red;
+            }
         }
     }
 </style>

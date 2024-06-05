@@ -1,6 +1,9 @@
 ---
 title: The Card!
+page: card
 ---
+
+::: section
 
 This page is never the same
 
@@ -11,3 +14,5 @@ This page is never the same
 -   and here is a general apropos etc
 
 -   plus everything about us and so on
+
+:::
