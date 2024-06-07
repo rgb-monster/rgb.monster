@@ -378,9 +378,9 @@ let utils = {
     humanDate(date) {
         let now = dt.datetime.now();
         if (now.year != date.year) {
-            return date.strftime("%b %d, %Y");
+            return date.strftime("%d %b, %Y");
         } else {
-            return date.strftime("%b %d");
+            return date.strftime("%d %b");
         }
     },
 

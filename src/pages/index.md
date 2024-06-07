@@ -2,4 +2,4 @@
 home: true
 ---
 
-Note: Due to layout.vue this page does not serve content yet.
+The main landing page, a.k.a. the page of the home

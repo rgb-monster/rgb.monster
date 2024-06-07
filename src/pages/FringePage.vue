@@ -1,20 +1,25 @@
 <script>
-    import {fetchShows} from "../scripts/show-utils.js";
-    import utils from "../scripts/utils.js";
+    import {useStore} from "../stores/shows.js";
+
+    import ShowTypeTile from "../widgets/ShowTypeTile.vue";
 
     export default {
         name: "FringePage",
+        components: {
+            ShowTypeTile,
+        },
         data() {
             return {
-                loaded: false,
-                shows: [],
+                store: useStore(),
             };
         },
 
-        async mounted() {
-            let shows = await fetchShows();
-            shows = shows.filter(show => show.venue?.city == "Edinburgh");
-            this.shows = utils.sort(shows, show => show.ts);
+        computed: {
+            showTypes: state => state.store.showTypes,
+        },
+
+        mounted() {
+            this.store.fetchShows();
         },
     };
 </script>
@@ -23,11 +28,8 @@
     <header class="fringe-page">
         <h1>Edinburgh Fringe 2024</h1>
         <div class="all-shows">
-            <template v-for="show in shows" :key="show.id">
-                <div>
-                    {{ show.ts.strftime("%b %d, %H:%M") }}
-                    {{ show.name }}
-                </div>
+            <template v-for="showType in showTypes" :key="showType.type">
+                <ShowTypeTile :showType="showType" />
             </template>
         </div>
     </header>
@@ -46,16 +48,12 @@
         }
 
         .all-shows {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
             gap: 1em;
 
             padding: 2em var(--content-horiz-padding);
-
-            & > div {
-                border: 1px solid #ccc;
-                padding: 5px;
-            }
         }
     }
 </style>
