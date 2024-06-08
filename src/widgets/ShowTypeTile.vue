@@ -70,8 +70,14 @@
 
 <style lang="scss">
     .show-type-tile {
-        border-radius: 10px;
+        border-radius: 8px;
         background: var(--light);
+
+        &:hover {
+            --shadow: var(--accent-pink);
+        }
+
+        transition: border 300ms ease, box-shadow 300ms ease;
 
         border: 2px solid var(--shadow);
         box-shadow: 0 1px 5px var(--shadow);
