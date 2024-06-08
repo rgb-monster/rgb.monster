@@ -40,49 +40,107 @@
 </script>
 
 <template>
-    <div class="show-type-tile">
+    <a class="show-type-tile" :href="`/${meta.slug}`">
+        <div class="hero-image" v-if="meta.cover">
+            <img :src="meta.cover" />
+        </div>
         <header>{{ showType.name }}</header>
+
+        <div class="description">{{ meta.short_description }}</div>
 
         <div class="meta">
             <div class="tags">
-                <div v-for="tag in meta.tags" :class="tag">{{ tag }}</div>
+                <div v-for="tag in meta.tags.slice(0, 1)" :class="tag">{{ tag }}</div>
             </div>
-            <div class="dates">{{ dates }}</div>
-            <div class="times">{{ times.join(", ") }}</div>
+            <div class="dates">
+                <Icon name="calendar_month" />
+                <div>
+                    {{ dates }}
+                </div>
+            </div>
+            <div class="times">
+                <Icon name="schedule" />
+                <div>
+                    {{ times.join(", ") }}
+                </div>
+            </div>
         </div>
-    </div>
+    </a>
 </template>
 
-<style type="text/scss">
+<style lang="scss">
     .show-type-tile {
-        border: 1px solid #ccc;
-        padding: 15px;
         border-radius: 10px;
         background: var(--light);
 
         border: 2px solid var(--shadow);
         box-shadow: 0 1px 5px var(--shadow);
 
-        display: grid;
-        gap: 1em;
-
+        display: flex;
+        flex-direction: column;
         text-align: left;
+
+        --tile-padding: 25px;
+
+        overflow: hidden;
+        .hero-image {
+            display: block;
+
+            img {
+                max-width: 100%;
+                object-position: center;
+                object-fit: contain;
+            }
+        }
 
         header {
             font-size: 1.25em;
             font-weight: 600;
+            padding: 25px;
+            margin: 0;
+            padding-bottom: 5px;
+        }
+
+        .description {
+            padding: 0 var(--tile-padding);
+        }
+
+        .meta {
+            padding: 0 var(--tile-padding);
+            padding-bottom: var(--tile-padding);
+        }
+
+        .dates,
+        .times {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            .icon {
+                font-size: 1.25em;
+            }
         }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
+            padding: 5px 0;
 
             & > div {
-                padding: 5px;
+                font-weight: 600;
+                color: var(--accent-pink);
 
                 &.kids {
-                    background: yellow;
+                    color: var(--accent-yellow);
+                }
+
+                &.format {
+                    color: var(--accent-green);
+                }
+
+                &.unique {
+                    color: var(--accent-red);
                 }
             }
         }

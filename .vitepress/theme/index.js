@@ -2,8 +2,12 @@
 import {createPinia} from "pinia";
 
 import Layout from "./Layout.vue";
+
 import "./destyle.css";
 import "./style.scss";
+
+import utils from "../../src/scripts/utils.js";
+const globalWidgets = utils.importToComp(import.meta.glob("../../src/widgets/global/*.vue", {eager: true}));
 
 /** @type {import('vitepress').Theme} */
 export default {
@@ -14,5 +18,9 @@ export default {
             //store.$requests = requests;
         });
         app.use(pinia);
+
+        for (const name in globalWidgets) {
+            app.component(name, globalWidgets[name]);
+        }
     },
 };

@@ -24,7 +24,7 @@
     </header>
 </template>
 
-<style type="text/scss">
+<style lang="scss">
     .kids-header {
         display: grid;
         justify-content: center;

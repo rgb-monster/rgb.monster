@@ -35,17 +35,13 @@
     </header>
 </template>
 
-<style type="text/scss">
+<style lang="scss">
     .fringe-page {
         display: grid;
         justify-content: center;
         align-items: center;
         text-align: center;
         padding: 2em 0;
-
-        img {
-            height: 200px;
-        }
 
         .all-shows {
             display: grid;
@@ -54,6 +50,24 @@
             gap: 1em;
 
             padding: 2em var(--content-horiz-padding);
+        }
+
+        @media (max-width: 1200px) {
+            .all-shows {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .all-shows {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .all-shows {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
     }
 </style>

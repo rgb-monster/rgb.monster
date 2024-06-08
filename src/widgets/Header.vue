@@ -12,7 +12,7 @@
     </header>
 </template>
 
-<style type="text/scss">
+<style lang="scss">
     header.site {
         display: flex;
         gap: 5px;

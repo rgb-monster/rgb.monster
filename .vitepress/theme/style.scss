@@ -2,18 +2,51 @@
     --chrome: #333;
     --chrome-text: #eee;
     --content-horiz-padding: 1em;
-    --base: #eee;
+    --base: #f7f0e3;
     --text: #333;
 
     --light: #fafafa;
 
-    --shadow: #ddd;
+    --shadow: #d7ddf7;
 
     --rgb-font: Hammersmith One;
 
     --body-font: Lato, Arial, Helvetica;
 
     --window-max: 1200px;
+
+    --header-color: #712529;
+
+    --accent-yellow: #ffd24e;
+    --accent-pink: #ed7dab;
+    --accent-red: #e1391c;
+    --accent-blue: #4f5b97;
+    --accent-green: #65b762;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: "liga";
 }
 
 .theme-container {
@@ -55,6 +88,7 @@ main.markdown {
 
     h1,
     h2 {
+        color: var(--header-color);
         font-family: var(--rgb-font);
         font-weight: 400;
     }
@@ -80,4 +114,8 @@ main.markdown {
             }
         }
     }
+}
+
+img {
+    max-width: 100%;
 }

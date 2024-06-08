@@ -34,7 +34,7 @@
     </component>
 </template>
 
-<style type="text/scss">
+<style lang="scss">
     a.btn,
     button.btn {
         display: inline-block;
