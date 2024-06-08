@@ -10,7 +10,6 @@ page: whats-on
     import showMetas from "../scripts/metas.js";
     let bySlug = Object.fromEntries(Object.entries(showMetas).map(([title, meta]) => [meta.slug, {title, ...meta}]));
     let meta = bySlug[params.value.show];
-    console.log(params.value, bySlug)
 </script>
 
 <Cover :show="meta" />
