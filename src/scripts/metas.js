@@ -81,7 +81,7 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/chanel-ali-break-up-with-your-dad",
     },
 
-    "Comedy For Toxic People": {
+    "Ollie Horn: Comedy For Toxic People": {
         slug: "ollie",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",

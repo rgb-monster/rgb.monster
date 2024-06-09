@@ -48,7 +48,7 @@
             {{ metas.title }}
         </h1>
 
-        <video v-if="metas.video" controls>
+        <video v-if="metas.video" controls playsinline>
             <source :src="metas.video" type="video/mp4" />
         </video>
 
