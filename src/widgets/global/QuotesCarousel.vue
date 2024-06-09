@@ -30,7 +30,7 @@
         },
 
         mounted() {
-            this.nextTime = setInterval(this.proceed, 1 * 5000);
+            this.nextTime = setInterval(this.proceed, 1000 * 10);
         },
 
         beforeUnmount() {
@@ -61,7 +61,6 @@
     .quotes-carousel {
         //overflow: hidden;
         font-size: 3em;
-        margin-bottom: 2em;
         gap: 5px;
 
         //scroll-behavior: smooth;
