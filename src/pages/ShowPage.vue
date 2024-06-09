@@ -69,5 +69,16 @@
         .tickets {
             margin: 2em 0;
         }
+
+        .cover {
+            transition: all 300ms;
+        }
+
+        @media (min-width: 1200px) {
+            .cover {
+                margin-top: 20px;
+                border-radius: 30px;
+            }
+        }
     }
 </style>
