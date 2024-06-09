@@ -6,6 +6,7 @@ export default {
     "11PM Live": {
         slug: "11pm",
         tags: ["variety"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",
         short_description:
             "A 90 minute showcase of TV stars and gems of the festival followed by the hottest afterparty in town",
         description:
@@ -38,6 +39,7 @@ export default {
     "Bad Mums": {
         slug: "bad-mums",
         tags: ["solo", "standup"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/bad-moms/cover.webp",
         short_description: "Hilariously unfiltered tales of #mumlife",
         description:
             "They’re outrageous, late for school drop-off and definitely not on the PTA! After a sold-out Aussie tour, Gill Cordiner and Nikki Valentine bring you Bad Mums: an hour of hysterical, unfiltered tales that has left crowds roaring with laughter and leaving rave reviews! Book your babysitters, organise date night or get your girl gang and see this hotly anticipated Fringe debut for two of Australia's rising comedy stars!",
@@ -82,6 +84,7 @@ export default {
     "Comedy For Toxic People": {
         slug: "ollie",
         tags: ["solo", "standup"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
         short_description: "Spontaneous, sharp, high-energy stand-up",
         description:
             "Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, laugh-out-loud show about how you can justify being toxic. Think of the WhatsApp group that you're ashamed to be in – the show will feel like that live on stage. 'Delivers every joke with a cheeky little smile' **** (EdFringeReview.com). 'Escapism and delight... can't help but lift your spirits' **** (Edinburgh Festivals Magazine). 'A clear passion for his craft' **** (BroadwayWorld.com).",

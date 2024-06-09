@@ -4,6 +4,7 @@ import dt from "py-datetime";
 import {defineStore} from "pinia";
 
 import utils from "../scripts/utils.js";
+import showMetas from "/src/scripts/metas.js";
 
 export const useStore = defineStore("shows", {
     state: () => {
@@ -19,6 +20,7 @@ export const useStore = defineStore("shows", {
             let byType = {};
             this.shows.forEach(show => {
                 byType[show.name] = byType[show.name] || {
+                    ...showMetas[show.name],
                     name: show.name,
                     emoji: show.emoji,
                     duration: show.duration,
@@ -30,6 +32,17 @@ export const useStore = defineStore("shows", {
             });
 
             return utils.sort(Object.values(byType), showType => showType.name);
+        },
+
+        showsByTag() {
+            let byTag = {};
+            this.shows.forEach(show => {
+                show.tags.forEach(tag => {
+                    utils.setDefault(byTag, tag, []).push(show);
+                });
+            });
+
+            return byTag;
         },
     },
 

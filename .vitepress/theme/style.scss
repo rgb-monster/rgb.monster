@@ -1,13 +1,23 @@
 :root {
-    --chrome: #333;
-    --chrome-text: #eee;
+    --accent-yellow: #ffd24e;
+    --accent-pink: #ed7dab;
+    --accent-red: #e1391c;
+    --accent-blue: #4f5b97;
+    --accent-green: #65b762;
+    --accent-burgundy: #712529;
+
+    --chrome: hsl(357, 51%, 19%);
+    --chrome-x1: hsl(357, 51%, 24%);
+    --chrome-x2: hsl(357, 51%, 29%);
+
+    --chrome-text: #f7f0e3;
     --content-horiz-padding: 1em;
     --base: #f7f0e3;
     --text: #333;
 
     --light: #fafafa;
 
-    --shadow: #d7ddf7;
+    --shadow: #ece3cc;
 
     --rgb-font: Hammersmith One;
 
@@ -15,13 +25,7 @@
 
     --window-max: 1200px;
 
-    --header-color: #712529;
-
-    --accent-yellow: #ffd24e;
-    --accent-pink: #ed7dab;
-    --accent-red: #e1391c;
-    --accent-blue: #4f5b97;
-    --accent-green: #65b762;
+    --header-color: var(--accent-burgundy);
 }
 
 .material-icons {
@@ -94,9 +98,14 @@ main.markdown {
     }
 
     h1 {
+        font-size: 4em;
         text-transform: uppercase;
+        text-align: center;
         letter-spacing: 0.025em;
-        font-size: 2em;
+
+        &.standalone {
+            margin: 1em;
+        }
     }
 
     h2 {

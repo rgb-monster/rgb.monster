@@ -1,6 +1,5 @@
 <script>
     import utils from "../scripts/utils.js";
-    import showMetas from "../scripts/metas.js";
 
     export default {
         name: "ShowTypeTile",
@@ -12,7 +11,6 @@
             return {};
         },
         computed: {
-            meta: state => showMetas[state.showType.name],
             dates() {
                 let byDate = {};
                 this.showType.shows.forEach(show => {
@@ -40,17 +38,17 @@
 </script>
 
 <template>
-    <a class="show-type-tile" :href="`/${meta.slug}`">
-        <div class="hero-image" v-if="meta.cover">
-            <img :src="meta.cover" />
+    <a class="show-type-tile" :href="`/${showType.slug}`">
+        <div class="hero-image" v-if="showType.cover">
+            <img :src="showType.cover" />
         </div>
         <header>{{ showType.name }}</header>
 
-        <div class="description">{{ meta.short_description }}</div>
+        <div class="description">{{ showType.short_description }}</div>
 
         <div class="meta">
             <div class="tags">
-                <div v-for="tag in meta.tags.slice(0, 1)" :class="tag">{{ tag }}</div>
+                <div v-for="tag in showType.tags.slice(0, 1)" :class="tag">{{ tag }}</div>
             </div>
             <div class="dates">
                 <Icon name="calendar_month" />

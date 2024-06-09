@@ -1,6 +1,7 @@
 ---
 title: The Card!
 page: card
+footer: light
 ---
 
 ::: section

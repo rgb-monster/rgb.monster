@@ -1,4 +1,6 @@
 <script>
+    import {useStore} from "../stores/shows.js";
+
     export default {
         name: "KidsPage",
         props: {
@@ -20,21 +22,27 @@
 <template>
     <header class="kids-header">
         <img src="/rgb-kids.png" />
-        <h1>RGB Kids!</h1>
+        <h1>RGB Kids</h1>
     </header>
 </template>
 
 <style lang="scss">
-    .kids-header {
+    header.kids-header {
         display: grid;
-        justify-content: center;
         align-items: center;
+        justify-items: center;
         text-align: center;
+        gap: 1em;
 
         padding: 2em 0;
 
         img {
             height: 200px;
+        }
+
+        h1 {
+            font-size: 4em;
+            line-height: 100%;
         }
     }
 </style>

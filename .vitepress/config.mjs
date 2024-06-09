@@ -16,7 +16,7 @@ export default defineConfig({
         ["link", {href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet"}],
     ],
 
-    srcDir: "./src/pages",
+    //srcDir: "./src/md",
     cleanUrls: true,
 
     markdown: {
