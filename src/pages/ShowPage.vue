@@ -48,9 +48,15 @@
             {{ metas.title }}
         </h1>
 
-        <p>
-            {{ metas.description }}
-        </p>
+        <video v-if="metas.video" controls>
+            <source :src="metas.video" type="video/mp4" />
+        </video>
+
+        <section>
+            <p>
+                {{ metas.description }}
+            </p>
+        </section>
 
         <section class="tickets" v-if="loaded">
             <h2>Get tickets ({{ shows.length }} shows)</h2>
@@ -78,6 +84,10 @@
             .cover {
                 margin-top: 20px;
                 border-radius: 30px;
+            }
+
+            video {
+                border-radius: 15px;
             }
         }
     }

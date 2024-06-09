@@ -89,6 +89,7 @@ export default {
         description:
             "Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, laugh-out-loud show about how you can justify being toxic. Think of the WhatsApp group that you're ashamed to be in – the show will feel like that live on stage. 'Delivers every joke with a cheeky little smile' **** (EdFringeReview.com). 'Escapism and delight... can't help but lift your spirits' **** (Edinburgh Festivals Magazine). 'A clear passion for his craft' **** (BroadwayWorld.com).",
         tickets: "https://tickets.edfringe.com/whats-on/ollie-horn-comedy-for-toxic-people-and-their-friends",
+        video: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/10-secs.mp4",
     },
 
     "Inside the Robot": {

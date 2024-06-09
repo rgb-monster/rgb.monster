@@ -1,6 +1,7 @@
 ---
 title: Show details
 page: whats-on
+footer: light
 ---
 
 <script setup>
