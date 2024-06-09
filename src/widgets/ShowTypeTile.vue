@@ -38,7 +38,7 @@
 </script>
 
 <template>
-    <a class="show-type-tile" :href="`/${showType.slug}`">
+    <a class="show-type-tile" :class="showType.tags[0]" :href="`/${showType.slug}`">
         <div class="hero-image" v-if="showType.cover">
             <img :src="showType.cover" />
         </div>

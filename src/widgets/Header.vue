@@ -16,6 +16,7 @@
     header.site {
         display: flex;
         gap: 5px;
+        z-index: 500;
 
         background: var(--chrome);
 

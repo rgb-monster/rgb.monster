@@ -70,6 +70,7 @@ export default {
         description:
             "Queer, chic and outrageous – you're invited to the biggest, gayest party at the Fringe (fun straights allowed). Indulge in the hottest pop-up cabaret experience on Cowgate with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours.",
         tickets: "https://tickets.edfringe.com/whats-on/big-gay-afterparty",
+        video: "https://storage.googleapis.com/rgb-monster-assets/big-gay/10-secs.mp4",
     },
 
     "Chanel Ali: Break Up With Your Dad": {
@@ -86,10 +87,17 @@ export default {
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
         short_description: "Spontaneous, sharp, high-energy stand-up",
-        description:
-            "Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, laugh-out-loud show about how you can justify being toxic. Think of the WhatsApp group that you're ashamed to be in – the show will feel like that live on stage. 'Delivers every joke with a cheeky little smile' **** (EdFringeReview.com). 'Escapism and delight... can't help but lift your spirits' **** (Edinburgh Festivals Magazine). 'A clear passion for his craft' **** (BroadwayWorld.com).",
+        description: `Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, <em>laugh-out-loud show about how you can justify being toxic</em>. Think of the WhatsApp group that you're ashamed to be in - the show will feel like that live on stage.
+            `,
         tickets: "https://tickets.edfringe.com/whats-on/ollie-horn-comedy-for-toxic-people-and-their-friends",
         video: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/10-secs.mp4",
+
+        quotes: [
+            {stars: 4, quote: "Delivers every joke with a cheeky little smile", author: "EdFringe Review"},
+            {stars: 4, quote: "One hell of a good show", author: "ThreeWeeks"},
+            {stars: 4, quote: "An hour of escapist perfection", author: "Mumble Comedy"},
+            {stars: 4, quote: "A clear passion for his craft", author: "Broadway World"},
+        ],
     },
 
     "Inside the Robot": {

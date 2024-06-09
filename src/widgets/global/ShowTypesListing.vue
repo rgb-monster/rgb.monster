@@ -66,11 +66,11 @@
         gap: 1em;
         padding: 2em var(--content-horiz-padding);
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1000px) {
             grid-template-columns: repeat(3, 1fr);
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 800px) {
             grid-template-columns: repeat(2, 1fr);
         }
 

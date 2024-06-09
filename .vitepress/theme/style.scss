@@ -23,7 +23,9 @@
 
     --body-font: Lato, Arial, Helvetica;
 
-    --window-max: 1200px;
+    --listings-max: 1200px;
+
+    --page-max: 800px;
 
     --header-color: var(--accent-burgundy);
 }
@@ -76,10 +78,13 @@ section {
 
 main.markdown {
     flex-grow: 1;
-    line-height: 1.5em;
 
-    max-width: var(--window-max);
-    margin: 0 auto;
+
+
+
+    // - note - need to have ease access to the page's full width
+    // max-width: var(--listings-max);
+    // margin: 0 auto;
 
     & > div {
         /* markdown wraps everything in a position:relative div that i don't know the effects off - negate it */
@@ -107,6 +112,8 @@ main.markdown {
         &.standalone {
             margin: 1em;
         }
+
+        text-shadow: 3px 3px #00000066;
     }
 
     h2 {
@@ -126,7 +133,13 @@ main.markdown {
     }
 
     p {
-        margin: 1em 0;
+        margin: 0.5em 0;
+    }
+
+    em {
+        font-style: normal;
+        font-weight: 600;
+        color: var(--accent-burgundy);
     }
 }
 
