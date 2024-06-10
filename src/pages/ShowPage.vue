@@ -16,6 +16,8 @@
             return {
                 store: useStore(),
                 loaded: false,
+
+                videoPlaying: false,
             };
         },
         computed: {
@@ -36,6 +38,20 @@
                 let description = this.metas.description;
                 description = description.replace(/\n/g, "<br />");
                 return description;
+            },
+        },
+
+        methods: {
+            togglePlayback() {
+                let video = this.$refs.video;
+
+                if (video.paused || video.ended) {
+                    video.play();
+                    this.videoPlaying = true;
+                } else {
+                    video.pause();
+                    this.videoPlaying = false;
+                }
             },
         },
 
@@ -96,12 +112,14 @@
 
         <section v-if="metas.video" class="video">
             <div class="container">
-                <div class="player">
-                    <video playsinline>
+                <button class="player" :class="{playing: videoPlaying}" @click="togglePlayback">
+                    <video playsinline ref="video">
                         <source :src="metas.video" type="video/mp4" />
                     </video>
-                    <button><Icon name="play_arrow" /></button>
-                </div>
+                    <button class="play-controls">
+                        <div class="play-icon"><Icon name="play_arrow" /></div>
+                    </button>
+                </button>
             </div>
         </section>
 
@@ -229,35 +247,54 @@
 
         .player {
             position: relative;
+            cursor: pointer;
 
-            --button-size: 5vw;
+            --button-size: min(60px, 15vw);
 
-            button {
+            .play-controls {
                 position: absolute;
-                left: 50%;
-                top: 50%;
-                height: var(--button-size);
-                width: var(--button-size);
-                margin-left: calc(var(--button-size) / 2 * -1);
-                margin-top: calc(var(--button-size) / 2 * -1);
-
-                border-radius: 50%;
-
-                background: var(--accent-pink);
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
                 display: flex;
-                justify-content: center;
                 align-items: center;
+                justify-content: center;
 
-                outline: 10px solid #fff;
+                .play-icon {
+                    height: var(--button-size);
+                    width: var(--button-size);
 
-                .icon {
-                    font-size: calc(var(--button-size) * 0.8);
-                    color: #fff;
+                    border-radius: 50%;
+
+                    background: var(--accent-pink);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    outline: min(10px, 2.5vw) solid #fff;
+
+                    opacity: 1;
+                    transition: opacity 300ms ease;
+
+                    .icon {
+                        font-size: calc(var(--button-size) * 0.8);
+                        color: #fff;
+                    }
                 }
+
+            }
+
+            &.playing .play-icon {
+                opacity: 0;
             }
 
             video {
-                border: 10px solid var(--accent-pink);
+                border-radius: 15px;
+
+                outline: min(10px, 2.5vw) solid var(--accent-pink);
+                z-index: 0;
+                position: relative;
             }
         }
 
@@ -271,9 +308,6 @@
                 border-radius: 15px;
             }
 
-            video {
-                border-radius: 15px;
-            }
         }
 
         @media (max-width: 800px) {

@@ -79,9 +79,6 @@ section {
 main.markdown {
     flex-grow: 1;
 
-
-
-
     // - note - need to have ease access to the page's full width
     // max-width: var(--listings-max);
     // margin: 0 auto;
@@ -103,17 +100,19 @@ main.markdown {
     }
 
     h1 {
-        font-size: 4em;
+        font-size: min(4em, 12vw);
         text-transform: uppercase;
         text-align: center;
         letter-spacing: 0.025em;
         line-height: 90%;
 
         &.standalone {
-            margin: 1em;
+            margin: 1em min(1em, 5vw);
+            border: 1px solid red;
         }
 
-        text-shadow: 3px 3px #00000066;
+        --dynamic-shadow: min(calc(1px + 0.3vw), 3px);
+        text-shadow: var(--dynamic-shadow) var(--dynamic-shadow) #00000066;
     }
 
     h2 {
