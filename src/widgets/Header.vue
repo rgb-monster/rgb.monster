@@ -19,8 +19,8 @@
 
         background: var(--chrome);
 
-        position: sticky;
-        top: 0;
+        // position: sticky;
+        // top: 0;
 
         display: flex;
         align-items: center;

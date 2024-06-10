@@ -12,7 +12,10 @@
 
     --chrome-text: #f7f0e3;
     --content-horiz-padding: 1em;
-    --base: #f7f0e3;
+
+    --base: hsl(39, 56%, 93%);
+    --base-1: hsl(39, 56%, 88%);
+    --base-2: hsl(39, 56%, 83%);
     --text: #333;
 
     --light: #fafafa;
@@ -111,7 +114,7 @@ main.markdown {
     }
 
     h1 {
-        font-size: min(4em, 12vw);
+        font-size: min(4em, 8vw);
         text-transform: uppercase;
         text-align: center;
         letter-spacing: 0.025em;

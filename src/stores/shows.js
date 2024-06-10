@@ -33,7 +33,10 @@ export const useStore = defineStore("shows", {
             });
 
             return utils.sort(
-                Object.values(byType).map(rec => ({...rec, shows: utils.sort(rec.shows, show => show.ts)})),
+                Object.values(byType).map(rec => ({
+                    ...rec,
+                    shows: utils.sort(rec.shows, show => show.ts),
+                })),
                 showType => showType.name
             );
         },
@@ -60,10 +63,34 @@ export const useStore = defineStore("shows", {
                     withCredentials: true,
                 });
 
-                this.shows = [...(rgb.data || []), ...(presents.data || [])].map(show => ({
-                    ...show,
-                    ts: utils.parseTS(show.ts),
-                }));
+                this.shows = [...(rgb.data || []), ...(presents.data || [])].map(show => {
+                    let ts = utils.parseTS(show.ts);
+                    let metas = showMetas[show.name];
+                    let tickets = metas.tickets;
+                    if (typeof tickets != "string") {
+                        // we have ourselves something more convoluted
+                        tickets = tickets.filter(
+                            rec =>
+                                (!rec.venue || rec.venue == show.venue.name) &&
+                                (!rec.time || rec.time == ts.strftime("%H:%M"))
+                        );
+                        if (tickets.length == 1) {
+                            tickets = tickets[0].url;
+                            if (tickets.includes("tickets.edfringe.com")) {
+                                tickets = `${tickets}?day=${ts.strftime('%d-%m-%Y')}`
+                            }
+                        } else {
+                            tickets = null;
+                            console.error(
+                                "Could not find ticket url for show",
+                                show.venue.name,
+                                ts.strftime("%H:%M")
+                            );
+                        }
+                    }
+
+                    return {...show, ts, tickets};
+                });
             }
         },
     },
