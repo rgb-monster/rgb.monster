@@ -42,7 +42,7 @@
         <div class="hero-image" v-if="showType.cover">
             <img :src="showType.cover" />
         </div>
-        <header>{{ showType.name }}</header>
+        <header v-html="showType.formatted_title || showType.title" />
 
         <div class="description">{{ showType.short_description }}</div>
 

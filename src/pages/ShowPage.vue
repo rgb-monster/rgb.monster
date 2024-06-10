@@ -1,7 +1,7 @@
 <script>
     import {useStore} from "../stores/shows.js";
     import showMetas from "/src/scripts/metas.js";
-    // import Cover from "../widgets/Cover.vue";
+    import utils from "/src/scripts/utils.js";
 
     export default {
         name: "ShowPage",
@@ -34,20 +34,54 @@
                 return showType.shows;
             },
 
+            showsByDate() {
+                let byDate = {};
+
+                this.shows.forEach(show => {
+                    utils.setDefault(byDate, show.ts.strftime("%Y-%m-%d"), {date: show.ts, shows: []}).shows.push(show);
+                });
+
+                return utils.sort(Object.values(byDate), date => date.date);
+            },
+
             showDescription() {
                 let description = this.metas.description;
                 description = description.replace(/\n/g, "<br />");
                 return description;
+            },
+
+            dates() {
+                let byDate = {};
+                this.shows.forEach(show => {
+                    byDate[show.ts.strftime("%Y-%m-%d")] = show.ts;
+                });
+
+                let dates = utils.sort(Object.values(byDate));
+                if (dates.length < 3) {
+                    return dates.map(ts => utils.humanDate(ts)).join(", ");
+                } else {
+                    let [start, end] = [dates[0], dates[dates.length - 1]];
+                    return `${utils.humanDate(start)} - ${utils.humanDate(end)}`;
+                }
+            },
+
+            times() {
+                let byTime = {};
+                this.shows.forEach(show => {
+                    byTime[show.ts.strftime("%H:%M")] = show.ts;
+                });
+                return utils.sort(Object.values(byTime), ts => ts.time()).map(ts => ts.strftime("%H:%M"));
             },
         },
 
         methods: {
             togglePlayback() {
                 let video = this.$refs.video;
-
                 if (video.paused || video.ended) {
                     video.play();
                     this.videoPlaying = true;
+
+                    plausible("video-playback", {props: {video: this.metas.title}});
                 } else {
                     video.pause();
                     this.videoPlaying = false;
@@ -65,38 +99,40 @@
 <template>
     <div class="show-page">
         <section class="banner">
-            <div class="container">
+            <div class="contents">
                 <Cover :show="metas" />
             </div>
         </section>
 
         <section class="title">
-            <div class="container">
-                <h1>
-                    {{ metas.title }}
-                </h1>
+            <div class="contents">
+                <h1 v-html="metas.formatted_title || metas.title" />
 
-                <div class="location">
+                <div class="location" :class="{'not-ready': !loaded}">
                     <div>
                         <Icon name="calendar_month" />
-                        Aug 2-35
+                        <div v-if="loaded">{{ dates }}</div>
                     </div>
 
                     <div>
                         <Icon name="location_on" />
-                        Hoots@Potterrow
+                        <div v-if="loaded">Hoots@Potterrow</div>
                     </div>
 
                     <div>
                         <Icon name="schedule" />
-                        <div>14:00</div>
+                        <div v-if="loaded">{{ times[0] }}</div>
                     </div>
+                </div>
+
+                <div class="tags">
+                    <div v-for="tag in metas.tags" :key="tag" :class="tag">{{ tag }}</div>
                 </div>
             </div>
         </section>
 
         <section class="cta">
-            <div class="container">
+            <div class="contents">
                 <button>
                     <Icon name="local_activity" />
                     Get tickets
@@ -104,14 +140,14 @@
             </div>
         </section>
 
-        <section>
-            <div class="container">
+        <section class="show-description">
+            <div class="contents">
                 <p v-html="showDescription" />
             </div>
         </section>
 
         <section v-if="metas.video" class="video">
-            <div class="container">
+            <div class="contents">
                 <button class="player" :class="{playing: videoPlaying}" @click="togglePlayback">
                     <video playsinline ref="video">
                         <source :src="metas.video" type="video/mp4" />
@@ -124,17 +160,27 @@
         </section>
 
         <section class="social-proof" v-if="metas.quotes">
-            <div class="container">
+            <div class="contents">
                 <QuotesCarousel :quotes="metas.quotes" />
             </div>
         </section>
 
-        <section class="tickets" v-if="loaded">
-            <div class="container">
-                <h2>Show dates ({{ shows.length }} shows)</h2>
+        <section class="dates" v-if="loaded">
+            <div class="contents">
+                <h2>Show dates</h2>
 
-                <div v-for="show in shows">
-                    {{ show.ts.strftime("%d %b, %H:%M") }}
+                <div class="date-listing">
+                    <div v-for="date in showsByDate" :key="date.date">
+                        <h2>{{ humanDate(date.date) }}</h2>
+                        <div class="shows">
+                            <div class="show-tile" v-for="show in date.shows">
+                                <div class="time">{{ show.ts.strftime("%H:%M") }}</div>
+                                <div class="venue">{{ show.venue.name }}</div>
+
+                                <div class="action">Get Tickets</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -145,28 +191,6 @@
     main.markdown .show-page {
         padding-bottom: 3em;
         margin: 0 auto;
-
-        & > * {
-            max-width: var(--page-max);
-        }
-
-        section {
-            max-width: none;
-
-            .container {
-                max-width: var(--page-max);
-                margin: 0 auto;
-                //padding: 1em 0;
-                text-align: center;
-            }
-        }
-
-        section.banner {
-            //padding: 0;
-
-            // background: var(--base);
-            // border-bottom: 10px solid var(--accent-burgundy);
-        }
 
         .cover {
             transition: all 300ms;
@@ -191,15 +215,48 @@
                 gap: 0.5em;
                 justify-content: center;
 
+                opacity: 1;
+                transition: opacity 300ms ease;
+
+                &.not-ready {
+                    opacity: 0;
+                }
+
                 & > div {
                     display: flex;
-                    align-items: center;
+                    align-items: end;
                     gap: 5px;
                 }
 
                 .icon {
                     // color: #000;
                     font-size: 1.25em;
+                    display: flex;
+                }
+            }
+
+            .tags {
+                font-family: var(--rgb-font);
+                color: var(--accent-pink);
+                font-size: 1.25em;
+                font-weight: 400;
+                margin-top: 1em;
+
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+
+                .kids {
+                    color: var(--accent-yellow);
+                }
+
+                .format {
+                    color: var(--accent-green);
+                }
+
+                .unique {
+                    color: var(--accent-red);
                 }
             }
         }
@@ -241,8 +298,58 @@
             }
         }
 
-        .tickets {
+        section.dates {
             margin: 2em 0;
+
+            .date-listing {
+                display: grid;
+
+                gap: 1em;
+
+                margin-top: 1em;
+                text-align: left;
+
+                h2 {
+                    //background: var(--chrome-x2);
+                    color: var(--chrome);
+                    border-bottom: 2px solid var(--chrome);
+                    text-align: left;
+                    padding: 5px;
+                    text-transform: uppercase;
+                    margin-top: 1em;
+                }
+
+                .shows {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    margin-top: 10px;
+                }
+
+                .show-tile {
+                    background: #fff;
+                    display: inline-block;
+                    padding: 10px;
+                    border-radius: 10px;
+                    border: 1px solid var(--shadow);
+
+                    display: grid;
+                    justify-items: start;
+                    gap: 10px;
+
+                    .time {
+                        font-weight: 600;
+                        font-size: 2em;
+                    }
+
+                    .action {
+                        color: var(--chrome-x1);
+                        border: 2px solid var(--chrome-x2);
+                        border-radius: 5px;
+                        padding: 5px;
+                    }
+                }
+            }
         }
 
         .player {
@@ -282,7 +389,6 @@
                         color: #fff;
                     }
                 }
-
             }
 
             &.playing .play-icon {
@@ -307,7 +413,6 @@
             .cover {
                 border-radius: 15px;
             }
-
         }
 
         @media (max-width: 800px) {

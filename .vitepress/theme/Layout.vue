@@ -13,7 +13,7 @@
     <div class="theme-container">
         <Header v-if="frontmatter.header !== false" />
 
-        <main class="markdown">
+        <main class="markdown" :class="frontmatter.layout || 'normal'">
             <Content />
         </main>
 

@@ -54,9 +54,11 @@
 </script>
 
 <template>
-    <div class="show-types-listing">
-        <ShowTypeTile v-for="showType in showTypes" :key="showType.type" :showType="showType" />
-    </div>
+    <section>
+        <div class="contents show-types-listing">
+            <ShowTypeTile v-for="showType in showTypes" :key="showType.type" :showType="showType" />
+        </div>
+    </section>
 </template>
 
 <style lang="scss">

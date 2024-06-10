@@ -14,6 +14,8 @@ export default defineConfig({
         ["link", {href: "https://fonts.googleapis.com/css2?family=Lato&display=swap", rel: "stylesheet"}],
 
         ["link", {href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet"}],
+
+        ["script", {src: "https://plausible.io/js/script.tagged-events.outbound-links.js", "data-domain": "rgb.monster", defer: "defer"}],
     ],
 
     //srcDir: "./src/md",

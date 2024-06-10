@@ -139,6 +139,7 @@ export default {
     },
 
     "Matt Davis: (I Used to Be) More Fun": {
+        formatted_title: "Matt Davis: (I&nbsp;Used&nbsp;to&nbsp;Be) More Fun",
         slug: "matt-fun",
         tags: ["solo", "standup"],
         short_description: "Acclaimed USA comedy veteran on sobriety",

@@ -641,7 +641,6 @@ utils.filters = Object.fromEntries(
         "pluralizeNoun",
         "sort",
         "gstore",
-        "slotDescriptor",
         "formatDuration",
         "humanDuration",
         "isEmpty",

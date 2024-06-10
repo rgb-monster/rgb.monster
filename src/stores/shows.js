@@ -21,6 +21,7 @@ export const useStore = defineStore("shows", {
             this.shows.forEach(show => {
                 byType[show.name] = byType[show.name] || {
                     ...showMetas[show.name],
+                    title: show.name,
                     name: show.name,
                     emoji: show.emoji,
                     duration: show.duration,
@@ -31,7 +32,10 @@ export const useStore = defineStore("shows", {
                 byType[show.name].shows.push(show);
             });
 
-            return utils.sort(Object.values(byType), showType => showType.name);
+            return utils.sort(
+                Object.values(byType).map(rec => ({...rec, shows: utils.sort(rec.shows, show => show.ts)})),
+                showType => showType.name
+            );
         },
 
         showsByTag() {

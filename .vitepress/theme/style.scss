@@ -23,10 +23,6 @@
 
     --body-font: Lato, Arial, Helvetica;
 
-    --listings-max: 1200px;
-
-    --page-max: 800px;
-
     --header-color: var(--accent-burgundy);
 }
 
@@ -72,16 +68,31 @@
     flex-direction: column;
 }
 
-section {
-    padding: var(--content-horiz-padding);
-}
-
 main.markdown {
     flex-grow: 1;
+    --page-width: 800px;
 
-    // - note - need to have ease access to the page's full width
-    // max-width: var(--listings-max);
-    // margin: 0 auto;
+    &.wide {
+        --page-width: 1200px;
+    }
+
+    section {
+        padding: var(--content-horiz-padding);
+        .contents {
+            max-width: var(--page-width);
+            margin: 0 auto;
+            //padding: 1em 0;
+            text-align: center;
+        }
+    }
+
+    ul {
+        padding-left: 1em;
+
+        li {
+            list-style: disc;
+        }
+    }
 
     & > div {
         /* markdown wraps everything in a position:relative div that i don't know the effects off - negate it */
@@ -108,7 +119,6 @@ main.markdown {
 
         &.standalone {
             margin: 1em min(1em, 5vw);
-            border: 1px solid red;
         }
 
         --dynamic-shadow: min(calc(1px + 0.3vw), 3px);
@@ -117,18 +127,6 @@ main.markdown {
 
     h2 {
         font-size: 1.5em;
-    }
-
-    section {
-        padding: var(--content-horiz-padding);
-
-        ul {
-            padding-left: 1em;
-
-            li {
-                list-style: disc;
-            }
-        }
     }
 
     p {

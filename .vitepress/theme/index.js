@@ -22,5 +22,10 @@ export default {
         for (const name in globalWidgets) {
             app.component(name, globalWidgets[name]);
         }
+
+        app.mixin({
+            // make utils.filters available as global methods so we don't have to spell them out individually
+            methods: utils.filters,
+        });
     },
 };
