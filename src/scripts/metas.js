@@ -64,13 +64,13 @@ export default {
     },
 
     "Big Gay Afterparty": {
-        slug: "big-gay",
+        slug: "afterparty",
         tags: ["variety"],
         short_description: "Pop-up cabaret and mayhem (fun straights allowed)",
         description:
             "Queer, chic and outrageous – you're invited to the biggest, gayest party at the Fringe (fun straights allowed). Indulge in the hottest pop-up cabaret experience on Cowgate with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours.",
         tickets: "https://tickets.edfringe.com/whats-on/big-gay-afterparty",
-        video: "https://storage.googleapis.com/rgb-monster-assets/big-gay/10-secs.mp4",
+        video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.mp4",
     },
 
     "Chanel Ali: Break Up With Your Dad": {
