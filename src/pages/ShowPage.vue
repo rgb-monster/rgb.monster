@@ -138,7 +138,7 @@
 
 <template>
     <div class="show-page">
-        <img class="doodle-mic-left" src="/doodles/cable-left.webp" />
+        <img class="doodle doodle-mic-left" src="/doodles/cable-left.webp" />
 
         <section class="banner">
             <div class="contents">

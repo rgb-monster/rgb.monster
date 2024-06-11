@@ -73,6 +73,13 @@
     flex-direction: column;
 }
 
+.theme-container.md-toast {
+    --base: #fff;
+    .doodle {
+        display: none;
+    }
+}
+
 main.markdown {
     flex-grow: 1;
     --page-width: 800px;

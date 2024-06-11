@@ -4,13 +4,11 @@
     import Header from "../../src/widgets/Header.vue";
 
     // https://vitepress.dev/reference/runtime-api#usedata
-    const {site, frontmatter} = useData();
-
-    // <div v-if="frontmatter.home">do something special</div>
+    const {site, page, frontmatter} = useData();
 </script>
 
 <template>
-    <div class="theme-container">
+    <div class="theme-container" :class="`md-${page.filePath.split('.')[0]}`">
         <Header v-if="frontmatter.header !== false" />
 
         <main class="markdown" :class="frontmatter.layout || 'normal'">
