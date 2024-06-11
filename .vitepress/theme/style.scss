@@ -10,6 +10,8 @@
     --chrome-x1: hsl(357, 51%, 24%);
     --chrome-x2: hsl(357, 51%, 29%);
 
+    --em: #ed7dab;
+
     --chrome-text: #f7f0e3;
     --content-horiz-padding: 1em;
 
@@ -80,12 +82,35 @@ main.markdown {
     }
 
     section {
-        padding: var(--content-horiz-padding);
+        padding: var(--content-horiz-padding) 0;
+
         .contents {
             max-width: var(--page-width);
             margin: 0 auto;
             //padding: 1em 0;
             text-align: center;
+
+            padding: 0 var(--content-horiz-padding);
+        }
+    }
+
+    section.contents {
+        a {
+            color: var(--chrome-x2);
+            text-decoration: underline;
+        }
+
+        mark {
+            background-color: var(--accent-pink);
+            padding: 3px;
+        }
+
+        p {
+            font-size: 1.15em;
+            line-height: 180%;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
         }
     }
 

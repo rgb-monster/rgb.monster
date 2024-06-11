@@ -29,10 +29,10 @@ export default defineConfig({
 
                     if (tokens[idx].nesting === 1) {
                         // opening tag
-                        return `<section class="${m ? md.utils.escapeHtml(m[1]) : ""}">\n`;
+                        return `<section class="contents ${m ? md.utils.escapeHtml(m[1]) : ""}"><div class="contents">\n`;
                     } else {
                         // closing tag
-                        return "</section>\n";
+                        return "</div></section>\n";
                     }
                 },
             });
