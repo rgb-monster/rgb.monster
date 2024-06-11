@@ -222,6 +222,7 @@ export default {
             "Comedy panel show where top comics answer the daft questions you choose on our exclusive app, and take on stand-up challenges that test their comedy muscles. A Fringe cult hit since 2018 and never the same show twice. A must for comedy fans who want to see some of the sharpest comedy minds at the festival be put through their paces. No need to reserve, just rock up with a charged smartphone ten minutes before the show starts! Free entry, pay what you like on exit!",
         tickets:
             "https://tickets.edfringe.com/whats-on/not-my-audience-the-stand-up-panel-show-you-control-with-an-app",
+        payment: "unticketed",
     },
 
     "Off With Your Head!": {
@@ -233,6 +234,7 @@ export default {
         description:
             "Are you fit to reign? How long do you think you can survive as ruler? Come and find out in this one-of-a-kind interactive comedy video game! Part comedy, part improv, part video game and part choose-your-own-adventure, where you and two guest comedians try to rule a kingdom! A unique experience at every show – how will you fare, my liege? From veteran performer Sam See (**** (Fest)) and video game designer Stephen Case from RGB Monster (Trust No Bunny, Not My Audience).",
         tickets: "https://tickets.edfringe.com/whats-on/off-with-your-head",
+        payment: "unticketed",
     },
 
     "Out of Order": {
@@ -255,6 +257,7 @@ export default {
         description:
             "Three top stand-ups perform their very best routines just as they do in comedy clubs up and down the country and abroad, just without the swearing! PG Hits is a professional stand-up comedy compilation show that leaves out the really rude bits so everybody can enjoy the show. Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best the festival has to offer, at a relaxed lunchtime performance.",
         tickets: "https://tickets.edfringe.com/whats-on/pg-hits-the-best-in-family-friendly-stand-up-comedy",
+        payment: "pwyc",
     },
 
     "The Most Toast": {

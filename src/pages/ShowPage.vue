@@ -103,6 +103,16 @@
                 });
                 return utils.sort(Object.values(byTime), ts => ts.time()).map(ts => ts.strftime("%H:%M"));
             },
+
+            paymentSectionTitle() {
+                let titles = {
+                    ticketed: "Ticketed Show",
+                    "ticketed+pwyw": "Ticketed + PWYW Show",
+                    pwyc: "Pay What You Can",
+                    unticketed: "Unticketed Show",
+                };
+                return titles[this.metas.payment || "ticketed"];
+            },
         },
 
         methods: {
@@ -204,7 +214,7 @@
                 <button @click="jumpToDates()" v-if="!loaded || shows.length > 1">
                     <template v-if="!metas.cta">
                         <Icon name="local_activity" />
-                        Get tickets
+                        {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
                     </template>
                     <template v-else>
                         {{ metas.cta }}
@@ -214,7 +224,7 @@
                 <a :href="shows[0].tickets" target="blank" v-else>
                     <template v-if="!metas.cta">
                         <Icon name="local_activity" />
-                        Get tickets
+                        {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
                     </template>
                     <template v-else>
                         {{ metas.cta }}
@@ -255,7 +265,7 @@
                 </div>
 
                 <div class="box">
-                    <header class="flexer"><Icon name="confirmation_number" />About Tickets</header>
+                    <header class="flexer"><Icon name="confirmation_number" />{{ paymentSectionTitle }}</header>
 
                     <div v-if="(metas.payment || 'ticketed') == 'ticketed'">
                         This is a ticketed show. This means that unlike some other shows that we produce where you may
@@ -305,7 +315,9 @@
                             <a class="show-tile" v-for="show in date.shows" :href="show.tickets" target="blank">
                                 <div class="time">{{ show.ts.strftime("%H:%M") }}</div>
                                 <div class="venue">{{ show.venue.name }}</div>
-                                <div class="action">Get Tickets</div>
+                                <div class="action">
+                                    {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
+                                </div>
                             </a>
                         </div>
                     </div>
