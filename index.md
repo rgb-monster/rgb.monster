@@ -1,5 +1,9 @@
 ---
 home: true
+footer: light
+layout: wide
 ---
 
-The main landing page, a.k.a. the page of the home
+<h1 class="standalone">RGB Monster at Edinburgh Fringe 2024</h1>
+
+<ShowTypesListing filter="Edinburgh August 2024" />

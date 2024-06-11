@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <header class="site">
+    <header class="site" v-if="false">
         <a href="/fringe" :class="{current: frontmatter.page == 'fringe'}">Edinburgh Fringe 2024</a>
         <a href="/kids" :class="{current: frontmatter.page == 'kids'}">Kids</a>
         <a href="/about-us" :class="{current: frontmatter.page == 'about-us'}">About RGB Monster</a>
