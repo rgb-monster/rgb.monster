@@ -300,11 +300,12 @@
 
                 box-shadow: 0px 2px 5px #aaa;
                 background: var(--chrome);
-                padding: 10px;
+                padding: 10px 0;
 
                 h1 {
                     color: #fff;
                     font-size: min(6vw, 2em);
+                    margin-top: 4px; // manually pushed the header down for visual vertical alignment
                 }
 
                 .square-logo {

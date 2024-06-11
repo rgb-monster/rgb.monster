@@ -22,7 +22,7 @@
 <template>
     <header class="kids-header">
         <img src="/rgb-kids.png" />
-        <h1>RGB Monster Kids Shows of Edinburgh Fringe 2024</h1>
+        <h1 class="standalone">RGB Monster Kids Shows of Edinburgh Fringe 2024</h1>
     </header>
 </template>
 
