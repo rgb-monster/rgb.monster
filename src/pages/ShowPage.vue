@@ -26,7 +26,7 @@
         },
         computed: {
             pushAway() {
-                let factor = this.scrollY * 0.01;
+                let factor = this.scrollY * 0.02;
                 return Math.max(-Math.pow(factor, 2), -200);
             },
 
@@ -155,20 +155,26 @@
         <img class="curtains-left" src="/curtains-left.webp" :style="{'margin-left': `${pushAway}px`}" />
         <img class="curtains-right" src="/curtains-right.webp" :style="{'margin-right': `${pushAway}px`}" />
 
+        <div class="sticky-header" ref="header">
+            <div class="contents">
+                <img class="square-logo" v-if="metas.square" :src="metas.square" />
+                <h1 v-html="metas.formatted_title || metas.title" />
+            </div>
+        </div>
+
         <section class="banner">
             <div class="contents">
                 <Cover :show="metas" />
             </div>
         </section>
 
-        <section class="title" ref="header">
+        <section class="title" ref="metaHeader">
             <div class="contents">
-                <img class="square-logo" v-if="metas.square" :src="metas.square" />
                 <h1 v-html="metas.formatted_title || metas.title" />
             </div>
         </section>
 
-        <section class="meta" ref="metaHeader">
+        <section class="meta">
             <div class="contents">
                 <div class="location" :class="{'not-ready': !loaded}">
                     <div>
@@ -333,7 +339,7 @@
             top: 0;
             z-index: 2000;
             pointer-events: none;
-            width: min(400px, 20vw);
+            width: min(400px, 19.5vw);
         }
 
         .curtains-left {
@@ -342,6 +348,45 @@
 
         .curtains-right {
             right: 0;
+        }
+
+        .sticky-header {
+            position: fixed;
+            z-index: 500;
+            width: 100%;
+            box-shadow: 0px 2px 5px #aaa;
+            background: var(--chrome);
+            padding: 10px 0;
+
+            top: -100px;
+
+            transition: top 300ms ease;
+
+            &.pinned {
+                top: 0;
+            }
+
+            .contents {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+                padding: 0 var(--content-horiz-padding);
+            }
+
+            h1 {
+                color: #fff;
+                font-size: min(6vw, 2em);
+                margin-top: 4px; // manually pushed the header down for visual vertical alignment
+            }
+
+            .square-logo {
+                min-width: var(--square-size);
+                min-height: var(--square-size);
+                max-width: var(--square-size);
+                max-height: var(--square-size);
+                border-radius: 10px;
+            }
         }
 
         section.title {
@@ -360,34 +405,6 @@
                 gap: 15px;
                 align-items: center;
                 align-content: center;
-            }
-
-            .square-logo {
-                display: none;
-                min-width: var(--square-size);
-                min-height: var(--square-size);
-                max-width: var(--square-size);
-                max-height: var(--square-size);
-                border-radius: 10px;
-            }
-
-            &.pinned {
-                position: sticky;
-                top: -1px;
-
-                box-shadow: 0px 2px 5px #aaa;
-                background: var(--chrome);
-                padding: 10px 0;
-
-                h1 {
-                    color: #fff;
-                    font-size: min(6vw, 2em);
-                    margin-top: 4px; // manually pushed the header down for visual vertical alignment
-                }
-
-                .square-logo {
-                    display: block;
-                }
             }
         }
 
@@ -705,7 +722,6 @@
 
         @media (max-width: 600px) {
             --square-size: 14vw;
-
 
             section.meta {
                 .location {
