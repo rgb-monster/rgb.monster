@@ -32,8 +32,8 @@
             },
 
             shows() {
-                let showType = this.store.showTypes.find(type => type.slug == this.id);
-                return showType.shows;
+                let showType = (this.store.showTypes || []).find(type => type.slug == this.id);
+                return showType?.shows || [];
             },
 
             showsByDate() {
@@ -180,7 +180,7 @@
 
         <section class="cta">
             <div class="contents">
-                <button @click="jumpToDates()" v-if="shows.length > 1">
+                <button @click="jumpToDates()" v-if="!loaded || shows.length > 1">
                     <template v-if="!metas.cta">
                         <Icon name="local_activity" />
                         Get tickets
