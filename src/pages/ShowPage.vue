@@ -26,7 +26,8 @@
         },
         computed: {
             pushAway() {
-                return Math.max(this.scrollY * 0.05, 10);
+                let factor = this.scrollY * 0.01;
+                return Math.max(-Math.pow(factor, 2), -150);
             },
 
             // we'll render link that looks like a button if button has state; otherwise it's just your regular button
@@ -151,8 +152,8 @@
 
 <template>
     <div class="show-page">
-        <img class="curtains-left" src="/curtains-left.webp" :style="{'margin-left': `-${pushAway}px`}" />
-        <img class="curtains-right" src="/curtains-right.webp" :style="{'margin-right': `-${pushAway}px`}" />
+        <img class="curtains-left" src="/curtains-left.webp" :style="{'margin-left': `${pushAway}px`}" />
+        <img class="curtains-right" src="/curtains-right.webp" :style="{'margin-right': `${pushAway}px`}" />
 
         <section class="banner">
             <div class="contents">
