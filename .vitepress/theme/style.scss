@@ -77,7 +77,10 @@
 
 .theme-container.md-toast {
     --base: #fff;
-    .doodle {
+    .doodle,
+    .curtains-left,
+    .curtains-right,
+    .about-tickets {
         display: none;
     }
 }

@@ -27,7 +27,7 @@
         computed: {
             pushAway() {
                 let factor = this.scrollY * 0.01;
-                return Math.max(-Math.pow(factor, 2), -150);
+                return Math.max(-Math.pow(factor, 2), -200);
             },
 
             // we'll render link that looks like a button if button has state; otherwise it's just your regular button
@@ -333,7 +333,7 @@
             top: 0;
             z-index: 2000;
             pointer-events: none;
-            width: 200px;
+            width: min(400px, 20vw);
         }
 
         .curtains-left {
@@ -706,9 +706,6 @@
         @media (max-width: 600px) {
             --square-size: 14vw;
 
-            .curtains {
-                position: absolute;
-            }
 
             section.meta {
                 .location {
