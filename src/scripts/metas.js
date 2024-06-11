@@ -81,6 +81,8 @@ export default {
 
     "Best Worst Date": {
         slug: "best-worst-date",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover-thumb.webp",
         tags: ["format"],
         square: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/square.webp",
         short_description: "Dating horror stories party",
