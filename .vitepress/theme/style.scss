@@ -13,7 +13,7 @@
     --em: #ed7dab;
 
     --chrome-text: #f7f0e3;
-    --content-horiz-padding: 1em;
+    --content-horiz-padding: 20px;
 
     --base: hsl(39, 56%, 93%);
     --base-1: hsl(39, 56%, 88%);
@@ -95,6 +95,9 @@ main.markdown {
     }
 
     section.contents {
+        max-width: var(--page-width);
+        margin: 0 auto;
+
         a {
             color: var(--chrome-x2);
             text-decoration: underline;
@@ -137,14 +140,16 @@ main.markdown {
     }
 
     h1 {
-        font-size: min(4em, 8vw);
+        font-size: min(3.4em, 9vw);
         text-transform: uppercase;
         text-align: center;
         letter-spacing: 0.025em;
         line-height: 90%;
 
         &.standalone {
-            margin: 1em min(1em, 5vw);
+            max-width: var(--page-width);
+            margin: 0 auto;
+            padding: 1em var(--content-horiz-padding);
         }
 
         --dynamic-shadow: min(calc(1px + 0.3vw), 3px);
