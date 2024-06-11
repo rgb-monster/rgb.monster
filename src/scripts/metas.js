@@ -47,6 +47,8 @@ export default {
     "André De Freitas: As Yet Untitled": {
         slug: "andre",
         tags: ["solo", "standup"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/andre/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/andre/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/andre/square.webp",
         short_description: "Portuguese star's unfiltered takes on adulthood",
         description:
@@ -57,8 +59,8 @@ export default {
     "Bad Mums": {
         slug: "bad-mums",
         tags: ["solo", "standup"],
-        cover: "https://storage.googleapis.com/rgb-monster-assets/bad-moms/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/bad-moms/cover-thumb.webp",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/cover-thumb.webp",
         short_description: "Hilariously unfiltered tales of #mumlife",
         description:
             "They’re outrageous, late for school drop-off and definitely not on the PTA! After a sold-out Aussie tour, Gill Cordiner and Nikki Valentine bring you Bad Mums: an hour of hysterical, unfiltered tales that has left crowds roaring with laughter and leaving rave reviews! Book your babysitters, organise date night or get your girl gang and see this hotly anticipated Fringe debut for two of Australia's rising comedy stars!",
@@ -102,6 +104,8 @@ export default {
         slug: "chanel",
         tags: ["solo", "standup"],
         square: "https://storage.googleapis.com/rgb-monster-assets/chanel/square.webp",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/chanel/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/chanel/cover-thumb.webp",
         short_description: "Comedy Central USA star's debut Fringe hour",
         description:
             "If you can break up with your dad, you can break up with anyone. Star of the NYC comedy scene teaches you how to fight everyone – and win. You might recognise Chanel from her two Comedy Central specials, and the hit Netflix series Dash and Lily. Catch her at the Fringe as your silly and hilarious relationship expert who'll make you feel fantastic about living your best life. Don't miss this, your chance to catch one of the USA's hottest comedy exports for a limited run this Fringe.",
@@ -142,6 +146,8 @@ export default {
     "Jack Holmes: Round Man, Square Hole": {
         slug: "jack",
         tags: ["solo", "standup"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/jack/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/jack/cover-thumb.webp",
         short_description: "Unpretentious storytelling from journeyman Bristolian",
         description:
             "A laugh-filled journey about finding every group you belong to insufferable. From veganism and his punk band days, to resisting the cliches of being a married man, this sober, record-collecting, British-born, euro-trash comedian jokes and jabs himself apart to the glee of his audiences. An unpretentious and hilarious hour from a lovably gruff comedian who's very worried that being lovably gruff will be the next trend taken over by twats.",
@@ -151,6 +157,8 @@ export default {
     "Kavin Jay: Unsolicited Advice": {
         slug: "kavin",
         tags: ["solo", "standup"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/kavin/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/kavin/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/kavin/square.webp",
         short_description: "Malaysian Netflix Star's trademark rants",
         description:
@@ -173,6 +181,8 @@ export default {
     "Matt Davis: (I Used to Be) More Fun": {
         formatted_title: "Matt Davis: (I&nbsp;Used&nbsp;to&nbsp;Be) More Fun",
         slug: "matt-fun",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/cover-thumb.webp",
         tags: ["solo", "standup"],
         short_description: "Acclaimed USA comedy veteran on sobriety",
         description:
@@ -182,6 +192,8 @@ export default {
 
     "Matt Davis: Colorful": {
         slug: "matt-colorful",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover-thumb.webp",
         tags: ["solo", "standup"],
         square: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/square.webp",
         short_description: "Not every big issue has a black and white answer",
@@ -250,6 +262,8 @@ export default {
     "This Is Your Trial": {
         slug: "trial",
         tags: ["format"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/trial/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/trial/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/trial/square.webp",
         short_description: "Award-winning improvised comedy courtroom",
         description:
@@ -259,6 +273,8 @@ export default {
 
     "With your Guest: Matt Davis": {
         slug: "with-your-guest",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover-thumb.webp",
         tags: ["format", "guest comedians"],
         square: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/square.webp",
         short_description: "Three comedians compete to host a game show",
