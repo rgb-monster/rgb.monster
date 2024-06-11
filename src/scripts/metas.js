@@ -7,6 +7,7 @@ export default {
         slug: "11pm",
         tags: ["variety"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover-thumb.webp",
         short_description:
             "A 90 minute showcase of TV stars and gems of the festival followed by the hottest afterparty in town",
         description:
@@ -20,6 +21,7 @@ export default {
         tags: ["standup"],
         short_description: "Top stand-up with no picking on the audience",
         cover: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/square.webp",
         description:
             "Five top-level circuit comedians perform their very best material, one after the other. No picking on the audience, no MC in between asking you where you're from – just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend £10 at the Fringe. Total sell-out 2023, so book early!",
@@ -56,6 +58,7 @@ export default {
         slug: "bad-mums",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/bad-moms/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/bad-moms/cover-thumb.webp",
         short_description: "Hilariously unfiltered tales of #mumlife",
         description:
             "They’re outrageous, late for school drop-off and definitely not on the PTA! After a sold-out Aussie tour, Gill Cordiner and Nikki Valentine bring you Bad Mums: an hour of hysterical, unfiltered tales that has left crowds roaring with laughter and leaving rave reviews! Book your babysitters, organise date night or get your girl gang and see this hotly anticipated Fringe debut for two of Australia's rising comedy stars!",
@@ -66,6 +69,7 @@ export default {
         slug: "best-of-kids",
         tags: ["kids"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/best-of-kids/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/best-of-kids/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/best-of-kids/square.webp",
         short_description: "Huge laughs for tiny people!",
         description:
@@ -86,6 +90,7 @@ export default {
         slug: "afterparty",
         tags: ["variety"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover-thumb.webp",
         short_description: "Pop-up cabaret and mayhem (fun straights allowed)",
         description:
             "Queer, chic and outrageous – you're invited to the biggest, gayest party at the Fringe (fun straights allowed). Indulge in the hottest pop-up cabaret experience on Cowgate with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours.",
@@ -107,6 +112,7 @@ export default {
         slug: "ollie",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover-thumb.webp",
         short_description: "Spontaneous, sharp, high-energy stand-up",
         description: `Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, <em>laugh-out-loud show about how you can justify being toxic</em>. Think of the WhatsApp group that you're ashamed to be in - the show will feel like that live on stage.
             `,
@@ -125,6 +131,7 @@ export default {
         slug: "inside-the-robot",
         tags: ["kids"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/itr/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/itr/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/itr/square.webp",
         short_description: "Escape-room-like comedy family adventure",
         description:
@@ -155,6 +162,7 @@ export default {
         slug: "kids-can-heckle",
         tags: ["kids", "solo"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/square.webp",
         short_description: "Perth Fringe 2024 weekly award winner",
         description:
@@ -186,6 +194,7 @@ export default {
         slug: "not-my-audience",
         tags: ["format", "guest comics"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/nma/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/nma/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/nma/square.webp",
         short_description: "The panel show you control with an app",
         description:
@@ -197,6 +206,8 @@ export default {
     "Off With Your Head!": {
         slug: "off-with-your-head",
         tags: ["format", "gameshow"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover-thumb.webp",
         short_description: "Choose your own adventure live video game",
         description:
             "Are you fit to reign? How long do you think you can survive as ruler? Come and find out in this one-of-a-kind interactive comedy video game! Part comedy, part improv, part video game and part choose-your-own-adventure, where you and two guest comedians try to rule a kingdom! A unique experience at every show – how will you fare, my liege? From veteran performer Sam See (**** (Fest)) and video game designer Stephen Case from RGB Monster (Trust No Bunny, Not My Audience).",
@@ -207,6 +218,7 @@ export default {
         slug: "out-of-order",
         tags: ["format", "gameshow"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ooo/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/ooo/cover-thumb.webp",
         short_description: "Everything seems to be correct, but totally out of order",
         description: "",
         tickets: "",
@@ -216,6 +228,7 @@ export default {
         slug: "pg-hits",
         tags: ["kids", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/square.webp",
         short_description: "Family-friendly stand-up comedy club",
         description:
@@ -227,6 +240,7 @@ export default {
         slug: "toast",
         tags: ["unique"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/toast/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/toast/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/toast/square.webp",
         short_description: "Somebody has eaten the most toast. We will find them.",
         description: "Somebody in the audience will have eaten the most toast. We will find them.",
