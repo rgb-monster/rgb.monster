@@ -190,6 +190,7 @@ export default {
         slug: "matt-fun",
         cover: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/cover-thumb.webp",
+        video: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/10-secs.mp4",
         tags: ["solo", "standup"],
         short_description: "Acclaimed USA comedy veteran on sobriety",
         description:
@@ -201,6 +202,7 @@ export default {
         slug: "matt-colorful",
         cover: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover-thumb.webp",
+        video: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/10-secs.mp4",
         tags: ["solo", "standup"],
         square: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/square.webp",
         short_description: "Not every big issue has a black and white answer",
@@ -283,6 +285,7 @@ export default {
         slug: "with-your-guest",
         cover: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover-thumb.webp",
+        video: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/10-secs.mp4",
         tags: ["format", "guest comedians"],
         square: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/square.webp",
         short_description: "Three comedians compete to host a game show",
