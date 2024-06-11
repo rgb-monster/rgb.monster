@@ -19,6 +19,7 @@ export default {
         slug: "5-headliners",
         tags: ["standup"],
         short_description: "Top stand-up with no picking on the audience",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/square.webp",
         description:
             "Five top-level circuit comedians perform their very best material, one after the other. No picking on the audience, no MC in between asking you where you're from – just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend £10 at the Fringe. Total sell-out 2023, so book early!",
@@ -84,6 +85,7 @@ export default {
     "Big Gay Afterparty": {
         slug: "afterparty",
         tags: ["variety"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover.webp",
         short_description: "Pop-up cabaret and mayhem (fun straights allowed)",
         description:
             "Queer, chic and outrageous – you're invited to the biggest, gayest party at the Fringe (fun straights allowed). Indulge in the hottest pop-up cabaret experience on Cowgate with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours.",
@@ -224,6 +226,7 @@ export default {
     "The Most Toast": {
         slug: "toast",
         tags: ["unique"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/toast/cover.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/toast/square.webp",
         short_description: "Somebody has eaten the most toast. We will find them.",
         description: "Somebody in the audience will have eaten the most toast. We will find them.",
