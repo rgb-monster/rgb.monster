@@ -7,7 +7,11 @@
 
 <template>
     <footer class="site light" v-if="frontmatter.footer == 'light'">&copy; {{ year }} RGB MONSTER</footer>
+    <footer class="site brush" v-else-if="frontmatter.footer == 'brush'">
+    </footer>
+
     <footer class="site" v-else>RGB MONSTER LIMITED 33 FOLEY STREET, LONDON, W1W 7TL. COMPANY NUMBER 14897378.</footer>
+
 </template>
 
 <style lang="scss">

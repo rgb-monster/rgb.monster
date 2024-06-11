@@ -138,6 +138,8 @@
 
 <template>
     <div class="show-page">
+        <img class="doodle-mic-left" src="/mic-left-sticky.webp" />
+
         <section class="banner">
             <div class="contents">
                 <Cover :show="metas" />
@@ -256,6 +258,12 @@
             transition: all 300ms;
             overflow: hidden;
             border-radius: 0;
+        }
+
+        .doodle-mic-left {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
         }
 
         section.title {
@@ -537,6 +545,15 @@
             font-size: 1.25em;
         }
 
+        @media (min-width: 1000px) {
+            .doodle-mic-left {
+                opacity: 1;
+                left: 0;
+                top: 100px;
+                width: 150px;
+            }
+        }
+
         @media (min-width: 800px) {
             .cover {
                 border-radius: 15px;
@@ -546,6 +563,17 @@
         @media (max-width: 800px) {
             section.banner {
                 padding: 0;
+
+                .contents {
+                    padding: 0;
+                }
+            }
+
+            .doodle-mic-left {
+                opacity: 1;
+                left: 0;
+                top: 50vw;
+                width: 70px;
             }
         }
 
