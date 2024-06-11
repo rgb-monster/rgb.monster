@@ -151,7 +151,7 @@
             </div>
         </section>
 
-        <section class="meta"  ref="metaHeader">
+        <section class="meta" ref="metaHeader">
             <div class="contents">
                 <div class="location" :class="{'not-ready': !loaded}">
                     <div>
@@ -178,10 +178,25 @@
 
         <section class="cta">
             <div class="contents">
-                <button @click="jumpToDates()">
-                    <Icon name="local_activity" />
-                    Get tickets
+                <button @click="jumpToDates()" v-if="shows.length > 1">
+                    <template v-if="!metas.cta">
+                        <Icon name="local_activity" />
+                        Get tickets
+                    </template>
+                    <template v-else>
+                        {{ metas.cta }}
+                    </template>
                 </button>
+
+                <a :href="shows[0].tickets" target="blank" v-else>
+                    <template v-if="!metas.cta">
+                        <Icon name="local_activity" />
+                        Get tickets
+                    </template>
+                    <template v-else>
+                        {{ metas.cta }}
+                    </template>
+                </a>
             </div>
         </section>
 
@@ -210,7 +225,7 @@
             </div>
         </section>
 
-        <section class="dates" v-if="loaded" ref="dates">
+        <section class="dates" v-if="loaded && shows.length > 1" ref="dates">
             <div class="contents">
                 <h2>Show dates</h2>
 
@@ -272,8 +287,8 @@
             }
 
             &.pinned {
-            position: sticky;
-            top: -1px;
+                position: sticky;
+                top: -1px;
 
                 box-shadow: 0px 2px 5px #aaa;
                 background: var(--chrome);
@@ -357,7 +372,8 @@
             background: var(--base);
             padding: 2em;
 
-            button {
+            button,
+            a {
                 background: var(--accent-burgundy);
                 padding: 10px 35px;
                 font-size: min(1.25em, 5vw);

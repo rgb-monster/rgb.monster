@@ -17,7 +17,7 @@ export default {
 
     "5 Headliners": {
         formatted_title: "5 Headliners for £10",
-        slug: "5-headliners",
+        slug: "headliners",
         tags: ["standup"],
         short_description: "Top stand-up with no picking on the audience",
         cover: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover.webp",
@@ -62,6 +62,7 @@ export default {
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/cover-thumb.webp",
+        video: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/10-secs.mp4",
         short_description: "Hilariously unfiltered tales of #mumlife",
         description:
             "They’re outrageous, late for school drop-off and definitely not on the PTA! After a sold-out Aussie tour, Gill Cordiner and Nikki Valentine bring you Bad Mums: an hour of hysterical, unfiltered tales that has left crowds roaring with laughter and leaving rave reviews! Book your babysitters, organise date night or get your girl gang and see this hotly anticipated Fringe debut for two of Australia's rising comedy stars!",
@@ -125,7 +126,6 @@ export default {
         description: `Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, <em>laugh-out-loud show about how you can justify being toxic</em>. Think of the WhatsApp group that you're ashamed to be in - the show will feel like that live on stage.
             `,
         tickets: "https://tickets.edfringe.com/whats-on/ollie-horn-comedy-for-toxic-people-and-their-friends",
-        video: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/10-secs.mp4",
 
         quotes: [
             {stars: 4, quote: "Delivers every joke with a cheeky little smile", author: "EdFringe Review"},
@@ -257,13 +257,14 @@ export default {
 
     "The Most Toast": {
         slug: "toast",
-        tags: ["unique"],
+        tags: ["important event"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/toast/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/toast/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/toast/square.webp",
         short_description: "Somebody has eaten the most toast. We will find them.",
         description: "Somebody in the audience will have eaten the most toast. We will find them.",
         tickets: "https://tickets.edfringe.com/whats-on/most-toast",
+        cta: "🍞 Secure My Place",
     },
 
     "This Is Your Trial": {
