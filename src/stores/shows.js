@@ -66,7 +66,7 @@ export const useStore = defineStore("shows", {
                 this.shows = [...(rgb.data || []), ...(presents.data || [])].map(show => {
                     let ts = utils.parseTS(show.ts);
                     let metas = showMetas[show.name];
-                    let tickets = metas.tickets;
+                    let tickets = metas.tickets || "";
                     if (typeof tickets != "string") {
                         // we have ourselves something more convoluted
                         tickets = tickets.filter(
@@ -76,17 +76,14 @@ export const useStore = defineStore("shows", {
                         );
                         if (tickets.length == 1) {
                             tickets = tickets[0].url;
-                            if (tickets.includes("tickets.edfringe.com")) {
-                                tickets = `${tickets}?day=${ts.strftime('%d-%m-%Y')}`
-                            }
                         } else {
-                            tickets = null;
-                            console.error(
-                                "Could not find ticket url for show",
-                                show.venue.name,
-                                ts.strftime("%H:%M")
-                            );
+                            tickets = "";
+                            console.error("Could not find ticket url for show", show.venue.name, ts.strftime("%H:%M"));
                         }
+                    }
+
+                    if (tickets.includes("tickets.edfringe.com")) {
+                        tickets = `${tickets}?day=${ts.strftime("%d-%m-%Y")}`;
                     }
 
                     return {...show, ts, tickets};
