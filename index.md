@@ -4,7 +4,11 @@ footer: light
 layout: wide
 ---
 
-<h1 class="standalone">RGB Monster at Edinburgh Fringe 2024</h1>
+<div class="flexer" style="justify-content: center; margin-top: 3em;"><img src="/monster.webp" style="width: min(200px, 40vw);" /></div>
+
+<h1 class="standalone" style="padding-top: 10px;">
+    RGB Monster at Edinburgh Fringe 2024
+</h1>
 
 ::: section large
 
