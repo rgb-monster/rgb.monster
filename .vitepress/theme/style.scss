@@ -29,6 +29,8 @@
     --body-font: Lato, Arial, Helvetica;
 
     --header-color: var(--accent-burgundy);
+
+    --transparent-shadow: rgba(0, 0, 0, 0.4);
 }
 
 .material-icons {
@@ -91,7 +93,8 @@ main.markdown {
     section {
         padding: var(--content-horiz-padding) 0;
 
-        .contents {
+        .contents,
+        & > header {
             max-width: var(--page-width);
             margin: 0 auto;
             //padding: 1em 0;
@@ -176,6 +179,12 @@ main.markdown {
         font-weight: 600;
         color: var(--accent-burgundy);
     }
+}
+
+.flexer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 img,

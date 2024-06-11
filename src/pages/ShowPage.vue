@@ -20,9 +20,15 @@
                 videoPlaying: false,
 
                 headerObserver: null,
+
+                scrollY: 0,
             };
         },
         computed: {
+            pushAway() {
+                return Math.max(this.scrollY * 0.05, 10);
+            },
+
             // we'll render link that looks like a button if button has state; otherwise it's just your regular button
             metas() {
                 let bySlug = Object.fromEntries(
@@ -115,6 +121,10 @@
             jumpToDates() {
                 this.$refs.dates.scrollIntoView({behavior: "smooth"});
             },
+
+            updateScrollPos(evt) {
+                this.scrollY = window.scrollY;
+            },
         },
 
         async mounted() {
@@ -128,17 +138,21 @@
 
             await this.store.fetchShows();
             this.loaded = true;
+
+            document.addEventListener("scroll", this.updateScrollPos);
         },
 
         beforeUnmount() {
             this.headerObserver.disconnect();
+            document.removeEventListener("scroll", this.updateScrollPos);
         },
     };
 </script>
 
 <template>
     <div class="show-page">
-        <img class="doodle doodle-mic-left" src="/doodles/cable-left.webp" />
+        <img class="curtains-left" src="/curtains-left.webp" :style="{'margin-left': `-${pushAway}px`}" />
+        <img class="curtains-right" src="/curtains-right.webp" :style="{'margin-right': `-${pushAway}px`}" />
 
         <section class="banner">
             <div class="contents">
@@ -227,6 +241,52 @@
             </div>
         </section>
 
+        <section class="about-tickets">
+            <div class="contents">
+                <div class="monster-box">
+                    <img class="monster" src="/doodles/sticking-out.webp" />
+                </div>
+
+                <div class="box">
+                    <header class="flexer"><Icon name="confirmation_number" />About Tickets</header>
+
+                    <div v-if="(metas.payment || 'ticketed') == 'ticketed'">
+                        This is a ticketed show. This means that unlike some other shows that we produce where you may
+                        nominate a price you can afford, you may only enter this show with a ticket.
+                    </div>
+
+                    <div v-if="metas.payment == 'ticketed+pwyw'">
+                        This is a ticketed show. This means that the only way to guarantee entry is with a ticket. If
+                        you are low income, unwaged, or you can't afford a full price ticket for any reason, you are
+                        welcome to buy a concession ticket on a trust basis. If there is spare capacity once the ticket
+                        holders have been admitted, the venue may at their discression admit non-ticket holders on a pay
+                        what you can basis, where you will be able to purchase your ticket at a price of your choosing
+                        at the end of the show.
+                    </div>
+
+                    <div v-if="metas.payment == 'pwyc'">
+                        This is a Pay What You Can Show. There are two ways of paying for the show. You can either
+                        reserve a ticket in advance for the full price, or select a reduced price option if that's all
+                        you can afford. Or, providing there is spare capacity once we've let the ticket holders in, you
+                        can turn up to the venue and enter for free, and offer a cash or card donation at the end of the
+                        show. We recommend doing this during the mid-week performances where we are less likely to sell
+                        out.
+                    </div>
+
+                    <div v-if="metas.payment == 'unticketed'">
+                        This is a free show! This means that there is no way of reserving your place in advance.
+                        Instead, to be fair to everyone, we let people in the venue on a first come, first served basis,
+                        so we recommend turning up around fifteen minutes before the show starts. We ask that you pay
+                        what you feel the show was worth at the end of the show. The typical donation is £12, but some
+                        people pay more or less than this depending on their personal circumstances. Because of this
+                        crowdfunding model, even if you can't afford to pay anything at all, we still hope that you'll
+                        come and enjoy the show, since your fellow audience members will be paying for you. It really is
+                        free for you.
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="dates" v-if="loaded && shows.length > 1" ref="dates">
             <div class="contents">
                 <h2>Show dates</h2>
@@ -266,9 +326,25 @@
             pointer-events: none;
         }
 
+        .curtains-left,
+        .curtains-right {
+            position: fixed;
+            top: 0;
+            z-index: 2000;
+            pointer-events: none;
+            width: 200px;
+        }
+
+        .curtains-left {
+            left: 0;
+        }
+
+        .curtains-right {
+            right: 0;
+        }
+
         section.title {
             text-align: center;
-            background: var(--base);
             z-index: 700;
 
             display: flex;
@@ -416,6 +492,54 @@
                     margin-top: 3px;
                     margin-bottom: 0;
                 }
+            }
+        }
+
+        section.about-tickets {
+            font-size: 1.25em;
+            line-height: 180%;
+
+            padding-top: 3em;
+
+            .contents {
+                position: relative;
+            }
+
+            .monster-box {
+                display: flex;
+                justify-content: end;
+
+                .monster {
+                    max-width: 150px;
+                    z-index: 50;
+                }
+            }
+
+            .box {
+                //border: 3px solid var(--chrome-x2);
+                z-index: 100;
+                padding: 20px;
+                background: #fff;
+
+                border: 5px solid var(--chrome-x2);
+                border-radius: 15px;
+
+                box-shadow: 5px 5px var(--transparent-shadow);
+
+                header {
+                    color: var(--chrome-x2);
+                    font-size: 1.25em;
+                    margin-bottom: 15px;
+                }
+            }
+
+            header,
+            .contents {
+                text-align: left;
+            }
+
+            header {
+                font-weight: 600;
             }
         }
 
@@ -580,6 +704,10 @@
 
         @media (max-width: 600px) {
             --square-size: 14vw;
+
+            .curtains {
+                position: absolute;
+            }
 
             section.meta {
                 .location {
