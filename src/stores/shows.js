@@ -4,12 +4,13 @@ import dt from "py-datetime";
 import {defineStore} from "pinia";
 
 import utils from "../scripts/utils.js";
-import showMetas from "/src/scripts/metas.js";
+import showMetas from "../scripts/metas.js";
 
 export const useStore = defineStore("shows", {
     state: () => {
         return {
             loaded: false,
+            loading: false,
             shows: [],
         };
     },
@@ -55,7 +56,9 @@ export const useStore = defineStore("shows", {
 
     actions: {
         async fetchShows() {
-            if (!this.loaded) {
+            if (!this.loaded && !this.loading) {
+                this.loading = true;
+
                 let rgb = await axios.get("https://confirmed.show/api/v1/rgb-monster/shows.json", {
                     withCredentials: true,
                 });
@@ -88,6 +91,16 @@ export const useStore = defineStore("shows", {
 
                     return {...show, ts, tickets};
                 });
+                this.loaded = true;
+                this.loading = false;
+                return this.shows;
+            } else if (this.loading) {
+                // we sit here till shows have loaded, otherwise we can't fullfill the request
+                while (this.loading) {
+                    await utils.sleep(0.2);
+                }
+
+                return this.shows;
             }
         },
     },
