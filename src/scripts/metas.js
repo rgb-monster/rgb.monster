@@ -1,7 +1,3 @@
-function edfringeListing(show, url) {
-    return show ? `${url}?day=${show.ts.strftime("%Y-%m-%d")}` : url;
-}
-
 export default {
     "11PM Live": {
         slug: "11pm",
