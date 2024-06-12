@@ -1,5 +1,9 @@
 import {defineConfig} from "vitepress";
 import markdownItContainer from "markdown-it-container";
+import dt from "py-datetime";
+
+import {useStore} from "../src/stores/shows.js";
+import utils from "../src/scripts/utils.js";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -59,28 +63,79 @@ export default defineConfig({
         },
     },
 
-    transformPageData(pageData) {
-        pageData.frontmatter.head = pageData.frontmatter.head || [];
+    async transformHead({pageData}) {
+        let store = useStore();
+        await store.fetchShows();
 
+        let extra = [];
         if (pageData.frontmatter.page == "show-details") {
-            let params = pageData.params;
-            pageData.frontmatter.head.push(["meta", {name: "og:title", content: params.title}]);
-            pageData.frontmatter.head.push(["meta", {name: "og:image", content: params.cover_thumb}]);
-            pageData.frontmatter.head.push(["meta", {name: "og:image:type", content: "image/webp"}]);
-            pageData.frontmatter.head.push(["meta", {name: "og:image:width", content: "600"}]);
-            pageData.frontmatter.head.push(["meta", {name: "og:image:height", content: "300"}]);
+            let show = pageData.params;
+
+            let scheduled = store.showTypes.find(rec => rec.title == show.title);
+            let description;
+            if (scheduled) {
+                let td = extractTimesDates(scheduled?.shows || []);
+                description = `${td.dates},  ${td.topShow.ts.strftime("%H:%M")}m ${td.topShow.venue.name}`;
+            } else {
+                description = show.short_description;
+            }
+
+            extra.push(["meta", {name: "og:title", content: show.title}]);
+            extra.push(["meta", {name: "og:description", content: description}]);
+
+            extra.push(["meta", {name: "og:image", content: show.cover_thumb}]);
+            extra.push(["meta", {name: "og:image:type", content: "image/webp"}]);
+            extra.push(["meta", {name: "og:image:width", content: "600"}]);
+            extra.push(["meta", {name: "og:image:height", content: "300"}]);
         } else {
-            pageData.frontmatter.head.push(["meta", {name: "og:title", content: pageData.title}]);
+            extra.push(["meta", {name: "og:title", content: pageData.title}]);
         }
 
-        //console.log("zzzzzzzzzzz", pageData);
         if (pageData.card) {
-            pageData.frontmatter.head.push(["meta", {name: "og:image", content: pageData.card}]);
+            extra.push(["meta", {name: "og:image", content: pageData.card}]);
         }
 
         // <meta property="og:title" content="Confirmed: book your shows in minutes!" />
 
         // <meta property="og:url" content="https://confirmed.show" />
         // <meta property="twitter:card" content="summary_large_image" />
+
+        return extra;
     },
 });
+
+function extractTimesDates(shows) {
+    let topShow = () => {
+        let byVenueTime = {};
+        shows.forEach(show => {
+            utils.setDefault(byVenueTime, `${show.venue.name}-${show.ts.strftime("%H:%M")}`, {
+                show: show,
+                shows: 0,
+            }).shows += 1;
+        });
+
+        let topShows = utils.sort(Object.values(byVenueTime), rec => -rec.shows);
+
+        return topShows[0].show;
+    };
+
+    let dates = () => {
+        let byDate = {};
+        shows.forEach(show => {
+            byDate[show.ts.strftime("%Y-%m-%d")] = show.ts;
+        });
+
+        let dates = utils.sort(Object.values(byDate));
+        if (dates.length < 3) {
+            return dates.map(ts => utils.humanDate(ts)).join(", ");
+        } else {
+            let [start, end] = [dates[0], dates[dates.length - 1]];
+            return `${utils.humanDate(start)}-${utils.humanDate(end)}`;
+        }
+    };
+
+    return {
+        topShow: topShow(),
+        dates: dates(),
+    };
+}
