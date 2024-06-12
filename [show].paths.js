@@ -1,9 +1,9 @@
 import showMetas from "./src/scripts/metas.js";
 
-let slugs = Object.values(showMetas).map(meta => meta.slug);
+let bySlug = Object.fromEntries(Object.entries(showMetas).map(([title, meta]) => [meta.slug, {title, ...meta}]));
 
 export default {
     paths() {
-        return slugs.map(slug => ({params: {show: slug}}));
+        return Object.keys(bySlug).map(slug => ({params: {show: slug, ...bySlug[slug]}}));
     },
 };

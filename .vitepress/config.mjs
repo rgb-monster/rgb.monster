@@ -23,6 +23,9 @@ export default defineConfig({
                 defer: "defer",
             },
         ],
+
+        ["meta", {property: "og:site_name", content: "RGB Monster"}],
+        ["meta", {property: "og:type", content: "website"}],
     ],
 
     vite: {
@@ -54,5 +57,30 @@ export default defineConfig({
                 },
             });
         },
+    },
+
+    transformPageData(pageData) {
+        pageData.frontmatter.head = pageData.frontmatter.head || [];
+
+        if (pageData.frontmatter.page == "show-details") {
+            let params = pageData.params;
+            pageData.frontmatter.head.push(["meta", {name: "og:title", content: params.title}]);
+            pageData.frontmatter.head.push(["meta", {name: "og:image", content: params.cover_thumb}]);
+            pageData.frontmatter.head.push(["meta", {name: "og:image:type", content: "image/webp"}]);
+            pageData.frontmatter.head.push(["meta", {name: "og:image:width", content: "600"}]);
+            pageData.frontmatter.head.push(["meta", {name: "og:image:height", content: "300"}]);
+        } else {
+            pageData.frontmatter.head.push(["meta", {name: "og:title", content: pageData.title}]);
+        }
+
+        //console.log("zzzzzzzzzzz", pageData);
+        if (pageData.card) {
+            pageData.frontmatter.head.push(["meta", {name: "og:image", content: pageData.card}]);
+        }
+
+        // <meta property="og:title" content="Confirmed: book your shows in minutes!" />
+
+        // <meta property="og:url" content="https://confirmed.show" />
+        // <meta property="twitter:card" content="summary_large_image" />
     },
 });

@@ -1,6 +1,6 @@
 ---
-title: Show details
-page: whats-on
+title: Show Details
+page: show-details
 footer: light
 ---
 
