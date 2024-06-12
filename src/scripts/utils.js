@@ -3,7 +3,7 @@ import dt from "py-datetime";
 let utils = {
     noop: () => {},
 
-    slug: (str) => (str || "").replace(/[^\w-]+/g, "-"),
+    slug: str => (str || "").replace(/[^\w-]+/g, "-"),
 
     focusables: (container, traverse = true) => {
         // returns all keyboard navigable elements in the container
@@ -47,7 +47,7 @@ let utils = {
     scrollIn: (elem, offset = 0) => {
         let box = elem.getBoundingClientRect();
 
-        let getScrollParent = (node) => {
+        let getScrollParent = node => {
             if (node === null) {
                 return null;
             }
@@ -86,7 +86,7 @@ let utils = {
         parent.scrollTo(scrollLeft, scrollTop);
     },
 
-    animationFrame: (callback) => {
+    animationFrame: callback => {
         // this little wrapper will skip any dropped frames
         let currentCallback = null;
         return () => {
@@ -95,7 +95,7 @@ let utils = {
         };
     },
 
-    isNumber: (str) => /^-?\d+\.?\d*$/.exec(str) != null,
+    isNumber: str => /^-?\d+\.?\d*$/.exec(str) != null,
 
     round(val, precision) {
         let multiplier = Math.pow(10, precision || 0);
@@ -104,15 +104,15 @@ let utils = {
 
     toggleList(list, val) {
         if (list.includes(val)) {
-            return list.filter((item) => item != val);
+            return list.filter(item => item != val);
         } else {
             return [...list, val];
         }
     },
 
     sum(values, accessor) {
-        accessor = accessor || ((val) => val);
-        return values && values.length ? values.map((item) => accessor(item)).reduce((total, cur) => total + cur) : 0;
+        accessor = accessor || (val => val);
+        return values && values.length ? values.map(item => accessor(item)).reduce((total, cur) => total + cur) : 0;
     },
 
     sort(values, keyFunc, ascending = true) {
@@ -157,13 +157,13 @@ let utils = {
         // a live sort can backfire when you, say, edit by name and then change the name
         // rather, we want a stable sort, and a re-sort on the next time the page is visited
         let sorted = null;
-        let strKey = (rec) => keyFunc(rec).toString();
+        let strKey = rec => keyFunc(rec).toString();
 
         let sortOnce = (values, ascending = true) => {
             if (!sorted) {
-                sorted = utils.sort(values, sortFunc, ascending).map((rec) => strKey(rec));
+                sorted = utils.sort(values, sortFunc, ascending).map(rec => strKey(rec));
             }
-            return utils.sort(values, (val) => (sorted.includes(strKey(val)) ? sorted.indexOf(strKey(val)) : 9999));
+            return utils.sort(values, val => (sorted.includes(strKey(val)) ? sorted.indexOf(strKey(val)) : 9999));
         };
 
         return sortOnce;
@@ -173,7 +173,7 @@ let utils = {
         // dedupes a list by the given accessor and returns deduped list while maintaining order
         let byKey = {};
         let res = [];
-        list.forEach((item) => {
+        list.forEach(item => {
             let key = accessor(item);
             if (!byKey[key]) {
                 byKey[key] = true;
@@ -298,9 +298,9 @@ let utils = {
         return ts.strftime(format);
     },
 
-    capitalize: (label) => (!label ? "" : `${label[0].toUpperCase()}${label.slice(1, label.length)}`),
+    capitalize: label => (!label ? "" : `${label[0].toUpperCase()}${label.slice(1, label.length)}`),
 
-    zeroPad: (num) => new String(parseInt(num)).padStart(2, "0"),
+    zeroPad: num => new String(parseInt(num)).padStart(2, "0"),
 
     formatDuration(seconds) {
         let negative = seconds < 0;
@@ -428,7 +428,7 @@ let utils = {
 
     spotKey(spot, ignoreLength = false) {
         let fields = !ignoreLength ? ["category", "role", "spot_length"] : ["category", "role"];
-        return fields.map((field) => (spot[field] || "").toString().trim().toLowerCase()).join("-");
+        return fields.map(field => (spot[field] || "").toString().trim().toLowerCase()).join("-");
     },
 
     isEmpty(obj) {
@@ -479,7 +479,7 @@ let utils = {
         val = val || 0;
         precision = precision == undefined ? 1 : precision;
 
-        if (val == Infinity || val == NaN) {
+        if (val == Infinity || Number.isNaN(val)) {
             return "-";
         } else if (val > 2) {
             return `${Number(val).toFixed(1)}x`;
@@ -509,7 +509,7 @@ let utils = {
         return str.replace(/\s+/g, " ").trim();
     },
 
-    spotLengths: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 20, 25, 30, 35, 40, 45, 50, 55, 60].map((minutes) => ({
+    spotLengths: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 20, 25, 30, 35, 40, 45, 50, 55, 60].map(minutes => ({
         label: minutes == 0 ? "Full Show" : `${minutes} mins`,
         value: minutes,
     })),
@@ -550,7 +550,7 @@ let utils = {
             Object.entries(components).map(([key, comp]) => {
                 let componentName = key.split("/").slice(-1)[0].split(".")[0];
                 return [componentName, comp.default || comp];
-            }),
+            })
         );
     },
 
@@ -565,8 +565,8 @@ let utils = {
         let rangeMarker;
         let res = [];
 
-        let matches = [...str.matchAll(reg)].map((res) => res.groups);
-        matches.forEach((match) => {
+        let matches = [...str.matchAll(reg)].map(res => res.groups);
+        matches.forEach(match => {
             if (match.month) {
                 curDay = null;
                 curMo = dt.datetime.strptime(`${match.month}-${today.year}`, "%b-%Y");
@@ -588,7 +588,7 @@ let utils = {
                     } else if (curDay && rangeMarker == "-") {
                         let until = parseInt(match.day);
                         if (until > curDay) {
-                            utils.range(curDay + 1, until + 1).forEach((day) => {
+                            utils.range(curDay + 1, until + 1).forEach(day => {
                                 res.push(dt.datetime(curMo.year, curMo.month, day));
                             });
                         }
@@ -604,7 +604,7 @@ let utils = {
     },
 
     async sleep(seconds) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             setTimeout(resolve, seconds * 1000);
         });
     },
@@ -651,7 +651,7 @@ utils.filters = Object.fromEntries(
         "zeroPad",
         "feePay",
         "normalize",
-    ].map((funcName) => [funcName, utils[funcName]]),
+    ].map(funcName => [funcName, utils[funcName]])
 );
 
 export default utils;
