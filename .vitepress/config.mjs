@@ -75,7 +75,7 @@ export default defineConfig({
             let description;
             if (scheduled) {
                 let td = extractTimesDates(scheduled?.shows || []);
-                description = `${td.dates},  ${td.topShow.ts.strftime("%H:%M")}m ${td.topShow.venue.name}`;
+                description = `${td.topShow.ts.strftime("%H:%M")} ${td.topShow.venue.name}, ${td.dates}`;
             } else {
                 description = show.short_description;
             }
