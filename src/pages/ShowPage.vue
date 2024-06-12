@@ -1,6 +1,6 @@
 <script>
     import {useStore} from "../stores/shows.js";
-    import showMetas from "/src/scripts/metas.js";
+    import {bySlug} from "/src/scripts/metas.js";
     import utils from "/src/scripts/utils.js";
 
     export default {
@@ -32,9 +32,6 @@
 
             // we'll render link that looks like a button if button has state; otherwise it's just your regular button
             metas() {
-                let bySlug = Object.fromEntries(
-                    Object.entries(showMetas).map(([title, meta]) => [meta.slug, {title, ...meta}])
-                );
                 return bySlug[this.id];
             },
 
@@ -87,7 +84,6 @@
                     return `${utils.humanDate(start)}-${utils.humanDate(end)}`;
                 }
             },
-
 
             paymentSectionTitle() {
                 let titles = {

@@ -1,5 +1,6 @@
-export default {
-    "11PM Live": {
+export const metas = {
+    "11pm": {
+        title: "11PM Live",
         slug: "11pm",
         tags: ["variety"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",
@@ -11,7 +12,8 @@ export default {
         tickets: "https://edinburgh.justthetonic.com/event/88:4259/",
     },
 
-    "5 Headliners": {
+    headliners: {
+        title: "5 Headliners",
         formatted_title: "5 Headliners for £10",
         slug: "headliners",
         tags: ["standup"],
@@ -40,7 +42,8 @@ export default {
         ],
     },
 
-    "André De Freitas: As Yet Untitled": {
+    andre: {
+        title: "André De Freitas: As Yet Untitled",
         slug: "andre",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/andre/cover.webp",
@@ -53,7 +56,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/andre-de-freitas-as-yet-untitled",
     },
 
-    "Bad Mums": {
+    bad_mums: {
+        title: "Bad Mums",
         slug: "bad-mums",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/cover.webp",
@@ -65,7 +69,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/bad-mums",
     },
 
-    "Best of Kids Comedy": {
+    best_of_kids: {
+        title: "Best of Kids Comedy",
         slug: "best-of-kids",
         tags: ["kids"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/best-of-kids/cover.webp",
@@ -77,7 +82,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/best-of-kids-comedy-the-big-show",
     },
 
-    "Best Worst Date": {
+    best_worst_date: {
+        title: "Best Worst Date",
         slug: "best-worst-date",
         cover: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover-thumb.webp",
@@ -88,7 +94,8 @@ export default {
         tickets: "",
     },
 
-    "Big Gay Afterparty": {
+    afterparty: {
+        title: "Big Gay Afterparty",
         slug: "afterparty",
         tags: ["variety"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover.webp",
@@ -100,7 +107,8 @@ export default {
         video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.mp4",
     },
 
-    "Chanel Ali: Break Up With Your Dad": {
+    chanel: {
+        title: "Chanel Ali: Break Up With Your Dad",
         slug: "chanel",
         tags: ["solo", "standup"],
         square: "https://storage.googleapis.com/rgb-monster-assets/chanel/square.webp",
@@ -113,7 +121,8 @@ export default {
         tickets: "https://edinburgh.justthetonic.com/event/88:4010/",
     },
 
-    "Ollie Horn: Comedy For Toxic People": {
+    ollie: {
+        title: "Ollie Horn: Comedy For Toxic People",
         slug: "ollie",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
@@ -131,7 +140,8 @@ export default {
         ],
     },
 
-    "Inside the Robot": {
+    itr: {
+        title: "Inside the Robot",
         slug: "inside-the-robot",
         tags: ["kids"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/itr/cover.webp",
@@ -144,7 +154,8 @@ export default {
         tickets: "https://edinburgh.justthetonic.com/event/88:4227",
     },
 
-    "Jack Holmes: Round Man, Square Hole": {
+    jack: {
+        title: "Jack Holmes: Round Man, Square Hole",
         slug: "jack",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/jack/cover.webp",
@@ -156,7 +167,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/jack-holmes-round-man-square-hole",
     },
 
-    "Kavin Jay: Unsolicited Advice": {
+    kavin: {
+        title: "Kavin Jay: Unsolicited Advice",
         slug: "kavin",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/kavin/cover.webp",
@@ -169,7 +181,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/kavin-jay-unsolicited-advice",
     },
 
-    "Kids Can Heckle!": {
+    kids_can_heckle: {
+        title: "Kids Can Heckle!",
         slug: "kids-can-heckle",
         tags: ["kids", "solo"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/cover.webp",
@@ -181,7 +194,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/kids-can-heckle",
     },
 
-    "Matt Davis: (I Used to Be) More Fun": {
+    matt_more_fun: {
+        title: "Matt Davis: (I Used to Be) More Fun",
         formatted_title: "Matt Davis: (I&nbsp;Used&nbsp;to&nbsp;Be) More Fun",
         slug: "matt-fun",
         cover: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/cover.webp",
@@ -194,7 +208,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/matt-davis-i-used-to-be-more-fun",
     },
 
-    "Matt Davis: Colorful": {
+    matt_colorful: {
+        title: "Matt Davis: Colorful",
         slug: "matt-colorful",
         cover: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover-thumb.webp",
@@ -207,7 +222,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/matt-davis-colorful",
     },
 
-    "Not My Audience": {
+    nma: {
+        title: "Not My Audience",
         slug: "not-my-audience",
         tags: ["format", "guest comics"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/nma/cover.webp",
@@ -221,7 +237,8 @@ export default {
         payment: "unticketed",
     },
 
-    "Off With Your Head!": {
+    off_with_your_head: {
+        title: "Off With Your Head!",
         slug: "off-with-your-head",
         tags: ["format", "gameshow"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover.webp",
@@ -233,7 +250,8 @@ export default {
         payment: "unticketed",
     },
 
-    "Out of Order": {
+    ooo: {
+        title: "Out of Order",
         slug: "out-of-order",
         tags: ["format", "gameshow"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ooo/cover.webp",
@@ -243,7 +261,8 @@ export default {
         tickets: "",
     },
 
-    "PG Hits!": {
+    pg_hits: {
+        title: "PG Hits!",
         slug: "pg-hits",
         tags: ["kids", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/cover.webp",
@@ -256,7 +275,8 @@ export default {
         payment: "pwyc",
     },
 
-    "The Most Toast": {
+    toast: {
+        title: "The Most Toast",
         slug: "toast",
         tags: ["important event"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/toast/cover.webp",
@@ -268,7 +288,8 @@ export default {
         cta: "🍞 Secure My Place",
     },
 
-    "This Is Your Trial": {
+    trial: {
+        title: "This Is Your Trial",
         slug: "trial",
         tags: ["format"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/trial/cover.webp",
@@ -280,7 +301,8 @@ export default {
         tickets: "https://tickets.edfringe.com/whats-on/this-is-your-trial-the-fully-improvised-comedy-courtroom",
     },
 
-    "With your Guest: Matt Davis": {
+    with_your_guest: {
+        title: "With your Guest: Matt Davis",
         slug: "with-your-guest",
         cover: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover-thumb.webp",
@@ -293,3 +315,6 @@ export default {
         tickets: "https://edinburgh.justthetonic.com/event/88:4262",
     },
 };
+
+export const bySlug = Object.fromEntries(Object.values(metas).map(meta => [meta.slug, meta]));
+export const byTitle = Object.fromEntries(Object.values(metas).map(meta => [meta.title, meta]));

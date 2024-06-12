@@ -4,7 +4,7 @@ import dt from "py-datetime";
 import {defineStore} from "pinia";
 
 import utils from "../scripts/utils.js";
-import showMetas from "../scripts/metas.js";
+import {byTitle} from "../scripts/metas.js";
 
 export const useStore = defineStore("shows", {
     state: () => {
@@ -21,7 +21,7 @@ export const useStore = defineStore("shows", {
             let byType = {};
             this.shows.forEach(show => {
                 byType[show.name] = byType[show.name] || {
-                    ...showMetas[show.name],
+                    ...byTitle[show.name],
                     title: show.name,
                     name: show.name,
                     emoji: show.emoji,
@@ -68,7 +68,7 @@ export const useStore = defineStore("shows", {
 
                 this.shows = [...(rgb.data || []), ...(presents.data || [])].map(show => {
                     let ts = utils.parseTS(show.ts);
-                    let metas = showMetas[show.name];
+                    let metas = byTitle[show.name];
                     let tickets = metas.tickets || "";
                     if (typeof tickets != "string") {
                         // we have ourselves something more convoluted

@@ -6,6 +6,13 @@
     --accent-green: #65b762;
     --accent-burgundy: #712529;
 
+    --accent-yellow-light: #ffd24e;
+    --accent-pink-light: #f1ccdc;
+    --accent-red-light: #e1391c;
+    --accent-blue-light: #4f5b97;
+    --accent-green-light: #65b762;
+    --accent-burgundy-light: #712529;
+
     --chrome: hsl(357, 51%, 19%);
     --chrome-x1: hsl(357, 51%, 24%);
     --chrome-x2: hsl(357, 51%, 29%);
@@ -109,9 +116,50 @@ main.markdown {
         }
     }
 
-    section.contents {
-        max-width: var(--page-width);
-        margin: 0 auto;
+    .links a,
+    a.links {
+        color: var(--chrome-x2);
+        text-decoration: underline;
+    }
+
+    section.markdown-contents {
+        p {
+            margin: 0;
+            padding: 0.5em 0;
+            text-indent: 2em;
+
+            &.drop-caps:first-letter {
+                text-indent: 0;
+
+                color: var(--accent-burgundy);
+
+                font-size: 4em;
+                font-weight: 600;
+                padding-top: 4px;
+                float: left;
+                padding-top: 1.05rem;
+                padding-right: 10px;
+            }
+        }
+
+        &.dark {
+            --base: #fff;
+            padding: 2em;
+        }
+
+        h2 {
+            text-align: left;
+            margin-top: 1em;
+            margin-bottom: 0;
+        }
+
+        background: var(--base);
+        color: var(--text);
+
+        .contents {
+            max-width: var(--page-width);
+            margin: 0 auto;
+        }
 
         a {
             color: var(--chrome-x2);

@@ -51,7 +51,7 @@ export default defineConfig({
 
                     if (tokens[idx].nesting === 1) {
                         // opening tag
-                        return `<section class="contents ${
+                        return `<section class="markdown-contents ${
                             m ? md.utils.escapeHtml(m[1]) : ""
                         }"><div class="contents">\n`;
                     } else {
