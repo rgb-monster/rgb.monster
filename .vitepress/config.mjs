@@ -15,8 +15,23 @@ export default defineConfig({
 
         ["link", {href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet"}],
 
-        ["script", {src: "https://plausible.io/js/script.tagged-events.outbound-links.js", "data-domain": "rgb.monster", defer: "defer"}],
+        [
+            "script",
+            {
+                src: "https://plausible.io/js/script.tagged-events.outbound-links.js",
+                "data-domain": "rgb.monster",
+                defer: "defer",
+            },
+        ],
     ],
+
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {additionalData: `@import "/src/theme/mixins.scss";`},
+            },
+        },
+    },
 
     //srcDir: "./src/md",
     cleanUrls: true,
@@ -29,7 +44,9 @@ export default defineConfig({
 
                     if (tokens[idx].nesting === 1) {
                         // opening tag
-                        return `<section class="contents ${m ? md.utils.escapeHtml(m[1]) : ""}"><div class="contents">\n`;
+                        return `<section class="contents ${
+                            m ? md.utils.escapeHtml(m[1]) : ""
+                        }"><div class="contents">\n`;
                     } else {
                         // closing tag
                         return "</div></section>\n";

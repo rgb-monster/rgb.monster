@@ -8,6 +8,7 @@
 </script>
 
 <template>
+    <div id="popups" />
     <div class="theme-container" :class="`md-${page.filePath.split('.')[0]}`">
         <Header v-if="frontmatter.header !== false" />
 

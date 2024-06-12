@@ -58,9 +58,11 @@
     font-feature-settings: "liga";
 }
 
-.theme-container {
+body {
     font-family: var(--body-font);
+}
 
+.theme-container {
     &.dark {
         --base: #333;
         --text: #eee;

@@ -1,0 +1,58 @@
+// having fixed points rather than going from case to case makes for a less haphazard experience when
+// shrinking windows
+$break1: 999px; // at this point we start hiding functionality as there is just not enough space
+$break2: 899px; // menu don't fit
+$break3: 699px;
+
+$break-mob: 500px;
+
+/* buncha shortcuts */
+@mixin ellipsize() {
+    display: block;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+// the loading placeholder
+@keyframes shimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+@mixin scrollbar($rounded: false) {
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+
+        &:vertical {
+            width: 15px;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: var(--base-1);
+
+        @if $rounded {
+            border-radius: 10px;
+        }
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: var(--base-1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        border: 5px solid var(--base-1);
+        background-color: var(--base-5);
+        min-height: 40px;
+
+        &:hover {
+            background-color: var(--base-7);
+        }
+    }
+}

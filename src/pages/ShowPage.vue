@@ -166,6 +166,15 @@
         <img class="curtains-right" src="/curtains-right.webp" :style="{'margin-right': `${pushAway}px`}" />
 
         <div class="sticky-header" ref="header">
+            <Dropdown class="plain site-dropdown" menu-class="site-dropdown-menu">
+                <template #toggle>
+                    <Icon name="menu" />
+                </template>
+                <template #menu>
+                    <a class="menu-item" href="/fringe">All Shows</a>
+                </template>
+            </Dropdown>
+
             <div class="contents">
                 <img class="square-logo" v-if="metas.square" :src="metas.square" />
                 <h1 v-html="metas.formatted_title || metas.title" />
@@ -368,14 +377,26 @@
             width: 100%;
             box-shadow: 0px 2px 5px #aaa;
             background: var(--chrome);
-            padding: 10px 0;
+            color: var(--chrome-text);
 
             top: -100px;
 
             transition: top 300ms ease;
 
+            display: grid;
+            grid-template-columns: auto 1fr;
+
+            .site-dropdown {
+                .toggle {
+                    padding: var(--content-horiz-padding);
+                }
+            }
+
             &.pinned {
                 top: 0;
+            }
+
+            .toggle {
             }
 
             .contents {
@@ -383,7 +404,10 @@
                 justify-content: center;
                 align-items: center;
                 gap: 15px;
-                padding: 0 var(--content-horiz-padding);
+                padding: 10px var(--content-horiz-padding);
+
+                .header-contents {
+                }
             }
 
             h1 {
@@ -752,5 +776,11 @@
                 }
             }
         }
+    }
+
+    #popups .menu.site-dropdown-menu {
+        background: var(--chrome-x1);
+        color: var(--chrome-text);
+        font-size: 1.25em;
     }
 </style>

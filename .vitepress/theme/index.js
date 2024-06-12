@@ -7,7 +7,8 @@ import "./destyle.css";
 import "./style.scss";
 
 import utils from "../../src/scripts/utils.js";
-const globalWidgets = utils.importToComp(import.meta.glob("../../src/widgets/global/*.vue", {eager: true}));
+const globalWidgets = utils.importToComp(import.meta.glob("/src/widgets/global/*.vue", {eager: true}));
+const directives = utils.importToComp(import.meta.glob("/src/directives/*.js", {eager: true}));
 
 /** @type {import('vitepress').Theme} */
 export default {
@@ -21,6 +22,11 @@ export default {
 
         for (const name in globalWidgets) {
             app.component(name, globalWidgets[name]);
+        }
+
+        // discover and register directives
+        for (const name in directives) {
+            app.directive(name, directives[name]);
         }
 
         app.mixin({
