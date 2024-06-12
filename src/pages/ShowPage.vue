@@ -88,21 +88,6 @@
                 }
             },
 
-            venues() {
-                let byVenue = {};
-                this.shows.forEach(show => {
-                    byTime[show.ts.strftime("%H:%M")] = show.ts;
-                });
-                return utils.sort(Object.values(byTime), ts => ts.time()).map(ts => ts.strftime("%H:%M"));
-            },
-
-            times() {
-                let byTime = {};
-                this.shows.forEach(show => {
-                    byTime[show.ts.strftime("%H:%M")] = show.ts;
-                });
-                return utils.sort(Object.values(byTime), ts => ts.time()).map(ts => ts.strftime("%H:%M"));
-            },
 
             paymentSectionTitle() {
                 let titles = {
