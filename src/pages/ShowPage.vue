@@ -27,7 +27,7 @@
         computed: {
             pushAway() {
                 let factor = this.scrollY * 0.02;
-                return Math.max(-Math.pow(factor, 2), -200);
+                return Math.max(-Math.pow(factor, 2), -300);
             },
 
             // we'll render link that looks like a button if button has state; otherwise it's just your regular button
