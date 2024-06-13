@@ -49,7 +49,7 @@
                 v-for="(quote, idx) in quotes"
                 :key="idx"
             >
-                <Stars :stars="quote.stars" />
+                <Stars :stars="quote.stars" v-if="quote.stars" />
                 <div class="quote">“{{ quote.quote }}”</div>
                 <div class="author">—{{ quote.author }}</div>
             </div>
