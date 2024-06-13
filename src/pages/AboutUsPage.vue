@@ -116,7 +116,7 @@
 
                 <p>
                     In addition to producing our own solo and touring shows (currently:
-                    <a href="/ollie-toxic">Ollie Horn: Comedy for Toxic People</a>), we are proud to produce a small
+                    <a href="/ollie">Ollie Horn: Comedy for Toxic People</a>), we are proud to produce a small
                     roster of acts at the Edinburgh Fringe each year. Typically these are international acts who are
                     bringing something unusual to the festival.In 2024 we are producing solo shows from
                     <a href="/andre">Andre De Freitas</a>, <a href="/chanel">Chanel Ali</a>,
