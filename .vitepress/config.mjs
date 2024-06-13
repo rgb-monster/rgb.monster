@@ -12,33 +12,12 @@ export default defineConfig({
     description: "Unusual Comedy Production",
     head: [
         ["link", {rel: "icon", href: "/favicon.png"}],
+
         ["link", {rel: "preconnect", href: "https://fonts.googleapis.com"}],
         ["link", {rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: ""}],
-        [
-            "link",
-            {
-                href: "https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap",
-                rel: "stylesheet",
-                crossOrigin: "anonymous",
-            },
-        ],
-        [
-            "link",
-            {
-                href: "https://fonts.googleapis.com/css2?family=Lato&display=swap",
-                rel: "stylesheet",
-                crossOrigin: "anonymous",
-            },
-        ],
-
-        [
-            "link",
-            {
-                href: "https://fonts.googleapis.com/icon?family=Material+Icons",
-                rel: "stylesheet",
-                crossOrigin: "anonymous",
-            },
-        ],
+        ["link", {href: "https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap", rel: "stylesheet"}],
+        ["link", {href: "https://fonts.googleapis.com/css2?family=Lato&display=swap", rel: "stylesheet"}],
+        ["link", {href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet"}],
 
         [
             "script",
