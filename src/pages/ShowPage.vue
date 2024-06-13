@@ -522,6 +522,8 @@
                 font-weight: 600;
                 color: var(--accent-burgundy);
 
+                display: inline-block;
+
                 padding: 6px;
 
                 //text-shadow: 1px 1px #666;
