@@ -3,6 +3,7 @@ export const metas = {
         title: "11PM Live",
         slug: "11pm",
         tags: ["variety"],
+        partnership: "Just the Tonic",
         cover: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover-thumb.webp",
         short_description:
@@ -123,6 +124,7 @@ export const metas = {
 
     ollie: {
         title: "Ollie Horn: Comedy For Toxic People",
+        partnership: "Talented Artists Limited",
         slug: "ollie",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
@@ -244,6 +246,7 @@ export const metas = {
         cover: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover-thumb.webp",
         short_description: "Choose your own adventure live video game",
+        partnership: "Bowtie Productions",
         description:
             "Are you fit to reign? How long do you think you can survive as ruler? Come and find out in this one-of-a-kind interactive comedy video game! Part comedy, part improv, part video game and part choose-your-own-adventure, where you and two guest comedians try to rule a kingdom! A unique experience at every show – how will you fare, my liege? From veteran performer Sam See (**** (Fest)) and video game designer Stephen Case from RGB Monster (Trust No Bunny, Not My Audience).",
         tickets: "https://tickets.edfringe.com/whats-on/off-with-your-head",
@@ -292,6 +295,8 @@ export const metas = {
         title: "This Is Your Trial",
         slug: "trial",
         tags: ["format"],
+        partnership: "This is Your Laugh",
+
         cover: "https://storage.googleapis.com/rgb-monster-assets/trial/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/trial/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/trial/square.webp",

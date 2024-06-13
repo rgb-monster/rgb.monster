@@ -171,6 +171,9 @@
 
         <section class="title" ref="metaHeader">
             <div class="contents">
+                <div class="partnership" v-if="metas.partnership">
+                    Presented in partnership with <mark>{{ metas.partnership }}</mark>
+                </div>
                 <h1 v-html="metas.formatted_title || metas.title" />
             </div>
         </section>
@@ -409,22 +412,20 @@
             }
         }
 
-        section.title {
-            text-align: center;
-            z-index: 700;
-
-            display: flex;
-            align-items: center;
-
+        section.title .contents {
             h1 {
                 line-height: 100%;
             }
 
-            .contents {
-                display: flex;
-                gap: 15px;
-                align-items: center;
-                align-content: center;
+            .partnership {
+                font-weight: 600;
+                color: var(--label);
+                margin-bottom: 10px;
+
+                mark {
+                    background: none;
+                    color: inherit;
+                }
             }
         }
 
