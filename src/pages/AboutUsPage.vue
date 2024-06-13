@@ -24,17 +24,18 @@
 
                 <p>
                     👋 We are a comedy production company that makes software. Since 2014 we've produced shows all over
-                    the world, in multiple languages, in venues large and small. Our founding team is made up of a
-                    comedian, a producer & games designer, and a technical creative. We have produced shows at the
-                    Edinburgh Fringe, Brighton Fringe, Perth Fringeworld, Adelaide Fringe, and Melbourne International
-                    Comedy Festival.
+                    the world, in multiple languages, in venues large and small. We have produced shows at the
+                    <mark class="subtle">Edinburgh Fringe</mark>, <mark class="subtle">Brighton Fringe</mark>,
+                    <mark class="subtle">Perth Fringeworld</mark>, <mark class="subtle">Adelaide Fringe</mark>, and
+                    <mark class="subtle">Melbourne International Comedy Festival</mark>.
                 </p>
 
                 <p>
                     ⚙️ What makes us different is we also build software that helps creatives work better and improves
                     live performances. Our software is used by comedy clubs, comedy producers, bookers, and artists. It
-                    also powers the light, sound and video screens of multiple comedy clubs worldwide, allowing them to
-                    operate their entire production with a simple app.
+                    also powers the <mark class="subtle">light</mark>, <mark class="subtle">sound</mark> and
+                    <mark class="subtle">video screens</mark> of comedy clubs worldwide, allowing them to operate their
+                    entire production with a simple interface.
                 </p>
 
                 <p>
@@ -50,7 +51,10 @@
             <div class="contents">
                 <h1>Our format shows</h1>
 
-                <p>We develop quiz, format, and game shows, some of which we licenced to other productions.</p>
+                <p>
+                    We develop <mark class="subtle">quiz</mark>, <mark class="subtle">format</mark>, and
+                    <mark class="subtle">game shows</mark>, some of which we licenced to other productions.
+                </p>
 
                 <div class="short-long shows-grid">
                     <img :src="metas.nma.square" />
@@ -113,8 +117,8 @@
                 <p>
                     In addition to producing our own solo and touring shows (currently:
                     <a href="/ollie-toxic">Ollie Horn: Comedy for Toxic People</a>), we are proud to produce a small
-                    roster of acts at the Edinburgh Fringe each year, typically international acts who are bringing
-                    something unusual to the festival.In 2024 we are producing solo shows from
+                    roster of acts at the Edinburgh Fringe each year. Typically these are international acts who are
+                    bringing something unusual to the festival.In 2024 we are producing solo shows from
                     <a href="/andre">Andre De Freitas</a>, <a href="/chanel">Chanel Ali</a>,
                     <a href="/matt-colorful">Matt Davies</a>, <a href="/jack">Jack Holmes</a>, and
                     <a href="/kavin">Kavin Jay</a>.
@@ -125,9 +129,10 @@
                     Fringe show; we are proud to be producing the award-winning Fringe institution
                     <a href="/trial">This Is Your Trial</a>; we are working in partnership with
                     <mark class="subtle">Bowtie Productions</mark> on our interactive choose-your-own-adventure
-                    <a href="/off-with-your-head">Off With Your Head</a>, and we are introducing Matt Davis' chaotic new
-                    format show <a href="/with-your-guest">With Your Guest</a> to the festival this year, where three
-                    comedians compete to host their own late night chat show.
+                    <a href="/off-with-your-head">Off With Your Head</a>, and we are introducing
+                    <mark class="subtle">Matt Davis'</mark> chaotic new format show
+                    <a href="/with-your-guest">With Your Guest</a> to the festival this year, where three comedians
+                    compete to host their own late night chat show.
                 </p>
 
                 <p>
@@ -148,8 +153,8 @@
                     <a href="https://confirmed.show/">Confirmed</a> is the industry leading comedy club booking
                     software. It handles soliciting comedian availability, extending booking offers, generating call
                     sheets, and financial reconciliation with one click settlement reports. With integrations with
-                    Red61, Eventbrite, and others, showrunners can get a birds eye view of the state of their
-                    productions.
+                    <mark class="subtle">Red61</mark>, <mark class="subtle">Eventbrite</mark>, and others, showrunners
+                    can get a birds eye view of the state of their productions.
                 </p>
 
                 <p>
@@ -161,10 +166,11 @@
                 <h2>Showtime</h2>
                 <p>
                     Showtime is our comedy club showrunning software, that is trusted by comedy clubs big and small to
-                    run the sound, lighting, and visuals for their club. From dynamically-connected screens showing
+                    run the <mark class="subtle">sound</mark>, <mark class="subtle">lighting</mark>, and
+                    <mark class="subtle">visuals</mark> for their club. From dynamically-connected screens showing
                     countdown timers or generating 'the light', to controlling full DMX lighting rigs, to automating the
-                    playing of BGM and stingers. <a href="mailto:hello@rgb.monster">Send us a mail</a> if you are
-                    considering a collaboration!
+                    playing of background music and stingers. <a href="mailto:hello@rgb.monster">Send us a mail</a> if
+                    you would like a demo!
                 </p>
 
                 <h2>Involved</h2>
@@ -172,7 +178,7 @@
                     Limited only by your imagination, we can produce innovative ways for your audience to get involved
                     with a show. From surveys, quizzes, phone-generated light shows, games and more. We know how to make
                     audiences being on the phone an opportunity rather than a problem!
-                    <a href="mailto:hello@rgb.monster">Send us a mail</a> if you are considering a collaboration!
+                    <a href="mailto:hello@rgb.monster">Send us a mail</a> if you would like a demo!
                 </p>
             </div>
         </section>
@@ -183,14 +189,14 @@
 
                 <h2>Creative consulting</h2>
                 <p>
-                    We've helped comedy clubs get off the ground, developed formats for live and broadcast, designed
-                    lighting for permanent and temporary comedy venues, assisted in show development, and more.
+                    We help comedy clubs get off the ground, assist in developing formats for live and broadcast, aid
+                    with designing lighting for permanent and temporary comedy venues, and more.
                 </p>
 
                 <h2>Videography</h2>
                 <p>
-                    We're good at videography of live comedy, and have filmed shows for release on Amazon Prime, ITV X
-                    and social media.
+                    We are really good at videography of live comedy, and have filmed shows for release on Amazon Prime,
+                    ITV X and social media.
                 </p>
 
                 <h2>The Most Toast</h2>
@@ -239,6 +245,8 @@
         .shows-grid {
             gap: 1em;
             text-align: left;
+            margin-top: 1em;
+            align-items: start;
             img {
                 max-width: 100px;
             }
