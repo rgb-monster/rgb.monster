@@ -52,29 +52,30 @@
 
                 <p>We develop quiz, format, and game shows, some of which we licenced to other productions.</p>
 
-                <div class="shows-grid">
+                <div class="short-long shows-grid">
                     <img :src="metas.nma.square" />
                     <div>
-                        Not My Audience is a panel show where comedians compete in stand-up challenges set by the
-                        audience through an app.
+                        <a href="/not-my-audience">Not My Audience</a> is a panel show where comedians compete in
+                        stand-up challenges set by the audience through an app.
                     </div>
 
                     <img :src="metas.best_worst_date.square" />
 
                     <div>
-                        In Best Worst Date, the audience anonymously share their dating horror stories and two comedians
-                        crown the best worst date
+                        In <a href="/best-worst-date">Best Worst Date</a>, the audience anonymously share their dating
+                        horror stories and two comedians crown the best worst date
                     </div>
 
                     <img :src="metas.itr.square" />
                     <div>
-                        Inside The Robot is an interactive escape-room like theatrical performance where kids control
-                        the narrative, special effects, and live video games.
+                        <a href="/inside-the-robot">Inside The Robot</a> is an interactive escape-room like theatrical
+                        performance where kids control the narrative, special effects, and live video games.
                     </div>
 
                     <img :src="metas.ooo.square" />
                     <div>
-                        Finally, Out Of Order is a quiz with just one question that the audience can play along with.
+                        Finally, <a href="/out-of-order">Out Of Order</a> is a quiz with just one question that the
+                        audience can play along with.
                     </div>
                 </div>
             </div>
@@ -84,23 +85,23 @@
             <div class="contents">
                 <h1>Our comedy shows</h1>
 
-                <div class="shows-grid">
+                <div class="shows-grid short-long">
                     <img :src="metas.headliners.square" />
                     <div>
-                        5 Headliners for £10 | Our flagship stand-up comedy showcase where five top comedians perform
-                        their best routines with no crowd work.
+                        Our flagship stand-up comedy showcase is <a href="/headliners">5 Headliners for £10</a> where
+                        five top comedians perform their best routines with no crowd work.
                     </div>
 
                     <img :src="metas.pg_hits.square" />
                     <div>
-                        PG Hits! | Our family-friendly comedy club where comedians perform their best PG rated routines
-                        so everybody can enjoy the show.
+                        <a href="/pg-hits">PG Hits!</a> is our family-friendly comedy club where comedians perform their
+                        best PG rated routines so everybody can enjoy the show.
                     </div>
 
                     <img :src="metas.best_of_kids.square" />
                     <div>
-                        Best of Kids Comedy | Our flagship kids comedy show, bringing together the best in
-                        family-friendly entertainment in one huge show.
+                        <a href="/best-of-kids">Best of Kids Comedy</a> is our flagship kids comedy show, bringing
+                        together the best in family-friendly entertainment in one huge show.
                     </div>
                 </div>
             </div>
@@ -120,32 +121,35 @@
                 </p>
 
                 <p>
-                    We are also producing the australian superstar duo Bad Mums debut Edinburgh Fringe show; we are
-                    proud to be producing the award-winning Fringe institution This Is Your Trial; we are working in
-                    partnership with Bowtie Productions on our interactive choose-your-own-adventure Off With Your Head;
-                    and we are introducing Matt Davis' chaotic new format show With Your Guest to the festival this
-                    year, where three comedians compete to host their own late night chat show.
+                    We are also producing the australian superstar duo <a href="/bad-mums">Bad Mums</a> debut Edinburgh
+                    Fringe show; we are proud to be producing the award-winning Fringe institution
+                    <a href="/trial">This Is Your Trial</a>; we are working in partnership with
+                    <mark class="subtle">Bowtie Productions</mark> on our interactive choose-your-own-adventure
+                    <a href="/off-with-your-head">Off With Your Head</a>, and we are introducing Matt Davis' chaotic new
+                    format show <a href="/with-your-guest">With Your Guest</a> to the festival this year, where three
+                    comedians compete to host their own late night chat show.
                 </p>
 
                 <p>
-                    We're proud to be working with Just The Tonic to bring to life the 11PM Live at the Big Cave
-                    celebration of the best in stand-up, and Big Gay Afterparty, hosted by cabaret star Aidan Sadler,
-                    which are already proving to be big hits with audiences seeking a great value way to end their day
-                    at the festival.
+                    We're proud to be working with <mark class="subtle">Just The Tonic</mark> to bring to life the
+                    <a href="/11pm">11PM Live at the Big Cave</a>
+                    celebration of the best in stand-up, and <a href="/afterparty">Big Gay Afterparty</a>, hosted by
+                    cabaret star <mark class="subtle">Aidan Sadler</mark>, which are already proving to be big hits with
+                    audiences seeking a great value way to end their day at the festival.
                 </p>
             </div>
         </section>
-        <section>
+        <section class="software">
             <div class="contents">
                 <h1>Software we make</h1>
 
                 <h2>Confirmed</h2>
-
                 <p>
-                    Confirmed is the industry leading comedy club booking software. It handles soliciting comedian
-                    availability, extending booking offers, generating call sheets, and financial reconciliation with
-                    one click settlement reports. With integrations with Red61, Eventbrite, and others, showrunners can
-                    get a birds eye view of the state of their productions.
+                    <a href="https://confirmed.show/">Confirmed</a> is the industry leading comedy club booking
+                    software. It handles soliciting comedian availability, extending booking offers, generating call
+                    sheets, and financial reconciliation with one click settlement reports. With integrations with
+                    Red61, Eventbrite, and others, showrunners can get a birds eye view of the state of their
+                    productions.
                 </p>
 
                 <p>
@@ -155,43 +159,41 @@
                 </p>
 
                 <h2>Showtime</h2>
-
                 <p>
                     Showtime is our comedy club showrunning software, that is trusted by comedy clubs big and small to
                     run the sound, lighting, and visuals for their club. From dynamically-connected screens showing
                     countdown timers or generating 'the light', to controlling full DMX lighting rigs, to automating the
-                    playing of BGM and stingers.
+                    playing of BGM and stingers. <a href="mailto:hello@rgb.monster">Send us a mail</a> if you are
+                    considering a collaboration!
                 </p>
 
                 <h2>Involved</h2>
-
                 <p>
                     Limited only by your imagination, we can produce innovative ways for your audience to get involved
                     with a show. From surveys, quizzes, phone-generated light shows, games and more. We know how to make
                     audiences being on the phone an opportunity rather than a problem!
+                    <a href="mailto:hello@rgb.monster">Send us a mail</a> if you are considering a collaboration!
                 </p>
             </div>
         </section>
-        <section>
+
+        <section class="other">
             <div class="contents">
                 <h1>Other things we do</h1>
 
                 <h2>Creative consulting</h2>
-
                 <p>
                     We've helped comedy clubs get off the ground, developed formats for live and broadcast, designed
                     lighting for permanent and temporary comedy venues, assisted in show development, and more.
                 </p>
 
                 <h2>Videography</h2>
-
                 <p>
                     We're good at videography of live comedy, and have filmed shows for release on Amazon Prime, ITV X
                     and social media.
                 </p>
 
                 <h2>The Most Toast</h2>
-
                 <p>Every year at the Edinburgh Fringe we find out who in the audience has had the most toast.</p>
             </div>
         </section>
@@ -235,13 +237,23 @@
         }
 
         .shows-grid {
-            display: grid;
-            grid-template-columns: auto 1fr;
             gap: 1em;
             text-align: left;
-
             img {
                 max-width: 100px;
+            }
+        }
+
+        section.software,
+        section.other {
+            h2 {
+                text-align: left;
+                margin-top: 2em;
+                padding-bottom: 5px;
+            }
+
+            p {
+                padding-top: 0;
             }
         }
     }

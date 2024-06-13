@@ -67,7 +67,7 @@
 
                 let topShows = utils.sort(Object.values(byVenueTime), rec => -rec.shows);
 
-                return topShows[0].show;
+                return topShows.length ? topShows[0].show : null;
             },
 
             dates() {
@@ -153,6 +153,7 @@
                 </template>
                 <template #menu>
                     <a class="menu-item" href="/fringe">All Shows</a>
+                    <a class="menu-item" href="/us">About Us</a>
                 </template>
             </Dropdown>
 
@@ -176,7 +177,7 @@
 
         <section class="meta">
             <div class="contents">
-                <div class="location" :class="{'not-ready': !loaded}">
+                <div class="location" :class="{'not-ready': !loaded || !topShow}">
                     <div>
                         <Icon name="calendar_month" />
                         <div v-if="loaded">{{ dates }}</div>
@@ -184,12 +185,12 @@
 
                     <div>
                         <Icon name="location_on" />
-                        <div v-if="loaded">{{ topShow.venue.name }}</div>
+                        <div v-if="loaded">{{ topShow?.venue?.name }}</div>
                     </div>
 
                     <div>
                         <Icon name="schedule" />
-                        <div v-if="loaded">{{ topShow.ts.strftime("%H:%M") }}</div>
+                        <div v-if="loaded">{{ topShow?.ts?.strftime("%H:%M") }}</div>
                     </div>
                 </div>
 
@@ -200,7 +201,7 @@
         </section>
 
         <section class="cta">
-            <div class="contents">
+            <div class="contents" :class="{'not-ready': !loaded || !topShow}">
                 <button @click="jumpToDates()" v-if="!loaded || shows.length > 1">
                     <template v-if="!metas.cta">
                         <Icon name="local_activity" />
@@ -211,7 +212,7 @@
                     </template>
                 </button>
 
-                <a :href="shows[0].tickets" target="blank" v-else>
+                <a :href="topShow?.tickets" target="blank" v-else>
                     <template v-if="!metas.cta">
                         <Icon name="local_activity" />
                         {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
@@ -248,72 +249,74 @@
             </div>
         </section>
 
-        <section class="about-tickets">
-            <div class="contents">
-                <div class="monster-box">
-                    <img class="monster" src="/doodles/sticking-out.webp" />
-                </div>
-
-                <div class="box">
-                    <header class="flexer"><Icon name="confirmation_number" />{{ paymentSectionTitle }}</header>
-
-                    <div v-if="(metas.payment || 'ticketed') == 'ticketed'">
-                        This is a ticketed show. This means that unlike some other shows that we produce where you may
-                        nominate a price you can afford, you may only enter this show with a ticket.
+        <template v-if="loaded && shows.length > 1">
+            <section class="about-tickets">
+                <div class="contents">
+                    <div class="monster-box">
+                        <img class="monster" src="/doodles/sticking-out.webp" />
                     </div>
 
-                    <div v-if="metas.payment == 'ticketed+pwyw'">
-                        This is a ticketed show. This means that the only way to guarantee entry is with a ticket. If
-                        you are low income, unwaged, or you can't afford a full price ticket for any reason, you are
-                        welcome to buy a concession ticket on a trust basis. If there is spare capacity once the ticket
-                        holders have been admitted, the venue may at their discression admit non-ticket holders on a pay
-                        what you can basis, where you will be able to purchase your ticket at a price of your choosing
-                        at the end of the show.
-                    </div>
+                    <div class="box">
+                        <header class="flexer"><Icon name="confirmation_number" />{{ paymentSectionTitle }}</header>
 
-                    <div v-if="metas.payment == 'pwyc'">
-                        This is a Pay What You Can Show. There are two ways of paying for the show. You can either
-                        reserve a ticket in advance for the full price, or select a reduced price option if that's all
-                        you can afford. Or, providing there is spare capacity once we've let the ticket holders in, you
-                        can turn up to the venue and enter for free, and offer a cash or card donation at the end of the
-                        show. We recommend doing this during the mid-week performances where we are less likely to sell
-                        out.
-                    </div>
+                        <div v-if="(metas.payment || 'ticketed') == 'ticketed'">
+                            This is a ticketed show. This means that unlike some other shows that we produce where you
+                            may nominate a price you can afford, you may only enter this show with a ticket.
+                        </div>
 
-                    <div v-if="metas.payment == 'unticketed'">
-                        This is a free show! This means that there is no way of reserving your place in advance.
-                        Instead, to be fair to everyone, we let people in the venue on a first come, first served basis,
-                        so we recommend turning up around fifteen minutes before the show starts. We ask that you pay
-                        what you feel the show was worth at the end of the show. The typical donation is £12, but some
-                        people pay more or less than this depending on their personal circumstances. Because of this
-                        crowdfunding model, even if you can't afford to pay anything at all, we still hope that you'll
-                        come and enjoy the show, since your fellow audience members will be paying for you. It really is
-                        free for you.
-                    </div>
-                </div>
-            </div>
-        </section>
+                        <div v-if="metas.payment == 'ticketed+pwyw'">
+                            This is a ticketed show. This means that the only way to guarantee entry is with a ticket.
+                            If you are low income, unwaged, or you can't afford a full price ticket for any reason, you
+                            are welcome to buy a concession ticket on a trust basis. If there is spare capacity once the
+                            ticket holders have been admitted, the venue may at their discression admit non-ticket
+                            holders on a pay what you can basis, where you will be able to purchase your ticket at a
+                            price of your choosing at the end of the show.
+                        </div>
 
-        <section class="dates" v-if="loaded && shows.length > 1" ref="dates">
-            <div class="contents">
-                <h2>Show dates</h2>
+                        <div v-if="metas.payment == 'pwyc'">
+                            This is a Pay What You Can Show. There are two ways of paying for the show. You can either
+                            reserve a ticket in advance for the full price, or select a reduced price option if that's
+                            all you can afford. Or, providing there is spare capacity once we've let the ticket holders
+                            in, you can turn up to the venue and enter for free, and offer a cash or card donation at
+                            the end of the show. We recommend doing this during the mid-week performances where we are
+                            less likely to sell out.
+                        </div>
 
-                <div class="date-listing">
-                    <div v-for="date in showsByDate" :key="date.date">
-                        <h2>{{ humanDate(date.date) }}</h2>
-                        <div class="shows">
-                            <a class="show-tile" v-for="show in date.shows" :href="show.tickets" target="blank">
-                                <div class="time">{{ show.ts.strftime("%H:%M") }}</div>
-                                <div class="venue">{{ show.venue.name }}</div>
-                                <div class="action">
-                                    {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
-                                </div>
-                            </a>
+                        <div v-if="metas.payment == 'unticketed'">
+                            This is a free show! This means that there is no way of reserving your place in advance.
+                            Instead, to be fair to everyone, we let people in the venue on a first come, first served
+                            basis, so we recommend turning up around fifteen minutes before the show starts. We ask that
+                            you pay what you feel the show was worth at the end of the show. The typical donation is
+                            £12, but some people pay more or less than this depending on their personal circumstances.
+                            Because of this crowdfunding model, even if you can't afford to pay anything at all, we
+                            still hope that you'll come and enjoy the show, since your fellow audience members will be
+                            paying for you. It really is free for you.
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="dates" ref="dates">
+                <div class="contents">
+                    <h2>Show dates</h2>
+
+                    <div class="date-listing">
+                        <div v-for="date in showsByDate" :key="date.date">
+                            <h2>{{ humanDate(date.date) }}</h2>
+                            <div class="shows">
+                                <a class="show-tile" v-for="show in date.shows" :href="show.tickets" target="blank">
+                                    <div class="time">{{ show.ts.strftime("%H:%M") }}</div>
+                                    <div class="venue">{{ show.venue.name }}</div>
+                                    <div class="action">
+                                        {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
     </div>
 </template>
 
@@ -491,6 +494,12 @@
         section.cta {
             background: var(--base);
             padding: 2em;
+            opacity: 1;
+            transition: opacity 500ms ease;
+
+            .contents.not-ready {
+                opacity: 0;
+            }
 
             button,
             a {

@@ -166,11 +166,6 @@ main.markdown {
             text-decoration: underline;
         }
 
-        mark {
-            background-color: var(--accent-pink);
-            padding: 3px;
-        }
-
         p {
             font-size: 1.15em;
             line-height: 180%;
@@ -238,6 +233,29 @@ main.markdown {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.long-short {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 5px;
+}
+
+.short-long {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 5px;
+}
+
+mark {
+    background-color: var(--accent-pink);
+    padding: 3px;
+
+    &.subtle {
+        background-color: var(--accent-yellow);
+    }
 }
 
 img,

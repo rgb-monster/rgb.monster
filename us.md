@@ -1,7 +1,6 @@
 ---
 title: About Us
 page: about-us
-footer: "light"
 ---
 
 <script setup>

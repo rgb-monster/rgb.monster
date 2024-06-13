@@ -257,7 +257,7 @@ export const metas = {
         cover: "https://storage.googleapis.com/rgb-monster-assets/ooo/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/ooo/cover-thumb.webp",
         short_description: "Everything seems to be correct, but totally out of order",
-        description: "",
+        description: "Everything seems to be correct, but totally out of order",
         tickets: "",
     },
 
