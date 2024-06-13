@@ -32,7 +32,7 @@
     <div class="stars">
         <div
             class="stars-container"
-            :style="{width: `calc(var(--star-width) * ${(percentages[stars] || 16.5 * stars) / 100}`}"
+            :style="{'max-width': `calc(var(--star-width) * ${(percentages[stars] || 16.5 * stars) / 100}`}"
         >
             <svg width="652.63647" viewBox="0 0 489.47736 100.70129">
                 <path
@@ -87,7 +87,7 @@
         svg {
             fill: var(--accent-yellow);
 
-            width: var(--star-width);
+            min-width: var(--star-width);
         }
     }
 </style>
