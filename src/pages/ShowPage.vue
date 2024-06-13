@@ -206,23 +206,27 @@
         <section class="cta">
             <div class="contents" :class="{'not-ready': !loaded || !topShow}">
                 <button @click="jumpToDates()" v-if="!loaded || shows.length > 1">
-                    <template v-if="!metas.cta">
-                        <Icon name="local_activity" />
-                        {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
-                    </template>
-                    <template v-else>
-                        {{ metas.cta }}
-                    </template>
+                    <div class="button-inner">
+                        <template v-if="!metas.cta">
+                            <Icon name="local_activity" />
+                            {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
+                        </template>
+                        <template v-else>
+                            {{ metas.cta }}
+                        </template>
+                    </div>
                 </button>
 
                 <a :href="topShow?.tickets" target="blank" v-else>
-                    <template v-if="!metas.cta">
-                        <Icon name="local_activity" />
-                        {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
-                    </template>
-                    <template v-else>
-                        {{ metas.cta }}
-                    </template>
+                    <div class="button-inner">
+                        <template v-if="!metas.cta">
+                            <Icon name="local_activity" />
+                            {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
+                        </template>
+                        <template v-else>
+                            {{ metas.cta }}
+                        </template>
+                    </div>
                 </a>
             </div>
         </section>
@@ -502,14 +506,23 @@
                 opacity: 0;
             }
 
+            .button-inner {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 5px 30px;
+                border-radius: 10px;
+            }
+
             button,
             a {
                 background: var(--accent-burgundy);
-                padding: 10px 35px;
                 font-size: min(1.25em, 5vw);
                 border-radius: 15px;
                 font-weight: 600;
                 color: var(--accent-burgundy);
+
+                padding: 6px;
 
                 //text-shadow: 1px 1px #666;
                 box-shadow: 0px 6px #b28b8d;
@@ -520,10 +533,6 @@
                 text-transform: uppercase;
                 font-weight: 600;
                 letter-spacing: 0.1em;
-
-                display: inline-flex;
-                gap: 10px;
-                align-items: center;
 
                 .icon {
                     font-size: 2em;
