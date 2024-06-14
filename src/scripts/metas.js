@@ -55,7 +55,7 @@ export const metas = {
         description:
             "After making his dazzling debut last year, one of the most distinctive young voices in European comedy returns to the Fringe with fresh new material on the big questions. Join André and a special guest opener as they figure out <mark>what growing up means and what comes next in life.</mark> Expect forty minutes of thoughtful musings on adulthood and at least five less thoughtful ones on orgies. Just like André: this material is maturing. Tour support for Jim Gaffigan, Jim Jefferies and Alan Carr.",
         tickets: "https://tickets.edfringe.com/whats-on/andre-de-freitas-as-yet-untitled",
-        quotes: [{stars: 4, quote: "Leaves them howling with laughter", author: "Sunday Express"}],
+        quotes: [{stars: 5, quote: "Leaves them howling with laughter", author: "Sunday Express"}],
     },
 
     bad_mums: {
