@@ -37,7 +37,7 @@
 
             shows() {
                 let showType = (this.store.showTypes || []).find(type => type.slug == this.id);
-                return showType?.shows || [];
+                return (showType?.shows || []).filter(show => !show.past);
             },
 
             showsByDate() {
@@ -305,19 +305,44 @@
 
             <section class="dates" ref="dates">
                 <div class="contents">
-                    <h2>Show dates</h2>
+                    <h2>Upcoming Shows</h2>
 
                     <div class="date-listing">
                         <div v-for="date in showsByDate" :key="date.date">
                             <h2>{{ humanDate(date.date) }}</h2>
                             <div class="shows">
-                                <a class="show-tile" v-for="show in date.shows" :href="show.tickets" target="blank">
-                                    <div class="time">{{ show.ts.strftime("%H:%M") }}</div>
-                                    <div class="venue">{{ show.venue.name }}</div>
-                                    <div class="action">
-                                        {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
-                                    </div>
-                                </a>
+                                <template v-for="show in date.shows">
+                                    <a class="show-tile" :href="show.tickets" target="blank">
+                                        <div class="time">{{ show.ts.strftime("%H:%M") }}</div>
+                                        <div class="venue">{{ show.venue.name }}</div>
+                                        <div
+                                            class="tickets flexer"
+                                            v-if="show.tickets_available !== undefined && show.tickets_available < 20"
+                                            :class="{
+                                                'running-low':
+                                                    show.tickets_available <= 20 && show.tickets_available > 10,
+                                                'last-few': show.tickets_available <= 10,
+                                                'sold-out': show.tickets_available == 0,
+                                            }"
+                                        >
+                                            <Icon name="confirmation_number" />
+                                            <template
+                                                v-if="show.tickets_available <= 20 && show.tickets_available > 10"
+                                            >
+                                                Running Low
+                                            </template>
+                                            <template v-else-if="show.tickets_available > 0"> Last few left </template>
+                                            <template v-else-if="show.tickets_available == 0"> Sold out </template>
+                                        </div>
+
+                                        <div
+                                            class="action"
+                                            v-if="show.tickets.available === undefined || show.tickets.available > 0"
+                                        >
+                                            {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
+                                        </div>
+                                    </a>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -664,6 +689,24 @@
                         font-weight: 600;
                         cursor: pointer;
                         margin-top: 5px;
+                    }
+
+                    .tickets {
+                        &.available {
+                            color: var(--accent-green);
+                        }
+
+                        &.running-low {
+                            color: var(--accent-burgundy);
+                        }
+
+                        &.last-few {
+                            color: var(--accent-red);
+                        }
+
+                        &.sold-out {
+                            color: var(--label);
+                        }
                     }
                 }
             }
