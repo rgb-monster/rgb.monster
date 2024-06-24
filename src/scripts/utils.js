@@ -516,8 +516,10 @@ let utils = {
 
     getLabel: (name, group) => (group ? labels[group][name] : labels[name]) || name,
 
-    replaceAll: (str, pattern, replacement) => {
-        return str.replace(new RegExp(pattern, "g"), replacement);
+    replaceAll(str, from, to) {
+        // escape any special symbols
+        from = from.replace(/[/\-\\^$*+?.()|[\]{}]/g, "\\$&");
+        return str.replace(new RegExp(from, "g"), to);
     },
 
     setDefault(obj, key, defaultVal) {
