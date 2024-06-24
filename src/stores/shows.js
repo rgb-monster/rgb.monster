@@ -68,6 +68,11 @@ export const useStore = defineStore("shows", {
 
                 this.shows = [...(rgb.data || []), ...(presents.data || [])].map(show => {
                     let ts = utils.parseTS(show.ts);
+                    let date = dt.datetime.combine(ts, dt.time());
+                    if (ts.hour <= 5) {
+                        date = dt.datetime(date - dt.timedelta({days: 1}));
+                    }
+
                     let metas = byTitle[show.name];
                     let tickets = metas.tickets || "";
                     if (typeof tickets != "string") {
@@ -86,10 +91,10 @@ export const useStore = defineStore("shows", {
                     }
 
                     if (tickets.includes("tickets.edfringe.com")) {
-                        tickets = `${tickets}?day=${ts.strftime("%d-%m-%Y")}`;
+                        tickets = `${tickets}?day=${date.strftime("%d-%m-%Y")}`;
                     }
 
-                    return {...show, ts, tickets};
+                    return {...show, ts, date, tickets};
                 });
                 this.loaded = true;
                 this.loading = false;

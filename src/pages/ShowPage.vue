@@ -44,7 +44,9 @@
                 let byDate = {};
 
                 this.shows.forEach(show => {
-                    utils.setDefault(byDate, show.ts.strftime("%Y-%m-%d"), {date: show.ts, shows: []}).shows.push(show);
+                    utils
+                        .setDefault(byDate, show.date.strftime("%Y-%m-%d"), {date: show.date, ts: show.ts, shows: []})
+                        .shows.push(show);
                 });
 
                 return utils.sort(Object.values(byDate), date => date.date);
@@ -309,11 +311,20 @@
 
                     <div class="date-listing">
                         <div v-for="date in showsByDate" :key="date.date">
-                            <h2>{{ humanDate(date.date) }}</h2>
+                            <h2>{{ date.date.strftime("%A") }}, {{ humanDate(date.date) }}</h2>
                             <div class="shows">
                                 <template v-for="show in date.shows">
                                     <a class="show-tile" :href="show.tickets" target="blank">
-                                        <div class="time">{{ show.ts.strftime("%H:%M") }}</div>
+                                        <div class="time">
+                                            {{ show.ts.strftime("%H:%M") }}
+
+                                            <Icon name="nights_stay" class="late-night-icon" v-if="show.ts.hour <= 5" />
+                                        </div>
+                                        <div class="late-night-disclaimer" v-if="show.ts.hour <= 5">
+                                            Note: this show happens on {{ show.date.strftime("%A") }} night
+                                            (technically, {{ show.ts.strftime("%A") }} morning).
+                                        </div>
+
                                         <div class="venue">{{ show.venue.name }}</div>
                                         <div
                                             class="tickets flexer"
@@ -385,6 +396,15 @@
 
         .curtains-right {
             right: 0;
+        }
+
+        .late-night-icon {
+            color: var(--accent-pink);
+        }
+
+        .late-night-disclaimer {
+            color: var(--accent-pink);
+            font-size: 0.85em;
         }
 
         .sticky-header {
