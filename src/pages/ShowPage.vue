@@ -155,7 +155,7 @@
                 </template>
                 <template #menu>
                     <a class="menu-item" href="/fringe">All Shows</a>
-                    <a class="menu-item" href="/us">About Us</a>
+                    <a class="menu-item" href="/about-us">About Us</a>
                 </template>
             </Dropdown>
 
