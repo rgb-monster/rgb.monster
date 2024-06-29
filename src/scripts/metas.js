@@ -86,14 +86,15 @@ export const metas = {
 
     best_worst_date: {
         title: "Best Worst Date",
-        slug: "best-worst-date",
+        slug: "date",
         cover: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover-thumb.webp",
         tags: ["format"],
         square: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/square.webp",
         short_description: "Dating horror stories party",
-        description: "Dating horror stories party",
-        tickets: "",
+        description:
+            "If your dating life is a joke: this is the show for you! Share your cringeworthy dating stories, and two top stand-ups compete to crown the best of the worst dates, riffing on what you've anonymously shared through our exclusive app! It's an <mark>interactive riot celebrating the chaos of single life</mark>—where your awkward is our awesome! Whether you've since found love, are forever single, or are somewhere in between, you'll leave the show feeling happier about all of the right swipes you regret!",
+        tickets: "https://tickets.edfringe.com/whats-on/your-best-worst-date-dating-horror-stories-party",
     },
 
     afterparty: {
