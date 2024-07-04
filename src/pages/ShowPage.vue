@@ -317,7 +317,9 @@
 
                     <div class="date-listing">
                         <div v-for="date in showsByDate" :key="date.date">
-                            <h2>{{ date.date.strftime("%A") }}, {{ humanDate(date.date) }}</h2>
+                            <a :id="date.date.strftime('%Y_%m_%d')" :href="`#${date.date.strftime('%Y_%m_%d')}`">
+                                <h2>{{ date.date.strftime("%A") }}, {{ humanDate(date.date) }}</h2>
+                            </a>
                             <div class="shows">
                                 <template v-for="show in date.shows">
                                     <a class="show-tile" :href="show.tickets" target="blank" v-if="!metas.show_lineup">
@@ -392,32 +394,24 @@
                                             <template v-else-if="show.tickets_available == 0"> Sold out </template>
                                         </div>
 
-                                        <div
-                                            class="lineup"
-                                            v-if="metas.show_lineup"
-                                            style="
-                                                display: flex;
-                                                flex-wrap: wrap;
-                                                gap: 10px;
-                                                align-items: center;
-                                                justify-items: center;
-                                            "
-                                        >
-                                            <button
-                                                v-for="(act, idx) in show.acts"
-                                                :key="idx"
-                                                style="margin-right: -30px"
-                                                @click="toggleAct(act)"
-                                                class="headshot-container"
-                                                :class="{
-                                                    active: act == activeAct,
-                                                    faded: activeAct && act !== activeAct,
-                                                }"
-                                                :title="act.name"
-                                            >
-                                                <div class="overlay" />
-                                                <Headshot :act="act" />
-                                            </button>
+                                        <div class="lineup" v-if="metas.show_lineup">
+                                            <div class="headshots">
+                                                <button
+                                                    v-for="(act, idx) in show.acts"
+                                                    :key="idx"
+                                                    style="margin-right: -30px"
+                                                    @click="toggleAct(act)"
+                                                    class="headshot-container"
+                                                    :class="{
+                                                        active: act == activeAct,
+                                                        faded: activeAct && act !== activeAct,
+                                                    }"
+                                                    :title="act.name"
+                                                >
+                                                    <div class="overlay" />
+                                                    <Headshot :act="act" />
+                                                </button>
+                                            </div>
 
                                             <div v-if="activeAct && show.acts.includes(activeAct)" class="act-details">
                                                 <div class="act-name">{{ activeAct.name }}</div>
@@ -513,18 +507,12 @@
                 top: 0;
             }
 
-            .toggle {
-            }
-
             .contents {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 gap: 15px;
                 padding: 10px var(--content-horiz-padding);
-
-                .header-contents {
-                }
             }
 
             h1 {
@@ -543,6 +531,13 @@
         }
 
         .lineup {
+            .headshots {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+                justify-items: center;
+            }
             .headshot-container {
                 position: relative;
                 .headshot,
