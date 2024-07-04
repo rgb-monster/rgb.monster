@@ -140,6 +140,15 @@
             this.loaded = true;
 
             document.addEventListener("scroll", this.updateScrollPos);
+
+            await this.$nextTick();
+
+            if (document.location.hash) {
+                let elem = document.getElementById(document.location.hash.slice(1));
+                if (elem) {
+                    elem.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
+                }
+            }
         },
 
         beforeUnmount() {
@@ -317,7 +326,11 @@
 
                     <div class="date-listing">
                         <div v-for="date in showsByDate" :key="date.date">
-                            <a :id="date.date.strftime('%Y_%m_%d')" :href="`#${date.date.strftime('%Y_%m_%d')}`">
+                            <a
+                                :id="date.date.strftime('%Y_%m_%d')"
+                                :href="`#${date.date.strftime('%Y_%m_%d')}`"
+                                class="date-anchor"
+                            >
                                 <h2>{{ date.date.strftime("%A") }}, {{ humanDate(date.date) }}</h2>
                             </a>
                             <div class="shows">
@@ -396,6 +409,26 @@
 
                                         <div class="lineup" v-if="metas.show_lineup">
                                             <div class="headshots">
+                                                <template v-if="metas.show_hosts">
+                                                    <button
+                                                        v-for="(act, idx) in show.hosts"
+                                                        :key="idx"
+                                                        style="margin-right: -30px"
+                                                        @click="toggleAct(act)"
+                                                        class="headshot-container"
+                                                        :class="{
+                                                            active: act == activeAct,
+                                                            faded: activeAct && act !== activeAct,
+                                                        }"
+                                                        :title="act.name"
+                                                    >
+                                                        <div class="overlay" />
+                                                        <Headshot :act="act" />
+                                                    </button>
+
+                                                    <div class="spacer" />
+                                                </template>
+
                                                 <button
                                                     v-for="(act, idx) in show.acts"
                                                     :key="idx"
@@ -409,13 +442,29 @@
                                                     :title="act.name"
                                                 >
                                                     <div class="overlay" />
-                                                    <Headshot :act="act" />
+
+                                                    <div class="headshot" v-if="act.empty">+{{ act.count }}</div>
+                                                    <Headshot v-else :act="act" />
                                                 </button>
                                             </div>
 
-                                            <div v-if="activeAct && show.acts.includes(activeAct)" class="act-details">
-                                                <div class="act-name">{{ activeAct.name }}</div>
-                                                <div class="bio">{{ activeAct.bio }}</div>
+                                            <div
+                                                v-if="
+                                                    (activeAct && show.acts.includes(activeAct)) ||
+                                                    show.hosts.includes(activeAct)
+                                                "
+                                                class="act-details"
+                                            >
+                                                <template v-if="activeAct.empty">
+                                                    <div class="bio">
+                                                        Plus {{ ordinal(activeAct.count) }} more
+                                                        {{ pluralizeNoun(activeAct.count, "act", "acts") }} to be revealed!
+                                                    </div>
+                                                </template>
+                                                <template v-else>
+                                                    <div class="act-name">{{ activeAct.name }}</div>
+                                                    <div class="bio">{{ activeAct.bio }}</div>
+                                                </template>
                                             </div>
                                         </div>
 
@@ -537,6 +586,10 @@
                 gap: 10px;
                 align-items: center;
                 justify-items: center;
+
+                .spacer {
+                    width: 15px;
+                }
             }
             .headshot-container {
                 position: relative;
@@ -582,6 +635,7 @@
                 .bio {
                     padding: 5px 0;
                     max-width: 30em;
+                    line-height: 150%;
                 }
             }
         }
@@ -780,7 +834,8 @@
                 margin-top: 1em;
                 text-align: left;
 
-                h2 {
+                .date-anchor {
+                    display: block;
                     //background: var(--chrome-x2);
                     color: var(--chrome);
                     border-bottom: 2px solid var(--chrome);
