@@ -413,7 +413,6 @@
                                                     <button
                                                         v-for="(act, idx) in show.hosts"
                                                         :key="idx"
-                                                        style="margin-right: -30px"
                                                         @click="toggleAct(act)"
                                                         class="headshot-container"
                                                         :class="{
@@ -432,7 +431,6 @@
                                                 <button
                                                     v-for="(act, idx) in show.acts"
                                                     :key="idx"
-                                                    style="margin-right: -30px"
                                                     @click="toggleAct(act)"
                                                     class="headshot-container"
                                                     :class="{
@@ -458,7 +456,8 @@
                                                 <template v-if="activeAct.empty">
                                                     <div class="bio">
                                                         Plus {{ ordinal(activeAct.count) }} more
-                                                        {{ pluralizeNoun(activeAct.count, "act", "acts") }} to be revealed!
+                                                        {{ pluralizeNoun(activeAct.count, "act", "acts") }} to be
+                                                        revealed!
                                                     </div>
                                                 </template>
                                                 <template v-else>
@@ -593,6 +592,12 @@
             }
             .headshot-container {
                 position: relative;
+                margin-right: -30px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
                 .headshot,
                 .overlay {
                     width: 80px;
