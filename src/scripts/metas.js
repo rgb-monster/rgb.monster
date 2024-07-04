@@ -106,7 +106,7 @@ export const metas = {
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover-thumb.webp",
         short_description: "Pop-up cabaret and mayhem (fun straights allowed)",
         description:
-            "Queer, chic and outrageous—you're invited to the biggest, gayest party at the Fringe (fun straights allowed). <mark>Indulge in the hottest pop-up cabaret experience on Cowgate</mark> with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours.",
+            "Queer, chic and outrageous—you're invited to the biggest, gayest party at the Fringe (fun straights allowed). <mark>Indulge in the hottest pop-up cabaret experience on Cowgate</mark> with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours. <mark class='subtle'>Don't worry about turning up late!</mark> The night is a pop up cabaret, and there will be fantastic acts on stage until 2:30am, when we hand over the reigns to our house DJ!",
         tickets: "https://edinburgh.justthetonic.com/event/88:4256",
         video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.mp4",
         show_lineup: true,
