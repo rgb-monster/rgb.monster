@@ -573,6 +573,7 @@
             }
 
             .act-details {
+                margin-top: 10px;
                 .act-name {
                     font-weight: 600;
                     font-size: 1.2em;
