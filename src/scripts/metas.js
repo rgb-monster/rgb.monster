@@ -292,6 +292,9 @@ export const metas = {
             "Three top stand-ups perform their very best routines just as they do in comedy clubs up and down the country and abroad, just without the swearing! PG Hits is a professional stand-up comedy compilation show that <mark>leaves out the really rude bits so everybody can enjoy the show.</mark> Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best the festival has to offer, at a relaxed lunchtime performance.",
         tickets: "https://tickets.edfringe.com/whats-on/pg-hits-the-best-in-family-friendly-stand-up-comedy",
         payment: "pwyc",
+        show_lineup: true,
+        show_hosts: true,
+        hide_bio: true,
     },
 
     toast: {
