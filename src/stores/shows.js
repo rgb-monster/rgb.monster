@@ -94,7 +94,12 @@ export const useStore = defineStore("shows", {
                         tickets = `${tickets}?day=${date.strftime("%d-%m-%Y")}`;
                     }
 
-                    return {...show, ts, date, tickets};
+                    let acts = show.acts;
+                    if (show.total_act_spots > acts.length) {
+                        acts.push({empty: true, count: show.total_act_spots - acts.length});
+                    }
+
+                    return {...show, ts, date, tickets, acts};
                 });
                 this.loaded = true;
                 this.loading = false;
