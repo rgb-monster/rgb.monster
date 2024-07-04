@@ -109,6 +109,7 @@ export const metas = {
             "Queer, chic and outrageous—you're invited to the biggest, gayest party at the Fringe (fun straights allowed). <mark>Indulge in the hottest pop-up cabaret experience on Cowgate</mark> with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours.",
         tickets: "https://edinburgh.justthetonic.com/event/88:4256",
         video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.mp4",
+        show_lineup: true,
     },
 
     chanel: {

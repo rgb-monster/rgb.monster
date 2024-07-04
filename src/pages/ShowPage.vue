@@ -22,6 +22,8 @@
                 headerObserver: null,
 
                 scrollY: 0,
+
+                activeAct: null,
             };
         },
         computed: {
@@ -118,6 +120,10 @@
 
             updateScrollPos(evt) {
                 this.scrollY = window.scrollY;
+            },
+
+            toggleAct(act) {
+                this.activeAct = act == this.activeAct ? null : act;
             },
         },
 
@@ -314,7 +320,7 @@
                             <h2>{{ date.date.strftime("%A") }}, {{ humanDate(date.date) }}</h2>
                             <div class="shows">
                                 <template v-for="show in date.shows">
-                                    <a class="show-tile" :href="show.tickets" target="blank">
+                                    <a class="show-tile" :href="show.tickets" target="blank" v-if="!metas.show_lineup">
                                         <div class="time">
                                             {{ show.ts.strftime("%H:%M") }}
 
@@ -353,6 +359,81 @@
                                             {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
                                         </div>
                                     </a>
+
+                                    <div class="show-tile" v-if="metas.show_lineup">
+                                        <div class="time">
+                                            {{ show.ts.strftime("%H:%M") }}
+
+                                            <Icon name="nights_stay" class="late-night-icon" v-if="show.ts.hour <= 5" />
+                                        </div>
+                                        <div class="late-night-disclaimer" v-if="show.ts.hour <= 5">
+                                            Note: this show happens on {{ show.date.strftime("%A") }} night
+                                            (technically, {{ show.ts.strftime("%A") }} morning).
+                                        </div>
+
+                                        <div class="venue">{{ show.venue.name }}</div>
+                                        <div
+                                            class="tickets flexer"
+                                            v-if="show.tickets_available !== undefined && show.tickets_available < 20"
+                                            :class="{
+                                                'running-low':
+                                                    show.tickets_available <= 20 && show.tickets_available > 10,
+                                                'last-few': show.tickets_available <= 10,
+                                                'sold-out': show.tickets_available == 0,
+                                            }"
+                                        >
+                                            <Icon name="confirmation_number" />
+                                            <template
+                                                v-if="show.tickets_available <= 20 && show.tickets_available > 10"
+                                            >
+                                                Running Low
+                                            </template>
+                                            <template v-else-if="show.tickets_available > 0"> Last few left </template>
+                                            <template v-else-if="show.tickets_available == 0"> Sold out </template>
+                                        </div>
+
+                                        <div
+                                            class="lineup"
+                                            v-if="metas.show_lineup"
+                                            style="
+                                                display: flex;
+                                                flex-wrap: wrap;
+                                                gap: 10px;
+                                                align-items: center;
+                                                justify-items: center;
+                                            "
+                                        >
+                                            <button
+                                                v-for="(act, idx) in show.acts"
+                                                :key="idx"
+                                                style="margin-right: -30px"
+                                                @click="toggleAct(act)"
+                                                class="headshot-container"
+                                                :class="{
+                                                    active: act == activeAct,
+                                                    faded: activeAct && act !== activeAct,
+                                                }"
+                                                :title="act.name"
+                                            >
+                                                <div class="overlay" />
+                                                <Headshot :act="act" />
+                                            </button>
+
+                                            <div v-if="activeAct && show.acts.includes(activeAct)" class="act-details">
+                                                <div class="act-name">{{ activeAct.name }}</div>
+                                                <div class="bio">{{ activeAct.bio }}</div>
+                                            </div>
+                                        </div>
+
+                                        <a
+                                            :href="show.tickets"
+                                            target="blank"
+                                            class="action"
+                                            v-if="show.tickets.available === undefined || show.tickets.available > 0"
+                                        >
+                                            {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
+                                        </a>
+                                    </div>
                                 </template>
                             </div>
                         </div>
@@ -458,6 +539,54 @@
                 max-width: var(--square-size);
                 max-height: var(--square-size);
                 border-radius: 10px;
+            }
+        }
+
+        .lineup {
+            .headshot-container {
+                position: relative;
+                .headshot,
+                .overlay {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 3px solid #fff;
+                }
+
+                .overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background: #fff;
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: opacity 300ms ease;
+                }
+
+                &.active {
+                    z-index: 300;
+                    .headshot {
+                        border: 3px solid #fff;
+                        box-shadow: 0 0 5px 2px #fff;
+                    }
+                }
+                &.faded {
+                    .overlay {
+                        opacity: 0.6;
+                    }
+                }
+            }
+
+            .act-details {
+                .act-name {
+                    font-weight: 600;
+                    font-size: 1.2em;
+                }
+
+                .bio {
+                    padding: 5px 0;
+                    max-width: 30em;
+                }
             }
         }
 
@@ -686,15 +815,6 @@
                     justify-items: start;
                     gap: 5px;
 
-                    &:hover {
-                        background: var(--chrome);
-                        color: var(--chrome-text);
-
-                        .action {
-                            background: var(--chrome);
-                        }
-                    }
-
                     .time {
                         font-weight: 600;
                         font-size: 2em;
@@ -726,6 +846,27 @@
 
                         &.sold-out {
                             color: var(--label);
+                        }
+                    }
+                }
+
+                a.show-tile:hover {
+                    background: var(--chrome);
+                    color: var(--chrome-text);
+
+                    .action {
+                        background: var(--chrome);
+                    }
+                }
+
+                div.show-tile {
+                    a.action {
+                        padding: 15px 20px;
+                    }
+
+                    .active-act {
+                        .headshot {
+                            z-index: 300;
                         }
                     }
                 }
