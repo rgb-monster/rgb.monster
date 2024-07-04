@@ -250,6 +250,9 @@ export const metas = {
         tickets:
             "https://tickets.edfringe.com/whats-on/not-my-audience-the-stand-up-panel-show-you-control-with-an-app",
         payment: "unticketed",
+        show_hosts: true,
+        show_lineup: true,
+        hide_bio: true,
     },
 
     off_with_your_head: {

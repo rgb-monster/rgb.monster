@@ -462,7 +462,7 @@
                                                 </template>
                                                 <template v-else>
                                                     <div class="act-name">{{ activeAct.name }}</div>
-                                                    <div class="bio">{{ activeAct.bio }}</div>
+                                                    <div class="bio" v-if="!metas.hide_bio">{{ activeAct.bio }}</div>
                                                 </template>
                                             </div>
                                         </div>
