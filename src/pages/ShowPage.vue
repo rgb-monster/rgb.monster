@@ -409,9 +409,28 @@
 
                                         <div class="lineup" v-if="metas.show_lineup">
                                             <div class="headshots">
-                                                <template v-if="metas.show_hosts">
+                                                <template v-if="show.acts.length > show.total_act_spots / 2">
+                                                    <template v-if="metas.show_hosts">
+                                                        <button
+                                                            v-for="(act, idx) in show.hosts"
+                                                            :key="idx"
+                                                            @click="toggleAct(act)"
+                                                            class="headshot-container"
+                                                            :class="{
+                                                                active: act == activeAct,
+                                                                faded: activeAct && act !== activeAct,
+                                                            }"
+                                                            :title="act.name"
+                                                        >
+                                                            <div class="overlay" />
+                                                            <Headshot :act="act" />
+                                                        </button>
+
+                                                        <div class="spacer" />
+                                                    </template>
+
                                                     <button
-                                                        v-for="(act, idx) in show.hosts"
+                                                        v-for="(act, idx) in show.acts"
                                                         :key="idx"
                                                         @click="toggleAct(act)"
                                                         class="headshot-container"
@@ -422,28 +441,14 @@
                                                         :title="act.name"
                                                     >
                                                         <div class="overlay" />
-                                                        <Headshot :act="act" />
+
+                                                        <div class="headshot" v-if="act.empty">+{{ act.count }}</div>
+                                                        <Headshot v-else :act="act" />
                                                     </button>
-
-                                                    <div class="spacer" />
                                                 </template>
-
-                                                <button
-                                                    v-for="(act, idx) in show.acts"
-                                                    :key="idx"
-                                                    @click="toggleAct(act)"
-                                                    class="headshot-container"
-                                                    :class="{
-                                                        active: act == activeAct,
-                                                        faded: activeAct && act !== activeAct,
-                                                    }"
-                                                    :title="act.name"
-                                                >
-                                                    <div class="overlay" />
-
-                                                    <div class="headshot" v-if="act.empty">+{{ act.count }}</div>
-                                                    <Headshot v-else :act="act" />
-                                                </button>
+                                                <template v-else>
+                                                    Lineup to be revealed!
+                                                </template>
                                             </div>
 
                                             <div
