@@ -446,9 +446,7 @@
                                                         <Headshot v-else :act="act" />
                                                     </button>
                                                 </template>
-                                                <template v-else>
-                                                    Lineup to be revealed!
-                                                </template>
+                                                <template v-else> Lineup to be revealed! </template>
                                             </div>
 
                                             <div
