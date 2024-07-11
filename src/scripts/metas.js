@@ -26,17 +26,17 @@ export const metas = {
             "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend £10 at the Fringe. Total sell-out 2023, so book early!",
         tickets: [
             {
-                venue: "Hootenannies@The Apex",
+                venue: "The Apex",
                 time: "19:30",
                 url: "https://tickets.edfringe.com/whats-on/5-headliners-for-10",
             },
             {
-                venue: "Hootenannies@The Apex",
+                venue: "The Apex",
                 time: "21:15",
                 url: "https://tickets.edfringe.com/whats-on/5-headliners-for-10-1",
             },
             {
-                venue: "JTT@The Caves",
+                venue: "The Caves",
                 time: "13:30",
                 url: "https://edinburgh.justthetonic.com/event/88:4304/",
             },
