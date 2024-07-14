@@ -74,24 +74,24 @@ export const useStore = defineStore("shows", {
                     }
 
                     let metas = byTitle[show.name];
-                    let tickets = metas.tickets || "";
-                    if (typeof tickets != "string") {
+                    let ticketsURL = metas.tickets || "";
+                    if (typeof ticketsURL != "string") {
                         // we have ourselves something more convoluted
-                        tickets = tickets.filter(
+                        ticketsURL = ticketsURL.filter(
                             rec =>
                                 (!rec.venue || rec.venue == show.venue.name) &&
                                 (!rec.time || rec.time == ts.strftime("%H:%M"))
                         );
-                        if (tickets.length == 1) {
-                            tickets = tickets[0].url;
+                        if (ticketsURL.length == 1) {
+                            ticketsURL = ticketsURL[0].url;
                         } else {
-                            tickets = "";
+                            ticketsURL = "";
                             console.error("Could not find ticket url for show", show.venue.name, ts.strftime("%H:%M"));
                         }
                     }
 
-                    if (tickets.includes("tickets.edfringe.com")) {
-                        tickets = `${tickets}?day=${date.strftime("%d-%m-%Y")}`;
+                    if (ticketsURL.includes("tickets.edfringe.com")) {
+                        ticketsURL = `${ticketsURL}?day=${date.strftime("%d-%m-%Y")}`;
                     }
 
                     let acts = show.acts;
@@ -99,8 +99,12 @@ export const useStore = defineStore("shows", {
                         acts.push({empty: true, count: show.total_act_spots - acts.length});
                     }
 
-                    return {...show, ts, date, tickets, acts};
+                    return {...show, ts, date, ticketsURL, acts};
                 });
+
+                // filter shows down to only those that we have tickets for - otherwise we have a listing that's pointing to nothing
+                this.shows = this.shows.filter(show => show.ticketsURL);
+
                 this.loaded = true;
                 this.loading = false;
                 return this.shows;

@@ -234,7 +234,7 @@
                     </div>
                 </button>
 
-                <a :href="topShow?.tickets" target="blank" v-else>
+                <a :href="topShow?.ticketsURL" target="blank" v-else>
                     <div class="button-inner">
                         <template v-if="!metas.cta">
                             <Icon name="local_activity" />
@@ -335,7 +335,7 @@
                             </a>
                             <div class="shows">
                                 <template v-for="show in date.shows">
-                                    <a class="show-tile" :href="show.tickets" target="blank" v-if="!metas.show_lineup">
+                                    <a class="show-tile" :href="show.ticketsURL" target="blank" v-if="!metas.show_lineup">
                                         <div class="time">
                                             {{ show.ts.strftime("%H:%M") }}
 
@@ -369,7 +369,7 @@
 
                                         <div
                                             class="action"
-                                            v-if="show.tickets.available === undefined || show.tickets.available > 0"
+                                            v-if="show.tickets_available === undefined || show.tickets_available > 0"
                                         >
                                             {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
                                         </div>
@@ -471,10 +471,10 @@
                                         </div>
 
                                         <a
-                                            :href="show.tickets"
+                                            :href="show.ticketsURL"
                                             target="blank"
                                             class="action"
-                                            v-if="show.tickets.available === undefined || show.tickets.available > 0"
+                                            v-if="show.tickets_available === undefined || show.tickets_available > 0"
                                         >
                                             {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
                                         </a>
