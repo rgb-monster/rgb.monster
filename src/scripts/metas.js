@@ -40,6 +40,11 @@ export const metas = {
                 time: "13:30",
                 url: "https://edinburgh.justthetonic.com/event/88:4304/",
             },
+            {
+                venue: "JTT@The Nucleus",
+                time: "13:00",
+                url: "https://edinburgh.justthetonic.com/event/88:4583/",
+            },
         ],
     },
 
