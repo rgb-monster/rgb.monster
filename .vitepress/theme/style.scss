@@ -150,6 +150,9 @@ main.markdown {
     }
 
     section.markdown-contents {
+        background: var(--base);
+        color: var(--text);
+
         p {
             margin: 0;
             padding: 0.5em 0;
@@ -179,9 +182,6 @@ main.markdown {
             margin-top: 1em;
             margin-bottom: 0;
         }
-
-        background: var(--base);
-        color: var(--text);
 
         .contents {
             max-width: var(--page-width);
@@ -230,15 +230,14 @@ main.markdown {
         text-align: center;
         letter-spacing: 0.025em;
         line-height: 90%;
+        --dynamic-shadow: min(calc(1px + 0.3vw), 3px);
+        text-shadow: var(--dynamic-shadow) var(--dynamic-shadow) #00000066;
 
         &.standalone {
             max-width: var(--page-width);
             margin: 0 auto;
             padding: 1em var(--content-horiz-padding);
         }
-
-        --dynamic-shadow: min(calc(1px + 0.3vw), 3px);
-        text-shadow: var(--dynamic-shadow) var(--dynamic-shadow) #00000066;
     }
 
     h2 {

@@ -335,7 +335,12 @@
                             </a>
                             <div class="shows">
                                 <template v-for="show in date.shows">
-                                    <a class="show-tile" :href="show.ticketsURL" target="blank" v-if="!metas.show_lineup">
+                                    <a
+                                        class="show-tile"
+                                        :href="show.ticketsURL"
+                                        target="blank"
+                                        v-if="!metas.show_lineup"
+                                    >
                                         <div class="time">
                                             {{ show.ts.strftime("%H:%M") }}
 
@@ -767,13 +772,12 @@
                 text-transform: uppercase;
                 font-weight: 600;
                 letter-spacing: 0.1em;
+                margin-bottom: 3px;
 
                 .icon {
                     font-size: 2em;
                     font-size: min(2em, 10vw);
                 }
-
-                margin-bottom: 3px;
 
                 &:active {
                     box-shadow: none;

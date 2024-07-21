@@ -52,6 +52,9 @@
         transition: background 200ms;
         color: var(--button-text);
         background: var(--button-bg);
+        --button-text: var(--chrome-btn-text);
+        --button-bg: var(--chrome-btn);
+        --outline: var(--base);
 
         & > * {
             /* button itself is clickable and we do not allow any interaction within it */
@@ -60,7 +63,7 @@
 
         &:hover,
         &:visited {
-             /* for links make sure the visited selector doesn't override our wishes */
+            /* for links make sure the visited selector doesn't override our wishes */
             color: var(--button-text);
             background: var(--button-bg);
         }
@@ -84,10 +87,6 @@
                 outline: 1px dashed var(--outline);
             }
         }
-
-        --button-text: var(--chrome-btn-text);
-        --button-bg: var(--chrome-btn);
-        --outline: var(--base);
 
         &.destructive {
             --button-bg: var(--destructive);

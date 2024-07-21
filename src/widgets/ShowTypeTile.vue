@@ -70,11 +70,6 @@
     .show-type-tile {
         border-radius: 8px;
         background: var(--light);
-
-        &:hover {
-            --shadow: var(--accent-pink);
-        }
-
         transition: border 300ms ease, box-shadow 300ms ease;
 
         border: 2px solid var(--shadow);
@@ -87,6 +82,11 @@
         --tile-padding: 25px;
 
         overflow: hidden;
+
+        &:hover {
+            --shadow: var(--accent-pink);
+        }
+
         .hero-image {
             display: block;
 
