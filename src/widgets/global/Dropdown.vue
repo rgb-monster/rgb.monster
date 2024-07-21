@@ -259,11 +259,13 @@
             </button>
         </slot>
 
-        <teleport to="#popups" :disabled="!menuClass || !open">
-            <div class="menu" ref="menu" v-if="open" :class="menuClass" @click="onMenuClick" v-tab-trap>
-                <slot name="menu"></slot>
-            </div>
-        </teleport>
+        <ClientOnly>
+            <teleport to="#popups" :disabled="!menuClass || !open">
+                <div class="menu" ref="menu" v-if="open" :class="menuClass" @click="onMenuClick" v-tab-trap>
+                    <slot name="menu"></slot>
+                </div>
+            </teleport>
+        </ClientOnly>
 
         <!-- in case if you need some non-dropdown-style elements outside of the dropdown, you can use the default slot -->
         <slot />
