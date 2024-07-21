@@ -249,9 +249,7 @@
         </section>
 
         <section class="show-description">
-            <div class="contents">
-                <p v-html="showDescription" />
-            </div>
+            <div class="contents" v-html="showDescription" />
         </section>
 
         <section v-if="metas.video" class="video">
@@ -785,6 +783,11 @@
                     margin-bottom: 0;
                 }
             }
+        }
+
+        section.show-description {
+            line-height: 1.8;
+            font-size: 1.25em;
         }
 
         section.about-tickets {
