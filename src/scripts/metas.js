@@ -138,6 +138,7 @@ export const metas = {
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover-thumb.webp",
+        video: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/10-secs.mp4",
         short_description: "Spontaneous, sharp, high-energy stand-up",
         description: `Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, <mark>laugh-out-loud show about how you can justify being toxic.</mark> Think of the WhatsApp group that you're ashamed to be in - the show will feel like that live on stage.
             `,
