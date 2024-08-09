@@ -45,6 +45,11 @@ export const metas = {
                 time: "13:00",
                 url: "https://edinburgh.justthetonic.com/event/88:4583/",
             },
+            {
+                venue: "The Apex",
+                time: "12:00",
+                url: "https://tickets.edfringe.com/whats-on/5-headliners-for-10",
+            },
         ],
     },
 

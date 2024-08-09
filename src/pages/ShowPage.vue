@@ -357,7 +357,7 @@
                                                 'running-low':
                                                     show.tickets_available <= 20 && show.tickets_available > 10,
                                                 'last-few': show.tickets_available <= 10,
-                                                'sold-out': show.tickets_available == 0,
+                                                'sold-out': show.tickets_available <= 0,
                                             }"
                                         >
                                             <Icon name="confirmation_number" />
@@ -367,7 +367,7 @@
                                                 Running Low
                                             </template>
                                             <template v-else-if="show.tickets_available > 0"> Last few left </template>
-                                            <template v-else-if="show.tickets_available == 0"> Sold out </template>
+                                            <template v-else-if="show.tickets_available <= 0"> Sold out </template>
                                         </div>
 
                                         <div
