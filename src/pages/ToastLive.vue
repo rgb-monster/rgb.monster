@@ -42,7 +42,6 @@
             <div class="clock">{{ time }}</div>
         </div>
         <img class="toast-logo" src="/toast.webp" />
-
     </div>
 </template>
 
@@ -59,7 +58,7 @@
         grid-template-rows: 1fr auto;
         justify-content: center;
         padding: 50px;
-        gap: 50px;
+        gap: 0;
 
         @font-face {
             font-family: toybox;
