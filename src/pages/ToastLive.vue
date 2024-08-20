@@ -63,7 +63,7 @@
 
         @font-face {
             font-family: toybox;
-            src: url(ToyBox.otf);
+            src: url(/ToyBox.otf);
         }
 
         font-family: toybox;
