@@ -27,11 +27,11 @@
         },
 
         async mounted() {
-            this.timer = setTimeout(this.updateClock, 2000);
+            this.timer = setInterval(this.updateClock, 2000);
         },
 
         beforeUnmount() {
-            clearTimeout(this.timer);
+            clearInterval(this.timer);
         },
     };
 </script>
