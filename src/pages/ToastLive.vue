@@ -58,7 +58,7 @@
         grid-template-rows: 1fr auto;
         justify-content: center;
         padding: 50px;
-        gap: 10px;
+        gap: 10px ;
 
         @font-face {
             font-family: toybox;
