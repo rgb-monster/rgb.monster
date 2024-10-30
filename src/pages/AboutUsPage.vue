@@ -66,7 +66,7 @@
                     <img :src="metas.best_worst_date.square" />
 
                     <div>
-                        In <a href="/best-worst-date">Best Worst Date</a>, the audience anonymously share their dating
+                        In <a href="/date">Best Worst Date</a>, the audience anonymously share their dating
                         horror stories and two comedians crown the best worst date
                     </div>
 

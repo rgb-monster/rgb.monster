@@ -35,7 +35,10 @@ export default defineConfig({
     vite: {
         css: {
             preprocessorOptions: {
-                scss: {additionalData: `@import "/src/theme/mixins.scss";`},
+                scss: {
+                    additionalData: `@use "/src/theme/mixins.scss";`,
+                    api: "modern-compiler",
+                },
             },
         },
     },

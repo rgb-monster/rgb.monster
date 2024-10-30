@@ -285,7 +285,7 @@
         border: 1px solid var(--border);
         max-height: calc(min(30em, 95vh));
         overflow-y: auto;
-        @include scrollbar;
+        @include mixins.scrollbar;
 
         hr {
             margin: 0;
@@ -367,10 +367,6 @@
             }
         }
 
-        & > .menu {
-            @include menuStyles;
-        }
-
         &.plain {
             & > .toggle {
                 .dropper {
@@ -427,7 +423,7 @@
                     padding-right: 0;
                     text-align: left;
                     width: 100%;
-                    @include ellipsize;
+                    @include mixins.ellipsize;
                     user-select: none;
                 }
 
@@ -461,12 +457,6 @@
             & > .menu {
                 right: 0;
             }
-        }
-    }
-
-    #popups {
-        & > .menu {
-            @include menuStyles;
         }
     }
 </style>

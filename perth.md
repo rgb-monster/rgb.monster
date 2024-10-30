@@ -13,7 +13,7 @@ layout: wide
 
 ::: section large
 
-RGB Monster has been proudly presenting shows at Perth Fringeworld since 2018, and we're excited to be presenting a wonderful roster of international talent at this year's festival. Ollie Horn brings back his award-winning [Kids Can Heckle](/kids-can-heckle?festival=Perth+2025), [Best Worst Date](/best-worst-date?festival=Perth+2025) returns to celebrate the good, bad, and ugly of dating, and our laugh-a-minute [5 Headliners for $25](/headliners?festival=Perth+2025) continues to offer unbeatable value. We love being in WA, and we hope you find something you love!
+RGB Monster has been proudly presenting shows at Perth Fringeworld since 2018, and we're excited to be presenting a wonderful roster of international talent at this year's festival. Ollie Horn brings back his award-winning [Kids Can Heckle](/kids-can-heckle?festival=Perth+2025), [Best Worst Date](/date?festival=Perth+2025) returns to celebrate the good, bad, and ugly of dating, and our laugh-a-minute [5 Headliners for $25](/headliners?festival=Perth+2025) continues to offer unbeatable value. We love being in WA, and we hope you find something you love!
 
 :::
 

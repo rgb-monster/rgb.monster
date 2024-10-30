@@ -58,14 +58,13 @@
         grid-template-rows: 1fr auto;
         justify-content: center;
         padding: 50px;
-        gap: 10px ;
+        gap: 10px;
+        font-family: toybox;
 
         @font-face {
             font-family: toybox;
             src: url(/ToyBox.otf);
         }
-
-        font-family: toybox;
 
         .toast-logo {
             max-width: 30vw;
