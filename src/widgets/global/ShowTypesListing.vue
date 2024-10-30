@@ -56,7 +56,7 @@
 <template>
     <section>
         <div class="contents show-types-listing">
-            <ShowTypeTile v-for="showType in showTypes" :key="showType.type" :showType="showType" />
+            <ShowTypeTile v-for="showType in showTypes" :key="showType.type" :showType="showType" :filter="filter" />
         </div>
     </section>
 </template>

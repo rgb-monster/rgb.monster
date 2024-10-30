@@ -6,6 +6,7 @@
         props: {
             // these are optional props for if your button has a linkable state
             showType: Object,
+            filter: String,
         },
         data() {
             return {};
@@ -33,12 +34,14 @@
                 });
                 return utils.sort(Object.values(byTime), ts => ts.time()).map(ts => ts.strftime("%H:%M"));
             },
+
+            filterIfPresent: state => (state.filter ? `?festival=${state.filter.replace(/\s/g, "+")}` : ""),
         },
     };
 </script>
 
 <template>
-    <a class="show-type-tile" :class="showType.tags[0]" :href="`/${showType.slug}`">
+    <a class="show-type-tile" :class="showType.tags[0]" :href="`/${showType.slug}${filterIfPresent}`">
         <div class="hero-image" v-if="showType.cover_thumb">
             <img :src="showType.cover_thumb" />
         </div>

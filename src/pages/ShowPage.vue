@@ -2,6 +2,7 @@
     import {useStore} from "../stores/shows.js";
     import {bySlug} from "/src/scripts/metas.js";
     import utils from "/src/scripts/utils.js";
+    import {Sieve} from "/src/scripts/sieve.js";
 
     export default {
         name: "ShowPage",
@@ -37,9 +38,32 @@
                 return bySlug[this.id];
             },
 
+            showsSieve() {
+                let shows = this.store.shows.filter(show => show.type == this.metas.type);
+                let serialized = shows.map(show => {
+                    return {
+                        id: show.id,
+                        city: show.venue.city,
+                        venue: show.venue.name,
+                        acts: show.acts.map(act => act.name),
+                        ts: show.ts.strftime("%A %B %d %Y %H:%M").split(" "),
+                        ts_str: show.ts.strftime("%A %b %d %Y %H:%M"),
+                    };
+                });
+                return new Sieve(serialized);
+            },
+
             shows() {
                 let showType = (this.store.showTypes || []).find(type => type.slug == this.id);
-                return (showType?.shows || []).filter(show => !show.past);
+                let shows = (showType?.shows || []).filter(show => !show.past);
+
+                let filter = new URLSearchParams(window.location.search).get("festival");
+                if (filter) {
+                    let ids = this.showsSieve.filter(filter);
+                    shows = shows.filter(show => ids.includes(show.id));
+                }
+
+                return shows;
             },
 
             showsByDate() {

@@ -15,7 +15,7 @@ export const metas = {
 
     headliners: {
         title: "5 Headliners",
-        formatted_title: "5 Headliners for £10",
+        formatted_title: "5 Headliners for $25",
         slug: "headliners",
         tags: ["standup"],
         short_description: "Top stand-up with no picking on the audience",
@@ -23,62 +23,14 @@ export const metas = {
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/square.webp",
         description:
-            "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend £10 at the Fringe. Total sell-out 2023, so book early!",
+            "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend $25 at the Fringe. Total sell-out 2024, so book early!",
         tickets: [
             {
-                venue: "The Apex",
-                time: "19:30",
-                url: "https://tickets.edfringe.com/whats-on/5-headliners-for-10",
-            },
-            {
-                venue: "The Apex",
-                time: "21:15",
-                url: "https://tickets.edfringe.com/whats-on/5-headliners-for-10-1",
-            },
-            {
-                venue: "The Caves",
-                time: "13:30",
-                url: "https://edinburgh.justthetonic.com/event/88:4304/",
-            },
-            {
-                venue: "JTT@The Nucleus",
-                time: "13:00",
-                url: "https://edinburgh.justthetonic.com/event/88:4583/",
-            },
-            {
-                venue: "The Apex",
-                time: "12:00",
-                url: "https://tickets.edfringe.com/whats-on/5-headliners-for-10",
+                venue: "The Austral",
+                time: "19:15",
+                url: "https://adelaidefringe.com.au/",
             },
         ],
-    },
-
-    andre: {
-        title: "André De Freitas: As Yet Untitled",
-        slug: "andre",
-        tags: ["solo", "standup"],
-        cover: "https://storage.googleapis.com/rgb-monster-assets/andre/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/andre/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/andre/10-secs.mp4",
-        square: "https://storage.googleapis.com/rgb-monster-assets/andre/square.webp",
-        short_description: "Portuguese star's unfiltered takes on adulthood",
-        description:
-            "After making his dazzling debut last year, one of the most distinctive young voices in European comedy returns to the Fringe with fresh new material on the big questions. Join André and a special guest opener as they figure out <mark>what growing up means and what comes next in life.</mark> Expect forty minutes of thoughtful musings on adulthood and at least five less thoughtful ones on orgies. Just like André: this material is maturing. Tour support for Jim Gaffigan, Jim Jefferies and Alan Carr.",
-        tickets: "https://tickets.edfringe.com/whats-on/andre-de-freitas-as-yet-untitled",
-        quotes: [{stars: 5, quote: "Leaves them howling with laughter", author: "Sunday Express"}],
-    },
-
-    bad_mums: {
-        title: "Bad Mums",
-        slug: "bad-mums",
-        tags: ["solo", "standup"],
-        cover: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/bad-mums/10-secs.mp4",
-        short_description: "Hilariously unfiltered tales of #mumlife",
-        description:
-            "They're outrageous, late for school drop-off and definitely not on the PTA! After a sold-out Aussie tour, Gill Cordiner and Nikki Valentine bring you Bad Mums: <mark>an hour of hysterical, unfiltered tales</mark> that has left crowds roaring with laughter and leaving rave reviews! Book your babysitters, organise date night or get your girl gang and see this hotly anticipated Fringe debut for two of Australia's rising comedy stars!",
-        tickets: "https://tickets.edfringe.com/whats-on/bad-mums",
     },
 
     best_of_kids: {
@@ -104,7 +56,13 @@ export const metas = {
         short_description: "Dating horror stories party",
         description:
             "If your dating life is a joke: this is the show for you! Share your cringeworthy dating stories, and two top stand-ups compete to crown the best of the worst dates, riffing on what you've anonymously shared through our exclusive app! It's an <mark>interactive riot celebrating the chaos of single life</mark>—where your awkward is our awesome! Whether you've since found love, are forever single, or are somewhere in between, you'll leave the show feeling happier about all of the right swipes you regret!",
-        tickets: "https://tickets.edfringe.com/whats-on/your-best-worst-date-dating-horror-stories-party",
+        tickets: [
+            {
+                venue: "The Austral",
+                time: "66:66",
+                url: "https://adelaidefringe.com.au/",
+            },
+        ],
         payment: "pwyc",
     },
 
@@ -120,20 +78,6 @@ export const metas = {
         tickets: "https://edinburgh.justthetonic.com/event/88:4256",
         video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.mp4",
         show_lineup: true,
-    },
-
-    chanel: {
-        title: "Chanel Ali: Break Up With Your Dad",
-        slug: "chanel",
-        tags: ["solo", "standup"],
-        square: "https://storage.googleapis.com/rgb-monster-assets/chanel/square.webp",
-        cover: "https://storage.googleapis.com/rgb-monster-assets/chanel/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/chanel/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/chanel/10-secs.mp4",
-        short_description: "Comedy Central USA star's debut Fringe hour",
-        description:
-            "If you can break up with your dad, you can break up with anyone. Star of the NYC comedy scene teaches you how to fight everyone—and win. You might recognise Chanel from her two Comedy Central specials, and the hit Netflix series <mark class='subtle'>Dash and Lily.</mark> Catch her at the Fringe as your <mark>silly and hilarious relationship expert who'll make you feel fantastic about living your best life.</mark> Don't miss this, your chance to catch one of the USA's hottest comedy exports for a limited run this Fringe.",
-        tickets: "https://edinburgh.justthetonic.com/event/88:4010/",
     },
 
     ollie: {
@@ -171,34 +115,6 @@ export const metas = {
         tickets: "https://edinburgh.justthetonic.com/event/88:4227",
     },
 
-    jack: {
-        title: "Jack Holmes: Round Man, Square Hole",
-        slug: "jack",
-        tags: ["solo", "standup"],
-        cover: "https://storage.googleapis.com/rgb-monster-assets/jack/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/jack/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/jack/10-secs.mp4",
-        short_description: "Unpretentious storytelling from journeyman Bristolian",
-        description:
-            "A laugh-filled journey about finding every group you belong to insufferable. From veganism and his punk band days, to resisting the cliches of being a married man, this sober, record-collecting, British-born, euro-trash comedian jokes and jabs himself apart to the glee of his audiences. <mark>An unpretentious and hilarious hour from a lovably gruff comedian</mark> who's very worried that being lovably gruff will be the next trend taken over by twats.",
-        tickets: "https://tickets.edfringe.com/whats-on/jack-holmes-round-man-square-hole",
-    },
-
-    kavin: {
-        title: "Kavin Jay: Unsolicited Advice",
-        slug: "kavin",
-        tags: ["solo", "standup"],
-        cover: "https://storage.googleapis.com/rgb-monster-assets/kavin/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/kavin/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/kavin/10-secs.mp4",
-        square: "https://storage.googleapis.com/rgb-monster-assets/kavin/square.webp",
-        short_description: "Malaysian Netflix Star's trademark rants",
-        description:
-            "Star of Netflix stand-up special <mark class='subtle'>Kavin Jay: Everybody Calm Down!</mark> makes his Fringe debut with a brand-new show about the worst part of bad news: what will your family say? Big laughs about health, wealth and misguided wisdom, with sharp and hilarious takes on <mark>what to do with unsolicited advice from well-meaning yet unqualified family and friends.</mark>",
-        tickets: "https://tickets.edfringe.com/whats-on/kavin-jay-unsolicited-advice",
-        quotes: [{quote: "South East Asia's sharpest and funniest voice", author: "Comedy Masala"}],
-    },
-
     kids_can_heckle: {
         title: "Kids Can Heckle!",
         slug: "kids-can-heckle",
@@ -209,7 +125,13 @@ export const metas = {
         short_description: "Perth Fringe 2024 weekly award winner",
         description:
             "Fun for the whole family, but especially fun for the little ones! Top UK stand-up Ollie Horn—attempts to tell the same clean stand-up that he does around the world. <mark>The only thing that can stop him is the imagination of your kids,</mark> who at any point are allowed, no, encouraged to jump in and be as silly as possible! Weekly award winner, Perth Fringe World 2024: Best Kids Show.",
-        tickets: "https://tickets.edfringe.com/whats-on/kids-can-heckle",
+        tickets: [
+            {
+                venue: "The Austral",
+                time: "66:66",
+                url: "https://adelaidefringe.com.au/",
+            },
+        ],
         quotes: [
             {
                 stars: 4,
@@ -218,34 +140,6 @@ export const metas = {
             },
             {quote: "Ollie Horn is a gifted storyteller", author: "TheWeeReview.com"},
         ],
-    },
-
-    matt_more_fun: {
-        title: "Matt Davis: (I Used to Be) More Fun",
-        formatted_title: "Matt Davis: (I&nbsp;Used&nbsp;to&nbsp;Be) More Fun",
-        slug: "matt-fun",
-        cover: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/matt-more-fun/10-secs.mp4",
-        tags: ["solo", "standup"],
-        short_description: "Acclaimed USA comedy veteran on sobriety",
-        description:
-            'A comedy storytelling show about sobriety, impulse control, and growing up from acclaimed comedy veteran Matt Davis (USA). Over 20 years into comedy, and <mark>a decade into sobriety, top stand-up Matt Davis revisits his "before times"</mark> and the unrecognisable person at their center. Rather than blame substances for stealing a police car, getting into a fight at McDonald\'s while pretending to be blind, or waltzing into the secure section of airports offices, Matt Davis explores the behavioural changes that stopping drinking allowed him to address, and the surprising situations that fostered them.',
-        tickets: "https://tickets.edfringe.com/whats-on/matt-davis-i-used-to-be-more-fun",
-    },
-
-    matt_colorful: {
-        title: "Matt Davis: Colorful",
-        slug: "matt-colorful",
-        cover: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/10-secs.mp4",
-        tags: ["solo", "standup"],
-        square: "https://storage.googleapis.com/rgb-monster-assets/matt-colorful/square.webp",
-        short_description: "Not every big issue has a black and white answer",
-        description:
-            "Dubbed 'an intellectually-driven stand up comedy king' by the Australian press, Matt Davis brings his internationally minded approach to take on challenging topics. In a wild and hilarious rebuttal to the increasingly prevalent black-and-white view of our world, the comedian weaves together personal narratives as he comically challenges beliefs. Grab that friend who likes to laugh, or that one who really needs to, and <mark>join us on the other side of arguments with two dimensions</mark> for an evening where things are… Colorful!",
-        tickets: "https://tickets.edfringe.com/whats-on/matt-davis-colorful",
     },
 
     nma: {
@@ -301,7 +195,13 @@ export const metas = {
         short_description: "Family-friendly stand-up comedy club",
         description:
             "Three top stand-ups perform their very best routines just as they do in comedy clubs up and down the country and abroad, just without the swearing! PG Hits is a professional stand-up comedy compilation show that <mark>leaves out the really rude bits so everybody can enjoy the show.</mark> Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best the festival has to offer, at a relaxed lunchtime performance.",
-        tickets: "https://tickets.edfringe.com/whats-on/pg-hits-the-best-in-family-friendly-stand-up-comedy",
+        tickets: [
+            {
+                venue: "The Austral",
+                time: "66:66",
+                url: "https://adelaidefringe.com.au/",
+            },
+        ],
         payment: "pwyc",
         show_lineup: true,
         show_hosts: true,
@@ -334,20 +234,6 @@ export const metas = {
         description:
             "Guilty or innocent? You decide! The award-winning, critically acclaimed courtroom roast returns to the Fringe for its eleventh year! <mark>You accuse friends and family of crimes, and top comedians take on the roles of judge and defence counsel,</mark> hearing testimony, cross-examining witnesses, and improvising their arguments for each case. It’s up to the audience as jury to deliver your verdict. Never the same show twice, a must-do fringe experience! 'A perfect bit of improv mayhem' ***** (Mirror). 'Inventive, intelligent comedy' ***** (Scotsman).",
         tickets: "https://tickets.edfringe.com/whats-on/this-is-your-trial-the-fully-improvised-comedy-courtroom",
-    },
-
-    with_your_guest: {
-        title: "With your Guest: Matt Davis",
-        slug: "with-your-guest",
-        cover: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover.webp",
-        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/cover-thumb.webp",
-        video: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/10-secs.mp4",
-        tags: ["format", "guest comedians"],
-        square: "https://storage.googleapis.com/rgb-monster-assets/with-your-guest/square.webp",
-        short_description: "Three comedians compete to host a game show",
-        description:
-            "One guest. Three talk shows. Three comedians compete to host the talk show of their dreams, at the same time, with the same guest! On tonight's improvised show, our guest, Matt Davis, is here to promote his latest project: whatever you decide! And here's our hosts, sharing the spotlight and audience suggestions, attempting to keep their show on the air and deliver the best interview for their bizarrely niche viewership. Ladies and gentlemen, please give it up for interactive lunacy, featuring comedians from across the Fringe. *Applause*",
-        tickets: "https://edinburgh.justthetonic.com/event/88:4262",
     },
 };
 
