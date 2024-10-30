@@ -23,7 +23,7 @@
                     return dates.map(ts => utils.humanDate(ts)).join(", ");
                 } else {
                     let [start, end] = [dates[0], dates[dates.length - 1]];
-                    return `${utils.humanDate(start)} - ${utils.humanDate(end)}`;
+                    return `${start.strftime("%d %b")} - ${end.strftime("%d %b")}`;
                 }
             },
 

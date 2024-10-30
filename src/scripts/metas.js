@@ -127,8 +127,8 @@ export const metas = {
             "Fun for the whole family, but especially fun for the little ones! Top UK stand-up Ollie Horn—attempts to tell the same clean stand-up that he does around the world. <mark>The only thing that can stop him is the imagination of your kids,</mark> who at any point are allowed, no, encouraged to jump in and be as silly as possible! Weekly award winner, Perth Fringe World 2024: Best Kids Show.",
         tickets: [
             {
-                venue: "The Austral",
-                time: "66:66",
+                venue: "Gluttony",
+                time: "15:00",
                 url: "https://adelaidefringe.com.au/",
             },
         ],
@@ -197,8 +197,8 @@ export const metas = {
             "Three top stand-ups perform their very best routines just as they do in comedy clubs up and down the country and abroad, just without the swearing! PG Hits is a professional stand-up comedy compilation show that <mark>leaves out the really rude bits so everybody can enjoy the show.</mark> Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best the festival has to offer, at a relaxed lunchtime performance.",
         tickets: [
             {
-                venue: "The Austral",
-                time: "66:66",
+                venue: "Gluttony",
+                time: "14:00",
                 url: "https://adelaidefringe.com.au/",
             },
         ],

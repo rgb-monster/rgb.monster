@@ -74,6 +74,9 @@ export const useStore = defineStore("shows", {
                     }
 
                     let metas = byTitle[show.name];
+                    if (!metas) {
+                        return show;
+                    }
                     let ticketsURL = metas.tickets || "";
                     if (typeof ticketsURL != "string") {
                         // we have ourselves something more convoluted
