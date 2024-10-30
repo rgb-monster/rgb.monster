@@ -12,7 +12,7 @@ layout: wide
 
 ::: section large
 
-We're <mark>RGB Monster</mark>! We're a <mark class="subtle">comedy production</mark> company that also makes <mark class="subtle">software</mark>. We're producing over 20 shows at this year's Edinburgh Fringe, take a look at them all below! <a href="/about-us">Click here</a> to find out more about us and the things we do. That's all for now!
+We're <mark>RGB Monster</mark>! We're a <mark class="subtle">comedy production</mark> company that also makes <mark class="subtle">software</mark>. We're producing over 20 shows in fringe festivals around the world! <a href="/about-us">Click here</a> to find out more about us and the things we do. That's all for now!
 
 :::
 
