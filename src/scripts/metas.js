@@ -30,6 +30,16 @@ export const metas = {
                 time: "19:15",
                 url: "https://adelaidefringe.com.au/",
             },
+            {
+                venue: "Brass Monkey",
+                time: "19:00",
+                url: "https://fringeworld.com.au/",
+            },
+            {
+                venue: "Belgian Beer Cafe",
+                time: "14:00",
+                url: "https://fringeworld.com.au/",
+            },
         ],
     },
 
@@ -58,9 +68,9 @@ export const metas = {
             "If your dating life is a joke: this is the show for you! Share your cringeworthy dating stories, and two top stand-ups compete to crown the best of the worst dates, riffing on what you've anonymously shared through our exclusive app! It's an <mark>interactive riot celebrating the chaos of single life</mark>—where your awkward is our awesome! Whether you've since found love, are forever single, or are somewhere in between, you'll leave the show feeling happier about all of the right swipes you regret!",
         tickets: [
             {
-                venue: "The Austral",
-                time: "66:66",
-                url: "https://adelaidefringe.com.au/",
+                venue: "Brass Monkey",
+                time: "21:40",
+                url: "https://fringeworld.com.au/",
             },
         ],
         payment: "pwyc",
@@ -131,6 +141,12 @@ export const metas = {
                 time: "15:00",
                 url: "https://adelaidefringe.com.au/",
             },
+
+            {
+                venue: "Belgian Beer Cafe",
+                time: "13:00",
+                url: "https://fringeworld.com.au/",
+            },
         ],
         quotes: [
             {
@@ -200,6 +216,11 @@ export const metas = {
                 venue: "Gluttony",
                 time: "14:00",
                 url: "https://adelaidefringe.com.au/",
+            },
+            {
+                venue: "Henry Summer",
+                time: "17:00",
+                url: "https://fringeworld.com.au/",
             },
         ],
         payment: "pwyc",
