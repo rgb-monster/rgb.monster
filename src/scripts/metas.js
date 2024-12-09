@@ -28,17 +28,17 @@ export const metas = {
             {
                 venue: "The Austral",
                 time: "19:15",
-                url: "https://adelaidefringe.com.au/",
+                url: "https://adelaidefringe.com.au/fringetix/5-headliners-for-25-af2025",
             },
             {
                 venue: "Brass Monkey",
                 time: "19:00",
-                url: "https://fringeworld.com.au/",
+                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
             },
             {
                 venue: "Belgian Beer Cafe",
                 time: "14:00",
-                url: "https://fringeworld.com.au/",
+                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
             },
         ],
     },
@@ -70,7 +70,7 @@ export const metas = {
             {
                 venue: "Brass Monkey",
                 time: "21:40",
-                url: "https://fringeworld.com.au/",
+                url: "https://fringeworld.com.au/whats_on/best-worst-date-the-hilarious-dating-horror-stories-party-fw2025",
             },
         ],
         payment: "pwyc",
@@ -139,13 +139,13 @@ export const metas = {
             {
                 venue: "Gluttony",
                 time: "15:00",
-                url: "https://adelaidefringe.com.au/",
+                url: "https://adelaidefringe.com.au/fringetix/kids-can-heckle-af2025",
             },
 
             {
                 venue: "Belgian Beer Cafe",
                 time: "13:00",
-                url: "https://fringeworld.com.au/",
+                url: "https://fringeworld.com.au/whats_on/kids-can-heckle-fw2025",
             },
         ],
         quotes: [
@@ -215,12 +215,12 @@ export const metas = {
             {
                 venue: "Gluttony",
                 time: "14:00",
-                url: "https://adelaidefringe.com.au/",
+                url: "https://adelaidefringe.com.au/fringetix/pg-hits-the-very-best-in-family-friendly-stand-up-af2025",
             },
             {
                 venue: "Henry Summer",
                 time: "17:00",
-                url: "https://fringeworld.com.au/",
+                url: "https://fringeworld.com.au/whats_on/pg-hits-the-best-in-family-friendly-stand-up-comedy-fw2025",
             },
         ],
         payment: "pwyc",
