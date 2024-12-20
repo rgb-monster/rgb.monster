@@ -282,9 +282,9 @@
                     <video playsinline ref="video">
                         <source :src="metas.video" type="video/mp4" />
                     </video>
-                    <button class="play-controls">
+                    <div class="play-controls">
                         <div class="play-icon"><Icon name="play_arrow" /></div>
-                    </button>
+                    </div>
                 </button>
             </div>
         </section>
@@ -302,7 +302,7 @@
                         <img class="monster" src="/doodles/sticking-out.webp" />
                     </div>
 
-                    <div class="box">
+                    <div class="box" v-if="metas.payment != 'hide'">
                         <header class="flexer"><Icon name="confirmation_number" />{{ paymentSectionTitle }}</header>
 
                         <div v-if="(metas.payment || 'ticketed') == 'ticketed'">
