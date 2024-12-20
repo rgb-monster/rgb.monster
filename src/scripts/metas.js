@@ -13,6 +13,45 @@ export const metas = {
         tickets: "https://edinburgh.justthetonic.com/event/88:4259/",
     },
 
+    comedy_brunch: {
+        title: "Comedy Brunch",
+        slug: "brunch",
+        tags: ["variety", "compilation"],
+        partnership: "Toucan Events",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/brunch/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/brunch/cover-thumb.webp",
+        short_description: "The perfect way to start your day at the fringe",
+        description:
+            "A delightful compilation show with a variety of comedians serving you up a hilarious feast to kick your day off! Grab a delicious breakfast from the Belgian Beer Cafe's extensive breakfast menu from 10am, then join us in our intimate Fringe venue for a selection of top local and international comedians doing short sets of their best material, where the laughs are bottomness! ",
+        tickets: "https://fringeworld.com.au/whats_on/comedy-brunch-fw2025",
+        payment: "hide",
+    },
+
+    bad_boys: {
+        title: "Bad Boys of British Comedy",
+        formatted_title: "Bad Boys of British Comedy",
+        slug: "bad-boys",
+        tags: ["standup"],
+        short_description: "Powerhouse stand-up comedy from two British rising stars",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/bad-boys/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/bad-boys/cover-thumb.webp",
+        square: "https://storage.googleapis.com/rgb-monster-assets/bad-boys/square.webp",
+        description:
+            "<mark class='subtle'>Darius Davies</mark> (English Comedian of the Year Finalist 2017, BBC, vaping inside) and <mark class='subtle'>Ollie Horn</mark> (Best reviewed show of Ed Fringe 24, ITV, jaywalking) make their way to Perth Fringe to corrupt Western Australia in one powerhouse comedy hour. Think riding bikes with no hands, ignoring ‘wet paint’ signs, and pressing the ‘close door’ button in a lift when someone approaches. This is <mark>no-holds-barred, too hot for TV, XXX-rated comedy.</mark> A show your mother doesn't want you to see: leather jackets, elbows on the table, and perhaps even references to the green stuff (only those in the know will know what that means, but we’re not talking about vegetables that’s all we’re saying). Over 2 million views on social media.",
+        tickets: [
+            {
+                venue: "Brass Monkey",
+                time: "16:45",
+                url: "https://fringeworld.com.au/whats_on/bad-boys-of-british-comedy-fw2025",
+            },
+            {
+                venue: "The Austral",
+                time: "19:15",
+                url: "https://adelaidefringe.com.au/fringetix/5-headliners-for-25-af2025",
+            },
+        ],
+    },
+
     headliners: {
         title: "5 Headliners",
         formatted_title: "5 Headliners for $25",
@@ -37,7 +76,18 @@ export const metas = {
             },
             {
                 venue: "Belgian Beer Cafe",
+                time: "13:00",
+                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
+            },
+            {
+                venue: "Belgian Beer Cafe",
                 time: "14:00",
+                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
+            },
+
+            {
+                venue: "The Old Courthouse",
+                time: "18:00",
                 url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
             },
         ],
@@ -73,7 +123,7 @@ export const metas = {
                 url: "https://fringeworld.com.au/whats_on/best-worst-date-the-hilarious-dating-horror-stories-party-fw2025",
             },
         ],
-        payment: "pwyc",
+        payment: "hide",
     },
 
     afterparty: {
@@ -187,7 +237,7 @@ export const metas = {
         description:
             "Are you fit to reign? How long do you think you can survive as ruler? Come and find out in this one-of-a-kind interactive comedy video game! Part comedy, part improv, part video game and part choose-your-own-adventure, where you and two guest comedians try to rule a kingdom! A unique experience at every show<mark>—how will you fare, my liege?</mark> From veteran performer Sam See (**** Fest) and video game designer Stephen Case (Trust No Bunny, Not My Audience).",
         tickets: "https://tickets.edfringe.com/whats-on/off-with-your-head",
-        payment: "unticketed",
+        payment: "hide",
     },
 
     ooo: {
@@ -222,8 +272,13 @@ export const metas = {
                 time: "17:00",
                 url: "https://fringeworld.com.au/whats_on/pg-hits-the-best-in-family-friendly-stand-up-comedy-fw2025",
             },
+            {
+                venue: "Belgian Beer Cafe",
+                time: "13:00",
+                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
+            },
         ],
-        payment: "pwyc",
+        payment: "hide",
         show_lineup: true,
         show_hosts: true,
         hide_bio: true,
@@ -254,7 +309,18 @@ export const metas = {
         short_description: "Award-winning improvised comedy courtroom",
         description:
             "Guilty or innocent? You decide! The award-winning, critically acclaimed courtroom roast returns to the Fringe for its eleventh year! <mark>You accuse friends and family of crimes, and top comedians take on the roles of judge and defence counsel,</mark> hearing testimony, cross-examining witnesses, and improvising their arguments for each case. It’s up to the audience as jury to deliver your verdict. Never the same show twice, a must-do fringe experience! 'A perfect bit of improv mayhem' ***** (Mirror). 'Inventive, intelligent comedy' ***** (Scotsman).",
-        tickets: "https://tickets.edfringe.com/whats-on/this-is-your-trial-the-fully-improvised-comedy-courtroom",
+        tickets: [
+            {
+                venue: "Belgian Beer Cafe",
+                time: "13:00",
+                url: "https://fringeworld.com.au/",
+            },
+            {
+                venue: "The Old Courthouse",
+                time: "15:00",
+                url: "https://fringeworld.com.au/",
+            },
+        ],
     },
 };
 
