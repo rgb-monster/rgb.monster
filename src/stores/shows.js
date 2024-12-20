@@ -89,7 +89,7 @@ export const useStore = defineStore("shows", {
                             ticketsURL = ticketsURL[0].url;
                         } else {
                             ticketsURL = "";
-                            console.error("Could not find ticket url for show", show.venue.name, ts.strftime("%H:%M"));
+                            console.error("Could not find ticket url for", show.name, "in", show.venue.name, ts.strftime("%H:%M"));
                         }
                     }
 
