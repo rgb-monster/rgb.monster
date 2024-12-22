@@ -275,7 +275,7 @@ export const metas = {
             {
                 venue: "Belgian Beer Cafe",
                 time: "13:00",
-                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
+                url: "https://fringeworld.com.au/whats_on/pg-hits-the-best-in-family-friendly-stand-up-comedy-fw2025",
             },
         ],
         payment: "hide",
@@ -318,7 +318,7 @@ export const metas = {
             {
                 venue: "The Old Courthouse",
                 time: "15:00",
-                url: "https://fringeworld.com.au/",
+                url: "https://www.eventbrite.com/e/this-is-your-trial-interactive-comedy-courtroom-fremantle-tickets-1119682423269",
             },
         ],
     },
