@@ -5,6 +5,7 @@ import {defineStore} from "pinia";
 
 import utils from "../scripts/utils.js";
 import {byTitle} from "../scripts/metas.js";
+import {Sieve} from "../scripts/sieve.js";
 
 export const useStore = defineStore("shows", {
     state: () => {
@@ -16,6 +17,21 @@ export const useStore = defineStore("shows", {
     },
 
     getters: {
+        showsSieve() {
+            let shows = this.shows;
+            let serialized = shows.map(show => {
+                return {
+                    id: show.id,
+                    city: show.venue.city,
+                    venue: show.venue.name,
+                    acts: show.acts.map(act => act.name),
+                    ts: show.ts.strftime("%A %B %d %Y %H:%M").split(" "),
+                    ts_str: show.ts.strftime("%A %b %d %Y %H:%M"),
+                };
+            });
+            return new Sieve(serialized);
+        },
+
         showTypes() {
             // groups shows by type
             let byType = {};
@@ -89,7 +105,13 @@ export const useStore = defineStore("shows", {
                             ticketsURL = ticketsURL[0].url;
                         } else {
                             ticketsURL = "";
-                            console.error("Could not find ticket url for", show.name, "in", show.venue.name, ts.strftime("%H:%M"));
+                            console.error(
+                                "Could not find ticket url for",
+                                show.name,
+                                "in",
+                                show.venue.name,
+                                ts.strftime("%H:%M")
+                            );
                         }
                     }
 

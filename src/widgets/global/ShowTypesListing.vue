@@ -1,6 +1,7 @@
 <script>
     import {useStore} from "/src/stores/shows.js";
-    import {Sieve} from "/src/scripts/sieve.js";
+    import utils from "/src/scripts/utils.js";
+    import {byTitle} from "/src/scripts/metas.js";
 
     import ShowTypeTile from "/src/widgets/ShowTypeTile.vue";
 
@@ -19,31 +20,39 @@
         },
 
         computed: {
-            showTypesSieve() {
-                return new Sieve(
-                    this.store.showTypes.map(showType => {
-                        let shows = showType.shows;
-                        return {
-                            ...showType,
-                            shows: null, // reset shows so we don't go traversing
-                            id: showType.slug,
-                            cities: shows.map(show => show.venue.city),
-                            venues: shows.map(show => show.venue.name),
-                            acts: [...new Set(shows.map(show => show.acts.map(act => act.name)).flat())],
-                            ts: shows.map(show => show.ts.strftime("%A %B %d %Y %H:%M").split(" ")).flat(),
-                            ts_str: shows.map(show => show.ts.strftime("%A %b %d %Y %H:%M")),
-                        };
-                    })
-                );
+            shows() {
+                let shows = this.store.shows;
+                if (this.filter) {
+                    let ids = this.store.showsSieve.filter(this.filter);
+                    shows = shows.filter(show => ids.includes(show.id));
+                }
+                return shows;
             },
 
             showTypes() {
-                let showTypes = this.store.showTypes;
-                if (this.filter) {
-                    let slugs = this.showTypesSieve.filter(this.filter);
-                    showTypes = showTypes.filter(showType => slugs.includes(showType.slug));
-                }
-                return showTypes;
+                // groups shows by type
+                let byType = {};
+                this.shows.forEach(show => {
+                    byType[show.name] = byType[show.name] || {
+                        ...byTitle[show.name],
+                        title: show.name,
+                        name: show.name,
+                        emoji: show.emoji,
+                        duration: show.duration,
+                        description: show.public_description,
+                        shows: [],
+                    };
+
+                    byType[show.name].shows.push(show);
+                });
+
+                return utils.sort(
+                    Object.values(byType).map(rec => ({
+                        ...rec,
+                        shows: utils.sort(rec.shows, show => show.ts),
+                    })),
+                    showType => showType.name
+                );
             },
         },
 
