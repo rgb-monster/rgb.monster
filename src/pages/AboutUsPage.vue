@@ -1,7 +1,5 @@
 <script>
     import {generic as genericMetas} from "/src/scripts/metas.js";
-    console.log("zzzzzzzz", genericMetas);
-
     export default {
         name: "AboutUsPage",
         data() {
