@@ -51,10 +51,20 @@
             shows() {
                 let shows = this.store.shows.filter(show => show.slug == this.slug);
 
-                let filter = new URLSearchParams(window.location.search).get("festival");
-                if (filter) {
-                    let ids = this.showsSieve.filter(filter);
-                    shows = shows.filter(show => ids.includes(show.slug));
+                // node nonsense (window is not defined when generating pages)
+                let windowHandle;
+                try {
+                    windowHandle = window;
+                } catch (error) {
+                    // pass
+                }
+
+                if (windowHandle && windowHandle.location.search) {
+                    let filter = new URLSearchParams(windowHandle.location.search).get("festival");
+                    if (filter) {
+                        let ids = this.showsSieve.filter(filter);
+                        shows = shows.filter(show => ids.includes(show.slug));
+                    }
                 }
 
                 return shows;
