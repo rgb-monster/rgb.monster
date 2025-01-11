@@ -318,20 +318,6 @@ let utils = {
 
     zeroPad: num => new String(parseInt(num)).padStart(2, "0"),
 
-    formatDuration(seconds) {
-        let negative = seconds < 0;
-        seconds = Math.abs(seconds);
-        return `${negative ? "-" : ""}${this.zeroPad(seconds / 60)}:${this.zeroPad(seconds % 60)}`;
-    },
-
-    humanDuration(seconds) {
-        let negative = seconds < 0;
-        seconds = Math.abs(seconds);
-        return `${negative ? "-" : ""}${utils.pluralize(Math.floor(seconds / 60), "min", "mins")}${
-            seconds % 60 ? ` ${utils.pluralize(seconds % 60, "sec", "secs")}` : ""
-        }`;
-    },
-
     addMonths(ts, months) {
         let time = {hour: ts.hour, minute: ts.minute};
         ts = dt.datetime.combine(ts, dt.time());
@@ -356,14 +342,6 @@ let utils = {
     pluralizeNoun(n, singular, plural) {
         n = Array.isArray(n) ? n.length : n;
         return n == 1 ? singular : plural;
-    },
-
-    feePay(flag, str) {
-        if (flag == "pay") {
-            return str.replace(/fee/g, "pay").replace(/Fee/g, "Pay");
-        } else {
-            return str;
-        }
     },
 
     sanitize(obj) {
@@ -436,51 +414,8 @@ let utils = {
         }
     },
 
-    gstore(path) {
-        // return url for the path in gstore, doesn't care about trailing slashes
-        path = path.replace(/^\//, "");
-        return `https://storage.googleapis.com/show-assets/${path}`;
-    },
-
-    spotKey(spot, ignoreLength = false) {
-        let fields = !ignoreLength ? ["category", "role", "spot_length"] : ["category", "role"];
-        return fields.map(field => (spot[field] || "").toString().trim().toLowerCase()).join("-");
-    },
-
     isEmpty(obj) {
         return !obj || Object.keys(obj).length == 0;
-    },
-
-    toMoney(money, currency) {
-        currency = currency || "";
-
-        if (!utils.isNumber(money)) {
-            // if we have currency in the number
-            return money;
-        } else {
-            money = parseFloat(money);
-        }
-
-        if (!money) {
-            return "-";
-        }
-
-        return currency.length <= 1
-            ? `${currency}${utils.humanNumber(money)}`
-            : `${currency} ${utils.humanNumber(money)}`;
-    },
-
-    parseMoney(money) {
-        let moneyRe = /(?<currency>.*?)(?<money>[\d.,]+)(?<currency2>.*)/g;
-        let parsed = moneyRe.exec(money);
-        if (parsed?.groups) {
-            let value = parseFloat(parsed.groups.money.replace(/,/g, "."));
-            let currency = (parsed.groups.currency || "").trim() + (parsed.groups.currency2 || "").trim();
-            if (currency.length <= 3 && !currency.includes("%")) {
-                return {value, currency};
-            }
-        }
-        return {value: null, currency: null};
     },
 
     humanNumber(val) {
@@ -489,26 +424,6 @@ let utils = {
             val = parseFloat(val.replace(/,/, "")) || 0;
         }
         return val.toLocaleString();
-    },
-
-    toPercentStr(val, precision, relative) {
-        val = val || 0;
-        precision = precision == undefined ? 1 : precision;
-
-        if (val == Infinity || Number.isNaN(val)) {
-            return "-";
-        } else if (val > 2) {
-            return `${Number(val).toFixed(1)}x`;
-        } else {
-            let res = Number(val * 100);
-            if (relative) {
-                // when relative is specified, drops the hundred, so
-                // 108% becomes "8% more" and 94% becomes "6% less"
-                // the more/less has to figured out outside of this
-                res = Math.abs(res - 100);
-            }
-            return res.toFixed(precision) + "%";
-        }
     },
 
     listify(val) {
@@ -524,13 +439,6 @@ let utils = {
     singleSpace(str) {
         return str.replace(/\s+/g, " ").trim();
     },
-
-    spotLengths: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 20, 25, 30, 35, 40, 45, 50, 55, 60].map(minutes => ({
-        label: minutes == 0 ? "Full Show" : `${minutes} mins`,
-        value: minutes,
-    })),
-
-    getLabel: (name, group) => (group ? labels[group][name] : labels[name]) || name,
 
     replaceAll(str, from, to) {
         // escape any special symbols
@@ -572,55 +480,6 @@ let utils = {
         );
     },
 
-    parseDateRange(str) {
-        // in order to count all dates need to parse. would be good to not be too jumpy, so maybe validate on exit
-        let today = dt.datetime.combine(dt.datetime.now().date(), dt.time());
-        let reg =
-            /(?<month>(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec))?\s*(?<rangeMarker>[,-])?\s*(?<day>\d{1,2})?\s*/gi;
-
-        let curMo;
-        let curDay;
-        let rangeMarker;
-        let res = [];
-
-        let matches = [...str.matchAll(reg)].map(res => res.groups);
-        matches.forEach(match => {
-            if (match.month) {
-                curDay = null;
-                curMo = dt.datetime.strptime(`${match.month}-${today.year}`, "%b-%Y");
-                if (curMo.month < today.month) {
-                    // if the month is in the past, push it forward by a year
-                    curMo = dt.datetime(curMo + dt.timedelta({days: 365}));
-                }
-            }
-
-            if (match.rangeMarker) {
-                rangeMarker = match.rangeMarker;
-            }
-
-            if (match.day && curMo) {
-                let day = parseInt(match.day);
-                if (day >= 1 && day <= 31) {
-                    if (!curDay || (rangeMarker != "-" && day > curDay)) {
-                        res.push(dt.datetime(curMo.year, curMo.month, parseInt(match.day)));
-                    } else if (curDay && rangeMarker == "-") {
-                        let until = parseInt(match.day);
-                        if (until > curDay) {
-                            utils.range(curDay + 1, until + 1).forEach(day => {
-                                res.push(dt.datetime(curMo.year, curMo.month, day));
-                            });
-                        }
-                    }
-
-                    curDay = parseInt(match.day);
-                }
-                rangeMarker = null;
-            }
-        });
-
-        return res;
-    },
-
     async sleep(seconds) {
         return new Promise(resolve => {
             setTimeout(resolve, seconds * 1000);
@@ -644,11 +503,9 @@ utils.filters = Object.fromEntries(
     [
         "capitalize",
         "round",
-        "getLabel",
         "range",
         "formatTS",
         "humanNumber",
-        "toPercentStr",
         "humanDate",
         "humanTs",
         "emailOk",
@@ -658,16 +515,10 @@ utils.filters = Object.fromEntries(
         "pluralize",
         "pluralizeNoun",
         "sort",
-        "gstore",
-        "formatDuration",
-        "humanDuration",
         "isEmpty",
-        "toMoney",
         "timeSinceUTC",
         "stripThe",
-        "getLabel",
         "zeroPad",
-        "feePay",
         "normalize",
         "ordinal",
     ].map(funcName => [funcName, utils[funcName]])
