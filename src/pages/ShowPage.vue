@@ -1,14 +1,14 @@
 <script>
     import {useStore} from "../stores/shows.js";
-    import {bySlug} from "/src/scripts/metas.js";
     import utils from "/src/scripts/utils.js";
     import {Sieve} from "/src/scripts/sieve.js";
+    import {metas} from "/src/scripts/metas.js";
 
     export default {
         name: "ShowPage",
         props: {
             // these are optional props for if your button has a linkable state
-            id: String,
+            slug: String,
         },
         components: {
             // Cover,
@@ -33,16 +33,11 @@
                 return Math.max(-Math.pow(factor, 2), -300);
             },
 
-            // we'll render link that looks like a button if button has state; otherwise it's just your regular button
-            metas() {
-                return bySlug[this.id];
-            },
-
             showsSieve() {
-                let shows = this.store.shows.filter(show => show.type == this.metas.type);
+                let shows = this.store.shows.filter(show => show.slug == this.slug);
                 let serialized = shows.map(show => {
                     return {
-                        id: show.id,
+                        id: show.slug,
                         city: show.venue.city,
                         venue: show.venue.name,
                         acts: show.acts.map(act => act.name),
@@ -54,16 +49,25 @@
             },
 
             shows() {
-                let showType = (this.store.showTypes || []).find(type => type.slug == this.id);
-                let shows = (showType?.shows || []).filter(show => !show.past);
+                let shows = this.store.shows.filter(show => show.slug == this.slug);
 
                 let filter = new URLSearchParams(window.location.search).get("festival");
                 if (filter) {
                     let ids = this.showsSieve.filter(filter);
-                    shows = shows.filter(show => ids.includes(show.id));
+                    shows = shows.filter(show => ids.includes(show.slug));
                 }
 
                 return shows;
+            },
+
+            metas() {
+                if (this.shows.length) {
+                    return this.shows[0].metas;
+                } else {
+                    let matching = metas.filter(meta => meta.slug == this.slug);
+                    let defaultMetas = matching.find(meta => meta.default);
+                    return defaultMetas || matching[0];
+                }
             },
 
             showsByDate() {
@@ -158,14 +162,13 @@
                 },
                 {threshold: 1}
             );
-            this.headerObserver.observe(this.$refs.metaHeader);
-
             await this.store.fetchShows();
             this.loaded = true;
 
-            document.addEventListener("scroll", this.updateScrollPos);
-
             await this.$nextTick();
+
+            this.headerObserver.observe(this.$refs.metaHeader);
+            document.addEventListener("scroll", this.updateScrollPos);
 
             if (document.location.hash) {
                 let elem = document.getElementById(document.location.hash.slice(1));
@@ -200,246 +203,283 @@
 
             <div class="contents">
                 <img class="square-logo" v-if="metas.square" :src="metas.square" />
-                <h1 v-html="metas.formatted_title || metas.title" />
+                <h1 v-html="metas.title" />
             </div>
         </div>
 
-        <section class="banner">
-            <div class="contents">
-                <Cover :show="metas" />
-            </div>
-        </section>
-
-        <section class="title" ref="metaHeader">
-            <div class="contents">
-                <div class="partnership" v-if="metas.partnership">
-                    Presented in partnership with <mark>{{ metas.partnership }}</mark>
-                </div>
-                <h1 v-html="metas.formatted_title || metas.title" />
-            </div>
-        </section>
-
-        <section class="meta">
-            <div class="contents">
-                <div class="location" :class="{'not-ready': !loaded || !topShow}">
-                    <div>
-                        <Icon name="calendar_month" />
-                        <div v-if="loaded">{{ dates }}</div>
-                    </div>
-
-                    <div>
-                        <Icon name="location_on" />
-                        <div v-if="loaded">{{ topShow?.venue?.name }}</div>
-                    </div>
-
-                    <div>
-                        <Icon name="schedule" />
-                        <div v-if="loaded">{{ topShow?.ts?.strftime("%H:%M") }}</div>
-                    </div>
-                </div>
-
-                <div class="tags">
-                    <div v-for="tag in metas.tags" :key="tag" :class="tag">{{ tag }}</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta">
-            <div class="contents" :class="{'not-ready': !loaded || !topShow}">
-                <button @click="jumpToDates()" v-if="!loaded || shows.length > 1">
-                    <div class="button-inner">
-                        <template v-if="!metas.cta">
-                            <Icon name="local_activity" />
-                            {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
-                        </template>
-                        <template v-else>
-                            {{ metas.cta }}
-                        </template>
-                    </div>
-                </button>
-
-                <a :href="topShow?.ticketsURL" target="blank" v-else>
-                    <div class="button-inner">
-                        <template v-if="!metas.cta">
-                            <Icon name="local_activity" />
-                            {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
-                        </template>
-                        <template v-else>
-                            {{ metas.cta }}
-                        </template>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <section class="show-description">
-            <div class="contents" v-html="showDescription" />
-        </section>
-
-        <section v-if="metas.video" class="video">
-            <div class="contents">
-                <button class="player" :class="{playing: videoPlaying}" @click="togglePlayback">
-                    <video playsinline ref="video">
-                        <source :src="metas.video" type="video/mp4" />
-                    </video>
-                    <div class="play-controls">
-                        <div class="play-icon"><Icon name="play_arrow" /></div>
-                    </div>
-                </button>
-            </div>
-        </section>
-
-        <section class="social-proof" v-if="metas.quotes">
-            <div class="contents">
-                <QuotesCarousel :quotes="metas.quotes" />
-            </div>
-        </section>
-
-        <template v-if="loaded && shows.length > 1">
-            <section class="about-tickets">
+        <template v-if="loaded">
+            <section class="banner">
                 <div class="contents">
-                    <div class="monster-box">
-                        <img class="monster" src="/doodles/sticking-out.webp" />
+                    <Cover :show="metas" />
+                </div>
+            </section>
+
+            <section class="title" ref="metaHeader">
+                <div class="contents">
+                    <div class="partnership" v-if="metas.partnership">
+                        Presented in partnership with <mark>{{ metas.partnership }}</mark>
+                    </div>
+                    <h1 v-html="metas.title" />
+                </div>
+            </section>
+
+            <section class="meta">
+                <div class="contents">
+                    <div class="location" :class="{'not-ready': !loaded || !topShow}">
+                        <div>
+                            <Icon name="calendar_month" />
+                            <div v-if="loaded">{{ dates }}</div>
+                        </div>
+
+                        <div>
+                            <Icon name="location_on" />
+                            <div v-if="loaded">{{ topShow?.venue?.name }}</div>
+                        </div>
+
+                        <div>
+                            <Icon name="schedule" />
+                            <div v-if="loaded">{{ topShow?.ts?.strftime("%H:%M") }}</div>
+                        </div>
                     </div>
 
-                    <div class="box" v-if="metas.payment != 'hide'">
-                        <header class="flexer"><Icon name="confirmation_number" />{{ paymentSectionTitle }}</header>
-
-                        <div v-if="(metas.payment || 'ticketed') == 'ticketed'">
-                            This is a ticketed show. This means that unlike some other shows that we produce where you
-                            may nominate a price you can afford, you may only enter this show with a ticket.
-                        </div>
-
-                        <div v-if="metas.payment == 'ticketed+pwyw'">
-                            This is a ticketed show. This means that the only way to guarantee entry is with a ticket.
-                            If you are low income, unwaged, or you can't afford a full price ticket for any reason, you
-                            are welcome to buy a concession ticket on a trust basis. If there is spare capacity once the
-                            ticket holders have been admitted, the venue may at their discression admit non-ticket
-                            holders on a pay what you can basis, where you will be able to purchase your ticket at a
-                            price of your choosing at the end of the show.
-                        </div>
-
-                        <div v-if="metas.payment == 'pwyc'">
-                            This is a Pay What You Can Show. There are two ways of paying for the show. You can either
-                            reserve a ticket in advance for the full price, or select a reduced price option if that's
-                            all you can afford. Or, providing there is spare capacity once we've let the ticket holders
-                            in, you can turn up to the venue and enter for free, and offer a cash or card donation at
-                            the end of the show. We recommend doing this during the mid-week performances where we are
-                            less likely to sell out.
-                        </div>
-
-                        <div v-if="metas.payment == 'unticketed'">
-                            This is a free show! This means that there is no way of reserving your place in advance.
-                            Instead, to be fair to everyone, we let people in the venue on a first come, first served
-                            basis, so we recommend turning up around fifteen minutes before the show starts. We ask that
-                            you pay what you feel the show was worth at the end of the show. The typical donation is
-                            £12, but some people pay more or less than this depending on their personal circumstances.
-                            Because of this crowdfunding model, even if you can't afford to pay anything at all, we
-                            still hope that you'll come and enjoy the show, since your fellow audience members will be
-                            paying for you. It really is free for you.
-                        </div>
+                    <div class="tags">
+                        <div v-for="tag in metas.tags" :key="tag" :class="tag">{{ tag }}</div>
                     </div>
                 </div>
             </section>
 
-            <section class="dates" ref="dates">
+            <section class="cta">
+                <div class="contents" :class="{'not-ready': !loaded || !topShow}">
+                    <button @click="jumpToDates()" v-if="!loaded || shows.length > 1">
+                        <div class="button-inner">
+                            <template v-if="!metas.cta">
+                                <Icon name="local_activity" />
+                                {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
+                            </template>
+                            <template v-else>
+                                {{ metas.cta }}
+                            </template>
+                        </div>
+                    </button>
+
+                    <a :href="topShow?.ticketsURL" target="blank" v-else>
+                        <div class="button-inner">
+                            <template v-if="!metas.cta">
+                                <Icon name="local_activity" />
+                                {{ metas.payment == "unticketed" ? "See Dates" : "Get tickets" }}
+                            </template>
+                            <template v-else>
+                                {{ metas.cta }}
+                            </template>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="show-description">
+                <div class="contents" v-html="showDescription" />
+            </section>
+
+            <section v-if="metas.video" class="video">
                 <div class="contents">
-                    <h2>Upcoming Shows</h2>
+                    <button class="player" :class="{playing: videoPlaying}" @click="togglePlayback">
+                        <video playsinline ref="video">
+                            <source :src="metas.video" type="video/mp4" />
+                        </video>
+                        <div class="play-controls">
+                            <div class="play-icon"><Icon name="play_arrow" /></div>
+                        </div>
+                    </button>
+                </div>
+            </section>
 
-                    <div class="date-listing">
-                        <div v-for="date in showsByDate" :key="date.date">
-                            <a
-                                :id="date.date.strftime('%Y_%m_%d')"
-                                :href="`#${date.date.strftime('%Y_%m_%d')}`"
-                                class="date-anchor"
-                            >
-                                <h2>{{ date.date.strftime("%A") }}, {{ humanDate(date.date) }}</h2>
-                            </a>
-                            <div class="shows">
-                                <template v-for="show in date.shows">
-                                    <a
-                                        class="show-tile"
-                                        :href="show.ticketsURL"
-                                        target="blank"
-                                        v-if="!metas.show_lineup"
-                                    >
-                                        <div class="time">
-                                            {{ show.ts.strftime("%H:%M") }}
+            <section class="social-proof" v-if="metas.quotes">
+                <div class="contents">
+                    <QuotesCarousel :quotes="metas.quotes" />
+                </div>
+            </section>
 
-                                            <Icon name="nights_stay" class="late-night-icon" v-if="show.ts.hour <= 5" />
-                                        </div>
-                                        <div class="late-night-disclaimer" v-if="show.ts.hour <= 5">
-                                            Note: this show happens on {{ show.date.strftime("%A") }} night
-                                            (technically, {{ show.ts.strftime("%A") }} morning).
-                                        </div>
+            <template v-if="loaded && shows.length > 1">
+                <section class="about-tickets">
+                    <div class="contents">
+                        <div class="monster-box">
+                            <img class="monster" src="/doodles/sticking-out.webp" />
+                        </div>
 
-                                        <div class="venue">{{ show.venue.name }}</div>
-                                        <div
-                                            class="tickets flexer"
-                                            v-if="show.tickets_available !== undefined && show.tickets_available < 20"
-                                            :class="{
-                                                'running-low':
-                                                    show.tickets_available <= 20 && show.tickets_available > 10,
-                                                'last-few': show.tickets_available <= 10,
-                                                'sold-out': show.tickets_available <= 0,
-                                            }"
+                        <div class="box" v-if="metas.payment != 'hide'">
+                            <header class="flexer"><Icon name="confirmation_number" />{{ paymentSectionTitle }}</header>
+
+                            <div v-if="(metas.payment || 'ticketed') == 'ticketed'">
+                                This is a ticketed show. This means that unlike some other shows that we produce where
+                                you may nominate a price you can afford, you may only enter this show with a ticket.
+                            </div>
+
+                            <div v-if="metas.payment == 'ticketed+pwyw'">
+                                This is a ticketed show. This means that the only way to guarantee entry is with a
+                                ticket. If you are low income, unwaged, or you can't afford a full price ticket for any
+                                reason, you are welcome to buy a concession ticket on a trust basis. If there is spare
+                                capacity once the ticket holders have been admitted, the venue may at their discression
+                                admit non-ticket holders on a pay what you can basis, where you will be able to purchase
+                                your ticket at a price of your choosing at the end of the show.
+                            </div>
+
+                            <div v-if="metas.payment == 'pwyc'">
+                                This is a Pay What You Can Show. There are two ways of paying for the show. You can
+                                either reserve a ticket in advance for the full price, or select a reduced price option
+                                if that's all you can afford. Or, providing there is spare capacity once we've let the
+                                ticket holders in, you can turn up to the venue and enter for free, and offer a cash or
+                                card donation at the end of the show. We recommend doing this during the mid-week
+                                performances where we are less likely to sell out.
+                            </div>
+
+                            <div v-if="metas.payment == 'unticketed'">
+                                This is a free show! This means that there is no way of reserving your place in advance.
+                                Instead, to be fair to everyone, we let people in the venue on a first come, first
+                                served basis, so we recommend turning up around fifteen minutes before the show starts.
+                                We ask that you pay what you feel the show was worth at the end of the show. The typical
+                                donation is £12, but some people pay more or less than this depending on their personal
+                                circumstances. Because of this crowdfunding model, even if you can't afford to pay
+                                anything at all, we still hope that you'll come and enjoy the show, since your fellow
+                                audience members will be paying for you. It really is free for you.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dates" ref="dates">
+                    <div class="contents">
+                        <h2>Upcoming Shows</h2>
+
+                        <div class="date-listing">
+                            <div v-for="date in showsByDate" :key="date.date">
+                                <a
+                                    :id="date.date.strftime('%Y_%m_%d')"
+                                    :href="`#${date.date.strftime('%Y_%m_%d')}`"
+                                    class="date-anchor"
+                                >
+                                    <h2>{{ date.date.strftime("%A") }}, {{ humanDate(date.date) }}</h2>
+                                </a>
+                                <div class="shows">
+                                    <template v-for="show in date.shows">
+                                        <a
+                                            class="show-tile"
+                                            :href="show.ticketsURL"
+                                            target="blank"
+                                            v-if="!metas.show_lineup"
                                         >
-                                            <Icon name="confirmation_number" />
-                                            <template
-                                                v-if="show.tickets_available <= 20 && show.tickets_available > 10"
+                                            <div class="time">
+                                                {{ show.ts.strftime("%H:%M") }}
+
+                                                <Icon
+                                                    name="nights_stay"
+                                                    class="late-night-icon"
+                                                    v-if="show.ts.hour <= 5"
+                                                />
+                                            </div>
+                                            <div class="late-night-disclaimer" v-if="show.ts.hour <= 5">
+                                                Note: this show happens on {{ show.date.strftime("%A") }} night
+                                                (technically, {{ show.ts.strftime("%A") }} morning).
+                                            </div>
+
+                                            <div class="venue">{{ show.venue.name }}</div>
+                                            <div
+                                                class="tickets flexer"
+                                                v-if="
+                                                    show.tickets_available !== undefined && show.tickets_available < 20
+                                                "
+                                                :class="{
+                                                    'running-low':
+                                                        show.tickets_available <= 20 && show.tickets_available > 10,
+                                                    'last-few': show.tickets_available <= 10,
+                                                    'sold-out': show.tickets_available <= 0,
+                                                }"
                                             >
-                                                Running Low
-                                            </template>
-                                            <template v-else-if="show.tickets_available > 0"> Last few left </template>
-                                            <template v-else-if="show.tickets_available <= 0"> Sold out </template>
-                                        </div>
+                                                <Icon name="confirmation_number" />
+                                                <template
+                                                    v-if="show.tickets_available <= 20 && show.tickets_available > 10"
+                                                >
+                                                    Running Low
+                                                </template>
+                                                <template v-else-if="show.tickets_available > 0">
+                                                    Last few left
+                                                </template>
+                                                <template v-else-if="show.tickets_available <= 0"> Sold out </template>
+                                            </div>
 
-                                        <div
-                                            class="action"
-                                            v-if="show.tickets_available === undefined || show.tickets_available > 0"
-                                        >
-                                            {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
-                                        </div>
-                                    </a>
-
-                                    <div class="show-tile" v-if="metas.show_lineup">
-                                        <div class="time">
-                                            {{ show.ts.strftime("%H:%M") }}
-
-                                            <Icon name="nights_stay" class="late-night-icon" v-if="show.ts.hour <= 5" />
-                                        </div>
-                                        <div class="late-night-disclaimer" v-if="show.ts.hour <= 5">
-                                            Note: this show happens on {{ show.date.strftime("%A") }} night
-                                            (technically, {{ show.ts.strftime("%A") }} morning).
-                                        </div>
-
-                                        <div class="venue">{{ show.venue.name }}</div>
-                                        <div
-                                            class="tickets flexer"
-                                            v-if="show.tickets_available !== undefined && show.tickets_available < 20"
-                                            :class="{
-                                                'running-low':
-                                                    show.tickets_available <= 20 && show.tickets_available > 10,
-                                                'last-few': show.tickets_available <= 10,
-                                                'sold-out': show.tickets_available == 0,
-                                            }"
-                                        >
-                                            <Icon name="confirmation_number" />
-                                            <template
-                                                v-if="show.tickets_available <= 20 && show.tickets_available > 10"
+                                            <div
+                                                class="action"
+                                                v-if="
+                                                    show.tickets_available === undefined || show.tickets_available > 0
+                                                "
                                             >
-                                                Running Low
-                                            </template>
-                                            <template v-else-if="show.tickets_available > 0"> Last few left </template>
-                                            <template v-else-if="show.tickets_available == 0"> Sold out </template>
-                                        </div>
+                                                {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
+                                            </div>
+                                        </a>
 
-                                        <div class="lineup" v-if="metas.show_lineup">
-                                            <div class="headshots">
-                                                <template v-if="show.acts.length > show.total_act_spots / 2">
-                                                    <template v-if="metas.show_hosts">
+                                        <div class="show-tile" v-if="metas.show_lineup">
+                                            <div class="time">
+                                                {{ show.ts.strftime("%H:%M") }}
+
+                                                <Icon
+                                                    name="nights_stay"
+                                                    class="late-night-icon"
+                                                    v-if="show.ts.hour <= 5"
+                                                />
+                                            </div>
+                                            <div class="late-night-disclaimer" v-if="show.ts.hour <= 5">
+                                                Note: this show happens on {{ show.date.strftime("%A") }} night
+                                                (technically, {{ show.ts.strftime("%A") }} morning).
+                                            </div>
+
+                                            <div class="venue">{{ show.venue.name }}</div>
+                                            <div
+                                                class="tickets flexer"
+                                                v-if="
+                                                    show.tickets_available !== undefined && show.tickets_available < 20
+                                                "
+                                                :class="{
+                                                    'running-low':
+                                                        show.tickets_available <= 20 && show.tickets_available > 10,
+                                                    'last-few': show.tickets_available <= 10,
+                                                    'sold-out': show.tickets_available == 0,
+                                                }"
+                                            >
+                                                <Icon name="confirmation_number" />
+                                                <template
+                                                    v-if="show.tickets_available <= 20 && show.tickets_available > 10"
+                                                >
+                                                    Running Low
+                                                </template>
+                                                <template v-else-if="show.tickets_available > 0">
+                                                    Last few left
+                                                </template>
+                                                <template v-else-if="show.tickets_available == 0"> Sold out </template>
+                                            </div>
+
+                                            <div class="lineup" v-if="metas.show_lineup">
+                                                <div class="headshots">
+                                                    <template v-if="show.acts.length > show.total_act_spots / 2">
+                                                        <template v-if="metas.show_hosts">
+                                                            <button
+                                                                v-for="(act, idx) in show.hosts"
+                                                                :key="idx"
+                                                                @click="toggleAct(act)"
+                                                                class="headshot-container"
+                                                                :class="{
+                                                                    active: act == activeAct,
+                                                                    faded: activeAct && act !== activeAct,
+                                                                }"
+                                                                :title="act.name"
+                                                            >
+                                                                <div class="overlay" />
+                                                                <Headshot :act="act" />
+                                                            </button>
+
+                                                            <div class="spacer" />
+                                                        </template>
+
                                                         <button
-                                                            v-for="(act, idx) in show.hosts"
+                                                            v-for="(act, idx) in show.acts"
                                                             :key="idx"
                                                             @click="toggleAct(act)"
                                                             class="headshot-container"
@@ -450,68 +490,57 @@
                                                             :title="act.name"
                                                         >
                                                             <div class="overlay" />
-                                                            <Headshot :act="act" />
+
+                                                            <div class="headshot" v-if="act.empty">
+                                                                +{{ act.count }}
+                                                            </div>
+                                                            <Headshot v-else :act="act" />
                                                         </button>
-
-                                                        <div class="spacer" />
                                                     </template>
+                                                    <template v-else> Lineup to be revealed! </template>
+                                                </div>
 
-                                                    <button
-                                                        v-for="(act, idx) in show.acts"
-                                                        :key="idx"
-                                                        @click="toggleAct(act)"
-                                                        class="headshot-container"
-                                                        :class="{
-                                                            active: act == activeAct,
-                                                            faded: activeAct && act !== activeAct,
-                                                        }"
-                                                        :title="act.name"
-                                                    >
-                                                        <div class="overlay" />
-
-                                                        <div class="headshot" v-if="act.empty">+{{ act.count }}</div>
-                                                        <Headshot v-else :act="act" />
-                                                    </button>
-                                                </template>
-                                                <template v-else> Lineup to be revealed! </template>
+                                                <div
+                                                    v-if="
+                                                        (activeAct && show.acts.includes(activeAct)) ||
+                                                        show.hosts.includes(activeAct)
+                                                    "
+                                                    class="act-details"
+                                                >
+                                                    <template v-if="activeAct.empty">
+                                                        <div class="bio">
+                                                            Plus {{ ordinal(activeAct.count) }} more
+                                                            {{ pluralizeNoun(activeAct.count, "act", "acts") }} to be
+                                                            revealed!
+                                                        </div>
+                                                    </template>
+                                                    <template v-else>
+                                                        <div class="act-name">{{ activeAct.name }}</div>
+                                                        <div class="bio" v-if="!metas.hide_bio">
+                                                            {{ activeAct.bio }}
+                                                        </div>
+                                                    </template>
+                                                </div>
                                             </div>
 
-                                            <div
+                                            <a
+                                                :href="show.ticketsURL"
+                                                target="blank"
+                                                class="action"
                                                 v-if="
-                                                    (activeAct && show.acts.includes(activeAct)) ||
-                                                    show.hosts.includes(activeAct)
+                                                    show.tickets_available === undefined || show.tickets_available > 0
                                                 "
-                                                class="act-details"
                                             >
-                                                <template v-if="activeAct.empty">
-                                                    <div class="bio">
-                                                        Plus {{ ordinal(activeAct.count) }} more
-                                                        {{ pluralizeNoun(activeAct.count, "act", "acts") }} to be
-                                                        revealed!
-                                                    </div>
-                                                </template>
-                                                <template v-else>
-                                                    <div class="act-name">{{ activeAct.name }}</div>
-                                                    <div class="bio" v-if="!metas.hide_bio">{{ activeAct.bio }}</div>
-                                                </template>
-                                            </div>
+                                                {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
+                                            </a>
                                         </div>
-
-                                        <a
-                                            :href="show.ticketsURL"
-                                            target="blank"
-                                            class="action"
-                                            v-if="show.tickets_available === undefined || show.tickets_available > 0"
-                                        >
-                                            {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
-                                        </a>
-                                    </div>
-                                </template>
+                                    </template>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </template>
         </template>
     </div>
 </template>

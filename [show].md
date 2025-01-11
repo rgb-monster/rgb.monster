@@ -11,4 +11,4 @@ footer: light
     let showSlug = params.value.show;
 </script>
 
-<ShowPage :id="showSlug" />
+<ShowPage :slug="showSlug" />

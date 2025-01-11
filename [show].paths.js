@@ -1,7 +1,6 @@
-import {bySlug} from "./src/scripts/metas.js";
-
+import {slugs} from "./src/scripts/metas.js";
 export default {
     paths() {
-        return Object.keys(bySlug).map(slug => ({params: {show: slug, ...bySlug[slug]}}));
+        return slugs.map(slug => ({params: {show: slug}}));
     },
 };

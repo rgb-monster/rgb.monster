@@ -74,7 +74,7 @@ export default defineConfig({
         if (pageData.frontmatter.page == "show-details") {
             let show = pageData.params;
 
-            let scheduled = store.showTypes.find(rec => rec.title == show.title);
+            let scheduled = store.showTypes.find(rec => rec.show_type == show.show_type);
             let description;
             if (scheduled) {
                 let td = extractTimesDates(scheduled?.shows || []);

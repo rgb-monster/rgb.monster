@@ -1,7 +1,7 @@
 <script>
     import {useStore} from "/src/stores/shows.js";
     import utils from "/src/scripts/utils.js";
-    import {byTitle} from "/src/scripts/metas.js";
+    import {getShowMetas} from "/src/scripts/metas.js";
 
     import ShowTypeTile from "/src/widgets/ShowTypeTile.vue";
 
@@ -33,8 +33,8 @@
                 // groups shows by type
                 let byType = {};
                 this.shows.forEach(show => {
-                    byType[show.name] = byType[show.name] || {
-                        ...byTitle[show.name],
+                    byType[show.show_type] = byType[show.show_type] || {
+                        ...getShowMetas(show),
                         title: show.name,
                         name: show.name,
                         emoji: show.emoji,
@@ -43,7 +43,7 @@
                         shows: [],
                     };
 
-                    byType[show.name].shows.push(show);
+                    byType[show.show_type].shows.push(show);
                 });
 
                 return utils.sort(

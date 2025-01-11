@@ -1,7 +1,4 @@
 <script>
-    import {useStore} from "../stores/shows.js";
-    import {bySlug} from "/src/scripts/metas.js";
-    import utils from "/src/scripts/utils.js";
     import dt from "py-datetime";
 
     export default {

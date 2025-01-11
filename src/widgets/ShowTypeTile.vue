@@ -41,11 +41,11 @@
 </script>
 
 <template>
-    <a class="show-type-tile" :class="showType.tags[0]" :href="`/${showType.slug}${filterIfPresent}`">
+    <a class="show-type-tile" :class="(showType.tags || [])[0]" :href="`/${showType.slug}${filterIfPresent}`">
         <div class="hero-image" v-if="showType.cover_thumb">
             <img :src="showType.cover_thumb" />
         </div>
-        <header v-html="showType.formatted_title || showType.title" />
+        <header v-html="showType.title" />
 
         <div class="description">{{ showType.short_description }}</div>
 

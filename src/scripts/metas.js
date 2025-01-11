@@ -1,7 +1,8 @@
-export const metas = {
-    "11pm": {
-        title: "11PM Live",
+export const metas = [
+    {
+        show_type: "11pm-live",
         slug: "11pm",
+        title: "11PM Live",
         tags: ["variety"],
         partnership: "Just the Tonic",
         cover: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",
@@ -13,9 +14,10 @@ export const metas = {
         tickets: "https://edinburgh.justthetonic.com/event/88:4259/",
     },
 
-    comedy_brunch: {
-        title: "Comedy Brunch",
+    {
+        show_type: "comedy-brunch",
         slug: "brunch",
+        title: "Comedy Brunch",
         tags: ["variety", "compilation"],
         partnership: "Toucan Events",
         cover: "https://storage.googleapis.com/rgb-monster-assets/brunch/cover.webp",
@@ -27,10 +29,10 @@ export const metas = {
         payment: "hide",
     },
 
-    bad_boys: {
-        title: "Bad Boys of British Comedy",
-        formatted_title: "Bad Boys of British Comedy",
+    {
+        show_type: "bad-boys",
         slug: "bad-boys",
+        title: "Bad Boys of British Comedy",
         tags: ["standup"],
         short_description: "Powerhouse stand-up comedy from two British rising stars",
         cover: "https://storage.googleapis.com/rgb-monster-assets/bad-boys/cover.webp",
@@ -40,62 +42,62 @@ export const metas = {
             "<mark class='subtle'>Darius Davies</mark> (English Comedian of the Year Finalist 2017, BBC, vaping inside) and <mark class='subtle'>Ollie Horn</mark> (Best reviewed show of Ed Fringe 24, ITV, jaywalking) make their way to Perth Fringe to corrupt Western Australia in one powerhouse comedy hour. Think riding bikes with no hands, ignoring ‘wet paint’ signs, and pressing the ‘close door’ button in a lift when someone approaches. This is <mark>no-holds-barred, too hot for TV, XXX-rated comedy.</mark> A show your mother doesn't want you to see: leather jackets, elbows on the table, and perhaps even references to the green stuff (only those in the know will know what that means, but we’re not talking about vegetables that’s all we’re saying). Over 2 million views on social media.",
         tickets: [
             {
-                venue: "Brass Monkey",
-                time: "16:45",
+                city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/bad-boys-of-british-comedy-fw2025",
             },
             {
-                venue: "The Austral",
-                time: "19:15",
+                city: "Adelaide",
                 url: "https://adelaidefringe.com.au/fringetix/5-headliners-for-25-af2025",
             },
         ],
     },
 
-    headliners: {
-        title: "5 Headliners",
-        formatted_title: "5 Headliners for $25",
+    {
+        show_type: "five-headliners",
         slug: "headliners",
+        title: "5 Headliners for £10",
         tags: ["standup"],
         short_description: "Top stand-up with no picking on the audience",
         cover: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/square.webp",
         description:
-            "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend $25 at the Fringe. Total sell-out 2024, so book early!",
+            "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend £10 at the Fringe. Total sell-out 2024, so book early!",
+        default: true,
         tickets: [
             {
-                venue: "The Austral",
-                time: "19:15",
+                city: "Edinburgh",
+                venue: "Some Ed Fringe Venue",
+                time: "12:00",
+                url: "https://edfringe.com",
+            },
+        ],
+    },
+
+    {
+        show_type: "five-headliners",
+        slug: "headliners",
+        title: "5 Headliners for $25",
+        description:
+            "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend $25 at the Fringe. Total sell-out 2024, so book early!",
+        cover: "https://storage.googleapis.com/rgb-monster-assets/5-headliners-aus/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/5-headliners-aus/cover-thumb.webp",
+        tickets: [
+            {
+                city: "Adelaide",
                 url: "https://adelaidefringe.com.au/fringetix/5-headliners-for-25-af2025",
             },
             {
-                venue: "Brass Monkey",
-                time: "19:00",
-                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
-            },
-            {
-                venue: "Belgian Beer Cafe",
-                time: "13:00",
-                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
-            },
-            {
-                venue: "Belgian Beer Cafe",
-                time: "14:00",
-                url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
-            },
-
-            {
-                venue: "The Old Courthouse",
-                time: "18:00",
+                city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
             },
         ],
     },
 
-    best_of_kids: {
-        title: "Best of Kids Comedy",
+    {
+        show_type: "best-of-kids",
         slug: "best-of-kids",
+        title: "Best of Kids Comedy",
         tags: ["kids"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/best-of-kids/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/best-of-kids/cover-thumb.webp",
@@ -106,9 +108,10 @@ export const metas = {
         tickets: "https://tickets.edfringe.com/whats-on/best-of-kids-comedy-the-big-show",
     },
 
-    best_worst_date: {
-        title: "Best Worst Date",
+    {
+        show_type: "best-worst-date",
         slug: "date",
+        title: "Best Worst Date",
         cover: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover-thumb.webp",
         tags: ["format"],
@@ -118,17 +121,17 @@ export const metas = {
             "If your dating life is a joke: this is the show for you! Share your cringeworthy dating stories, and two top stand-ups compete to crown the best of the worst dates, riffing on what you've anonymously shared through our exclusive app! It's an <mark>interactive riot celebrating the chaos of single life</mark>—where your awkward is our awesome! Whether you've since found love, are forever single, or are somewhere in between, you'll leave the show feeling happier about all of the right swipes you regret!",
         tickets: [
             {
-                venue: "Brass Monkey",
-                time: "21:40",
+                city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/best-worst-date-the-hilarious-dating-horror-stories-party-fw2025",
             },
         ],
         payment: "hide",
     },
 
-    afterparty: {
-        title: "Big Gay Afterparty",
+    {
+        show_type: "afterparty",
         slug: "afterparty",
+        title: "Big Gay Afterparty",
         tags: ["variety"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover-thumb.webp",
@@ -140,10 +143,11 @@ export const metas = {
         show_lineup: true,
     },
 
-    ollie: {
+    {
+        show_type: "toxic",
+        slug: "ollie",
         title: "Ollie Horn: Comedy For Toxic People",
         partnership: "Talented Artists Limited",
-        slug: "ollie",
         tags: ["solo", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover-thumb.webp",
@@ -161,9 +165,10 @@ export const metas = {
         ],
     },
 
-    itr: {
-        title: "Inside the Robot",
+    {
+        show_type: "inside-the-robot",
         slug: "inside-the-robot",
+        title: "Inside the Robot",
         tags: ["kids"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/itr/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/itr/cover-thumb.webp",
@@ -175,9 +180,10 @@ export const metas = {
         tickets: "https://edinburgh.justthetonic.com/event/88:4227",
     },
 
-    kids_can_heckle: {
-        title: "Kids Can Heckle!",
+    {
+        show_type: "kids-can-heckle",
         slug: "kids-can-heckle",
+        title: "Kids Can Heckle!",
         tags: ["kids", "solo"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/cover-thumb.webp",
@@ -187,14 +193,12 @@ export const metas = {
             "Fun for the whole family, but especially fun for the little ones! Top UK stand-up Ollie Horn—attempts to tell the same clean stand-up that he does around the world. <mark>The only thing that can stop him is the imagination of your kids,</mark> who at any point are allowed, no, encouraged to jump in and be as silly as possible! Weekly award winner, Perth Fringe World 2024: Best Kids Show.",
         tickets: [
             {
-                venue: "Gluttony",
-                time: "15:00",
+                city: "Adelaide",
                 url: "https://adelaidefringe.com.au/fringetix/kids-can-heckle-af2025",
             },
 
             {
-                venue: "Belgian Beer Cafe",
-                time: "13:00",
+                city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/kids-can-heckle-fw2025",
             },
         ],
@@ -208,9 +212,10 @@ export const metas = {
         ],
     },
 
-    nma: {
-        title: "Not My Audience",
+    {
+        show_type: "not-my-audience",
         slug: "not-my-audience",
+        title: "Not My Audience",
         tags: ["format", "guest comics"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/nma/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/nma/cover-thumb.webp",
@@ -226,9 +231,10 @@ export const metas = {
         hide_bio: true,
     },
 
-    off_with_your_head: {
-        title: "Off With Your Head!",
+    {
+        show_type: "off-with-your-head",
         slug: "off-with-your-head",
+        title: "Off With Your Head!",
         tags: ["format", "gameshow"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover-thumb.webp",
@@ -240,9 +246,10 @@ export const metas = {
         payment: "hide",
     },
 
-    ooo: {
-        title: "Out of Order",
+    {
+        show_type: "out-of-order",
         slug: "out-of-order",
+        title: "Out of Order",
         tags: ["format", "gameshow"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/ooo/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/ooo/cover-thumb.webp",
@@ -251,9 +258,10 @@ export const metas = {
         tickets: "",
     },
 
-    pg_hits: {
-        title: "PG Hits!",
+    {
+        show_type: "pg-hits",
         slug: "pg-hits",
+        title: "PG Hits!",
         tags: ["kids", "standup"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/cover-thumb.webp",
@@ -263,18 +271,15 @@ export const metas = {
             "Three top stand-ups perform their very best routines just as they do in comedy clubs up and down the country and abroad, just without the swearing! PG Hits is a professional stand-up comedy compilation show that <mark>leaves out the really rude bits so everybody can enjoy the show.</mark> Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best the festival has to offer, at a relaxed lunchtime performance.",
         tickets: [
             {
-                venue: "Gluttony",
-                time: "14:00",
+                city: "Adelaide",
                 url: "https://adelaidefringe.com.au/fringetix/pg-hits-the-very-best-in-family-friendly-stand-up-af2025",
             },
             {
-                venue: "Henry Summer",
-                time: "17:00",
+                city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/pg-hits-the-best-in-family-friendly-stand-up-comedy-fw2025",
             },
             {
-                venue: "Belgian Beer Cafe",
-                time: "13:00",
+                city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/pg-hits-the-best-in-family-friendly-stand-up-comedy-fw2025",
             },
         ],
@@ -284,9 +289,10 @@ export const metas = {
         hide_bio: true,
     },
 
-    toast: {
-        title: "The Most Toast",
+    {
+        show_type: "most-toast",
         slug: "toast",
+        title: "The Most Toast",
         tags: ["important event"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/toast/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/toast/cover-thumb.webp",
@@ -297,9 +303,10 @@ export const metas = {
         cta: "🍞 Secure My Place",
     },
 
-    trial: {
-        title: "This Is Your Trial",
+    {
+        show_type: "this-is-your-trial",
         slug: "trial",
+        title: "This Is Your Trial",
         tags: ["format"],
         partnership: "This is Your Laugh",
 
@@ -311,18 +318,70 @@ export const metas = {
             "Guilty or innocent? You decide! The award-winning, critically acclaimed courtroom roast returns to the Fringe for its eleventh year! <mark>You accuse friends and family of crimes, and top comedians take on the roles of judge and defence counsel,</mark> hearing testimony, cross-examining witnesses, and improvising their arguments for each case. It’s up to the audience as jury to deliver your verdict. Never the same show twice, a must-do fringe experience! 'A perfect bit of improv mayhem' ***** (Mirror). 'Inventive, intelligent comedy' ***** (Scotsman).",
         tickets: [
             {
+                city: "Perth",
                 venue: "Belgian Beer Cafe",
-                time: "13:00",
-                url: "https://fringeworld.com.au/",
+                url: "https://fringeworld.com.au/whats_on/this-is-your-trial-the-fully-improvised-comedy-courtroom-fw2025",
             },
             {
+                city: "Perth",
                 venue: "The Old Courthouse",
-                time: "15:00",
                 url: "https://www.eventbrite.com/e/this-is-your-trial-interactive-comedy-courtroom-fremantle-tickets-1119682423269",
             },
         ],
     },
-};
+];
 
-export const bySlug = Object.fromEntries(Object.values(metas).map(meta => [meta.slug, meta]));
-export const byTitle = Object.fromEntries(Object.values(metas).map(meta => [meta.title, meta]));
+let byShowType = {};
+metas.forEach(showMetas => {
+    byShowType[showMetas.show_type] = byShowType[showMetas.show_type] || [];
+    byShowType[showMetas.show_type].push(showMetas);
+});
+
+export function getShowMetas(show) {
+    // based on show's venue and time match it with the right metas
+    let allMetas = byShowType[show.show_type] || [];
+
+    let defaults = allMetas.filter(showMetas => showMetas.default)[0];
+    if (!defaults) {
+        defaults = allMetas.filter(showMetas => !Array.isArray(showMetas.tickets))[0];
+    }
+    let metas = JSON.parse(JSON.stringify(defaults || {}));
+
+    let venueSpecific = allMetas.filter(showMetas => Array.isArray(showMetas.tickets));
+
+    // see if we can find a more precise match than the default
+    for (let showMetas of venueSpecific) {
+        for (let ticketInfo of showMetas.tickets) {
+            // matches returns true if either the value matches, or we don't have the specific criteria in conditions
+            let matches = (field, showVal) => !ticketInfo[field] || (ticketInfo[field] && ticketInfo[field] == showVal);
+
+            let fullMatch = [
+                matches("city", show.venue?.city),
+                matches("venue", show.venue?.name),
+                matches("time", show.ts.strftime("%H:%M")),
+            ].every(rec => rec);
+
+            if (fullMatch) {
+                metas = {...metas, ...showMetas, tickets: ticketInfo.url};
+            }
+        }
+    }
+
+    let ticketsURL = metas.tickets || "";
+    if (ticketsURL && ticketsURL.includes("tickets.edfringe.com")) {
+        ticketsURL = `${ticketsURL}?day=${date.strftime("%d-%m-%Y")}`;
+        metas.tickets = ticketsURL;
+    }
+
+    // console.log("rrrrrrrrrrrrrrrrrrr", show.name, show.venue.city, metas);
+    return metas;
+}
+
+// list of all slugs that we want pages for
+export const slugs = [
+    ...new Set(
+        Object.values(byShowType)
+            .map(sameTypes => sameTypes.map(showMetas => showMetas.slug))
+            .flat()
+    ),
+];
