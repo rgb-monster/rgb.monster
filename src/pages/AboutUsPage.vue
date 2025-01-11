@@ -1,12 +1,12 @@
 <script>
-    import {useStore} from "../stores/shows.js";
-    import {metas} from "/src/scripts/metas.js";
+    import {generic as genericMetas} from "/src/scripts/metas.js";
+    console.log("zzzzzzzz", genericMetas);
 
     export default {
         name: "AboutUsPage",
         data() {
             return {
-                metas,
+                metas: genericMetas,
             };
         },
         computed: {
@@ -57,26 +57,26 @@
                 </p>
 
                 <div class="short-long shows-grid">
-                    <img :src="metas.nma.square" />
+                    <img :src="metas['not-my-audience'].square" />
                     <div>
                         <a href="/not-my-audience">Not My Audience</a> is a panel show where comedians compete in
                         stand-up challenges set by the audience through an app.
                     </div>
 
-                    <img :src="metas.best_worst_date.square" />
+                    <img :src="metas['best-worst-date'].square" />
 
                     <div>
-                        In <a href="/date">Best Worst Date</a>, the audience anonymously share their dating
-                        horror stories and two comedians crown the best worst date
+                        In <a href="/date">Best Worst Date</a>, the audience anonymously share their dating horror
+                        stories and two comedians crown the best worst date
                     </div>
 
-                    <img :src="metas.itr.square" />
+                    <img :src="metas['inside-the-robot'].square" />
                     <div>
                         <a href="/inside-the-robot">Inside The Robot</a> is an interactive escape-room like theatrical
                         performance where kids control the narrative, special effects, and live video games.
                     </div>
 
-                    <img :src="metas.ooo.square" />
+                    <img :src="metas['out-of-order'].square" />
                     <div>
                         Finally, <a href="/out-of-order">Out Of Order</a> is a quiz with just one question that the
                         audience can play along with.
@@ -90,19 +90,19 @@
                 <h1>Our comedy shows</h1>
 
                 <div class="shows-grid short-long">
-                    <img :src="metas.headliners.square" />
+                    <img :src="metas['five-headliners'].square" />
                     <div>
                         Our flagship stand-up comedy showcase is <a href="/headliners">5 Headliners for £10</a> where
                         five top comedians perform their best routines with no crowd work.
                     </div>
 
-                    <img :src="metas.pg_hits.square" />
+                    <img :src="metas['pg-hits'].square" />
                     <div>
                         <a href="/pg-hits">PG Hits!</a> is our family-friendly comedy club where comedians perform their
                         best PG rated routines so everybody can enjoy the show.
                     </div>
 
-                    <img :src="metas.best_of_kids.square" />
+                    <img :src="metas['best-of-kids'].square" />
                     <div>
                         <a href="/best-of-kids">Best of Kids Comedy</a> is our flagship kids comedy show, bringing
                         together the best in family-friendly entertainment in one huge show.
@@ -116,9 +116,9 @@
 
                 <p>
                     In addition to producing our own solo and touring shows (currently:
-                    <a href="/ollie">Ollie Horn: Comedy for Toxic People</a>), we are proud to produce a small
-                    roster of acts at the Edinburgh Fringe each year. Typically these are international acts who are
-                    bringing something unusual to the festival.In 2024 we are producing solo shows from
+                    <a href="/ollie">Ollie Horn: Comedy for Toxic People</a>), we are proud to produce a small roster of
+                    acts at the Edinburgh Fringe each year. Typically these are international acts who are bringing
+                    something unusual to the festival.In 2024 we are producing solo shows from
                     <a href="/andre">Andre De Freitas</a>, <a href="/chanel">Chanel Ali</a>,
                     <a href="/matt-colorful">Matt Davies</a>, <a href="/jack">Jack Holmes</a>, and
                     <a href="/kavin">Kavin Jay</a>.

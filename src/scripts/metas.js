@@ -337,6 +337,21 @@ metas.forEach(showMetas => {
     byShowType[showMetas.show_type].push(showMetas);
 });
 
+export let generic = {};
+Object.values(byShowType).forEach(allMetas => {
+    let defaults = allMetas.filter(showMetas => showMetas.default)[0];
+    if (!defaults) {
+        defaults = allMetas.filter(showMetas => !Array.isArray(showMetas.tickets))[0];
+    }
+
+    if (!defaults) {
+        defaults = allMetas[0];
+    }
+
+    let metas = JSON.parse(JSON.stringify(defaults || {}));
+    generic[metas.show_type] = metas;
+});
+
 export function getShowMetas(show) {
     // based on show's venue and time match it with the right metas
     let allMetas = byShowType[show.show_type] || [];
