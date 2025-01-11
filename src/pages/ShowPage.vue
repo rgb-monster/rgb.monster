@@ -272,7 +272,7 @@
                         </div>
                     </button>
 
-                    <a :href="topShow?.ticketsURL" target="blank" v-else>
+                    <a :href="topShow?.tickets" target="blank" v-else>
                         <div class="button-inner">
                             <template v-if="!metas.cta">
                                 <Icon name="local_activity" />
@@ -373,7 +373,7 @@
                                     <template v-for="show in date.shows">
                                         <a
                                             class="show-tile"
-                                            :href="show.ticketsURL"
+                                            :href="show.tickets"
                                             target="blank"
                                             v-if="!metas.show_lineup"
                                         >
@@ -534,7 +534,7 @@
                                             </div>
 
                                             <a
-                                                :href="show.ticketsURL"
+                                                :href="show.tickets"
                                                 target="blank"
                                                 class="action"
                                                 v-if="
