@@ -1,4 +1,6 @@
 <script>
+    import dt from "py-datetime";
+
     import {useStore} from "../stores/shows.js";
     import utils from "/src/scripts/utils.js";
     import {Sieve} from "/src/scripts/sieve.js";
@@ -37,7 +39,7 @@
                 let shows = this.store.shows.filter(show => show.slug == this.slug);
                 let serialized = shows.map(show => {
                     return {
-                        id: show.slug,
+                        id: show.id,
                         city: show.venue.city,
                         venue: show.venue.name,
                         acts: show.acts.map(act => act.name),
@@ -63,11 +65,16 @@
                     let filter = new URLSearchParams(windowHandle.location.search).get("festival");
                     if (filter) {
                         let ids = this.showsSieve.filter(filter);
-                        shows = shows.filter(show => ids.includes(show.slug));
+                        shows = shows.filter(show => ids.includes(show.id));
                     }
                 }
 
                 return shows;
+            },
+
+            upcomingShows() {
+                let now = dt.datetime.now();
+                return this.shows.filter(show => show.ts > now);
             },
 
             metas() {
@@ -82,8 +89,7 @@
 
             showsByDate() {
                 let byDate = {};
-
-                this.shows.forEach(show => {
+                this.upcomingShows.forEach(show => {
                     utils
                         .setDefault(byDate, show.date.strftime("%Y-%m-%d"), {date: show.date, ts: show.ts, shows: []})
                         .shows.push(show);
@@ -260,7 +266,7 @@
 
             <section class="cta">
                 <div class="contents" :class="{'not-ready': !loaded || !topShow}">
-                    <button @click="jumpToDates()" v-if="!loaded || shows.length > 1">
+                    <button @click="jumpToDates()" v-if="!loaded || upcomingShows.length > 1">
                         <div class="button-inner">
                             <template v-if="!metas.cta">
                                 <Icon name="local_activity" />
@@ -309,7 +315,7 @@
                 </div>
             </section>
 
-            <template v-if="loaded && shows.length > 1">
+            <template v-if="loaded && upcomingShows.length > 1">
                 <section class="about-tickets">
                     <div class="contents">
                         <div class="monster-box">
