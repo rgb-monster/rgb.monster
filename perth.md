@@ -17,4 +17,4 @@ RGB Monster has been proudly presenting shows at Perth Fringeworld since 2018, a
 
 :::
 
-<ShowTypesListing filter="Perth 2025" query-filter="?city=Perth" />
+<ShowTypesListing filter="Perth 2025" />
