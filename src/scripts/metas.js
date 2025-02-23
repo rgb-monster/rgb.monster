@@ -45,10 +45,6 @@ export const metas = [
                 city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/bad-boys-of-british-comedy-fw2025",
             },
-            {
-                city: "Adelaide",
-                url: "https://adelaidefringe.com.au/fringetix/5-headliners-for-25-af2025",
-            },
         ],
     },
 
@@ -64,6 +60,8 @@ export const metas = [
         description:
             "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend £10 at the Fringe. Total sell-out 2024, so book early!",
         default: true,
+        video: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/10-secs.webm",
+
         tickets: [
             {
                 city: "Edinburgh",
@@ -82,6 +80,7 @@ export const metas = [
             "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend $25 at the Fringe. Total sell-out 2024, so book early!",
         cover: "https://storage.googleapis.com/rgb-monster-assets/5-headliners-aus/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/5-headliners-aus/cover-thumb.webp",
+        video: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/10-secs.webm",
         tickets: [
             {
                 city: "Adelaide",
@@ -269,6 +268,7 @@ export const metas = [
         short_description: "Family-friendly stand-up comedy club",
         description:
             "Three top stand-ups perform their very best routines just as they do in comedy clubs up and down the country and abroad, just without the swearing! PG Hits is a professional stand-up comedy compilation show that <mark>leaves out the really rude bits so everybody can enjoy the show.</mark> Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best the festival has to offer, at a relaxed lunchtime performance.",
+        video: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/10-secs.webm",
         tickets: [
             {
                 city: "Adelaide",
