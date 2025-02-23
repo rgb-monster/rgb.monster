@@ -147,10 +147,18 @@
         methods: {
             togglePlayback() {
                 let video = this.$refs.video;
+                let onVideoEnd = reset => {
+                    video.removeEventListener("ended", onVideoEnd);
+                    this.videoPlaying = false;
+                    if (reset) {
+                        video.currentTime = 0;
+                    }
+                };
+                video.addEventListener("ended", onVideoEnd);
+
                 if (video.paused || video.ended) {
                     video.play();
                     this.videoPlaying = true;
-
                     plausible("video-playback", {props: {video: this.metas.title}});
                 } else {
                     video.pause();
