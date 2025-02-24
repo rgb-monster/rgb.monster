@@ -12,6 +12,7 @@ export const useStore = defineStore("shows", {
         return {
             loaded: false,
             loading: false,
+            allShows: [], // all shows, including those without any ticket data
             shows: [],
         };
     },
@@ -87,6 +88,12 @@ export const useStore = defineStore("shows", {
 
                 this.shows = [...(rgb.data || []), ...(presents.data || [])].map(show => {
                     show.ts = dt.datetime.strptime(show.ts, "%Y-%m-%d %H:%M:%S");
+                    if (show.ts_utc) {
+                        show.ts_utc = dt.datetime.strptime(show.ts_utc, "%Y-%m-%d %H:%M:%S", true);
+                    } else {
+                        show.ts_utc = show.ts; // in absence of ts_utc (meaning we don't have a timezone, use ts as tsutc)
+                    }
+
                     show.date = dt.datetime.combine(show.ts, dt.time());
 
                     if (show.ts.hour <= 5) {
@@ -105,6 +112,8 @@ export const useStore = defineStore("shows", {
 
                     return {...show, ...metas, metas, acts};
                 });
+
+                this.allShows = [...this.shows];
 
                 // filter shows down to only those that we have tickets for - otherwise we have a listing that's pointing to nothing
                 this.shows = this.shows.filter(show => show.tickets);
