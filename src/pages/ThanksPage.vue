@@ -95,31 +95,83 @@
         </template>
 
         <template v-else>
-            <h1>Thank you for coming!</h1>
+            <img class="splash" :src="show.cover_thumb" />
 
-            <img :src="show.cover_thumb" />
+            <div class="message-container">
+                <h1>Thank you for coming to the show!</h1>
 
-            <div class="acts">
-                <template v-for="(act, idx) in show.acts" :key="act">
-                    <div>{{ act.name }}</div>
+                <template v-for="category in ['acts', 'hosts']" :key="category">
+                    <div class="act-listing">
+                        <h2 v-if="category == 'acts'">Today you saw these fantastic acts</h2>
+                        <h2 v-if="category == 'hosts'">And your hosts!</h2>
+
+                        <template v-for="(act, idx) in show[category]" :key="act">
+                            <div>
+                                <img v-if="act.headshot" :src="`${act.headshot}-thumb`" class="headshot" />
+                                <img v-else src="/monster.webp" class="headshot placeholder" />
+                            </div>
+                            <div class="about-act">
+                                <div>{{ act.name }}</div>
+
+                                <div v-if="act.plug">
+                                </div>
+
+                                <div v-else>
+                                    {{ act.name.split(" ")[0] }}
+                                </div>
+                            </div>
+                        </template>
+                    </div>
                 </template>
             </div>
-
-            <div class="hosts">
-                <template v-for="(act, idx) in show.hosts" :key="act">
-                    <div>{{ act.name }}</div>
-                </template>
-            </div>
-
         </template>
     </div>
 </template>
 
 <style lang="scss">
+    .theme-container.md-thanks {
+        background: #333;
+        color: var(--light);
+
+        h1,
+        h2 {
+            color: var(--light);
+        }
+
+        footer {
+            background: #333;
+        }
+    }
+
     main.markdown .thanks-page {
-        padding-top: 3em;
         padding-bottom: 3em;
         margin: 0 auto;
         --square-size: 60px;
+
+        .message-container {
+            padding: var(--content-horiz-padding);
+        }
+
+        .act-listing {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            margin-top: 1em;
+            gap: 10px;
+            align-items: center;
+
+            h2 {
+                grid-column: 1/-1;
+            }
+        }
+
+        .headshot {
+            border-radius: 50%;
+            max-height: 90px;
+
+            &.placeholder {
+                background: var(--accent-burgundy);
+                padding: 10px;
+            }
+        }
     }
 </style>
