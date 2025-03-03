@@ -15,6 +15,13 @@
                 loaded: false,
                 notFound: false,
                 show: null,
+
+                socialURLs: {
+                    twitter: handle => `https://x.com/${handle}`,
+                    instagram: handle => `https://instagram.com/${handle}`,
+                    tiktok: handle => `https://tiktok.com/@${handle}`,
+                    facebook: handle => `https://facebook.com/${handle}`,
+                },
             };
         },
         computed: {
@@ -95,15 +102,21 @@
         </template>
 
         <template v-else>
-            <img class="splash" :src="show.cover_thumb" />
+            <div class="splash">
+                <img :src="show.cover_thumb" />
+            </div>
 
             <div class="message-container">
-                <h1>Thank you for coming to the show!</h1>
+                <h1>
+                    Thank you for coming to <em>{{ show.name }}</em> on<br />
+                    <em>{{ humanTs(show.ts) }}</em>
+                </h1>
 
                 <template v-for="category in ['acts', 'hosts']" :key="category">
                     <div class="act-listing">
-                        <h2 v-if="category == 'acts'">Today you saw these fantastic acts</h2>
-                        <h2 v-if="category == 'hosts'">And your hosts!</h2>
+                        <h2 v-if="category == 'acts'">Today you saw these acts!</h2>
+                        <h2 v-if="category == 'hosts' && show.hosts.length > 1">And your hosts!</h2>
+                        <h2 v-else-if="category == 'hosts' && show.hosts.length == 1">And your host!</h2>
 
                         <template v-for="(act, idx) in show[category]" :key="act">
                             <div>
@@ -111,13 +124,35 @@
                                 <img v-else src="/monster.webp" class="headshot placeholder" />
                             </div>
                             <div class="about-act">
-                                <div>{{ act.name }}</div>
+                                <div class="act-name">{{ act.name }}</div>
 
                                 <div v-if="act.plug">
+                                    <a
+                                        :href="act.plug.url"
+                                        v-if="act.plug.url && act.plug.description && !act.plug.title"
+                                    >
+                                        {{ act.plug.description }}
+                                    </a>
+
+                                    <template v-else>
+                                        {{ act.plug.description }}
+                                        <a :href="act.plug.url" v-if="act.plug.title"> {{ act.plug.title }} </a>
+                                    </template>
                                 </div>
 
                                 <div v-else>
-                                    {{ act.name.split(" ")[0] }}
+                                    <a v-if="act.website" target="_blank">
+                                        <Icon name="link" />
+                                    </a>
+
+                                    <template
+                                        v-for="social in ['instagram', 'tiktok', 'twitter', 'facebook']"
+                                        :key="social"
+                                    >
+                                        <a v-if="act[social]" :href="socialURLs[social](act[social])" target="_blank">
+                                            <img class="social" :src="`/social-icons/${social}.svg`" />
+                                        </a>
+                                    </template>
                                 </div>
                             </div>
                         </template>
@@ -136,10 +171,25 @@
         h1,
         h2 {
             color: var(--light);
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: min(max(6vw, 1.6em), 2.5em);
+            max-width: 13em;
+            line-height: 110%;
+        }
+
+        h2 {
+            margin-top: 20px;
         }
 
         footer {
             background: #333;
+        }
+
+        em {
+            color: var(--accent-pink);
         }
     }
 
@@ -148,8 +198,33 @@
         margin: 0 auto;
         --square-size: 60px;
 
+        .splash {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding-top: 6vw;
+            img {
+                max-width: min(100%, 600px);
+            }
+        }
+
+        .about-act {
+            .act-name {
+                font-weight: 600;
+            }
+
+            img {
+                filter: invert(100%);
+                height: 40px;
+                padding: 5px;
+            }
+        }
+
         .message-container {
             padding: var(--content-horiz-padding);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .act-listing {
@@ -162,6 +237,11 @@
             h2 {
                 grid-column: 1/-1;
             }
+
+            a {
+                color: var(--control);
+                text-decoration: underline;
+            }
         }
 
         .headshot {
@@ -171,6 +251,12 @@
             &.placeholder {
                 background: var(--accent-burgundy);
                 padding: 10px;
+            }
+        }
+
+        @media (max-width: mixins.$break-mob) {
+            .splash {
+                padding-top: 0;
             }
         }
     }
