@@ -65,9 +65,21 @@ export const metas = [
         tickets: [
             {
                 city: "Edinburgh",
-                venue: "Some Ed Fringe Venue",
-                time: "12:00",
-                url: "https://edfringe.com",
+                venue: "The Apex",
+                time: "13:30",
+                url: "https://www.edfringe.com/tickets/whats-on/5-headliners-for-10",
+            },
+            {
+                city: "Edinburgh",
+                venue: "JTT@The Nucleus",
+                time: "16:30",
+                url: "https://www.justthetonic.com/",
+            },
+            {
+                city: "Edinburgh",
+                venue: "The Apex",
+                time: "19:30",
+                url: "https://www.edfringe.com/tickets/whats-on/5-headliners-for-10",
             },
         ],
     },
@@ -137,9 +149,9 @@ export const metas = [
         short_description: "Pop-up cabaret and mayhem (fun straights allowed)",
         description:
             "Queer, chic and outrageous—you're invited to the biggest, gayest party at the Fringe (fun straights allowed). <mark>Indulge in the hottest pop-up cabaret experience on Cowgate</mark> with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours. <mark class='subtle'>Don't worry about turning up late!</mark> The night is a pop up cabaret, and there will be fantastic acts on stage until 2:30am, when we hand over the reigns to our house DJ!",
-        tickets: "https://edinburgh.justthetonic.com/event/88:4256",
         video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.mp4",
         show_lineup: true,
+        tickets: "https://www.eventbrite.co.uk/e/big-gay-afterparty-tickets-1302987924959",
     },
 
     {
@@ -222,12 +234,11 @@ export const metas = [
         short_description: "The panel show you control with an app",
         description:
             "Comedy panel show where top comics answer the daft questions you choose on <mark class='subtle'>our exclusive app,</mark> and take on stand-up challenges that test their comedy muscles. A Fringe cult hit since 2018 and never the same show twice. A must for comedy fans who want to <mark>see some of the sharpest comedy minds at the festival be put through their paces.</mark> No need to reserve, just rock up with a charged smartphone ten minutes before the show starts! Free entry, pay what you like on exit!",
-        tickets:
-            "https://tickets.edfringe.com/whats-on/not-my-audience-the-stand-up-panel-show-you-control-with-an-app",
         payment: "unticketed",
         show_hosts: true,
         show_lineup: true,
         hide_bio: true,
+        tickets: "https://www.edfringe.com/tickets/whats-on/not-my-audience-the-stand-up-panel-show-you-control",
     },
 
     {
@@ -299,8 +310,8 @@ export const metas = [
         square: "https://storage.googleapis.com/rgb-monster-assets/toast/square.webp",
         short_description: "Somebody has eaten the most toast. We will find them.",
         description: "Somebody in the audience will have eaten the most toast. We will find them.",
-        tickets: "https://tickets.edfringe.com/whats-on/most-toast",
         cta: "🍞 Secure My Place",
+        tickets: "https://www.edfringe.com/tickets/whats-on/the-most-toast",
     },
 
     {
@@ -326,6 +337,12 @@ export const metas = [
                 city: "Perth",
                 venue: "The Old Courthouse",
                 url: "https://www.eventbrite.com/e/this-is-your-trial-interactive-comedy-courtroom-fremantle-tickets-1119682423269",
+            },
+
+            {
+                city: "Edinburgh",
+                venue: "The Apex",
+                url: "https://www.edfringe.com/tickets/whats-on/this-is-your-trial-the-fully-improvised-comedy-courtroom",
             },
         ],
     },
@@ -384,8 +401,9 @@ export function getShowMetas(show) {
 
     let ticketsURL = metas.tickets || "";
     if (ticketsURL && ticketsURL.includes("tickets.edfringe.com")) {
-        ticketsURL = `${ticketsURL}?day=${date.strftime("%d-%m-%Y")}`;
-        metas.tickets = ticketsURL;
+        // fringe has brokeneth the ability to deep-link
+        // ticketsURL = `${ticketsURL}?day=${show.date.strftime("%d-%m-%Y")}`;
+        // metas.tickets = ticketsURL;
     }
 
     // console.log("rrrrrrrrrrrrrrrrrrr", show.name, show.venue.city, metas);
