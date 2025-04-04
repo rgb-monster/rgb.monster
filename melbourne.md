@@ -13,7 +13,9 @@ layout: wide
 
 ::: section large
 
+RGB Monster has been proudly presenting shows at MICF <mark class="subtle">since 2022</mark> and this year marks the debut presentation of our smash hit [5 Headliners for $25](/headliners?festival=Melbourne+2025), after enjoying totally sold-out runs at Edinburgh Fringe, Perth Fringeworld and Adelaide Fringe. We're delighted by how receptive the comedy-savvy audiences of Melbourne have been to our unique no-crowdwork showcase of five top-level comedians doing their very best material.
 
+We're also pleased to present a [one-off work-in-progress performance by Ollie Horn](/ollie?festival=Melbourne+2025), fresh from a critically-acclaimed run at the Edinburgh Fringe that won him multiple award nominations, best joke of the fringe lists, and five star reviews.
 :::
 
 <ShowTypesListing filter="Melbourne 2025" />

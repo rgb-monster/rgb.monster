@@ -107,7 +107,6 @@ export const metas = [
                 city: "Melbourne",
                 url: "https://www.comedyfestival.com.au/browse-shows/5-headliners-for-25",
             },
-
         ],
     },
 
@@ -172,8 +171,17 @@ export const metas = [
         short_description: "Spontaneous, sharp, high-energy stand-up",
         description: `Stick your tongue out, do a peace sign, and tilt your head. British Comedy Guide Recommended 2023 Ollie Horn returns with a brand-new, highly interactive, semi-improvised, <mark>laugh-out-loud show about how you can justify being toxic.</mark> Think of the WhatsApp group that you're ashamed to be in - the show will feel like that live on stage.
             `,
-        tickets: "https://tickets.edfringe.com/whats-on/ollie-horn-comedy-for-toxic-people-and-their-friends",
+        tickets: [
+            {
+                city: "Edinburgh",
+                url: "https://tickets.edfringe.com/whats-on/ollie-horn-comedy-for-toxic-people-and-their-friends",
+            },
 
+            {
+                city: "Melbourne",
+                url: "https://www.eventbrite.com/e/ollie-horn-uk-live-at-the-elephant-wheelbarrow-melbourne-tickets-1307058419919",
+            },
+        ],
         quotes: [
             {stars: 4, quote: "Delivers every joke with a cheeky little smile", author: "EdFringe Review"},
             {stars: 4, quote: "One hell of a good show", author: "ThreeWeeks"},
