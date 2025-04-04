@@ -102,6 +102,12 @@ export const metas = [
                 city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/5-headliners-for-25-fw2025",
             },
+
+            {
+                city: "Melbourne",
+                url: "https://www.comedyfestival.com.au/browse-shows/5-headliners-for-25",
+            },
+
         ],
     },
 
