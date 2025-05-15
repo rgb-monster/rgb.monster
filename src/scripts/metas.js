@@ -11,7 +11,7 @@ export const metas = [
             "A 90 minute showcase of TV stars and gems of the festival followed by the hottest afterparty in town",
         description:
             "End your day at the Festival in style at our iconic Edinburgh venue with the very best in stand-up talent. Expect <mark>top TV names, Netflix stars, and gems of the festival</mark> in this 90-minute late-night boozy extravaganza where anything goes! Rub shoulders and boogie with the artists until the wee hours!",
-        tickets: "https://edinburgh.justthetonic.com/event/88:4259/",
+        tickets: "https://edinburgh.justthetonic.com/event/88:4902/",
     },
 
     {
@@ -73,7 +73,7 @@ export const metas = [
                 city: "Edinburgh",
                 venue: "JTT@The Nucleus",
                 time: "16:30",
-                url: "https://www.justthetonic.com/",
+                url: "https://edinburgh.justthetonic.com/event/88:4713/",
             },
             {
                 city: "Edinburgh",
@@ -153,10 +153,18 @@ export const metas = [
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover-thumb.webp",
         short_description: "Pop-up cabaret and mayhem (fun straights allowed)",
         description:
-            "Queer, chic and outrageous—you're invited to the biggest, gayest party at the Fringe (fun straights allowed). <mark>Indulge in the hottest pop-up cabaret experience on Cowgate</mark> with a rotating selection of the most electrifying and scandalous performers at the festival. Curated by 'demonic David Bowie' Aidan Sadler (Fest), this is where artists, dreamers and vagabonds drink, make mistakes and dance until the wee hours. <mark class='subtle'>Don't worry about turning up late!</mark> The night is a pop up cabaret, and there will be fantastic acts on stage until 2:30am, when we hand over the reigns to our house DJ!",
+            "Queer, chic and outrageous: you're invited to the biggest, gayest party at the Fringe (fun straights allowed). The award-winning show makes its return this year for two nights only, daring you to <mark>indulge in the hottest pop-up cabaret experience on Cowgate</mark>. Curated by 'demonic David Bowie' Aidan Sadler, a selection of the most electrifying and scandalous performers at the festival awaits.",
         video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.webm",
         show_lineup: true,
         tickets: "https://www.eventbrite.co.uk/e/big-gay-afterparty-tickets-1302987924959",
+
+        quotes: [
+            {
+                stars: 5,
+                quote: "The acts slay until the break of day, and you're invited right into the heart of this soulfully compiled and radically offbeat cabaret experience",
+                author: "BingeFringe.com",
+            },
+        ],
     },
 
     {
@@ -226,6 +234,10 @@ export const metas = [
                 city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/kids-can-heckle-fw2025",
             },
+            {
+                city: "Edinburgh",
+                url: "https://www.edfringe.com/tickets/whats-on/kids-can-heckle",
+            },
         ],
         quotes: [
             {
@@ -292,7 +304,7 @@ export const metas = [
         square: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/square.webp",
         short_description: "Family-friendly stand-up comedy club",
         description:
-            "Three top stand-ups perform their very best routines just as they do in comedy clubs up and down the country and abroad, just without the swearing! PG Hits is a professional stand-up comedy compilation show that <mark>leaves out the really rude bits so everybody can enjoy the show.</mark> Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best the festival has to offer, at a relaxed lunchtime performance.",
+            "Three top stand-ups perform their very best routines just as they do in comedy clubs all over the world, but without the swearing! PG Hits is a professional stand-up comedy compilation show that leaves out the really rude bits so everybody can have fun. Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best that the festival has to offer.",
         video: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/10-secs.webm",
         tickets: [
             {
@@ -306,6 +318,10 @@ export const metas = [
             {
                 city: "Perth",
                 url: "https://fringeworld.com.au/whats_on/pg-hits-the-best-in-family-friendly-stand-up-comedy-fw2025",
+            },
+            {
+                city: "Edinburgh",
+                url: "https://www.edfringe.com/tickets/whats-on/pg-hits-the-best-in-stand-up-comedy-without-the-rude-bits",
             },
         ],
         payment: "hide",

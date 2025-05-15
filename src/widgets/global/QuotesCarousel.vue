@@ -15,6 +15,10 @@
 
         methods: {
             proceed() {
+                if (this.quotes.length <= 1) {
+                    return;
+                }
+
                 this.current = (this.current + 1) % (this.quotes.length * 2);
                 if (this.current % 2 == 1) {
                     setTimeout(() => this.proceed(), 700);
@@ -49,9 +53,14 @@
                 v-for="(quote, idx) in quotes"
                 :key="idx"
             >
-                <Stars :stars="quote.stars" v-if="quote.stars" />
                 <div class="quote">“{{ quote.quote }}”</div>
-                <div class="author">—{{ quote.author }}</div>
+                <div class="author">
+                    —{{ quote.author }}
+                    <div style="display: flex; align-items: center; justify-content: end; color: var(--accent-yellow)">
+                        <template v-for="star in Math.floor(quote.stars)" :key="star">★</template>
+                        <span v-if="quote.stars % 1 !== 0" style="font-size: 1.5em">⯨</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
