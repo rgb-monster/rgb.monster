@@ -17,4 +17,4 @@ Visiting the Fringe is about trying something new, and we're proud to present <m
 
 :::
 
-<ShowTypesListing filter="Edinburgh August" />
+<ShowTypesListing filter="Edinburgh 2025" />

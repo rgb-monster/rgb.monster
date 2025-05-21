@@ -25,4 +25,4 @@ You can catch us next at <mark class="subtle">Edinburgh Festival Fringe in Augus
 
 :::
 
-<ShowTypesListing filter="Edinburgh August 2025" />
+<ShowTypesListing filter="Edinburgh 2025" />
