@@ -1,5 +1,17 @@
 export const metas = [
     {
+        show_type: "muck",
+        slug: "muck",
+        title: "Muck",
+        tags: ["compilation", "dark"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/muck/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/muck/cover-thumb.webp",
+        short_description: "Dark comedy (by nice comedians)",
+        description: "Dark comedy (by nice comedians)",
+        tickets: "https://www.edfringe.com/tickets/",
+    },
+
+    {
         show_type: "11pm-live",
         slug: "11pm",
         title: "11PM Live",
