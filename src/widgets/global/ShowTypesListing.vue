@@ -35,8 +35,7 @@
                 this.shows.forEach(show => {
                     byType[show.show_type] = byType[show.show_type] || {
                         ...getShowMetas(show),
-                        title: show.name,
-                        name: show.name,
+                        title: show.title,
                         emoji: show.emoji,
                         duration: show.duration,
                         description: show.public_description,
@@ -51,7 +50,7 @@
                         ...rec,
                         shows: utils.sort(rec.shows, show => show.ts),
                     })),
-                    showType => showType.name
+                    showType => showType.title.toLowerCase().trim()
                 );
             },
         },

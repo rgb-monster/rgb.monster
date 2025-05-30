@@ -40,8 +40,7 @@ export const useStore = defineStore("shows", {
                 if (!byType[show.show_type]) {
                     byType[show.show_type] = {
                         ...getShowMetas(show),
-                        title: show.name,
-                        name: show.name,
+                        title: show.title,
                         emoji: show.emoji,
                         duration: show.duration,
                         description: show.public_description,
@@ -101,6 +100,13 @@ export const useStore = defineStore("shows", {
                     }
 
                     let metas = getShowMetas(show);
+
+                    // name -> title (we have both of them and that then becomes awfully confusing)
+                    // we want to use the metas one where available as that allows overriding act/production-facing
+                    // title for cosmetic reasons
+                    show.title = metas.title || show.name;
+                    delete show.name;
+
                     if (!metas) {
                         return show;
                     }
