@@ -2,7 +2,7 @@ export const metas = [
     {
         show_type: "muck",
         slug: "muck",
-        title: "Muck",
+        title: "muck",
         tags: ["compilation", "dark"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/muck/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/muck/cover-thumb.webp",
