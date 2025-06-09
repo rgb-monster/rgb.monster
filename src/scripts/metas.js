@@ -2,7 +2,7 @@ export const metas = [
     {
         show_type: "muck",
         slug: "muck",
-        title: "\"muck\"",
+        title: '"muck"',
         tags: ["compilation", "dark"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/muck/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/muck/cover-thumb.webp",
@@ -181,7 +181,7 @@ export const metas = [
 
     {
         show_type: "toxic",
-        slug: "ollie",
+        slug: "ollie-toxic",
         title: "Ollie Horn: Comedy For Toxic People",
         partnership: "Talented Artists Limited",
         tags: ["solo", "standup"],
@@ -207,6 +207,27 @@ export const metas = [
             {stars: 4, quote: "One hell of a good show", author: "ThreeWeeks"},
             {stars: 4, quote: "An hour of escapist perfection", author: "Mumble Comedy"},
             {stars: 4, quote: "A clear passion for his craft", author: "Broadway World"},
+        ],
+    },
+
+    {
+        show_type: "ollie-horn-bet-i-can-make-you-laugh",
+        slug: "ollie",
+        title: "Ollie Horn: Bet I can make you laugh",
+        tags: ["solo", "standup"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/ollie-bet/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/ollie-bet/cover-thumb.webp",
+        short_description: "A funny show, guaranteed.",
+        description: `This show is a trial of routines for my 2026 tour and even though this will be new material, I'll still promise a really funny show. Wanna bet? You wager £10 and give me 50 minutes to make you properly belly laugh. If not, double your money back in cash.`,
+        tickets: [
+            {
+                city: "Edinburgh",
+                url: "https://www.edfringe.com/tickets/whats-on/ollie-horn-bet-i-can-make-you-laugh",
+            },
+        ],
+        quotes: [
+            {stars: 5, quote: "Howling laughter", author: "TheWeeReview.com"},
+            {stars: 5, quote: "It's impossible not to like Ollie Horn", author: "MumbleComedy.net"},
         ],
     },
 
