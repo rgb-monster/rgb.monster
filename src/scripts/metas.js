@@ -375,6 +375,8 @@ export const metas = [
         description: "Somebody in the audience will have eaten the most toast. We will find them.",
         cta: "🍞 Secure My Place",
         tickets: "https://www.edfringe.com/tickets/whats-on/the-most-toast",
+        video: "https://storage.googleapis.com/rgb-monster-assets/toast/10-secs.webm",
+
     },
 
     {
