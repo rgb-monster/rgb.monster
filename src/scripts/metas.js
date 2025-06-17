@@ -2,7 +2,7 @@ export const metas = [
     {
         show_type: "muck",
         slug: "muck",
-        title: '"muck"',
+        title: '"Muck"',
         tags: ["compilation", "dark"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/muck/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/muck/cover-thumb.webp",
@@ -14,7 +14,7 @@ export const metas = [
     {
         show_type: "11pm-live",
         slug: "11pm",
-        title: "11PM Live",
+        title: "11PM Live at the Big Cave",
         tags: ["variety"],
         partnership: "Just the Tonic",
         cover: "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",

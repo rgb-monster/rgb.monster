@@ -108,7 +108,7 @@
 
             <div class="message-container">
                 <h1>
-                    Thank you for coming to <em>{{ show.name }}</em> on<br />
+                    Thank you for coming to <em>{{ show.title }}</em> on<br />
                     <em>{{ humanTs(show.ts) }}</em>
                 </h1>
 
