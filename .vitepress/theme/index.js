@@ -6,6 +6,7 @@ import Layout from "./Layout.vue";
 import "./destyle.css";
 import "./style.scss";
 
+import {requestFuncs} from "../../src/scripts/requests.js";
 import utils from "../../src/scripts/utils.js";
 const globalWidgets = utils.importToComp(import.meta.glob("/src/widgets/global/*.vue", {eager: true}));
 const directives = utils.importToComp(import.meta.glob("/src/directives/*.js", {eager: true}));
@@ -19,6 +20,9 @@ export default {
             //store.$requests = requests;
         });
         app.use(pinia);
+
+        let requests = requestFuncs(router);
+        app.config.globalProperties.$requests = requests;
 
         for (const name in globalWidgets) {
             app.component(name, globalWidgets[name]);

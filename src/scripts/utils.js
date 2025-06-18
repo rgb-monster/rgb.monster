@@ -3,6 +3,16 @@ import dt from "py-datetime";
 let utils = {
     noop: () => {},
 
+    serverUrl(path) {
+        // we're running on nginx if we're not on port 8085 anymore
+        let nginx = document.location.port != "5173";
+        let pathPrefix = path.startsWith("/api/") ? "" : "/api/"; // make sure we don't double prefix our calls
+        let apiRoot = nginx
+            ? `https://confirmed.show${pathPrefix}`
+            : `http://${document.location.hostname}:8080${pathPrefix}`;
+        return apiRoot + path;
+    },
+
     slug: str => (str || "").replace(/[^\w-]+/g, "-"),
 
     focusables: (container, traverse = true) => {
