@@ -9,29 +9,9 @@ export function requestFuncs(router) {
             return res.data;
         },
 
-        async post(routeName, data, request, put = false) {
-            let {params, query} = request || {};
-            query = query || {};
-            query["ts"] = Date.now();
-            let url = router.resolve({name: routeName, params, query}).href;
-            url = utils.serverUrl(url);
-
-            let sender = put ? axios.put : axios.post;
-            return await sender(url, data, {withCredentials: true});
-        },
-
-        async put(routeName, data, request) {
-            // on the rare occasion when we pretend to be very RESTful
-            return funcs.post(routeName, data, request, true);
-        },
-
-        async delete(routeName, request) {
-            let {params, query} = request || {};
-            query = query || {};
-            query["ts"] = Date.now();
-            let url = router.resolve({name: routeName, params, query}).href;
-            url = utils.serverUrl(url);
-            return axios.delete(url, {withCredentials: true});
+        async post(path, data) {
+            let url = utils.serverUrl(path) + `?ts=${Date.now()}`;
+            return await axios.post(url, data, {withCredentials: true});
         },
     };
     return funcs;
