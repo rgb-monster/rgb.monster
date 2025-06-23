@@ -53,6 +53,7 @@
                 autoplay
                 playsinline
                 ref="video"
+                :poster="showType.cover_thumb"
             />
             <img :src="showType.cover_thumb" v-show="!showType.hover_video || !active" />
         </div>
