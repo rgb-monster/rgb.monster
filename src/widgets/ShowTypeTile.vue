@@ -44,8 +44,16 @@
 <template>
     <a class="show-type-tile" :class="(showType.tags || [])[0]" :href="`/${showType.slug}${filterIfPresent}`">
         <div class="cover-image" v-if="showType.cover_thumb">
-            <video :src="showType.hover_video" v-if="showType.hover_video && active" loop muted autoplay ref="video" />
-            <img :src="showType.cover_thumb" v-else />
+            <video
+                v-if="showType.hover_video"
+                :src="showType.hover_video"
+                v-show="active"
+                loop
+                muted
+                autoplay
+                ref="video"
+            />
+            <img :src="showType.cover_thumb" v-show="!showType.hover_video || !active" />
         </div>
         <header v-html="showType.title" />
 
