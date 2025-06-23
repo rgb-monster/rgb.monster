@@ -332,6 +332,7 @@ export const metas = [
     {
         show_type: "best-nerd-fest-showcase",
         slug: "nerd-fest",
+        title: "Best of Nerd Fest Showcase",
         tags: ["variety", "compilation"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/nerd-fest/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/nerd-fest/cover-thumb.webp",
