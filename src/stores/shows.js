@@ -77,15 +77,20 @@ export const useStore = defineStore("shows", {
             if (!this.loaded && !this.loading) {
                 this.loading = true;
 
-                let rgb = await axios.get("https://confirmed.show/api/v1/rgb-monster/shows.json", {
-                    withCredentials: true,
-                });
-                let presents = [];
-                // await axios.get("https://confirmed.show/api/v1/rgb-presents/shows.json", {
-                //     withCredentials: true,
-                // });
+                let sources = [
+                    "https://confirmed.show/api/v1/rgb-monster/shows.json",
+                    "https://confirmed.show/api/v1/bowtie/shows.json",
+                ];
 
-                this.shows = [...(rgb.data || []), ...(presents.data || [])].map(show => {
+                let data = [];
+                for (let source of sources) {
+                    let response = await axios.get(source, {
+                        withCredentials: true,
+                    });
+                    data = [...data, ...(response.data || [])];
+                }
+
+                this.shows = data.map(show => {
                     show.ts = dt.datetime.strptime(show.ts, "%Y-%m-%d %H:%M:%S");
                     if (show.ts_utc) {
                         show.ts_utc = dt.datetime.strptime(show.ts_utc, "%Y-%m-%d %H:%M:%S", true);

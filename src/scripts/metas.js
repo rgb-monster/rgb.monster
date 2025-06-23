@@ -307,11 +307,13 @@ export const metas = [
         tags: ["format", "gameshow"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover-thumb.webp",
+        square: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/square.webp",
+        video: "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/10-secs.webm",
         short_description: "Choose your own adventure live video game",
         partnership: "Bowtie Productions",
         description:
-            "Are you fit to reign? How long do you think you can survive as ruler? Come and find out in this one-of-a-kind interactive comedy video game! Part comedy, part improv, part video game and part choose-your-own-adventure, where you and two guest comedians try to rule a kingdom! A unique experience at every show<mark>—how will you fare, my liege?</mark> From veteran performer Sam See (**** Fest) and video game designer Stephen Case (Trust No Bunny, Not My Audience).",
-        tickets: "https://tickets.edfringe.com/whats-on/off-with-your-head",
+            "Are you fit to reign? How long do you think you can survive as ruler? Come and find out in this one-of-a-kind interactive comedy video game! Part comedy, part improv, part video game and part choose-your-own-adventure, where you and two guest comedians try to rule a kingdom! A unique experience at every show—<mark>how will you fare, my liege?</mark> From veteran performer Sam See (**** Fest) and video game designer Stephen Case (Trust No Bunny, Not My Audience).",
+        tickets: "https://www.edfringe.com/tickets/whats-on/off-with-your-head",
         payment: "hide",
     },
 
@@ -325,6 +327,31 @@ export const metas = [
         short_description: "Everything seems to be correct, but totally out of order",
         description: "Everything seems to be correct, but totally out of order",
         tickets: "",
+    },
+
+    {
+        show_type: "best-nerd-fest-showcase",
+        slug: "nerd-fest",
+        tags: ["variety", "compilation"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/nerd-fest/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/nerd-fest/cover-thumb.webp",
+        square: "https://storage.googleapis.com/rgb-monster-assets/nerd-fest/square.webp",
+        short_description: "Comedy and nerd culture unite for an evening celebrating all things geek",
+        description:
+            "Comedy and nerd culture intersect for a one-off celebration of everything geeky that the Edinburgh Festival Fringe has to offer. Join the top nerdy stand-up comedians of the Fringe in this funny, friendly and fandom-filled evening. From video games to table-top games, LPs to LARPing, film franchises to fantasy novels, comic books to cosplay - this is the place to celebrate all your geeky favourites in one place.",
+        tickets: "https://www.edfringe.com/tickets/whats-on/best-nerd-fest-showcase",
+    },
+
+    {
+        show_type: "movieoke",
+        slug: "movieoke",
+        tags: ["format", "improv"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/movieoke/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/movieoke/cover-thumb.webp",
+        short_description: "Comedians and audience rewrite iconic movie scenes live",
+        description:
+            "It's karaoke, but with the movie scenes you love! Cinema's most iconic moments get rewritten, recast and utterly reimagined by top stand-up comedians, with audience members stepping in for surprise cameos. Whether you are an A24 buff, part of the popcorn crowd or just looking for a good giggle, come and take a seat in the director's chair! Unscripted, unpredictable and definitely not in cinemas now!",
+        tickets: "https://www.edfringe.com/tickets/whats-on/movieoke",
     },
 
     {
@@ -376,7 +403,6 @@ export const metas = [
         cta: "🍞 Secure My Place",
         tickets: "https://www.edfringe.com/tickets/whats-on/the-most-toast",
         video: "https://storage.googleapis.com/rgb-monster-assets/toast/10-secs.webm",
-
     },
 
     {
