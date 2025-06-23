@@ -67,7 +67,6 @@
                 let lastTile = visibleTiles.length ? visibleTiles[0] : null;
 
                 if (lastTile) {
-                    console.log("rrrrrrrrrr", lastTile.showType);
                     this.activeTile = lastTile.showType.slug;
                 }
             },

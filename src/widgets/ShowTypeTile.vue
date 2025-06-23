@@ -51,6 +51,7 @@
                 loop
                 muted
                 autoplay
+                playsinline
                 ref="video"
             />
             <img :src="showType.cover_thumb" v-show="!showType.hover_video || !active" />
