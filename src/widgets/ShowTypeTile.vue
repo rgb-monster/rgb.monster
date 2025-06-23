@@ -7,6 +7,7 @@
             // these are optional props for if your button has a linkable state
             showType: Object,
             filter: String,
+            active: Boolean,
         },
         data() {
             return {};
@@ -36,14 +37,33 @@
             },
 
             filterIfPresent: state => (state.filter ? `?festival=${state.filter.replace(/\s/g, "+")}` : ""),
+            activeAndEnabled: state => state.active && navigator.userActivation.hasBeenActive,
+        },
+        watch: {
+            async active() {
+                if (!this.showType.hover_video) {
+                    return;
+                }
+
+                if (this.activeAndEnabled) {
+                    await this.$nextTick;
+                    this.$refs.video.play();
+                }
+            },
         },
     };
 </script>
 
 <template>
     <a class="show-type-tile" :class="(showType.tags || [])[0]" :href="`/${showType.slug}${filterIfPresent}`">
-        <div class="hero-image" v-if="showType.cover_thumb">
-            <img :src="showType.cover_thumb" />
+        <div class="cover-image" v-if="showType.cover_thumb">
+            <video
+                :src="showType.hover_video"
+                v-if="showType.hover_video && activeAndEnabled"
+                loop="true"
+                ref="video"
+            />
+            <img :src="showType.cover_thumb" v-else />
         </div>
         <header v-html="showType.title" />
 
@@ -86,14 +106,19 @@
 
         overflow: hidden;
 
+        & > * {
+            pointer-events: none;
+        }
+
         &:hover {
             --shadow: var(--accent-pink);
         }
 
-        .hero-image {
+        .cover-image {
             display: block;
 
-            img {
+            img,
+            video {
                 max-width: 100%;
                 object-position: center;
                 object-fit: contain;

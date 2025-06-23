@@ -16,6 +16,7 @@
         data() {
             return {
                 store: useStore(),
+                activeTile: "",
             };
         },
 
@@ -55,8 +56,33 @@
             },
         },
 
+        methods: {
+            onScroll() {
+                let windowHeight = window.innerHeight;
+                let visibleTiles = this.$refs.tiles.filter(tile => {
+                    let box = tile.$el.getBoundingClientRect();
+                    return box.y > 0 && box.y + box.height < windowHeight;
+                });
+
+                let lastTile = visibleTiles.length ? visibleTiles[0] : null;
+
+                if (lastTile) {
+                    console.log("rrrrrrrrrr", lastTile.showType);
+                    this.activeTile = lastTile.showType.slug;
+                }
+            },
+        },
+
         mounted() {
+            if (utils.isTouch()) {
+                // for touch interfaces we'll set the active tile whichever one is the most bottomest
+                window.addEventListener("scroll", this.onScroll);
+            }
             this.store.fetchShows();
+        },
+
+        beforeUnmount() {
+            window.removeEventListener("scroll", this.onScroll);
         },
     };
 </script>
@@ -64,7 +90,16 @@
 <template>
     <section>
         <div class="contents show-types-listing">
-            <ShowTypeTile v-for="showType in showTypes" :key="showType.type" :showType="showType" :filter="filter" />
+            <ShowTypeTile
+                v-for="showType in showTypes"
+                ref="tiles"
+                :key="showType.slug"
+                :showType="showType"
+                :filter="filter"
+                :active="activeTile == showType.slug"
+                @mouseover="activeTile = showType.slug"
+                @mouseout="activeTile = null"
+            />
         </div>
     </section>
 </template>

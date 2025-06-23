@@ -73,6 +73,7 @@ export const metas = [
             "Five top-level circuit comedians perform their very best material, one after the other. <mark>No picking on the audience, no MC in between asking you where you're from</mark>—just non-stop laughs from headline-level international comedy circuit professionals who know exactly how to bring the funny! There is no better value-for-money way to spend £10 at the Fringe. Total sell-out 2024, so book early!",
         default: true,
         video: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/10-secs.webm",
+        hover_video: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/hover.webm",
 
         tickets: [
             {
@@ -105,6 +106,8 @@ export const metas = [
         cover: "https://storage.googleapis.com/rgb-monster-assets/5-headliners-aus/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/5-headliners-aus/cover-thumb.webp",
         video: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/10-secs.webm",
+        hover_video: "https://storage.googleapis.com/rgb-monster-assets/5-headliners/hover.webm",
+
         tickets: [
             {
                 city: "Adelaide",
@@ -167,9 +170,10 @@ export const metas = [
         description:
             "Queer, chic and outrageous: you're invited to the biggest, gayest party at the Fringe (fun straights allowed). The award-winning show makes its return this year for two nights only, daring you to <mark>indulge in the hottest pop-up cabaret experience on Cowgate</mark>. Curated by 'demonic David Bowie' Aidan Sadler, a selection of the most electrifying and scandalous performers at the festival awaits.",
         video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/10-secs.webm",
+        hover_video: "https://storage.googleapis.com/rgb-monster-assets/afterparty/hover.webm",
+
         show_lineup: true,
         tickets: "https://www.eventbrite.co.uk/e/big-gay-afterparty-tickets-1302987924959",
-
         quotes: [
             {
                 stars: 5,
@@ -257,6 +261,8 @@ export const metas = [
         short_description: "Perth Fringe 2024 weekly award winner",
         description:
             "Fun for the whole family, but especially fun for the little ones! Top UK stand-up Ollie Horn—attempts to tell the same clean stand-up that he does around the world. <mark>The only thing that can stop him is the imagination of your kids,</mark> who at any point are allowed, no, encouraged to jump in and be as silly as possible! Weekly award winner, Perth Fringe World 2024: Best Kids Show.",
+        hover_video: "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/hover.webm",
+
         tickets: [
             {
                 city: "Adelaide",
@@ -369,6 +375,8 @@ export const metas = [
         description:
             "Three top stand-ups perform their very best routines just as they do in comedy clubs all over the world, but without the swearing! PG Hits is a professional stand-up comedy compilation show that leaves out the really rude bits so everybody can have fun. Comedy fans of all ages and all tastes will have something to enjoy as we bring you a diverse line-up from the very best that the festival has to offer.",
         video: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/10-secs.webm",
+        hover_video: "https://storage.googleapis.com/rgb-monster-assets/pg-hits/hover.webm",
+
         tickets: [
             {
                 city: "Adelaide",
@@ -406,6 +414,7 @@ export const metas = [
         cta: "🍞 Secure My Place",
         tickets: "https://www.edfringe.com/tickets/whats-on/the-most-toast",
         video: "https://storage.googleapis.com/rgb-monster-assets/toast/10-secs.webm",
+        hover_video: "https://storage.googleapis.com/rgb-monster-assets/toast/hover.webm",
     },
 
     {
@@ -418,6 +427,8 @@ export const metas = [
         cover: "https://storage.googleapis.com/rgb-monster-assets/trial/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/trial/cover-thumb.webp",
         square: "https://storage.googleapis.com/rgb-monster-assets/trial/square.webp",
+        hover_video: "https://storage.googleapis.com/rgb-monster-assets/trial/hover.webm",
+
         short_description: "Award-winning improvised comedy courtroom",
         description:
             "Guilty or innocent? You decide! The award-winning, critically acclaimed courtroom roast returns to the Fringe for its eleventh year! <mark>You accuse friends and family of crimes, and top comedians take on the roles of judge and defence counsel,</mark> hearing testimony, cross-examining witnesses, and improvising their arguments for each case. It’s up to the audience as jury to deliver your verdict. Never the same show twice, a must-do fringe experience! 'A perfect bit of improv mayhem' ***** (Mirror). 'Inventive, intelligent comedy' ***** (Scotsman).",

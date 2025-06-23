@@ -500,6 +500,10 @@ let utils = {
         return "ontouchstart" in window;
     },
 
+    hasMouse() {
+        return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    },
+
     adjustedDate(ts) {
         let date = dt.datetime.combine(ts, dt.time(5));
         if (ts.hour < 5) {
