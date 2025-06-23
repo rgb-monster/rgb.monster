@@ -348,6 +348,7 @@ export const metas = [
         tags: ["format", "improv"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/movieoke/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/movieoke/cover-thumb.webp",
+        square: "https://storage.googleapis.com/rgb-monster-assets/movieoke/square.webp",
         short_description: "Comedians and audience rewrite iconic movie scenes live",
         description:
             "It's karaoke, but with the movie scenes you love! Cinema's most iconic moments get rewritten, recast and utterly reimagined by top stand-up comedians, with audience members stepping in for surprise cameos. Whether you are an A24 buff, part of the popcorn crowd or just looking for a good giggle, come and take a seat in the director's chair! Unscripted, unpredictable and definitely not in cinemas now!",
