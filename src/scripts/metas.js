@@ -345,6 +345,7 @@ export const metas = [
     {
         show_type: "movieoke",
         slug: "movieoke",
+        title: "Movieoke!",
         tags: ["format", "improv"],
         cover: "https://storage.googleapis.com/rgb-monster-assets/movieoke/cover.webp",
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/movieoke/cover-thumb.webp",
