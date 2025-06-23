@@ -105,11 +105,12 @@
 </template>
 
 <style lang="scss">
-    .show-types-listing {
+    main.markdown section .contents.show-types-listing {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 1em;
         padding: 2em var(--content-horiz-padding);
+        padding-bottom: 8em;
 
         @media (max-width: 1000px) {
             grid-template-columns: repeat(3, 1fr);
