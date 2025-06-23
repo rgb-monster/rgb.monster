@@ -97,7 +97,8 @@
         }
 
         .cover-image {
-            display: block;
+            display: flex;
+            width: 100%;
 
             img,
             video {
