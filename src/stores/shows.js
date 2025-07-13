@@ -84,9 +84,7 @@ export const useStore = defineStore("shows", {
 
                 let data = [];
                 for (let source of sources) {
-                    let response = await axios.get(source, {
-                        withCredentials: true,
-                    });
+                    let response = await axios.get(source);
                     data = [...data, ...(response.data || [])];
                 }
 
