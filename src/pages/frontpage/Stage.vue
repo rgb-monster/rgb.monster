@@ -225,8 +225,8 @@
         <div class="laptop-box">
             <img class="laptop" src="/stage/laptop.webp" />
             <img class="laptop-screen" :src="currentShow" />
-            <button class="laptop-button left" @mousedown="changeShow(-1)" />
-            <button class="laptop-button right" @mousedown="changeShow(1)" />
+            <button class="laptop-button left" @click="changeShow(-1)" />
+            <button class="laptop-button right" @click="changeShow(1)" />
         </div>
 
         <img class="projector" src="/stage/projector.webp" />
@@ -331,6 +331,7 @@
             top: 65vw;
             left: 5vw;
             z-index: 100;
+            pointer-events: none;
 
             .laptop {
                 width: 30vw;
@@ -352,6 +353,7 @@
                 background-image: url(/stage/laptop-button.webp);
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
+                pointer-events: all;
 
                 &.left {
                     left: 5vw;
