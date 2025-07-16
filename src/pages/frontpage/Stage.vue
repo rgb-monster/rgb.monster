@@ -39,7 +39,7 @@
                 this.colors[mode] = color;
             },
             changeShow(direction) {
-                this.currentShowIdx = (this.currentShowIdx + direction) % this.shows.length;
+                this.currentShowIdx = (this.currentShowIdx + direction + this.shows.length) % this.shows.length;
             },
         },
         computed: {
