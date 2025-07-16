@@ -33,12 +33,19 @@
 
             background: var(--beige);
             mask-image: url(/new/ink-swipe.webp);
-            mask-size: 100% 100%;
+            mask-size: cover;
+            mask-position: center;
 
             font-family: var(--rgb-font);
             padding: 0.7em;
             text-align: center;
             text-transform: uppercase;
+        }
+
+        @media (min-width: 1000px) {
+            .ink-header {
+                mask-size: 100% 100%;
+            }
         }
     }
 </style>

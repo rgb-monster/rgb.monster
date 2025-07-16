@@ -24,11 +24,6 @@ $break-mob: 500px;
     }
 }
 
-@mixin confetti() {
-    background-image: url(/new/confetti.svg);
-    background-size: 30%;
-}
-
 @mixin scrollbar($rounded: false) {
     &::-webkit-scrollbar {
         -webkit-appearance: none;
