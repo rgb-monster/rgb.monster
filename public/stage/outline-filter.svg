@@ -1,0 +1,23 @@
+<svg height="0" width="0">
+            <defs>
+                <filter id="stage-title-outline">
+                    <!-- 1. Enlarge the shape -->
+                    <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="3"></feMorphology>
+
+                    <!-- 2. Blur the enlarged shape to round the corners -->
+                    <feGaussianBlur in="DILATED" result="BLURRED" stdDeviation="3"></feGaussianBlur>
+
+                    <!-- 3. Create the outline color -->
+                    <feFlood flood-color="#f5e6c9" result="flood"></feFlood>
+
+                    <!-- 4. Composite the color into the blurred shape -->
+                    <feComposite in="flood" in2="BLURRED" operator="in" result="OUTLINE_GLOW"></feComposite>
+
+                    <!-- 5. Merge the glow and the original text -->
+                    <feMerge>
+                        <feMergeNode in="OUTLINE_GLOW" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>

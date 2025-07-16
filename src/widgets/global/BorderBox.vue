@@ -160,7 +160,7 @@
 
                 // Generate the mask using the full jagged edge logic
                 let maskUrl = this.createJaggedRectMask(box.width, box.height, randomFunc, {
-                    cornerRadius: this.radius,
+                    cornerRadius: this.radius < 1 ? this.radius * 100 * (window.innerWidth / 1000) : this.radius,
                     jaggedness: this.jaggedness,
                     pointDensity: this.pointDensity,
                     maxSpikeFactor: 0.2,
