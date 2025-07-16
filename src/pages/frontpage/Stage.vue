@@ -311,6 +311,7 @@
             z-index: 500;
             top: 2vw;
             width: 35vw;
+            height: 35vw;
             pointer-events: none;
 
             --offset: calc(var(--fixture-width) - 4vw);
