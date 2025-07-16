@@ -235,7 +235,7 @@
         <Console :colors="colors" @update="updateColor($event)" />
 
         <div class="projector-screen">
-            <BorderBox shadow="true" :radius="40">
+            <BorderBox shadow="true" :radius="0.3">
                 <div class="video-box" :style="{background: titleColor}">
                     <h1>We are RGB Monster!</h1>
 
