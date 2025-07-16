@@ -1,6 +1,6 @@
 import {defineConfig} from "vitepress";
 import markdownItContainer from "markdown-it-container";
-import dt from "py-datetime";
+import svgLoader from "vite-svg-loader"; // 1. Import the plugin
 
 import {useStore} from "../src/stores/shows.js";
 import utils from "../src/scripts/utils.js";
@@ -56,6 +56,9 @@ export default defineConfig({
                 },
             },
         },
+        plugins: [
+            svgLoader(), // 3. Add the plugin to the plugins array
+        ],
     },
 
     //srcDir: "./src/md",
