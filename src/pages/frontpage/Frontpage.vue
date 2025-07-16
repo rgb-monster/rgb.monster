@@ -35,8 +35,6 @@
             </main>
         </section>
 
-
-
         <section class="monster-vision yellow with-confetti">
             <InkHeader>Photo Gallery</InkHeader>
             <main>
@@ -71,7 +69,8 @@
             }
 
             &.with-confetti {
-                @include mixins.confetti;
+                background-image: url(/new/confetti.svg);
+                background-size: 30%;
             }
         }
 

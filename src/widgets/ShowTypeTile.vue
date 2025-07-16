@@ -103,9 +103,9 @@
 
         & > .contents {
             height: 100%;
-            background: var(--beige);
-            padding: 10px;
+            padding: 20px;
             display: grid;
+            background: beige;
         }
 
         a {
