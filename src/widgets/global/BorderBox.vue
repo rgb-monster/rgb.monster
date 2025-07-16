@@ -25,7 +25,6 @@
         data() {
             return {
                 seed: 0,
-                svgString: "",
             };
         },
 
@@ -65,62 +64,62 @@
              * @returns {string} A string like 'url("data:image/svg+xml;base64,...")'
              */
             createJaggedRectMask(width, height, randomFunc, options = {}) {
-                const {cornerRadius = 40, jaggedness = 12, pointDensity = 0.2, maxSpikeFactor = 0.6} = options;
+                let {cornerRadius = 40, jaggedness = 12, pointDensity = 0.2, maxSpikeFactor = 0.6} = options;
 
                 let d = "";
-                const PI = Math.PI;
+                let PI = Math.PI;
                 let lastRandomOffset = 0;
 
-                const jaggedLineTo = (x1, y1, x2, y2, numPoints) => {
+                let jaggedLineTo = (x1, y1, x2, y2, numPoints) => {
                     let lineData = "";
-                    const dx = x2 - x1,
+                    let dx = x2 - x1,
                         dy = y2 - y1;
                     for (let i = 1; i <= numPoints; i++) {
                         let newRandomOffset = (randomFunc() - 0.5) * jaggedness;
-                        const maxChange = jaggedness * maxSpikeFactor;
-                        const delta = newRandomOffset - lastRandomOffset;
+                        let maxChange = jaggedness * maxSpikeFactor;
+                        let delta = newRandomOffset - lastRandomOffset;
                         if (Math.abs(delta) > maxChange) {
                             newRandomOffset = lastRandomOffset + Math.sign(delta) * maxChange;
                         }
                         lastRandomOffset = newRandomOffset;
-                        const t = i / numPoints;
-                        const pointX = x1 + dx * t + newRandomOffset * (dx === 0 ? 1 : 0);
-                        const pointY = y1 + dy * t + newRandomOffset * (dy === 0 ? 1 : 0);
+                        let t = i / numPoints;
+                        let pointX = x1 + dx * t + newRandomOffset * (dx === 0 ? 1 : 0);
+                        let pointY = y1 + dy * t + newRandomOffset * (dy === 0 ? 1 : 0);
                         lineData += `L ${pointX.toFixed(2)} ${pointY.toFixed(2)} `;
                     }
                     return lineData;
                 };
-                const jaggedArcTo = (centerX, centerY, radius, startAngle, endAngle, numPoints) => {
+                let jaggedArcTo = (centerX, centerY, radius, startAngle, endAngle, numPoints) => {
                     let arcData = "";
-                    const angleRange = endAngle - startAngle;
+                    let angleRange = endAngle - startAngle;
                     for (let i = 1; i <= numPoints; i++) {
                         let newRandomOffset = (randomFunc() - 0.5) * jaggedness;
-                        const maxChange = jaggedness * maxSpikeFactor;
-                        const delta = newRandomOffset - lastRandomOffset;
+                        let maxChange = jaggedness * maxSpikeFactor;
+                        let delta = newRandomOffset - lastRandomOffset;
                         if (Math.abs(delta) > maxChange) {
                             newRandomOffset = lastRandomOffset + Math.sign(delta) * maxChange;
                         }
                         lastRandomOffset = newRandomOffset;
-                        const t = i / numPoints;
-                        const angle = startAngle + angleRange * t;
-                        const currentRadius = radius + newRandomOffset;
-                        const pointX = centerX + currentRadius * Math.cos(angle);
-                        const pointY = centerY + currentRadius * Math.sin(angle);
+                        let t = i / numPoints;
+                        let angle = startAngle + angleRange * t;
+                        let currentRadius = radius + newRandomOffset;
+                        let pointX = centerX + currentRadius * Math.cos(angle);
+                        let pointY = centerY + currentRadius * Math.sin(angle);
                         arcData += `L ${pointX.toFixed(2)} ${pointY.toFixed(2)} `;
                     }
                     return arcData;
                 };
 
-                const topEdgeLength = width - 2 * cornerRadius;
-                const sideEdgeLength = height - 2 * cornerRadius;
-                const arcLength = cornerRadius * (PI / 2);
-                const topEdgePoints = Math.max(1, Math.round(topEdgeLength * pointDensity));
-                const sideEdgePoints = Math.max(1, Math.round(sideEdgeLength * pointDensity));
-                const arcPoints = Math.max(1, Math.round(arcLength * pointDensity));
-                const topRight = {cx: width - cornerRadius, cy: cornerRadius, start: -PI / 2, end: 0};
-                const bottomRight = {cx: width - cornerRadius, cy: height - cornerRadius, start: 0, end: PI / 2};
-                const bottomLeft = {cx: cornerRadius, cy: height - cornerRadius, start: PI / 2, end: PI};
-                const topLeft = {cx: cornerRadius, cy: cornerRadius, start: PI, end: (3 * PI) / 2};
+                let topEdgeLength = width - 2 * cornerRadius;
+                let sideEdgeLength = height - 2 * cornerRadius;
+                let arcLength = cornerRadius * (PI / 2);
+                let topEdgePoints = Math.max(1, Math.round(topEdgeLength * pointDensity));
+                let sideEdgePoints = Math.max(1, Math.round(sideEdgeLength * pointDensity));
+                let arcPoints = Math.max(1, Math.round(arcLength * pointDensity));
+                let topRight = {cx: width - cornerRadius, cy: cornerRadius, start: -PI / 2, end: 0};
+                let bottomRight = {cx: width - cornerRadius, cy: height - cornerRadius, start: 0, end: PI / 2};
+                let bottomLeft = {cx: cornerRadius, cy: height - cornerRadius, start: PI / 2, end: PI};
+                let topLeft = {cx: cornerRadius, cy: cornerRadius, start: PI, end: (3 * PI) / 2};
 
                 d += `M ${cornerRadius} ${0 + (randomFunc() - 0.5) * jaggedness} `;
                 d += jaggedLineTo(cornerRadius, 0, width - cornerRadius, 0, topEdgePoints);
@@ -147,52 +146,52 @@
                 d += jaggedArcTo(topLeft.cx, topLeft.cy, cornerRadius, topLeft.start, topLeft.end, arcPoints);
                 d += "Z";
 
-                const svgString = `<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'><path d='${d}' fill='black'/></svg>`;
+                let svgString = `<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'><path d='${d}' fill='black'/></svg>`;
 
                 // Reverted to basic URL encoding
-                const encoded = svgString.replace(/>/g, "%3E").replace(/</g, "%3C").replace(/#/g, "%23"); // Included for robustness
+                let encoded = svgString.replace(/>/g, "%3E").replace(/</g, "%3C").replace(/#/g, "%23"); // Included for robustness
 
                 return `url("data:image/svg+xml,${encoded}")`;
             },
 
             generateNewMask() {
                 let box = this.$el.getBoundingClientRect();
-                const randomFunc = this.createSeededRandom(this.seed * 1000);
+                let randomFunc = this.createSeededRandom(this.seed);
 
                 // Generate the mask using the full jagged edge logic
-                const maskUrl = this.createJaggedRectMask(box.width, box.height, randomFunc, {
+                let maskUrl = this.createJaggedRectMask(box.width, box.height, randomFunc, {
                     cornerRadius: this.radius,
                     jaggedness: this.jaggedness,
                     pointDensity: this.pointDensity,
                     maxSpikeFactor: 0.2,
                 });
 
-                // Apply the generated Data URI to the mask-image property
-                this.svgString = maskUrl;
+                document.documentElement.style.setProperty(`--jagged-mask-${this.seed}`, maskUrl);
             },
 
             onResize() {
-                console.log("i'm changing");
                 this.generateNewMask();
             },
         },
 
         mounted() {
-            this.seed = Math.random();
+            this.seed = Math.round(Math.random() * 1000000);
+
             this.resizeObserver = new ResizeObserver(this.onResize);
             this.resizeObserver.observe(this.$el);
         },
 
         beforeUnmount() {
             this.resizeObserver.disconnect();
+            document.documentElement.style.removeProperty(`--jagged-mask-${this.seed}`);
         },
     };
 </script>
 
 <template>
     <div class="border-box">
-        <div class="shadow" v-if="shadow" :style="{'background-image': svgString}" />
-        <div class="contents" :style="{'mask-image': svgString}">
+        <div class="shadow" v-if="shadow" :style="{'background-image': `var(--jagged-mask-${seed})`}" />
+        <div class="contents" :style="{'mask-image': `var(--jagged-mask-${seed})`}">
             <slot />
         </div>
     </div>
