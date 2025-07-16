@@ -1,17 +1,11 @@
 :root {
-    --accent-yellow: #ffd24e;
-    --accent-pink: #ed7dab;
-    --accent-red: #e1391c;
-    --accent-blue: #4f5b97;
-    --accent-green: #65b762;
-    --accent-burgundy: #712529;
+    --pink: #ed7dab;
+    --blue: #4e639c;
+    --brown: #7d3a43;
+    --beige: #f5e6c9;
+    --yellow: #fede63;
 
-    --accent-yellow-light: #ffd24e;
-    --accent-pink-light: #f1ccdc;
-    --accent-red-light: #e1391c;
-    --accent-blue-light: #4f5b97;
-    --accent-green-light: #65b762;
-    --accent-burgundy-light: #712529;
+    --accent-red: #e54e30;
 
     --chrome: hsl(357, 51%, 19%);
     --chrome-x1: hsl(357, 51%, 24%);
@@ -125,136 +119,6 @@ body {
 
 main.markdown {
     flex-grow: 1;
-    --page-width: 800px;
-
-    &.wide {
-        --page-width: 1200px;
-    }
-
-    section {
-        padding: var(--content-horiz-padding) 0;
-
-        .contents,
-        & > header {
-            max-width: var(--page-width);
-            margin: 0 auto;
-            //padding: 1em 0;
-            text-align: center;
-
-            padding: 0 var(--content-horiz-padding);
-        }
-    }
-
-    .links a,
-    a.links {
-        color: var(--chrome-x2);
-        text-decoration: underline;
-    }
-
-    section.markdown-contents {
-        background: var(--base);
-        color: var(--text);
-
-        p {
-            margin: 0;
-            padding: 0.5em 0;
-            text-indent: 2em;
-
-            &.drop-caps:first-letter {
-                text-indent: 0;
-
-                color: var(--accent-burgundy);
-
-                font-size: 4em;
-                font-weight: 600;
-                padding-top: 4px;
-                float: left;
-                padding-top: 1.05rem;
-                padding-right: 10px;
-            }
-        }
-
-        &.dark {
-            --base: #fff;
-            padding: 2em;
-        }
-
-        h2 {
-            text-align: left;
-            margin-top: 1em;
-            margin-bottom: 0;
-        }
-
-        .contents {
-            max-width: var(--page-width);
-            margin: 0 auto;
-        }
-
-        a {
-            color: var(--chrome-x2);
-            text-decoration: underline;
-        }
-
-        p {
-            font-size: 1.15em;
-            line-height: 180%;
-            text-align: left;
-        }
-    }
-
-    ul {
-        padding-left: 1em;
-
-        li {
-            list-style: disc;
-        }
-    }
-
-    & > div {
-        /* markdown wraps everything in a position:relative div that i don't know the effects off - negate it */
-        display: contents;
-
-        & > div {
-            display: contents;
-        }
-    }
-
-    h1,
-    h2 {
-        color: var(--header-color);
-        font-family: var(--rgb-font);
-        font-weight: 400;
-    }
-
-    h1 {
-        font-size: min(3.4em, 9vw);
-        text-transform: uppercase;
-        text-align: center;
-        letter-spacing: 0.025em;
-        line-height: 90%;
-        --dynamic-shadow: min(calc(1px + 0.3vw), 3px);
-        text-shadow: var(--dynamic-shadow) var(--dynamic-shadow) #00000066;
-
-        &.standalone {
-            max-width: var(--page-width);
-            margin: 0 auto;
-            padding: 1em var(--content-horiz-padding);
-        }
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    p {
-        margin: 0.5em 0;
-    }
-
-    em {
-        font-style: normal;
-        font-weight: 600;
-        color: var(--accent-burgundy);
-    }
 }
 
 .flexer {
