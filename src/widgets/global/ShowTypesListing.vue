@@ -107,17 +107,20 @@
 <style lang="scss">
     main.markdown section .contents.show-types-listing {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1em;
+        grid-template-columns: repeat(2, 1fr);
         padding: 2em var(--content-horiz-padding);
         padding-bottom: 8em;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 50px;
 
         @media (max-width: 1000px) {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
         }
 
         @media (max-width: 800px) {
             grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
 
         @media (max-width: 600px) {

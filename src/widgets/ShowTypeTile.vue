@@ -44,53 +44,53 @@
 </script>
 
 <template>
-    <a class="show-type-tile" :class="(showType.tags || [])[0]" :href="`/${showType.slug}${filterIfPresent}`">
-        <div class="cover-image" v-if="showType.coverThumb">
-            <video
-                v-if="showHovers && showType.hoverVideo"
-                :src="showType.hoverVideo"
-                v-show="active"
-                loop
-                muted
-                autoplay
-                playsinline
-                ref="video"
-                :poster="showType.coverThumb"
-            />
-            <img :src="showType.coverThumb" v-show="!showHovers || !showType.hoverVideo || !active" />
-        </div>
-        <header v-html="showType.title" />
+    <BorderBox class="show-type-tile">
+        <a :class="(showType.tags || [])[0]" :href="`/${showType.slug}${filterIfPresent}`">
+            <div class="cover-image" v-if="showType.coverThumb">
+                <video
+                    v-if="showHovers && showType.hoverVideo"
+                    :src="showType.hoverVideo"
+                    v-show="active"
+                    loop
+                    muted
+                    autoplay
+                    playsinline
+                    ref="video"
+                    :poster="showType.coverThumb"
+                />
+                <img :src="showType.coverThumb" v-show="!showHovers || !showType.hoverVideo || !active" />
+            </div>
+            <header v-html="showType.title" />
 
-        <div class="description">{{ showType.shortDescription }}</div>
+            <div class="description">{{ showType.shortDescription }}</div>
 
-        <div class="meta">
             <div class="tags">
                 <div v-for="tag in showType.tags.slice(0, 1)" :class="tag">{{ tag }}</div>
             </div>
-            <div class="dates">
-                <Icon name="calendar_month" />
-                <div>
-                    {{ dates }}
+
+            <div class="meta">
+                <div class="dates">
+                    <Icon name="calendar_month" />
+                    <div>
+                        {{ dates }}
+                    </div>
+                </div>
+                <div class="times">
+                    <Icon name="schedule" />
+                    <div>
+                        {{ times.join(", ") }}
+                    </div>
                 </div>
             </div>
-            <div class="times">
-                <Icon name="schedule" />
-                <div>
-                    {{ times.join(", ") }}
-                </div>
-            </div>
-        </div>
-    </a>
+        </a>
+    </BorderBox>
 </template>
 
 <style lang="scss">
     .show-type-tile {
         border-radius: 8px;
-        background: var(--light);
-        transition: border 300ms ease, box-shadow 300ms ease;
 
-        border: 2px solid var(--shadow);
-        box-shadow: 0 1px 5px var(--shadow);
+        transition: border 300ms ease, box-shadow 300ms ease;
 
         display: flex;
         flex-direction: column;
@@ -98,14 +98,20 @@
 
         --tile-padding: 25px;
 
-        overflow: hidden;
+        font-family: var(--body-font);
+        font-weight: 600;
 
-        & > * {
-            pointer-events: none;
+        & > .contents {
+            height: 100%;
+            background: var(--beige);
+            padding: 10px;
+            display: grid;
         }
 
-        &:hover {
-            --shadow: var(--accent-pink);
+        a {
+            cursor: pointer;
+            height: 100%;
+            overflow: hidden;
         }
 
         .cover-image {
@@ -121,20 +127,52 @@
         }
 
         header {
-            font-size: 1.25em;
+            font-size: 1.5em;
             font-weight: 600;
-            padding: 25px;
-            margin: 0;
-            padding-bottom: 5px;
+            padding: 10px;
+            text-align: center;
+            color: var(--brown);
+            font-family: var(--rgb-font);
         }
 
         .description {
             padding: 0 var(--tile-padding);
+            color: var(--label);
+            text-align: center;
+        }
+
+        .tags {
+            padding: 5px var(--tile-padding);
+            text-align: center;
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+
+            & > div {
+                font-weight: 600;
+                color: var(--accent-pink);
+
+                &.kids {
+                    color: var(--pink);
+                }
+
+                &.format {
+                    color: var(--green);
+                }
+
+                &.unique {
+                    color: var(--blue);
+                }
+            }
         }
 
         .meta {
             padding: 0 var(--tile-padding);
-            padding-bottom: var(--tile-padding);
+            padding-bottom: calc(var(--tile-padding) / 2);
+            display: grid;
+            gap: 5px;
         }
 
         .dates,
@@ -148,28 +186,10 @@
             }
         }
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            padding: 5px 0;
-
-            & > div {
-                font-weight: 600;
-                color: var(--accent-pink);
-
-                &.kids {
-                    color: var(--accent-yellow);
-                }
-
-                &.format {
-                    color: var(--accent-green);
-                }
-
-                &.unique {
-                    color: var(--accent-red);
-                }
-            }
+        @media (max-width: mixins.$break3) {
+            --tile-padding: 10px;
+            max-width: 400px;
+            margin: 0 auto;
         }
     }
 </style>
