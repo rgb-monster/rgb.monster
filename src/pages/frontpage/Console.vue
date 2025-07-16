@@ -38,6 +38,7 @@
         methods: {
             async handleDrag(evt, channel) {
                 evt.preventDefault();
+                this.dragging = true;
 
                 // after selecting we entertain the notion of drag
                 let dragElem = evt.target;
@@ -59,6 +60,7 @@
                 };
 
                 let release = evt => {
+                    this.dragging = false;
                     document.removeEventListener("mouseup", release);
                     document.removeEventListener("touchend", release);
                     document.removeEventListener("mousemove", dragAround);
@@ -84,7 +86,7 @@
 <template>
     <div class="console">
         <img src="/stage/console.webp" />
-        <div class="slider-box">
+        <div class="slider-box" :class="{dragging}">
             <img
                 ref="knob1"
                 class="knob knob-1"
@@ -128,21 +130,25 @@
             left: 8%;
             width: 63%;
             height: 50%;
-        }
 
-        .knob {
-            pointer-events: all;
-            width: 30%;
-            position: absolute;
-            left: 0;
-            cursor: grab;
+            .knob {
+                pointer-events: all;
+                width: 30%;
+                position: absolute;
+                left: 0;
+                cursor: grab;
 
-            &.knob-2 {
-                left: 30%;
+                &.knob-2 {
+                    left: 30%;
+                }
+
+                &.knob-3 {
+                    left: 72%;
+                }
             }
 
-            &.knob-3 {
-                left: 72%;
+            &.dragging .knob {
+                cursor: grabbing;
             }
         }
 
