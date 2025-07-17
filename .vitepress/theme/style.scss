@@ -4,6 +4,8 @@
     --brown: #7d3a43;
     --beige: #f5e6c9;
     --yellow: #fede63;
+    --light: #fff;
+    --dark: #333;
 
     --pink-faint: #ed7dab88;
     --blue-faint: #4e639c88;
@@ -48,7 +50,7 @@
 
 body {
     font-family: var(--body-font);
-    font-size: min(1.4em, 4vw);
+    font-size: min(1.2em, 4vw);
 }
 
 h1,
@@ -99,6 +101,15 @@ section {
     &.with-confetti {
         background-image: url(/new/confetti.svg);
         background-size: 30%;
+    }
+}
+
+em {
+    font-style: normal;
+    color: var(--pink);
+
+    &.red {
+        color: var(--accent-red);
     }
 }
 

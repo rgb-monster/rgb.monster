@@ -22,7 +22,7 @@
     .ink-header-container {
         position: relative;
         font-size: var(--h2-sizing);
-        height: 3.5em;
+        height: min(3.5em, 12vw);
         width: 100%;
 
         .ink-header {

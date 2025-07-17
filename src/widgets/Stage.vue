@@ -215,11 +215,11 @@
         </svg>
 
         <div class="projector-screen">
-            <BorderBox shadow="true" :radius="0.3">
+            <BorderBox shadow="true" :radius="20">
                 <div class="video-box" :style="{background: screenColor}">
                     <h1>We are RGB Monster!</h1>
 
-                    <BorderBox>
+                    <BorderBox :radius="10">
                         <div class="presenter-screen">
                             <img :src="currentShow" />
                         </div>
@@ -376,6 +376,7 @@
 
             .intro {
                 color: var(--brown);
+                font-size: 1.2em;
                 font-weight: 600;
                 line-height: 140%;
                 text-align: center;

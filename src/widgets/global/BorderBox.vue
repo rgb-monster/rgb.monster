@@ -10,7 +10,7 @@
             shadow: [Boolean, String],
             radius: {
                 type: Number,
-                default: 20,
+                default: 10,
             },
             jaggedness: {
                 type: Number,
@@ -159,9 +159,12 @@
                 let randomFunc = this.createSeededRandom(this.seed);
 
                 // Generate the mask using the full jagged edge logic
+                let radius = this.radius < 1 ? this.radius * 100 * Math.min(window.innerWidth / 1000, 1) : this.radius;
+                let jaggedness = this.jaggedness * Math.max(Math.min(window.innerWidth / 500, 1), 0.1);
+
                 let maskUrl = this.createJaggedRectMask(box.width, box.height, randomFunc, {
-                    cornerRadius: this.radius < 1 ? this.radius * 100 * (window.innerWidth / 1000) : this.radius,
-                    jaggedness: this.jaggedness,
+                    cornerRadius: radius,
+                    jaggedness: jaggedness,
                     pointDensity: this.pointDensity,
                     maxSpikeFactor: 0.2,
                 });
