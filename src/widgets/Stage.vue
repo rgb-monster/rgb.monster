@@ -1,6 +1,6 @@
 <script>
     import chroma from "chroma-js";
-    import Console from "./Console.vue";
+    import Console from "./RGBConsole.vue";
 
     export default {
         name: "FrontpageStage",
