@@ -397,81 +397,97 @@
             .stage {
                 width: 100%;
             }
+        }
 
-            .laptop-box {
-                position: absolute;
-                width: 40vw;
-                left: 1vw;
-                bottom: 12vw;
+        .laptop-box {
+            position: absolute;
+            width: 40vw;
+            left: 1vw;
+            bottom: 12vw;
 
-                z-index: 100;
-                pointer-events: none;
+            z-index: 100;
+            pointer-events: none;
 
-                .laptop {
-                    height: 100%;
-                }
-
-                .laptop-screen {
-                    position: absolute;
-                    left: 0;
-                    width: 70%;
-                    left: 14%;
-                    top: 9%;
-                    border: 4px solid #000;
-                    border-radius: 1vw;
-                }
-
-                .laptop-button {
-                    width: 30%;
-                    height: 20%;
-                    position: absolute;
-                    bottom: 12%;
-                    background-image: url(/stage/laptop-button.webp);
-                    background-size: 100% 100%;
-                    background-repeat: no-repeat;
-                    pointer-events: all;
-
-                    &.left {
-                        left: 5vw;
-                        transform: scaleX(-1);
-                    }
-
-                    &.right {
-                        right: 5vw;
-                    }
-
-                    &:active {
-                        background-image: url(/stage/laptop-button-pressed.webp);
-                    }
-                }
+            .laptop {
+                height: 100%;
             }
 
-            .projector-box {
+            .laptop-screen {
                 position: absolute;
-                width: 15vw;
-                bottom: 15vw;
-                left: 42vw;
-                pointer-events: none;
-                z-index: 500;
+                left: 0;
+                width: 70%;
+                left: 14%;
+                top: 9%;
+                border: 4px solid #000;
+                border-radius: 1vw;
+            }
 
-                .projector {
-                    z-index: 100;
-                    width: 100%;
+            .laptop-button {
+                width: 30%;
+                height: 20%;
+                position: absolute;
+                bottom: 12%;
+                background-image: url(/stage/laptop-button.webp);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                pointer-events: all;
+
+                &.left {
+                    left: 5vw;
+                    transform: scaleX(-1);
                 }
 
-                .projector-beam {
-                    width: 100%;
-                    top: 0;
-                    z-index: 50;
-                    margin-bottom: -60%;
+                &.right {
+                    right: 5vw;
                 }
+
+                &:active {
+                    background-image: url(/stage/laptop-button-pressed.webp);
+                }
+            }
+        }
+
+        .projector-box {
+            position: absolute;
+            width: 15vw;
+            bottom: 15vw;
+            left: 42vw;
+            pointer-events: none;
+            z-index: 500;
+
+            .projector {
+                z-index: 100;
+                width: 100%;
+            }
+
+            .projector-beam {
+                width: 100%;
+                top: 0;
+                z-index: 50;
+                margin-bottom: -60%;
+            }
+        }
+
+        .console {
+            position: absolute;
+            width: 37vw;
+            bottom: 13vw;
+            right: 1.5vw;
+        }
+
+        @media (max-width: 500px) {
+            .projector-box {
+                display: none;
+            }
+
+            .laptop-box {
+                width: 46vw;
+                bottom: 8vw;
             }
 
             .console {
-                position: absolute;
-                width: 37vw;
-                bottom: 13vw;
-                right: 1.5vw;
+                width: 46vw;
+                bottom: 9vw;
             }
         }
     }
