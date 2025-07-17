@@ -1,5 +1,5 @@
 <script>
-    import Stage from "./Stage.vue";
+    import Stage from "/src/widgets/Stage.vue";
 
     export default {
         name: "Frontpage",
