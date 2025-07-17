@@ -401,7 +401,7 @@
             .laptop-box {
                 position: absolute;
                 width: 40vw;
-                left: 2vw;
+                left: 1vw;
                 bottom: 12vw;
 
                 z-index: 100;
@@ -448,10 +448,11 @@
 
             .projector-box {
                 position: absolute;
-                width: 10vw;
-                top: 3vw;
-                left: 45vw;
+                width: 15vw;
+                bottom: 15vw;
+                left: 42vw;
                 pointer-events: none;
+                z-index: 500;
 
                 .projector {
                     z-index: 100;
@@ -470,7 +471,7 @@
                 position: absolute;
                 width: 37vw;
                 bottom: 13vw;
-                right: 2.5vw;
+                right: 1.5vw;
             }
         }
     }
