@@ -1,4 +1,5 @@
 <script>
+    import chroma from "chroma-js";
     import Console from "./Console.vue";
 
     export default {
@@ -8,7 +9,10 @@
         },
         data() {
             return {
-                colors: ["yellow", "#f5e6c9"],
+                colors: ["yellow", "#ffe9bd"],
+                wallColor: [],
+                screenColor: "",
+
                 shows: [
                     "https://storage.googleapis.com/rgb-monster-assets/muck/cover.webp",
                     "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",
@@ -37,6 +41,16 @@
         methods: {
             updateColor({color, mode}) {
                 this.colors[mode] = color;
+                let [h, s, l] = chroma(color).hsl();
+                if (mode == 0) {
+                    s = s * 10;
+                    l = l * 50;
+                    this.wallColor = [h, s, l];
+                } else if (mode == 1) {
+                    s = s * 0.6;
+                    l = l;
+                    this.screenColor = chroma.hsl(h, s, l).hex();
+                }
             },
             changeShow(direction) {
                 this.currentShowIdx = (this.currentShowIdx + direction + this.shows.length) % this.shows.length;
@@ -44,46 +58,24 @@
         },
         computed: {
             beamColor: state => state.colors[0],
-            titleColor: state => state.colors[1],
             currentShow: state => state.shows[state.currentShowIdx],
+        },
+
+        mounted() {
+            this.colors.forEach((color, mode) => {
+                this.updateColor({color, mode});
+            });
         },
     };
 </script>
 
 <template>
-    <div class="frontpage-stage">
-        <svg height="0" width="0">
-            <defs>
-                <filter id="stage-title-outline">
-                    <!-- 1. Enlarge the shape -->
-                    <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="3"></feMorphology>
-
-                    <!-- 2. Blur the enlarged shape to round the corners -->
-                    <feGaussianBlur in="DILATED" result="BLURRED" stdDeviation="3"></feGaussianBlur>
-
-                    <!-- 3. Create the outline color -->
-                    <feFlood flood-color="#f5e6c9" result="flood"></feFlood>
-
-                    <!-- 4. Composite the color into the blurred shape -->
-                    <feComposite in="flood" in2="BLURRED" operator="in" result="OUTLINE_GLOW"></feComposite>
-
-                    <!-- 5. Merge the glow and the original text -->
-                    <feMerge>
-                        <feMergeNode in="OUTLINE_GLOW" />
-                        <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                </filter>
-            </defs>
-        </svg>
-
+    <div class="rgb-stage" :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}">
         <div class="top-fringe" />
         <img class="curtain left" src="/stage/curtain-left.webp" />
         <img class="curtain right" src="/stage/curtain-right.webp" />
-        <img class="stage" src="/stage/stage.webp" />
-
         <img class="fixture left" src="/stage/light-left.webp" />
         <img class="fixture right" src="/stage/light-right.webp" />
-
         <svg
             width="573.548"
             height="380.793"
@@ -222,21 +214,9 @@
             />
         </svg>
 
-        <div class="laptop-box">
-            <img class="laptop" src="/stage/laptop.webp" />
-            <img class="laptop-screen" :src="currentShow" />
-            <button class="laptop-button left" @click="changeShow(-1)" />
-            <button class="laptop-button right" @click="changeShow(1)" />
-        </div>
-
-        <img class="projector" src="/stage/projector.webp" />
-        <img class="projector-beam" src="/stage/light-beam-projector.webp" />
-
-        <Console :colors="colors" @update="updateColor($event)" />
-
         <div class="projector-screen">
             <BorderBox shadow="true" :radius="0.3">
-                <div class="video-box" :style="{background: titleColor}">
+                <div class="video-box" :style="{background: screenColor}">
                     <h1>We are RGB Monster!</h1>
 
                     <BorderBox>
@@ -251,13 +231,55 @@
                     </div>
                 </div>
             </BorderBox>
+            <svg height="0" width="0">
+                <defs>
+                    <filter id="stage-title-outline">
+                        <!-- 1. Enlarge the shape -->
+                        <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="3"></feMorphology>
+
+                        <!-- 2. Blur the enlarged shape to round the corners -->
+                        <feGaussianBlur in="DILATED" result="BLURRED" stdDeviation="3"></feGaussianBlur>
+
+                        <!-- 3. Create the outline color -->
+                        <feFlood flood-color="#f5e6c9" result="flood"></feFlood>
+
+                        <!-- 4. Composite the color into the blurred shape -->
+                        <feComposite in="flood" in2="BLURRED" operator="in" result="OUTLINE_GLOW"></feComposite>
+
+                        <!-- 5. Merge the glow and the original text -->
+                        <feMerge>
+                            <feMergeNode in="OUTLINE_GLOW" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="stage-box">
+            <img class="stage" src="/stage/stage.webp" />
+
+            <div class="laptop-box">
+                <img class="laptop" src="/stage/laptop.webp" />
+                <img class="laptop-screen" :src="currentShow" />
+                <button class="laptop-button left" @click="changeShow(-1)" />
+                <button class="laptop-button right" @click="changeShow(1)" />
+            </div>
+
+            <div class="projector-box">
+                <img class="projector-beam" src="/stage/light-beam-projector.webp" />
+                <img class="projector" src="/stage/projector.webp" />
+            </div>
+
+            <Console :colors="colors" @update="updateColor($event)" />
         </div>
     </div>
 </template>
 
 <style lang="scss">
-    .frontpage-stage {
-        background: var(--pink);
+    .rgb-stage {
+        --fixture-width: 12vw;
+
         height: 100vw;
 
         .top-fringe {
@@ -279,7 +301,7 @@
             position: absolute;
             z-index: 400;
             top: 0;
-            height: 53vw;
+            height: 47vw;
 
             &.left {
                 left: 0;
@@ -290,7 +312,6 @@
             }
         }
 
-        --fixture-width: 12vw;
         .fixture {
             position: absolute;
             z-index: 400;
@@ -326,85 +347,14 @@
             }
         }
 
-        .laptop-box {
-            position: absolute;
-            top: 65vw;
-            left: 5vw;
-            z-index: 100;
-            pointer-events: none;
-
-            .laptop {
-                width: 30vw;
-            }
-
-            .laptop-screen {
-                position: absolute;
-                left: 0;
-                width: 70%;
-                left: 14%;
-                top: 10%;
-            }
-
-            .laptop-button {
-                width: 6vw;
-                height: 3.5vw;
-                position: absolute;
-                bottom: 3vw;
-                background-image: url(/stage/laptop-button.webp);
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-                pointer-events: all;
-
-                &.left {
-                    left: 5vw;
-                    transform: scaleX(-1);
-                }
-
-                &.right {
-                    right: 5vw;
-                }
-
-                &:active {
-                    background-image: url(/stage/laptop-button-pressed.webp);
-                }
-            }
-        }
-
-        .projector {
-            position: absolute;
-            width: 10vw;
-            top: 65vw;
-            left: 45vw;
-            z-index: 100;
-        }
-
-        .projector-beam {
-            position: absolute;
-            width: 10vw;
-            top: 53vw;
-            left: 45vw;
-            z-index: 50;
-        }
-
-        .console {
-            position: absolute;
-            width: 30vw;
-            top: 70vw;
-            right: 3vw;
-        }
-
-        .stage {
-            width: 100%;
-            //margin-top: calc(-50vw * 0.1);
-            position: absolute;
-            top: 45vw;
-        }
-
         .projector-screen {
+            position: relative;
             align-items: center;
             padding-top: 2vw;
-            width: 75vw;
+            width: 60vw;
             margin: 0 auto;
+            z-index: 200;
+            margin-bottom: -7vw;
 
             .video-box {
                 background: var(--beige);
@@ -438,6 +388,89 @@
             .box-container {
                 position: relative;
                 //padding: 20px;
+            }
+        }
+
+        .stage-box {
+            position: relative;
+
+            .stage {
+                width: 100%;
+            }
+
+            .laptop-box {
+                position: absolute;
+                width: 40vw;
+                left: 2vw;
+                bottom: 12vw;
+
+                z-index: 100;
+                pointer-events: none;
+
+                .laptop {
+                    height: 100%;
+                }
+
+                .laptop-screen {
+                    position: absolute;
+                    left: 0;
+                    width: 70%;
+                    left: 14%;
+                    top: 9%;
+                    border: 4px solid #000;
+                    border-radius: 1vw;
+                }
+
+                .laptop-button {
+                    width: 30%;
+                    height: 20%;
+                    position: absolute;
+                    bottom: 12%;
+                    background-image: url(/stage/laptop-button.webp);
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    pointer-events: all;
+
+                    &.left {
+                        left: 5vw;
+                        transform: scaleX(-1);
+                    }
+
+                    &.right {
+                        right: 5vw;
+                    }
+
+                    &:active {
+                        background-image: url(/stage/laptop-button-pressed.webp);
+                    }
+                }
+            }
+
+            .projector-box {
+                position: absolute;
+                width: 10vw;
+                top: 3vw;
+                left: 45vw;
+                pointer-events: none;
+
+                .projector {
+                    z-index: 100;
+                    width: 100%;
+                }
+
+                .projector-beam {
+                    width: 100%;
+                    top: 0;
+                    z-index: 50;
+                    margin-bottom: -60%;
+                }
+            }
+
+            .console {
+                position: absolute;
+                width: 37vw;
+                bottom: 13vw;
+                right: 2.5vw;
             }
         }
     }
