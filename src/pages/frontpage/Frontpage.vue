@@ -46,8 +46,6 @@
 
 <style lang="scss">
     main.markdown .frontpage {
-        font-family: var(--rgb-font);
-
         section {
             main {
                 max-width: 1200px;
@@ -101,7 +99,7 @@
                     padding: 20px 50px;
                     color: var(--beige);
 
-                    font-family: var(--rgb-font);
+                    font-family: var(--header-font);
                 }
             }
         }

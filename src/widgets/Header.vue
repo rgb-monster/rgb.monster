@@ -30,7 +30,7 @@
         a {
             padding: 10px;
 
-            font-family: var(--rgb-font);
+            font-family: var(--header-font);
             text-decoration: none;
             font-weight: 400;
             font-size: 1.2em;

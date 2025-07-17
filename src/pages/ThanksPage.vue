@@ -209,7 +209,7 @@
                                         text-align: center;
                                         padding: 10px 20px;
                                         border-radius: 10px;
-                                        font-family: var(--rgb-font);
+                                        font-family: var(--header-font);
                                         text-transform: uppercase;
                                         font-size: 1.2em;
                                         margin: 1em 0;
@@ -257,7 +257,7 @@
                                             text-align: center;
                                             padding: 20px;
                                             border-radius: 10px;
-                                            font-family: var(--rgb-font);
+                                            font-family: var(--header-font);
                                             text-transform: uppercase;
                                             font-size: 1.2em;
                                         "
