@@ -86,60 +86,78 @@
 <template>
     <div class="console">
         <img src="/stage/console.webp" />
-        <div class="slider-box" :class="{dragging}">
-            <img
-                ref="knob1"
-                class="knob knob-1"
-                src="/stage/console-knob-1.webp"
-                @mousedown="handleDrag($event, 'r')"
-                @touchstart="handleDrag($event, 'r')"
-                :style="{bottom: `${(channels.r / 255) * 80}%`}"
-            />
-            <img
-                ref="knob2"
-                class="knob knob-2"
-                src="/stage/console-knob-2.webp"
-                @mousedown="handleDrag($event, 'g')"
-                @touchstart="handleDrag($event, 'g')"
-                :style="{bottom: `${(channels.g / 255) * 80}%`}"
-            />
-            <img
-                ref="knob3"
-                class="knob knob-3"
-                src="/stage/console-knob-3.webp"
-                @mousedown="handleDrag($event, 'b')"
-                @touchstart="handleDrag($event, 'b')"
-                :style="{bottom: `${(channels.b / 255) * 80}%`}"
-            />
+        <div class="slider-box-container" @mousedown.stop.prevent="" @touchstart.stop.prevent="">
+            <div class="slider-box" :class="{dragging}">
+                <img
+                    ref="knob1"
+                    class="knob knob-1"
+                    src="/stage/console-knob-1.webp"
+                    @mousedown="handleDrag($event, 'r')"
+                    @touchstart="handleDrag($event, 'r')"
+                    :style="{bottom: `${(channels.r / 255) * 80}%`}"
+                />
+                <img
+                    ref="knob2"
+                    class="knob knob-2"
+                    src="/stage/console-knob-2.webp"
+                    @mousedown="handleDrag($event, 'g')"
+                    @touchstart="handleDrag($event, 'g')"
+                    :style="{bottom: `${(channels.g / 255) * 80}%`}"
+                />
+                <img
+                    ref="knob3"
+                    class="knob knob-3"
+                    src="/stage/console-knob-3.webp"
+                    @mousedown="handleDrag($event, 'b')"
+                    @touchstart="handleDrag($event, 'b')"
+                    :style="{bottom: `${(channels.b / 255) * 80}%`}"
+                />
+            </div>
         </div>
 
-        <button class="button button-1" @click="mode = 0" :class="{active: mode == 0}"></button>
-        <button class="button button-2" @click="mode = 1" :class="{active: mode == 1}"></button>
+        <div class="button-box">
+            <button class="button button-1" @click="mode = 0" :class="{active: mode == 0}"></button>
+            <button class="button button-2" @click="mode = 1" :class="{active: mode == 1}"></button>
+        </div>
     </div>
 </template>
 
 <style lang="scss">
     .console {
         position: relative;
-        pointer-events: none;
+
         user-select: none;
+
+        & > * {
+            //pointer-events: none;
+        }
+
+        .slider-box-container {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 75%;
+        }
 
         .slider-box {
             position: absolute;
             top: 27%;
             left: 8%;
-            width: 63%;
+            width: 86%;
             height: 50%;
 
             .knob {
                 pointer-events: all;
                 width: 30%;
                 position: absolute;
-                left: 0;
                 cursor: grab;
 
+                &.knob-1 {
+                    left: 2%;
+                }
+
                 &.knob-2 {
-                    left: 30%;
+                    left: 35%;
                 }
 
                 &.knob-3 {
