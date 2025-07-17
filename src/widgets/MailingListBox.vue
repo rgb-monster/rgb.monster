@@ -58,7 +58,7 @@
                     <BorderBox class="inner" :radius="10">
                         <div class="email-container">
                             <BorderBox :radius="10">
-                                <input type="email" placeholder="email@domain.com" v-model="email" />
+                                <input type="email" placeholder="email@myspace.com" v-model="email" />
                             </BorderBox>
 
                             <BorderBox>
@@ -154,7 +154,11 @@
             }
         }
 
-        @media (max-width: mixins.$break-mob) {
+        @media (max-width: 600px) {
+            padding: 3em 1em;
+            padding-bottom: 1em;
+            gap: 1em;
+
             .email-form {
                 background: var(--beige);
 
@@ -163,7 +167,7 @@
                     gap: 10px;
 
                     input {
-                        background: #fff;
+                        background: var(--light);
                     }
 
                     button {
