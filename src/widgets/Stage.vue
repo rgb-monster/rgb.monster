@@ -376,7 +376,7 @@
 
             .intro {
                 color: var(--brown);
-                font-size: 1.2em;
+                font-size: 1.1em;
                 font-weight: 600;
                 line-height: 140%;
                 text-align: center;
@@ -473,7 +473,15 @@
             right: 1.5vw;
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: mixins.$break3) {
+            .projector-screen {
+                width: 74vw;
+                .intro {
+                    font-size: 3vw;
+                    padding: 1vw 3vw;
+                }
+            }
+
             .projector-box {
                 display: none;
             }
