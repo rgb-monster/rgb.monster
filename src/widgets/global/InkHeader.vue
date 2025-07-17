@@ -14,22 +14,22 @@
 
 <template>
     <div class="ink-header-container">
-        <h2 class="ink-header"><slot /></h2>
+        <div class="ink-header"><slot /></div>
     </div>
 </template>
 
 <style lang="scss">
     .ink-header-container {
         position: relative;
-        font-size: 2em;
-        height: 4em;
+        font-size: var(--h2-sizing);
+        height: 3.5em;
         width: 100%;
 
         .ink-header {
             position: absolute;
             left: 0;
             right: 0;
-            top: -10px;
+            top: -30px;
 
             background: var(--beige);
             mask-image: url(/new/ink-swipe.webp);

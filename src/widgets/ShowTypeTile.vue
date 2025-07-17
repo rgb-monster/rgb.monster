@@ -105,7 +105,7 @@
             height: 100%;
             padding: 20px;
             display: grid;
-            background: beige;
+            background: var(--beige);
         }
 
         a {
@@ -127,7 +127,7 @@
         }
 
         header {
-            font-size: 1.5em;
+            font-size: 1.2em;
             font-weight: 600;
             padding: 10px;
             text-align: center;
@@ -149,11 +149,9 @@
             flex-wrap: wrap;
             gap: 5px;
             justify-content: center;
+            color: var(--pink);
 
             & > div {
-                font-weight: 600;
-                color: var(--accent-pink);
-
                 &.kids {
                     color: var(--pink);
                 }
@@ -169,8 +167,7 @@
         }
 
         .meta {
-            padding: 0 var(--tile-padding);
-            padding-bottom: calc(var(--tile-padding) / 2);
+            padding: calc(var(--tile-padding) / 2) var(--tile-padding);
             display: grid;
             gap: 5px;
         }
@@ -180,6 +177,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            font-size: 0.85em;
 
             .icon {
                 font-size: 1.25em;

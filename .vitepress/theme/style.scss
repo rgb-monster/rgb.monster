@@ -5,6 +5,12 @@
     --beige: #f5e6c9;
     --yellow: #fede63;
 
+    --pink-faint: #ed7dab88;
+    --blue-faint: #4e639c88;
+    --brown-faint: #7d3a4388;
+    --beige-faint: #f5e6c988;
+    --yellow-faint: #fede6388;
+
     --accent-red: #e54e30;
 
     --chrome: hsl(357, 51%, 19%);
@@ -35,21 +41,64 @@
     --header-color: var(--accent-burgundy);
 
     --transparent-shadow: rgba(0, 0, 0, 0.4);
+
+    --h1-sizing: min(2.5em, 10vw);
+    --h2-sizing: min(2em, 7vw);
 }
 
 body {
     font-family: var(--body-font);
+    font-size: min(1.4em, 4vw);
 }
 
 h1,
 h2 {
     font-family: var(--header-font);
+    text-transform: uppercase;
+    font-weight: 400;
 }
 
-.theme-container {
-    &.dark {
-        --base: #333;
-        --text: #eee;
+h1 {
+    font-size: var(--h1-sizing);
+}
+
+h2 {
+    font-size: var(--h2-sizing);
+}
+
+section {
+    main {
+        max-width: 1000px;
+        position: relative;
+        margin: 0 auto;
+
+        padding: 0 1em;
+        padding-bottom: 50px;
+    }
+
+    &.pink {
+        background-color: var(--pink);
+    }
+
+    &.blue {
+        background-color: var(--blue);
+    }
+
+    &.brown {
+        background-color: var(--brown);
+    }
+
+    &.beige {
+        background-color: var(--beige);
+    }
+
+    &.yellow {
+        background-color: var(--yellow);
+    }
+
+    &.with-confetti {
+        background-image: url(/new/confetti.svg);
+        background-size: 30%;
     }
 }
 

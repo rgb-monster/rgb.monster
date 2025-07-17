@@ -280,7 +280,7 @@
     .rgb-stage {
         --fixture-width: 12vw;
 
-        height: 100vw;
+        padding-bottom: 5vw;
 
         .top-fringe {
             position: absolute;
@@ -368,8 +368,6 @@
             font-size: 1.5vw;
 
             h1 {
-                font-size: 2.5em;
-                font-weight: 600;
                 margin-bottom: -1vw;
                 margin-top: -0.5vw;
 
@@ -378,7 +376,6 @@
 
             .intro {
                 color: var(--brown);
-                font-size: 1.2em;
                 font-weight: 600;
                 line-height: 140%;
                 text-align: center;

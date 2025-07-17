@@ -1,4 +1,5 @@
 <script>
+    import MailingListBox from "/src/widgets/MailingListBox.vue";
     import Stage from "/src/widgets/Stage.vue";
 
     export default {
@@ -8,6 +9,7 @@
             slug: String,
         },
         components: {
+            MailingListBox,
             Stage,
         },
         data() {
@@ -24,7 +26,16 @@
             <InkHeader>Edinburgh Fringe 2025</InkHeader>
             <ShowTypesListing filter="Edinburgh 2025" />
 
-            <main style="max-width: 1200px; margin: 0 auto">
+            <main>
+                <MailingListBox list="edinburgh">
+                    <template #details>
+                        We produce lots of different comedy shows, and send occasional emails with ticket offers, show
+                        recommendations, and insider tips. Subscribe to our
+                        <em class="red">no-spam Edinburgh Fringe Festival</em>
+                        comedy mailing list and don't miss a show!
+                    </template>
+                </MailingListBox>
+
                 <BorderBox type="long" shadow="faint">
                     <button class="cta">
                         <BorderBox type="long">
@@ -46,43 +57,12 @@
 
 <style lang="scss">
     main.markdown .frontpage {
-        section {
-            main {
-                max-width: 1200px;
-                position: relative;
-                margin: 0 auto;
-                padding-bottom: 80px;
-            }
-
-            &.yellow {
-                background-color: var(--yellow);
-            }
-
-            &.blue {
-                background-color: var(--blue);
-            }
-
-            &.ping {
-                background-color: var(--blue);
-            }
-
-            &.with-confetti {
-                background-image: url(/new/confetti.svg);
-                background-size: 30%;
-            }
-        }
-
         section.current-festival {
             padding-bottom: 50px;
             gap: 30px;
 
-            h2 {
-                background: var(--beige);
+            .ink-header {
                 color: var(--blue);
-            }
-
-            main {
-                padding: 50px 0;
             }
 
             .cta {
@@ -93,7 +73,7 @@
 
                 .cta-inner {
                     background: var(--pink);
-                    font-size: 2em;
+                    font-size: var(--h2-sizing);
                     text-transform: uppercase;
                     font-weight: 400;
                     padding: 20px 50px;
@@ -102,6 +82,10 @@
                     font-family: var(--header-font);
                 }
             }
+        }
+
+        .monster-vision .ink-header {
+            color: var(--pink);
         }
     }
 </style>
