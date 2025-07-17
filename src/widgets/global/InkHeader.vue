@@ -36,7 +36,7 @@
             mask-size: cover;
             mask-position: center;
 
-            font-family: var(--rgb-font);
+            font-family: var(--header-font);
             padding: 0.7em;
             text-align: center;
             text-transform: uppercase;

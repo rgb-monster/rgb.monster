@@ -742,7 +742,7 @@
             padding-top: 0;
 
             .location {
-                font-family: var(--rgb-font);
+                font-family: var(--header-font);
                 color: #999;
                 font-size: 1.25em;
                 font-weight: 400;
@@ -776,7 +776,7 @@
             }
 
             .tags {
-                font-family: var(--rgb-font);
+                font-family: var(--header-font);
                 color: var(--accent-pink);
                 font-size: 1.25em;
                 font-weight: 400;

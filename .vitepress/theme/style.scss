@@ -29,42 +29,21 @@
 
     --shadow: #ece3cc;
 
-    --rgb-font: Hammersmith One;
-
     --body-font: Lato, Arial, Helvetica;
 
+    --header-font: Hammersmith One;
     --header-color: var(--accent-burgundy);
 
     --transparent-shadow: rgba(0, 0, 0, 0.4);
 }
 
-.material-icons {
-    font-family: "Material Icons";
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px; /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-
-    /* Support for IE. */
-    font-feature-settings: "liga";
-}
-
 body {
     font-family: var(--body-font);
+}
+
+h1,
+h2 {
+    font-family: var(--header-font);
 }
 
 .theme-container {
@@ -167,4 +146,29 @@ button:disabled,
 button.disabled,
 a.disabled {
     pointer-events: none;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: "liga";
 }

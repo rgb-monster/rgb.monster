@@ -74,7 +74,7 @@
             gap: 50px;
 
             font-size: 1.2rem;
-            font-family: var(--rgb-font);
+            font-family: var(--header-font);
             align-items: center;
         }
 

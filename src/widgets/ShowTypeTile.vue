@@ -132,7 +132,7 @@
             padding: 10px;
             text-align: center;
             color: var(--brown);
-            font-family: var(--rgb-font);
+            font-family: var(--header-font);
         }
 
         .description {
