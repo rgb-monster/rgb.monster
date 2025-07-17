@@ -88,7 +88,7 @@
 
 <template>
     <section>
-        <div class="contents show-types-listing">
+        <main class="contents show-types-listing">
             <ShowTypeTile
                 v-for="showType in showTypes"
                 ref="tiles"
@@ -99,7 +99,7 @@
                 @mouseover="activeTile = showType.slug"
                 @mouseout="activeTile = null"
             />
-        </div>
+        </main>
     </section>
 </template>
 
@@ -108,8 +108,6 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         padding: 2em var(--content-horiz-padding);
-        padding-bottom: 8em;
-        max-width: 1200px;
         margin: 0 auto;
         gap: 50px;
 
