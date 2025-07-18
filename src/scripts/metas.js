@@ -8,7 +8,7 @@ export const metas = [
         cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/muck/cover-thumb.webp",
         short_description: "Dark comedy (by nice comedians)",
         description: "Dark comedy (by nice comedians)",
-        tickets: "https://www.edfringe.com/tickets/",
+        tickets: "https://www.edfringe.com/tickets/whats-on/muck-dark-comedy-by-nice-comedians",
     },
 
     {
@@ -450,6 +450,33 @@ export const metas = [
                 url: "https://www.edfringe.com/tickets/whats-on/this-is-your-trial-the-fully-improvised-comedy-courtroom",
             },
         ],
+    },
+
+    {
+        show_type: "lock-in",
+        slug: "lock-in",
+        title: "Comedy Lock-In",
+        tags: ["compilation"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/comedy-lock-in/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/comedy-lock-in/cover-thumb.webp",
+        square: "https://storage.googleapis.com/rgb-monster-assets/comedy-lock-in/square.webp",
+        short_description: "Three top acts and boozy late-night banter!",
+        description:
+            "One of Edinburgh's longest-running gigs now nightly at the Fringe. Above the iconic Beehive Inn, join our award-winning resident MC as they present two top acts from the festival doing extended late night sets. Grab a pint, and join us for The Lock In, where what happens in The Attic... stays in The Attic!",
+        tickets: "https://www.edfringe.com/tickets/whats-on/comedy-lock-in-at-the-attic",
+    },
+
+    {
+        show_type: "bad-dates",
+        slug: "bad-dates",
+        title: "Bad Dates Anonymous",
+        tags: ["compilation"],
+        cover: "https://storage.googleapis.com/rgb-monster-assets/bad-dates/cover.webp",
+        cover_thumb: "https://storage.googleapis.com/rgb-monster-assets/bad-dates/cover-thumb.webp",
+        short_description: "Three top acts and boozy late-night banter!",
+        description:
+            "Three top comics spill their worst dating disaster stories with unfiltered stand-up on sex and relationships. Plus we'll share your dating horror stories anonymously live on stage! If your dating life is a joke, this is the show for you. Whether you've found love, are forever single, or are somewhere in between, you'll leave feeling happier about your dating mishaps!",
+        tickets: "https://www.edfringe.com/tickets/whats-on/bad-dates-anonymous",
     },
 ];
 
