@@ -6,29 +6,37 @@ export async function loadShowTypes() {
     }
 
     try {
-        const response = await fetch(
+        let metasSources = [
             "https://storage.googleapis.com/confirmed-static-api/rgb-monster/show-types.json",
-            {credentials: "omit"}
-        );
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            "https://storage.googleapis.com/confirmed-static-api/rgb-presents/show-types.json",
+        ];
+
+        let allShowTypes = [];
+
+        for (let src of metasSources) {
+            const response = await fetch(src, {credentials: "omit"});
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            let showTypes = await response.json();
+
+            showTypes = showTypes
+                .filter(showType => Object.keys(showType.meta).length > 0)
+                .map(showType => {
+                    let meta = {...showType, ...showType.meta};
+                    delete meta.meta;
+
+                    meta.tags = (meta.tags || []).map(tag => tag.tag);
+                    meta.slug = meta.slug || meta.id;
+                    meta.title = meta.title || meta.name;
+                    delete meta.name;
+                    return meta;
+                });
+
+            allShowTypes = [...allShowTypes, ...showTypes];
         }
-        let showTypes = await response.json();
 
-        showTypes = showTypes
-            .filter(showType => Object.keys(showType.meta).length > 0)
-            .map(showType => {
-                let meta = {...showType, ...showType.meta};
-                delete meta.meta;
-
-                meta.tags = (meta.tags || []).map(tag => tag.tag);
-                meta.slug = meta.slug || meta.id;
-                meta.title = meta.title || meta.name;
-                delete meta.name;
-                return meta;
-            });
-
-        byShowType = Object.fromEntries(showTypes.map(showType => [showType.id, showType]));
+        byShowType = Object.fromEntries(allShowTypes.map(showType => [showType.id, showType]));
     } catch (e) {
         console.error(`Failed to fetch remote data: ${e.message}`);
         byShowType = {};
