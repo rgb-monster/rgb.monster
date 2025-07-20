@@ -278,9 +278,15 @@
 
 <style lang="scss">
     .rgb-stage {
-        --fixture-width: 12vw;
+        --fixture-width: 12cqmin;
+
+        width: 100vw;
+        max-width: min(100vw, 100vh);
+        position: relative;
 
         padding-bottom: 5vw;
+
+        margin: 0 auto;
 
         .top-fringe {
             position: absolute;
@@ -292,7 +298,7 @@
             background-size: contain;
             background-position: center;
 
-            height: calc(3px + 0.9vw);
+            height: calc(3px + 0.9cqmin);
             left: 0;
             right: 0;
         }
@@ -301,7 +307,7 @@
             position: absolute;
             z-index: 400;
             top: 0;
-            height: 47vw;
+            height: 47cqmin;
 
             &.left {
                 left: 0;
@@ -330,12 +336,12 @@
         .beam {
             position: absolute;
             z-index: 500;
-            top: 2vw;
-            width: 35vw;
-            height: 35vw;
+            top: 2cqmin;
+            width: 35cqmin;
+            height: 35cqmin;
             pointer-events: none;
 
-            --offset: calc(var(--fixture-width) - 4vw);
+            --offset: calc(var(--fixture-width) - 4cqmin);
 
             &.left {
                 left: var(--offset);
@@ -350,26 +356,26 @@
         .projector-screen {
             position: relative;
             align-items: center;
-            padding-top: 2vw;
-            width: 60vw;
+            padding-top: 2cqmin;
+            width: 60cqmin;
             margin: 0 auto;
             z-index: 200;
-            margin-bottom: -7vw;
+            margin-bottom: -7cqmin;
 
             .video-box {
                 background: var(--beige);
-                padding: 1.5vw;
+                padding: 1.5cqmin;
                 display: grid;
-                gap: 1.2vw;
+                gap: 1.2cqmin;
                 align-items: center;
                 justify-items: center;
             }
 
-            font-size: 1.5vw;
+            font-size: 1.5cqmin;
 
             h1 {
-                margin-bottom: -1vw;
-                margin-top: -0.5vw;
+                margin-bottom: -1cqmin;
+                margin-top: -0.5cqmin;
 
                 filter: url(#stage-title-outline);
             }
@@ -399,9 +405,9 @@
 
         .laptop-box {
             position: absolute;
-            width: 40vw;
-            left: 1vw;
-            bottom: 12vw;
+            width: 40cqmin;
+            left: 1cqmin;
+            bottom: 12cqmin;
 
             z-index: 100;
             pointer-events: none;
@@ -417,7 +423,7 @@
                 left: 14%;
                 top: 9%;
                 border: 4px solid #000;
-                border-radius: 1vw;
+                border-radius: 1cqmin;
             }
 
             .laptop-button {
@@ -431,12 +437,12 @@
                 pointer-events: all;
 
                 &.left {
-                    left: 5vw;
+                    left: 5cqmin;
                     transform: scaleX(-1);
                 }
 
                 &.right {
-                    right: 5vw;
+                    right: 5cqmin;
                 }
 
                 &:active {
@@ -447,9 +453,9 @@
 
         .projector-box {
             position: absolute;
-            width: 15vw;
-            bottom: 15vw;
-            left: 42vw;
+            width: 15cqmin;
+            bottom: 15cqmin;
+            left: 42cqmin;
             pointer-events: none;
             z-index: 500;
 
@@ -468,17 +474,17 @@
 
         .console {
             position: absolute;
-            width: 37vw;
-            bottom: 13vw;
-            right: 1.5vw;
+            width: 37cqmin;
+            bottom: 13cqmin;
+            right: 1.5cqmin;
         }
 
         @media (max-width: mixins.$break3) {
             .projector-screen {
-                width: 74vw;
+                width: 74cqmin;
                 .intro {
-                    font-size: 3vw;
-                    padding: 1vw 3vw;
+                    font-size: 3cqmin;
+                    padding: 1cqmin 3cqmin;
                 }
             }
 
@@ -487,13 +493,13 @@
             }
 
             .laptop-box {
-                width: 46vw;
-                bottom: 8vw;
+                width: 46cqmin;
+                bottom: 8cqmin;
             }
 
             .console {
-                width: 46vw;
-                bottom: 9vw;
+                width: 46cqmin;
+                bottom: 9cqmin;
             }
         }
     }

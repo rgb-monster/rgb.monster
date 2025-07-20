@@ -41,7 +41,9 @@
         <section class="monster-vision yellow with-confetti">
             <InkHeader>Photo Gallery</InkHeader>
             <main>
-                <img src="/new/monstervision.webp" />
+                <div class="tv-container">
+                    <img src="/new/monstervision.webp" class="tv" />
+                </div>
             </main>
         </section>
     </div>
@@ -76,8 +78,20 @@
             }
         }
 
-        .monster-vision .ink-header {
-            color: var(--pink);
+        .monster-vision {
+            .ink-header {
+                color: var(--pink);
+            }
+
+            .tv-container {
+                display: grid;
+                justify-content: center;
+
+                .tv {
+                    max-height: 80vh;
+                    max-width: 80vw;
+                }
+            }
         }
     }
 </style>
