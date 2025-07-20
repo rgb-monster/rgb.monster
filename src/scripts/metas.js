@@ -48,10 +48,9 @@ export async function loadShowTypes() {
 export function getShowMetas(byShowType, show) {
     // based on show's venue and time match it with the right metas
 
-    let meta = byShowType[show.show_type] || {};
+    let meta = {...byShowType[show.show_type] || {}};
 
     let overrides = meta.overrides;
-    delete meta.meta;
     delete meta.overrides;
 
     if (overrides) {
