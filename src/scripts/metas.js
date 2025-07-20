@@ -13,7 +13,7 @@ export async function loadShowTypes() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const showTypes = await response.json();
+        let showTypes = await response.json();
 
         byShowType = Object.fromEntries(
             showTypes.map(showType => [showType.meta.slug || showType.id, {...showType, ...showType.meta}])

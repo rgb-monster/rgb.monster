@@ -1,22 +1,18 @@
 <script>
-    import {useStore} from "../stores/shows.js";
+    import {useData} from "vitepress";
 
     export default {
         name: "AboutUsPage",
         data() {
             return {
-                showTypes,
-                store: useStore(),
+                siteData: useData(),
             };
         },
         computed: {
             // we'll render link that looks like a button if button has state; otherwise it's just your regular button
             element: state => (state.route ? "Link" : "button"),
-            showTypes: state => state.store.remoteShowTypes,
-        },
-
-        async mounted() {
-            await store.fetchShowTypes();
+            theme: state => state.siteData.theme,
+            showTypes: state => state.theme.showTypes || {},
         },
     };
 </script>
@@ -62,26 +58,26 @@
                 </p>
 
                 <div class="short-long shows-grid">
-                    <img :src="showTypes['not-my-audience'].square" />
+                    <img :src="showTypes['not-my-audience']?.square" />
                     <div>
                         <a href="/not-my-audience">Not My Audience</a> is a panel show where comedians compete in
                         stand-up challenges set by the audience through an app.
                     </div>
 
-                    <img :src="showTypes['best-worst-date'].square" />
+                    <img :src="showTypes['best-worst-date']?.square" />
 
                     <div>
                         In <a href="/date">Best Worst Date</a>, the audience anonymously share their dating horror
                         stories and two comedians crown the best worst date
                     </div>
 
-                    <img :src="showTypes['inside-the-robot'].square" />
+                    <img :src="showTypes['inside-the-robot']?.square" />
                     <div>
                         <a href="/inside-the-robot">Inside The Robot</a> is an interactive escape-room like theatrical
                         performance where kids control the narrative, special effects, and live video games.
                     </div>
 
-                    <img :src="showTypes['out-of-order'].square" />
+                    <img :src="showTypes['out-of-order']?.square" />
                     <div>
                         Finally, <a href="/out-of-order">Out Of Order</a> is a quiz with just one question that the
                         audience can play along with.
@@ -95,19 +91,19 @@
                 <h1>Our comedy shows</h1>
 
                 <div class="shows-grid short-long">
-                    <img :src="showTypes['headliners'].square" />
+                    <img :src="showTypes['headliners']?.square" />
                     <div>
                         Our flagship stand-up comedy showcase is <a href="/headliners">5 Headliners for £10</a> where
                         five top comedians perform their best routines with no crowd work.
                     </div>
 
-                    <img :src="showTypes['pg-hits'].square" />
+                    <img :src="showTypes['pg-hits']?.square" />
                     <div>
                         <a href="/pg-hits">PG Hits!</a> is our family-friendly comedy club where comedians perform their
                         best PG rated routines so everybody can enjoy the show.
                     </div>
 
-                    <img :src="showTypes['best-of-kids'].square" />
+                    <img :src="showTypes['best-of-kids']?.square" />
                     <div>
                         <a href="/best-of-kids">Best of Kids Comedy</a> is our flagship kids comedy show, bringing
                         together the best in family-friendly entertainment in one huge show.
