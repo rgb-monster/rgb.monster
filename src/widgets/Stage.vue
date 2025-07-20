@@ -299,7 +299,10 @@
             </div>
         </BorderBox>
     </div>
-    <div :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}" style="padding-bottom: 4em">
+    <div
+        :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}"
+        style="padding-bottom: 4em; margin-top: -2px"
+    >
         <img src="/stage/stage-bottom.webp" />
     </div>
 </template>
