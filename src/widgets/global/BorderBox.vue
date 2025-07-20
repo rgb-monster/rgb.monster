@@ -33,7 +33,7 @@
             radius() {
                 this.generateNewMask();
             },
-            jagedness() {
+            jaggedness() {
                 this.generateNewMask();
             },
             pointDensity() {
