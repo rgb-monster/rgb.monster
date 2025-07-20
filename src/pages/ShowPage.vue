@@ -34,8 +34,8 @@
                 return Math.max(-Math.pow(factor, 2), -300);
             },
 
-            metas: state => state.showInfo.meta,
-            slug: state => state.showInfo.id || state.metas.slug,
+            metas: state => state.showInfo,
+            slug: state => state.showInfo.slug,
 
             showsSieve() {
                 let shows = this.store.shows.filter(show => show.slug == this.slug);

@@ -15,9 +15,20 @@ export async function loadShowTypes() {
         }
         let showTypes = await response.json();
 
-        byShowType = Object.fromEntries(
-            showTypes.map(showType => [showType.meta.slug || showType.id, {...showType, ...showType.meta}])
-        );
+        showTypes = showTypes
+            .filter(showType => Object.keys(showType.meta).length > 0)
+            .map(showType => {
+                let meta = {...showType, ...showType.meta};
+                delete meta.meta;
+
+                meta.tags = (meta.tags || []).map(tag => tag.tag);
+                meta.slug = meta.slug || meta.id;
+                meta.title = meta.title || meta.name;
+                delete meta.name;
+                return meta;
+            });
+
+        byShowType = Object.fromEntries(showTypes.map(showType => [showType.slug, showType]));
     } catch (e) {
         console.error(`Failed to fetch remote data: ${e.message}`);
         byShowType = {};
@@ -29,17 +40,11 @@ export async function loadShowTypes() {
 export function getShowMetas(byShowType, show) {
     // based on show's venue and time match it with the right metas
 
-    let info = byShowType[show.show_type] || {};
-
-    let meta = {...info, ...info.meta};
-    meta.slug = meta.slug || meta.id;
-    meta.tags = (meta.tags || []).map(tag => tag.tag);
-    meta.title = meta.title || meta.name;
+    let meta = byShowType[show.show_type] || {};
 
     let overrides = meta.overrides;
     delete meta.meta;
     delete meta.overrides;
-    delete meta.name;
 
     if (overrides) {
         // find the override that matches our situation best

@@ -67,9 +67,6 @@ export default async () => {
                     },
                 },
             },
-            plugins: [
-                svgLoader(), // 3. Add the plugin to the plugins array
-            ],
         },
 
         //srcDir: "./src/md",
@@ -101,9 +98,8 @@ export default async () => {
 
             let extra = [];
             if (pageData.frontmatter.page == "show-details") {
-                let show = pageData.params;
-
-                let scheduled = store.showTypes.find(rec => rec.show_type == show.show_type);
+                let show = pageData.params.showInfo;
+                let scheduled = store.showTypes.find(rec => rec.id == show.id);
                 let description;
                 if (scheduled) {
                     let td = extractTimesDates(scheduled?.shows || []);
@@ -115,7 +111,7 @@ export default async () => {
                 extra.push(["meta", {name: "og:title", content: show.title}]);
                 extra.push(["meta", {name: "og:description", content: description}]);
 
-                extra.push(["meta", {name: "og:image", content: show.coverThumb}]);
+                extra.push(["meta", {name: "og:image", content: show?.coverThumb || ""}]);
                 extra.push(["meta", {name: "og:image:type", content: "image/webp"}]);
                 extra.push(["meta", {name: "og:image:width", content: "600"}]);
                 extra.push(["meta", {name: "og:image:height", content: "300"}]);
