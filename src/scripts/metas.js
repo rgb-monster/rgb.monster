@@ -28,7 +28,7 @@ export async function loadShowTypes() {
                 return meta;
             });
 
-        byShowType = Object.fromEntries(showTypes.map(showType => [showType.slug, showType]));
+        byShowType = Object.fromEntries(showTypes.map(showType => [showType.id, showType]));
     } catch (e) {
         console.error(`Failed to fetch remote data: ${e.message}`);
         byShowType = {};
