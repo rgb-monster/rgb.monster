@@ -10,7 +10,9 @@
             active: Boolean,
         },
         data() {
-            return {};
+            return {
+                showHovers: false,
+            };
         },
         computed: {
             dates() {
@@ -45,7 +47,7 @@
     <a class="show-type-tile" :class="(showType.tags || [])[0]" :href="`/${showType.slug}${filterIfPresent}`">
         <div class="cover-image" v-if="showType.coverThumb">
             <video
-                v-if="showType.hoverVideo"
+                v-if="showHovers && showType.hoverVideo"
                 :src="showType.hoverVideo"
                 v-show="active"
                 loop
@@ -55,7 +57,7 @@
                 ref="video"
                 :poster="showType.coverThumb"
             />
-            <img :src="showType.coverThumb" v-show="!showType.hoverVideo || !active" />
+            <img :src="showType.coverThumb" v-show="!showHovers || !showType.hoverVideo || !active" />
         </div>
         <header v-html="showType.title" />
 
