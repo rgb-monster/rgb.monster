@@ -43,23 +43,23 @@
 
 <template>
     <a class="show-type-tile" :class="(showType.tags || [])[0]" :href="`/${showType.slug}${filterIfPresent}`">
-        <div class="cover-image" v-if="showType.cover_thumb">
+        <div class="cover-image" v-if="showType.coverThumb">
             <video
-                v-if="showType.hover_video"
-                :src="showType.hover_video"
+                v-if="showType.hoverVideo"
+                :src="showType.hoverVideo"
                 v-show="active"
                 loop
                 muted
                 autoplay
                 playsinline
                 ref="video"
-                :poster="showType.cover_thumb"
+                :poster="showType.coverThumb"
             />
-            <img :src="showType.cover_thumb" v-show="!showType.hover_video || !active" />
+            <img :src="showType.coverThumb" v-show="!showType.hoverVideo || !active" />
         </div>
         <header v-html="showType.title" />
 
-        <div class="description">{{ showType.short_description }}</div>
+        <div class="description">{{ showType.shortDescription }}</div>
 
         <div class="meta">
             <div class="tags">

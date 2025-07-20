@@ -4,7 +4,7 @@ import dt from "py-datetime";
 import {defineStore} from "pinia";
 
 import utils from "../scripts/utils.js";
-import {getShowMetas} from "../scripts/metas.js";
+import {loadShowTypes, getShowMetas} from "../scripts/metas.js";
 import {Sieve} from "../scripts/sieve.js";
 
 export const useStore = defineStore("shows", {
@@ -14,6 +14,7 @@ export const useStore = defineStore("shows", {
             loading: false,
             allShows: [], // all shows, including those without any ticket data
             shows: [],
+            remoteShowTypes: null,
         };
     },
 
@@ -39,7 +40,7 @@ export const useStore = defineStore("shows", {
             this.shows.forEach(show => {
                 if (!byType[show.show_type]) {
                     byType[show.show_type] = {
-                        ...getShowMetas(show),
+                        ...getShowMetas(this.remoteShowTypes, show),
                         title: show.title,
                         emoji: show.emoji,
                         duration: show.duration,
@@ -73,6 +74,13 @@ export const useStore = defineStore("shows", {
     },
 
     actions: {
+        async fetchShowTypes() {
+            if (this.remoteShowTypes) {
+                return this.remoteShowTypes;
+            }
+            this.remoteShowTypes = await loadShowTypes();
+        },
+
         async fetchShows() {
             if (!this.loaded && !this.loading) {
                 this.loading = true;
@@ -81,6 +89,8 @@ export const useStore = defineStore("shows", {
                     "https://confirmed.show/api/v1/rgb-monster/shows.json",
                     "https://confirmed.show/api/v1/bowtie/shows.json",
                 ];
+
+                await this.fetchShowTypes();
 
                 let data = [];
                 for (let source of sources) {
@@ -102,7 +112,7 @@ export const useStore = defineStore("shows", {
                         show.date = dt.datetime(show.date - dt.timedelta({days: 1}));
                     }
 
-                    let metas = getShowMetas(show);
+                    let metas = getShowMetas(this.remoteShowTypes, show);
 
                     // name -> title (we have both of them and that then becomes awfully confusing)
                     // we want to use the metas one where available as that allows overriding act/production-facing

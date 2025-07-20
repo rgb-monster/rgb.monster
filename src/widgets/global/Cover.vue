@@ -8,5 +8,5 @@
 </script>
 
 <template>
-    <img class="cover" :src="show.cover" />
+    <img class="cover" :src="show.coverImage" />
 </template>

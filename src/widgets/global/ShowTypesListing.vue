@@ -1,7 +1,7 @@
 <script>
+    import {getShowMetas} from "../../scripts/metas.js";
     import {useStore} from "/src/stores/shows.js";
     import utils from "/src/scripts/utils.js";
-    import {getShowMetas} from "/src/scripts/metas.js";
 
     import ShowTypeTile from "/src/widgets/ShowTypeTile.vue";
 
@@ -35,7 +35,7 @@
                 let byType = {};
                 this.shows.forEach(show => {
                     byType[show.show_type] = byType[show.show_type] || {
-                        ...getShowMetas(show),
+                        ...getShowMetas(this.store.remoteShowTypes, show),
                         title: show.title,
                         emoji: show.emoji,
                         duration: show.duration,
@@ -72,11 +72,12 @@
             },
         },
 
-        mounted() {
+        async mounted() {
             if (utils.isTouch()) {
                 // for touch interfaces we'll set the active tile whichever one is the most bottomest
                 window.addEventListener("scroll", this.onScroll);
             }
+            await this.store.fetchShowTypes();
             this.store.fetchShows();
         },
 

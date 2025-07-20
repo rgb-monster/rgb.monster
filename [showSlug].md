@@ -8,7 +8,7 @@ footer: light
     import ShowPage from "/src/pages/ShowPage.vue";
     import { useData } from 'vitepress'
     const { params } = useData();
-    let showSlug = params.value.show;
+    let showInfo = params.value.showInfo;
 </script>
 
-<ShowPage :slug="showSlug" />
+<ShowPage :showInfo="showInfo" />

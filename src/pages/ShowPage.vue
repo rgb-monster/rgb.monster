@@ -4,13 +4,12 @@
     import {useStore} from "../stores/shows.js";
     import utils from "/src/scripts/utils.js";
     import {Sieve} from "/src/scripts/sieve.js";
-    import {metas} from "/src/scripts/metas.js";
 
     export default {
         name: "ShowPage",
         props: {
             // these are optional props for if your button has a linkable state
-            slug: String,
+            showInfo: Object,
         },
         components: {
             // Cover,
@@ -34,6 +33,9 @@
                 let factor = this.scrollY * 0.02;
                 return Math.max(-Math.pow(factor, 2), -300);
             },
+
+            metas: state => state.showInfo.meta,
+            slug: state => state.showInfo.id || state.metas.slug,
 
             showsSieve() {
                 let shows = this.store.shows.filter(show => show.slug == this.slug);
@@ -75,16 +77,6 @@
             upcomingShows() {
                 let now = dt.datetime.now();
                 return this.shows.filter(show => show.ts > now);
-            },
-
-            metas() {
-                if (this.shows.length) {
-                    return this.shows[0].metas;
-                } else {
-                    let matching = metas.filter(meta => meta.slug == this.slug);
-                    let defaultMetas = matching.find(meta => meta.default);
-                    return defaultMetas || matching[0];
-                }
             },
 
             showsByDate() {
@@ -267,7 +259,7 @@
                     </div>
 
                     <div class="tags">
-                        <div v-for="tag in metas.tags" :key="tag" :class="tag">{{ tag }}</div>
+                        <div v-for="(tag, idx) in metas.tags" :key="idx" :class="tag.tag">{{ tag.tag }}</div>
                     </div>
                 </div>
             </section>
@@ -304,11 +296,12 @@
                 <div class="contents" v-html="showDescription" />
             </section>
 
-            <section v-if="metas.video" class="video">
+
+            <section v-if="metas.squareVideo" class="video">
                 <div class="contents">
                     <button class="player" :class="{playing: videoPlaying}" @click="togglePlayback">
                         <video playsinline ref="video">
-                            <source :src="metas.video" type="video/mp4" />
+                            <source :src="metas.squareVideo" type="video/mp4" />
                         </video>
                         <div class="play-controls">
                             <div class="play-icon"><Icon name="play_arrow" /></div>

@@ -95,13 +95,13 @@ export default defineConfig({
                 let td = extractTimesDates(scheduled?.shows || []);
                 description = `${td.topShow.ts.strftime("%H:%M")} ${td.topShow.venue.name}, ${td.dates}`;
             } else {
-                description = show.short_description;
+                description = show.shortDescription;
             }
 
             extra.push(["meta", {name: "og:title", content: show.title}]);
             extra.push(["meta", {name: "og:description", content: description}]);
 
-            extra.push(["meta", {name: "og:image", content: show.cover_thumb}]);
+            extra.push(["meta", {name: "og:image", content: show.coverThumb}]);
             extra.push(["meta", {name: "og:image:type", content: "image/webp"}]);
             extra.push(["meta", {name: "og:image:width", content: "600"}]);
             extra.push(["meta", {name: "og:image:height", content: "300"}]);

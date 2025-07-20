@@ -4,7 +4,6 @@
     import {useStore} from "../stores/shows.js";
     import utils from "/src/scripts/utils.js";
     import {Sieve} from "/src/scripts/sieve.js";
-    import {metas} from "/src/scripts/metas.js";
 
     export default {
         name: "ThanksPage",
@@ -137,7 +136,7 @@
 
         <template v-else>
             <div class="splash">
-                <img :src="show.cover_thumb" />
+                <img :src="show.coverThumb" />
             </div>
 
             <div class="message-container">
