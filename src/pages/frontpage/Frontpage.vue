@@ -35,14 +35,6 @@
                         comedy mailing list and don't miss a show!
                     </template>
                 </MailingListBox>
-
-                <BorderBox type="long" shadow="faint">
-                    <button class="cta">
-                        <BorderBox type="long">
-                            <div class="cta-inner">Click Here to See All Our Shows</div>
-                        </BorderBox>
-                    </button>
-                </BorderBox>
             </main>
         </section>
 
