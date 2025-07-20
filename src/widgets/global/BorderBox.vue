@@ -20,6 +20,7 @@
                 type: Number,
                 default: 0.3,
             },
+            horizOnly: Boolean,
         },
 
         data() {
@@ -71,12 +72,17 @@
                 let lastRandomOffset = 0;
 
                 let jaggedLineTo = (x1, y1, x2, y2, numPoints) => {
+                    let jag = jaggedness;
+                    if (y1 == y2 && this.horizOnly) {
+                        jag = 0;
+                    }
+
                     let lineData = "";
                     let dx = x2 - x1,
                         dy = y2 - y1;
                     for (let i = 1; i <= numPoints; i++) {
-                        let newRandomOffset = (randomFunc() - 0.5) * jaggedness;
-                        let maxChange = jaggedness * maxSpikeFactor;
+                        let newRandomOffset = (randomFunc() - 0.5) * jag;
+                        let maxChange = jag * maxSpikeFactor;
                         let delta = newRandomOffset - lastRandomOffset;
                         if (Math.abs(delta) > maxChange) {
                             newRandomOffset = lastRandomOffset + Math.sign(delta) * maxChange;

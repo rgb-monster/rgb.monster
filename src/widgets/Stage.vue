@@ -12,6 +12,7 @@
                 colors: ["yellow", "#ffe9bd"],
                 wallColor: [],
                 screenColor: "",
+                outerJags: 0,
 
                 shows: [
                     "https://storage.googleapis.com/rgb-monster-assets/muck/cover.webp",
@@ -55,7 +56,17 @@
             changeShow(direction) {
                 this.currentShowIdx = (this.currentShowIdx + direction + this.shows.length) % this.shows.length;
             },
+
+            onResize() {
+                let [width, height] = [window.innerWidth, window.innerHeight];
+                if (height * 1.1 - width < 10) {
+                    this.outerJags = 15;
+                } else {
+                    this.outerJags = 0;
+                }
+            },
         },
+
         computed: {
             beamColor: state => state.colors[0],
             currentShow: state => state.shows[state.currentShowIdx],
@@ -65,228 +76,250 @@
             this.colors.forEach((color, mode) => {
                 this.updateColor({color, mode});
             });
+
+            this.resizeObserver = new ResizeObserver(this.onResize);
+            this.resizeObserver.observe(this.$refs.container);
+            this.onResize();
         },
     };
 </script>
 
 <template>
-    <div class="rgb-stage" :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}">
-        <div class="top-fringe" />
-        <img class="curtain left" src="/stage/curtain-left.webp" />
-        <img class="curtain right" src="/stage/curtain-right.webp" />
-        <img class="fixture left" src="/stage/light-left.webp" />
-        <img class="fixture right" src="/stage/light-right.webp" />
-        <svg
-            width="573.548"
-            height="380.793"
-            viewBox="0 0 151.751 100.751"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xmlns="http://www.w3.org/2000/svg"
-            class="beam left"
-            :style="{'mix-blend-mode': 'lighten'}"
-        >
-            <defs>
-                <linearGradient id="b">
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
-                </linearGradient>
-                <linearGradient
-                    xlink:href="#a"
-                    id="d"
-                    gradientUnits="userSpaceOnUse"
-                    x1="9.648"
-                    y1="36.34"
-                    x2="457.311"
-                    y2="290.402"
-                    gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
-                />
-                <linearGradient id="a">
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
-                </linearGradient>
-                <linearGradient
-                    xlink:href="#b"
-                    id="c"
-                    x1="9.648"
-                    y1="36.34"
-                    x2="457.311"
-                    y2="290.402"
-                    gradientUnits="userSpaceOnUse"
-                    gradientTransform="matrix(.26458 0 0 .26458 17.607 71.493)"
-                />
-            </defs>
-            <path
-                style="
-                    mix-blend-mode: normal;
-                    fill: url(#c);
-                    stroke: none;
-                    stroke-width: 0.264583px;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-opacity: 1;
-                "
-                d="m11.821 85.788 127.464 83.047 15.826-33.525L22.372 72.004Z"
-                transform="translate(-11.821 -68.631)"
-            />
-            <path
-                style="
-                    mix-blend-mode: multiply;
-                    fill: url(#d);
-                    stroke: none;
-                    stroke-width: 0.264583px;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-opacity: 1;
-                "
-                d="m12.045 84.92 146.331 41.607 5.197-36.708L18.044 68.631Z"
-                transform="translate(-11.821 -68.631)"
-            />
-        </svg>
+    <div class="rgb-stage-container" ref="container">
+        <BorderBox :jaggedness="outerJags" :radius="0" :horizOnly="true">
+            <div class="rgb-stage" :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}">
+                <div class="top-fringe" />
+                <img class="curtain left" src="/stage/curtain-left.webp" />
+                <img class="curtain right" src="/stage/curtain-right.webp" />
+                <img class="fixture left" src="/stage/light-left.webp" />
+                <img class="fixture right" src="/stage/light-right.webp" />
+                <svg
+                    width="573.548"
+                    height="380.793"
+                    viewBox="0 0 151.751 100.751"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="beam left"
+                    :style="{'mix-blend-mode': 'lighten'}"
+                >
+                    <defs>
+                        <linearGradient id="b">
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                        </linearGradient>
+                        <linearGradient
+                            xlink:href="#a"
+                            id="d"
+                            gradientUnits="userSpaceOnUse"
+                            x1="9.648"
+                            y1="36.34"
+                            x2="457.311"
+                            y2="290.402"
+                            gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
+                        />
+                        <linearGradient id="a">
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                        </linearGradient>
+                        <linearGradient
+                            xlink:href="#b"
+                            id="c"
+                            x1="9.648"
+                            y1="36.34"
+                            x2="457.311"
+                            y2="290.402"
+                            gradientUnits="userSpaceOnUse"
+                            gradientTransform="matrix(.26458 0 0 .26458 17.607 71.493)"
+                        />
+                    </defs>
+                    <path
+                        style="
+                            mix-blend-mode: normal;
+                            fill: url(#c);
+                            stroke: none;
+                            stroke-width: 0.264583px;
+                            stroke-linecap: butt;
+                            stroke-linejoin: miter;
+                            stroke-opacity: 1;
+                        "
+                        d="m11.821 85.788 127.464 83.047 15.826-33.525L22.372 72.004Z"
+                        transform="translate(-11.821 -68.631)"
+                    />
+                    <path
+                        style="
+                            mix-blend-mode: multiply;
+                            fill: url(#d);
+                            stroke: none;
+                            stroke-width: 0.264583px;
+                            stroke-linecap: butt;
+                            stroke-linejoin: miter;
+                            stroke-opacity: 1;
+                        "
+                        d="m12.045 84.92 146.331 41.607 5.197-36.708L18.044 68.631Z"
+                        transform="translate(-11.821 -68.631)"
+                    />
+                </svg>
 
-        <svg
-            width="573.548"
-            height="380.793"
-            viewBox="0 0 151.751 100.751"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            xmlns="http://www.w3.org/2000/svg"
-            class="beam right"
-            :style="{'mix-blend-mode': 'lighten'}"
-        >
-            <defs>
-                <linearGradient id="b">
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
-                </linearGradient>
-                <linearGradient
-                    xlink:href="#a"
-                    id="d"
-                    gradientUnits="userSpaceOnUse"
-                    x1="9.648"
-                    y1="36.34"
-                    x2="457.311"
-                    y2="290.402"
-                    gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
-                />
-                <linearGradient id="a">
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                    <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
-                </linearGradient>
-                <linearGradient
-                    xlink:href="#b"
-                    id="c"
-                    x1="9.648"
-                    y1="36.34"
-                    x2="457.311"
-                    y2="290.402"
-                    gradientUnits="userSpaceOnUse"
-                    gradientTransform="matrix(.26458 0 0 .26458 17.607 71.493)"
-                />
-            </defs>
-            <path
-                style="
-                    mix-blend-mode: normal;
-                    fill: url(#c);
-                    stroke: none;
-                    stroke-width: 0.264583px;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-opacity: 1;
-                "
-                d="m11.821 85.788 127.464 83.047 15.826-33.525L22.372 72.004Z"
-                transform="translate(-11.821 -68.631)"
-            />
-            <path
-                style="
-                    mix-blend-mode: multiply;
-                    fill: url(#d);
-                    stroke: none;
-                    stroke-width: 0.264583px;
-                    stroke-linecap: butt;
-                    stroke-linejoin: miter;
-                    stroke-opacity: 1;
-                "
-                d="m12.045 84.92 146.331 41.607 5.197-36.708L18.044 68.631Z"
-                transform="translate(-11.821 -68.631)"
-            />
-        </svg>
+                <svg
+                    width="573.548"
+                    height="380.793"
+                    viewBox="0 0 151.751 100.751"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="beam right"
+                    :style="{'mix-blend-mode': 'lighten'}"
+                >
+                    <defs>
+                        <linearGradient id="b">
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                        </linearGradient>
+                        <linearGradient
+                            xlink:href="#a"
+                            id="d"
+                            gradientUnits="userSpaceOnUse"
+                            x1="9.648"
+                            y1="36.34"
+                            x2="457.311"
+                            y2="290.402"
+                            gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
+                        />
+                        <linearGradient id="a">
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                        </linearGradient>
+                        <linearGradient
+                            xlink:href="#b"
+                            id="c"
+                            x1="9.648"
+                            y1="36.34"
+                            x2="457.311"
+                            y2="290.402"
+                            gradientUnits="userSpaceOnUse"
+                            gradientTransform="matrix(.26458 0 0 .26458 17.607 71.493)"
+                        />
+                    </defs>
+                    <path
+                        style="
+                            mix-blend-mode: normal;
+                            fill: url(#c);
+                            stroke: none;
+                            stroke-width: 0.264583px;
+                            stroke-linecap: butt;
+                            stroke-linejoin: miter;
+                            stroke-opacity: 1;
+                        "
+                        d="m11.821 85.788 127.464 83.047 15.826-33.525L22.372 72.004Z"
+                        transform="translate(-11.821 -68.631)"
+                    />
+                    <path
+                        style="
+                            mix-blend-mode: multiply;
+                            fill: url(#d);
+                            stroke: none;
+                            stroke-width: 0.264583px;
+                            stroke-linecap: butt;
+                            stroke-linejoin: miter;
+                            stroke-opacity: 1;
+                        "
+                        d="m12.045 84.92 146.331 41.607 5.197-36.708L18.044 68.631Z"
+                        transform="translate(-11.821 -68.631)"
+                    />
+                </svg>
 
-        <div class="projector-screen">
-            <BorderBox shadow="true" :radius="20">
-                <div class="video-box" :style="{background: screenColor}">
-                    <h1>We are RGB Monster!</h1>
+                <div class="projector-screen">
+                    <BorderBox shadow="true" :radius="20">
+                        <div class="video-box" :style="{background: screenColor}">
+                            <h1>We are RGB Monster!</h1>
 
-                    <BorderBox :radius="10">
-                        <div class="presenter-screen">
-                            <img :src="currentShow" />
+                            <BorderBox :radius="10">
+                                <div class="presenter-screen">
+                                    <img :src="currentShow" />
+                                </div>
+                            </BorderBox>
+
+                            <div class="intro">
+                                We're a comedy production company that also makes software. We're producing over 20
+                                shows in fringe festivals around the world. You can catch us next at Edinburgh Festival
+                                Fringe in August!
+                            </div>
                         </div>
                     </BorderBox>
+                    <svg height="0" width="0">
+                        <defs>
+                            <filter id="stage-title-outline">
+                                <!-- 1. Enlarge the shape -->
+                                <feMorphology
+                                    in="SourceAlpha"
+                                    result="DILATED"
+                                    operator="dilate"
+                                    radius="3"
+                                ></feMorphology>
 
-                    <div class="intro">
-                        We're a comedy production company that also makes software. We're producing over 20 shows in
-                        fringe festivals around the world. You can catch us next at Edinburgh Festival Fringe in August!
-                    </div>
+                                <!-- 2. Blur the enlarged shape to round the corners -->
+                                <feGaussianBlur in="DILATED" result="BLURRED" stdDeviation="3"></feGaussianBlur>
+
+                                <!-- 3. Create the outline color -->
+                                <feFlood flood-color="#f5e6c9" result="flood"></feFlood>
+
+                                <!-- 4. Composite the color into the blurred shape -->
+                                <feComposite in="flood" in2="BLURRED" operator="in" result="OUTLINE_GLOW"></feComposite>
+
+                                <!-- 5. Merge the glow and the original text -->
+                                <feMerge>
+                                    <feMergeNode in="OUTLINE_GLOW" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
+                    </svg>
                 </div>
-            </BorderBox>
-            <svg height="0" width="0">
-                <defs>
-                    <filter id="stage-title-outline">
-                        <!-- 1. Enlarge the shape -->
-                        <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="3"></feMorphology>
 
-                        <!-- 2. Blur the enlarged shape to round the corners -->
-                        <feGaussianBlur in="DILATED" result="BLURRED" stdDeviation="3"></feGaussianBlur>
+                <div class="stage-box">
+                    <img class="stage" src="/stage/stage.webp" />
 
-                        <!-- 3. Create the outline color -->
-                        <feFlood flood-color="#f5e6c9" result="flood"></feFlood>
+                    <div class="laptop-box">
+                        <img class="laptop" src="/stage/laptop.webp" />
+                        <img class="laptop-screen" :src="currentShow" />
+                        <button class="laptop-button left" @click="changeShow(-1)" />
+                        <button class="laptop-button right" @click="changeShow(1)" />
+                    </div>
 
-                        <!-- 4. Composite the color into the blurred shape -->
-                        <feComposite in="flood" in2="BLURRED" operator="in" result="OUTLINE_GLOW"></feComposite>
+                    <div class="projector-box">
+                        <img class="projector-beam" src="/stage/light-beam-projector.webp" />
+                        <img class="projector" src="/stage/projector.webp" />
+                    </div>
 
-                        <!-- 5. Merge the glow and the original text -->
-                        <feMerge>
-                            <feMergeNode in="OUTLINE_GLOW" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
-            </svg>
-        </div>
-
-        <div class="stage-box">
-            <img class="stage" src="/stage/stage.webp" />
-
-            <div class="laptop-box">
-                <img class="laptop" src="/stage/laptop.webp" />
-                <img class="laptop-screen" :src="currentShow" />
-                <button class="laptop-button left" @click="changeShow(-1)" />
-                <button class="laptop-button right" @click="changeShow(1)" />
+                    <Console :colors="colors" @update="updateColor($event)" />
+                </div>
             </div>
-
-            <div class="projector-box">
-                <img class="projector-beam" src="/stage/light-beam-projector.webp" />
-                <img class="projector" src="/stage/projector.webp" />
-            </div>
-
-            <Console :colors="colors" @update="updateColor($event)" />
-        </div>
+        </BorderBox>
+    </div>
+    <div :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}" style="padding-bottom: 4em">
+        <img src="/stage/stage-bottom.webp" />
     </div>
 </template>
 
 <style lang="scss">
+    .rgb-stage-container {
+        width: 100%;
+        background: #000;
+        display: flex;
+        justify-content: center;
+
+        & > div {
+            width: 100vw;
+            max-width: min(100vw, 110vh);
+            position: relative;
+        }
+    }
+
     .rgb-stage {
         --fixture-width: 12cqmin;
-
-        width: 100vw;
-        max-width: min(100vw, 100vh);
-        position: relative;
-
-        padding-bottom: 5vw;
-
-        margin: 0 auto;
 
         .top-fringe {
             position: absolute;
@@ -407,7 +440,7 @@
             position: absolute;
             width: 40cqmin;
             left: 1cqmin;
-            bottom: 12cqmin;
+            bottom: 0cqmin;
 
             z-index: 100;
             pointer-events: none;
@@ -454,8 +487,8 @@
         .projector-box {
             position: absolute;
             width: 15cqmin;
-            bottom: 15cqmin;
-            left: 42cqmin;
+            bottom: 3cqmin;
+            left: 45cqmin;
             pointer-events: none;
             z-index: 500;
 
@@ -475,7 +508,7 @@
         .console {
             position: absolute;
             width: 37cqmin;
-            bottom: 13cqmin;
+            bottom: 3cqmin;
             right: 1.5cqmin;
         }
 
@@ -494,12 +527,11 @@
 
             .laptop-box {
                 width: 46cqmin;
-                bottom: 8cqmin;
             }
 
             .console {
                 width: 46cqmin;
-                bottom: 9cqmin;
+                bottom: 0;
             }
         }
     }
