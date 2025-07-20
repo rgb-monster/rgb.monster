@@ -71,34 +71,6 @@ export default async () => {
         plugins: [
             svgLoader(), // 3. Add the plugin to the plugins array
         ],
-    },
-
-    //srcDir: "./src/md",
-    cleanUrls: true,
-
-    markdown: {
-        config: md => {
-            md.use(markdownItContainer, "section", {
-                render: function (tokens, idx) {
-                    var m = tokens[idx].info.trim().match(/^section\s+(.*)$/);
-
-                    if (tokens[idx].nesting === 1) {
-                        // opening tag
-                        return `<section class="markdown-contents ${
-                            m ? md.utils.escapeHtml(m[1]) : ""
-                        }"><div class="contents">\n`;
-                    } else {
-                        // closing tag
-                        return "</div></section>\n";
-                    }
-                },
-            });
-        },
-    },
-
-    async transformHead({pageData}) {
-        let store = useStore();
-        await store.fetchShows();
 
         //srcDir: "./src/md",
         cleanUrls: true,
