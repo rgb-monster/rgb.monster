@@ -78,14 +78,18 @@
             });
 
             this.resizeObserver = new ResizeObserver(this.onResize);
-            this.resizeObserver.observe(this.$refs.container);
+            this.resizeObserver.observe(document.body);
             this.onResize();
+        },
+
+        beforeUnmount() {
+            this.resizeObserver.disconnect();
         },
     };
 </script>
 
 <template>
-    <div class="rgb-stage-container" ref="container">
+    <div class="rgb-stage-container">
         <BorderBox :jaggedness="outerJags" :radius="0" :horizOnly="true">
             <div class="rgb-stage" :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}">
                 <div class="top-fringe" />
@@ -489,22 +493,25 @@
 
         .projector-box {
             position: absolute;
-            width: 15cqmin;
-            bottom: 3cqmin;
-            left: 45cqmin;
             pointer-events: none;
+            bottom: 0cqmin;
+            left: 0;
+            width: 100%;
+            display: grid;
+            justify-items: center;
             z-index: 500;
+
+            .projector-beam {
+                width: 20cqmin;
+                top: 0;
+                z-index: 50;
+                margin-bottom: -12cqmin;
+            }
 
             .projector {
                 z-index: 100;
                 width: 100%;
-            }
-
-            .projector-beam {
-                width: 100%;
-                top: 0;
-                z-index: 50;
-                margin-bottom: -60%;
+                width: 15cqmin;
             }
         }
 
