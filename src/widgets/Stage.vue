@@ -7,36 +7,16 @@
         components: {
             Console,
         },
+        props: {
+            items: Array,
+        },
         data() {
             return {
                 colors: ["yellow", "#ffe9bd"],
                 wallColor: [],
                 screenColor: "",
                 outerJags: 0,
-
-                shows: [
-                    "https://storage.googleapis.com/rgb-monster-assets/muck/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/11pm/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/brunch/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/bad-boys/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/5-headliners/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/best-of-kids/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/best-worst-date/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/afterparty/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/ollie-toxic/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/ollie-bet/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/itr/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/kids-can-heckle/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/nma/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/off-with-your-head/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/ooo/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/nerd-fest/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/movieoke/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/pg-hits/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/toast/cover.webp",
-                    "https://storage.googleapis.com/rgb-monster-assets/trial/cover.webp",
-                ],
-                currentShowIdx: 0,
+                currentItemIdx: 0,
             };
         },
         methods: {
@@ -53,8 +33,8 @@
                     this.screenColor = chroma.hsl(h, s, l).hex();
                 }
             },
-            changeShow(direction) {
-                this.currentShowIdx = (this.currentShowIdx + direction + this.shows.length) % this.shows.length;
+            changeItem(direction) {
+                this.currentItemIdx = (this.currentItemIdx + direction + this.items.length) % this.items.length;
             },
 
             onResize() {
@@ -69,7 +49,7 @@
 
         computed: {
             beamColor: state => state.colors[0],
-            currentShow: state => state.shows[state.currentShowIdx],
+            currentItem: state => state.items[state.currentItemIdx],
         },
 
         mounted() {
@@ -242,14 +222,17 @@
 
                             <BorderBox :radius="10">
                                 <div class="presenter-screen">
-                                    <img :src="currentShow" />
+                                    <video muted autoplay v-if="currentItem.type == 'video'">
+                                        <source :src="currentItem.webm" type="video/webm" v-if="currentItem.webm" />
+                                        <source :src="currentItem.mp4" type="video/mp4" v-if="currentItem.mp4" />
+                                    </video>
+
+                                    <img v-else :src="currentItem.image" />
                                 </div>
                             </BorderBox>
 
                             <div class="intro">
-                                We're a comedy production company that also makes software. We're producing over 20
-                                shows in fringe festivals around the world. You can catch us next at Edinburgh Festival
-                                Fringe in August!
+                                {{ currentItem.description }}
                             </div>
                         </div>
                     </BorderBox>
@@ -288,9 +271,16 @@
 
                     <div class="laptop-box">
                         <img class="laptop" src="/stage/laptop.webp" />
-                        <img class="laptop-screen" :src="currentShow" />
-                        <button class="laptop-button left" @click="changeShow(-1)" />
-                        <button class="laptop-button right" @click="changeShow(1)" />
+                        <div class="laptop-screen">
+                            <video loop muted autoplay v-show="currentItem.type == 'video'">
+                                <source :src="currentItem.webm" type="video/webm" v-if="currentItem.webm" />
+                                <source :src="currentItem.mp4" type="video/mp4" v-if="currentItem.mp4" />
+                            </video>
+
+                            <img v-show="currentItem.type != 'video'" :src="currentItem.image" />
+                        </div>
+                        <button class="laptop-button left" @click="changeItem(-1)" />
+                        <button class="laptop-button right" @click="changeItem(1)" />
                     </div>
 
                     <div class="projector-box">
@@ -402,6 +392,12 @@
             z-index: 200;
             margin-bottom: -7cqmin;
 
+            .presenter-screen {
+                height: 28.6cqmin;
+
+
+            }
+
             .video-box {
                 background: var(--beige);
                 padding: 1.5cqmin;
@@ -427,6 +423,9 @@
                 line-height: 140%;
                 text-align: center;
                 filter: url(#stage-title-outline);
+                height: 4em;
+                display: flex;
+                align-items: center;
             }
 
             .box-container {
@@ -446,6 +445,7 @@
         .laptop-box {
             position: absolute;
             width: 40cqmin;
+            height: 28.1cqmin;
             left: 1cqmin;
             bottom: 0cqmin;
 
@@ -459,11 +459,19 @@
             .laptop-screen {
                 position: absolute;
                 left: 0;
-                width: 70%;
-                left: 14%;
-                top: 9%;
-                border: 4px solid #000;
-                border-radius: 1cqmin;
+                left: 19%;
+                top: 10%;
+
+                width: 60%;
+
+                video,
+                img {
+                    width: 100%;
+                    line-height: 100%;
+                    padding: 0;
+                    border: 4px solid #000;
+                    border-radius: 1cqmin;
+                }
             }
 
             .laptop-button {

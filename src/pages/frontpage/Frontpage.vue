@@ -1,6 +1,7 @@
 <script>
     import MailingListBox from "/src/widgets/MailingListBox.vue";
     import Stage from "/src/widgets/Stage.vue";
+    import {useStore} from "/src/stores/shows.js";
 
     export default {
         name: "Frontpage",
@@ -13,14 +14,39 @@
             Stage,
         },
         data() {
-            return {};
+            let store = useStore();
+            console.log("rrrr", store.showTypes);
+            return {
+                store,
+            };
+        },
+
+        computed: {
+            showTypes: state => state.store.showTypes,
+            items: state => [
+                {
+                    type: "video",
+                    description: `We're a comedy production company that also makes software. We're producing over 20
+                                shows in fringe festivals around the world. You can catch us next at Edinburgh Festival
+                                Fringe in August!`,
+                    webm: "https://storage.googleapis.com/rgb-monster-assets/main/sizzle-720.webm",
+                    mp4: "https://storage.googleapis.com/rgb-monster-assets/main/sizzle-720.mp4",
+                },
+                ...state.showTypes
+                    .filter(show => !show.archived)
+                    .map(show => ({
+                        type: "show",
+                        image: show.coverImage,
+                        description: show.description || show.shortDescription,
+                    })),
+            ],
         },
     };
 </script>
 
 <template>
     <div class="frontpage">
-        <Stage />
+        <Stage :items="items" />
 
         <section class="current-festival blue with-confetti">
             <InkHeader>Edinburgh Fringe 2025</InkHeader>
@@ -38,14 +64,14 @@
             </main>
         </section>
 
-        <section class="monster-vision yellow with-confetti">
+        <!-- <section class="monster-vision yellow with-confetti">
             <InkHeader>Photo Gallery</InkHeader>
             <main>
                 <div class="tv-container">
                     <img src="/new/monstervision.webp" class="tv" />
                 </div>
             </main>
-        </section>
+        </section> -->
     </div>
 </template>
 
