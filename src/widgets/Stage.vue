@@ -70,7 +70,7 @@
 
 <template>
     <div class="rgb-stage-container">
-        <BorderBox :jaggedness="outerJags" :radius="0" :horizOnly="true">
+        <BorderBox :jaggedness="outerJags" :radius="0" :horizOnly="true" :style="{'--beam-color': beamColor}">
             <div class="rgb-stage" :style="{background: `hsl(${wallColor[0]}, ${wallColor[1]}%, ${wallColor[2]}%) `}">
                 <div class="top-fringe" />
                 <img class="curtain left" src="/stage/curtain-left.webp" />
@@ -88,9 +88,9 @@
                 >
                     <defs>
                         <linearGradient id="b">
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
                         </linearGradient>
                         <linearGradient
                             xlink:href="#a"
@@ -103,9 +103,9 @@
                             gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
                         />
                         <linearGradient id="a">
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
                         </linearGradient>
                         <linearGradient
                             xlink:href="#b"
@@ -157,9 +157,9 @@
                 >
                     <defs>
                         <linearGradient id="b">
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
                         </linearGradient>
                         <linearGradient
                             xlink:href="#a"
@@ -172,9 +172,9 @@
                             gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
                         />
                         <linearGradient id="a">
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="0" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0.64705884`" offset=".079" />
-                            <stop :style="`stop-color: ${beamColor}; stop-opacity: 0`" offset="1" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
                         </linearGradient>
                         <linearGradient
                             xlink:href="#b"
@@ -224,7 +224,6 @@
                                 <div class="presenter-screen">
                                     <video muted autoplay v-if="currentItem.type == 'video'">
                                         <source :src="currentItem.webm" type="video/webm" v-if="currentItem.webm" />
-                                        <source :src="currentItem.mp4" type="video/mp4" v-if="currentItem.mp4" />
                                     </video>
 
                                     <img v-else :src="currentItem.image" />
@@ -394,8 +393,6 @@
 
             .presenter-screen {
                 height: 28.6cqmin;
-
-
             }
 
             .video-box {
