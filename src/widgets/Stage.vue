@@ -77,6 +77,76 @@
                 <img class="curtain right" src="/stage/curtain-right.webp" />
                 <img class="fixture left" src="/stage/light-left.webp" />
                 <img class="fixture right" src="/stage/light-right.webp" />
+
+
+                <svg
+                    width="573.548"
+                    height="380.793"
+                    viewBox="0 0 151.751 100.751"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="beam right"
+                    :style="{'mix-blend-mode': 'lighten'}"
+                >
+                    <defs>
+                        <linearGradient id="b1">
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
+                        </linearGradient>
+                        <linearGradient
+                            xlink:href="#a1"
+                            id="d1"
+                            gradientUnits="userSpaceOnUse"
+                            x1="9.648"
+                            y1="36.34"
+                            x2="457.311"
+                            y2="290.402"
+                            gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
+                        />
+                        <linearGradient id="a1">
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
+                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
+                        </linearGradient>
+                        <linearGradient
+                            xlink:href="#b1"
+                            id="c1"
+                            x1="9.648"
+                            y1="36.34"
+                            x2="457.311"
+                            y2="290.402"
+                            gradientUnits="userSpaceOnUse"
+                            gradientTransform="matrix(.26458 0 0 .26458 17.607 71.493)"
+                        />
+                    </defs>
+                    <path
+                        style="
+                            mix-blend-mode: normal;
+                            fill: url(#c1);
+                            stroke: none;
+                            stroke-width: 0.264583px;
+                            stroke-linecap: butt;
+                            stroke-linejoin: miter;
+                            stroke-opacity: 1;
+                        "
+                        d="m11.821 85.788 127.464 83.047 15.826-33.525L22.372 72.004Z"
+                        transform="translate(-11.821 -68.631)"
+                    />
+                    <path
+                        style="
+                            fill: url(#d1);
+                            stroke: none;
+                            stroke-width: 0.264583px;
+                            stroke-linecap: butt;
+                            stroke-linejoin: miter;
+                            stroke-opacity: 1;
+                        "
+                        d="m12.045 84.92 146.331 41.607 5.197-36.708L18.044 68.631Z"
+                        transform="translate(-11.821 -68.631)"
+                    />
+                </svg>
+
                 <svg
                     width="573.548"
                     height="380.793"
@@ -146,74 +216,6 @@
                     />
                 </svg>
 
-                <svg
-                    width="573.548"
-                    height="380.793"
-                    viewBox="0 0 151.751 100.751"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="beam right"
-                    :style="{'mix-blend-mode': 'lighten'}"
-                >
-                    <defs>
-                        <linearGradient id="b">
-                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
-                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
-                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
-                        </linearGradient>
-                        <linearGradient
-                            xlink:href="#a"
-                            id="d"
-                            gradientUnits="userSpaceOnUse"
-                            x1="9.648"
-                            y1="36.34"
-                            x2="457.311"
-                            y2="290.402"
-                            gradientTransform="matrix(.25273 -.0783 .0783 .25273 13.342 69.554)"
-                        />
-                        <linearGradient id="a">
-                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="0" />
-                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0.64705884`" offset=".079" />
-                            <stop :style="`stop-color: var(--beam-color); stop-opacity: 0`" offset="1" />
-                        </linearGradient>
-                        <linearGradient
-                            xlink:href="#b"
-                            id="c"
-                            x1="9.648"
-                            y1="36.34"
-                            x2="457.311"
-                            y2="290.402"
-                            gradientUnits="userSpaceOnUse"
-                            gradientTransform="matrix(.26458 0 0 .26458 17.607 71.493)"
-                        />
-                    </defs>
-                    <path
-                        style="
-                            mix-blend-mode: normal;
-                            fill: url(#c);
-                            stroke: none;
-                            stroke-width: 0.264583px;
-                            stroke-linecap: butt;
-                            stroke-linejoin: miter;
-                            stroke-opacity: 1;
-                        "
-                        d="m11.821 85.788 127.464 83.047 15.826-33.525L22.372 72.004Z"
-                        transform="translate(-11.821 -68.631)"
-                    />
-                    <path
-                        style="
-                            mix-blend-mode: multiply;
-                            fill: url(#d);
-                            stroke: none;
-                            stroke-width: 0.264583px;
-                            stroke-linecap: butt;
-                            stroke-linejoin: miter;
-                            stroke-opacity: 1;
-                        "
-                        d="m12.045 84.92 146.331 41.607 5.197-36.708L18.044 68.631Z"
-                        transform="translate(-11.821 -68.631)"
-                    />
-                </svg>
 
                 <div class="projector-screen">
                     <BorderBox shadow="true" :radius="20">
@@ -224,6 +226,7 @@
                                 <div class="presenter-screen">
                                     <video muted autoplay v-if="currentItem.type == 'video'">
                                         <source :src="currentItem.webm" type="video/webm" v-if="currentItem.webm" />
+                                        <source :src="currentItem.mp4" type="video/mp4" v-if="currentItem.mp4" />
                                     </video>
 
                                     <img v-else :src="currentItem.image" />
