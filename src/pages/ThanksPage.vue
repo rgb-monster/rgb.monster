@@ -158,6 +158,20 @@
                             </div>
                             <div class="about-act">
                                 <div class="act-name">{{ act.name }}</div>
+                                <div>
+                                    <a v-if="act.website" target="_blank">
+                                        <Icon name="link" />
+                                    </a>
+
+                                    <template
+                                        v-for="social in ['instagram', 'tiktok', 'twitter', 'facebook']"
+                                        :key="social"
+                                    >
+                                        <a v-if="act[social]" :href="socialURLs[social](act[social])" target="_blank">
+                                            <img class="social" :src="`/social-icons/${social}.svg`" />
+                                        </a>
+                                    </template>
+                                </div>
 
                                 <div v-if="act.plug">
                                     <a
@@ -170,21 +184,6 @@
                                     <template v-else>
                                         {{ act.plug.description }}
                                         <a :href="act.plug.url" v-if="act.plug.title"> {{ act.plug.title }} </a>
-                                    </template>
-                                </div>
-
-                                <div v-else>
-                                    <a v-if="act.website" target="_blank">
-                                        <Icon name="link" />
-                                    </a>
-
-                                    <template
-                                        v-for="social in ['instagram', 'tiktok', 'twitter', 'facebook']"
-                                        :key="social"
-                                    >
-                                        <a v-if="act[social]" :href="socialURLs[social](act[social])" target="_blank">
-                                            <img class="social" :src="`/social-icons/${social}.svg`" />
-                                        </a>
                                     </template>
                                 </div>
                             </div>
