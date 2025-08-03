@@ -3,7 +3,6 @@
 
     import {useStore} from "../stores/shows.js";
     import utils from "/src/scripts/utils.js";
-    import {Sieve} from "/src/scripts/sieve.js";
 
     export default {
         name: "ThanksPage",
@@ -46,21 +45,6 @@
 
             shows: state => state.store.allShows,
 
-            showsSieve() {
-                let shows = this.store.shows.filter(show => show.slug == this.slug);
-                let serialized = shows.map(show => {
-                    return {
-                        id: show.id,
-                        city: show.venue.city,
-                        venue: show.venue.name,
-                        acts: show.acts.map(act => act.name),
-                        ts: show.ts.strftime("%A %B %d %Y %H:%M").split(" "),
-                        ts_str: show.ts.strftime("%A %b %d %Y %H:%M"),
-                    };
-                });
-                return new Sieve(serialized);
-            },
-
             mailinglist() {
                 let city = (this.show.venue?.city || "").toLowerCase().trim();
                 let showType = (this.show.show_type || "").toLowerCase().trim();
@@ -84,7 +68,11 @@
                 let now = dt.datetime.utcnow();
 
                 // filter down to shows that have started already, as you can't have possibly seen a future show
-                let shows = this.shows.filter(show => show.ts_utc < now);
+                let shows = this.shows.filter(
+                    show =>
+                        !show.excludeThanks &&
+                        dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
+                );
 
                 // sort by most recent first
                 let mostRecent = utils.sort(shows, show => -show.ts_utc)[0];
@@ -118,6 +106,7 @@
                 this.redirectToMostRecent();
             } else {
                 this.show = this.shows.find(show => show.id == this.showID);
+                this.show.acts = this.show.acts.filter(act => act.name);
             }
 
             this.loaded = true;
@@ -356,6 +345,7 @@
         .headshot {
             border-radius: 50%;
             max-height: 90px;
+            aspect-ratio: 1/1;
 
             &.placeholder {
                 background: var(--accent-burgundy);
