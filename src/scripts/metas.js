@@ -14,7 +14,7 @@ export async function loadShowTypes() {
         let allShowTypes = [];
 
         for (let src of metasSources) {
-            const response = await fetch(src, {credentials: "omit"});
+            const response = await fetch(`${src}?rnd=${Math.round(Math.random() * 999999)}`, {credentials: "omit"});
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
