@@ -41,7 +41,7 @@
                 }
             },
             slug: state => state.searchParams.get("show"),
-            showID: state => state.searchParams.get("id"),
+            showType: state => state.searchParams.get("type"),
 
             shows: state => state.store.allShows,
 
@@ -62,26 +62,9 @@
         },
 
         methods: {
-            redirectToMostRecent() {
-                // if we don't have a show id, we determine which show just ended (last 15 minutes?)
-                // and then redirect to that;
-                let now = dt.datetime.utcnow();
-
-                // filter down to shows that have started already, as you can't have possibly seen a future show
-                let shows = this.shows.filter(
-                    show =>
-                        !show.excludeThanks &&
-                        dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
-                );
-
-                // sort by most recent first
-                let mostRecent = utils.sort(shows, show => -show.ts_utc)[0];
-                let elapsedHours = mostRecent ? dt.timedelta(now - mostRecent.ts_utc).totalSeconds() / 60 / 60 : null;
-
-                if ((elapsedHours !== null && elapsedHours <= 5) || true) {
-                    this.show = mostRecent;
-                    window.history.replaceState(null, null, `${window.location.origin}/thanks?id=${this.show.id}`);
-                }
+            redirectToMostRecent(show) {
+                this.show = show;
+                window.history.replaceState(null, null, `${window.location.origin}/thanks?type=${this.show.id}`);
             },
 
             async subscribeToMailingList() {
@@ -102,10 +85,20 @@
 
         async mounted() {
             await this.store.fetchShows();
-            if (!this.showID) {
-                this.redirectToMostRecent();
+
+            let now = dt.datetime.utcnow();
+            let shows = this.shows.filter(
+                show =>
+                    !show.excludeThanks && dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
+            );
+
+            // sort by most recent first
+            shows = utils.sort(shows, show => -show.ts_utc);
+
+            if (!this.showType) {
+                this.redirectToMostRecent(shows[0]);
             } else {
-                this.show = this.shows.find(show => show.id == this.showID);
+                this.show = shows.find(show => show.id == this.showType);
                 this.show.acts = this.show.acts.filter(act => act.name);
             }
 
