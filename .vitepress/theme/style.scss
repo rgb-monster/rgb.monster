@@ -131,7 +131,7 @@ main.markdown {
         --page-width: 1200px;
     }
 
-    section {
+    & > div > div > section {
         padding: var(--content-horiz-padding) 0;
 
         .contents,
@@ -151,7 +151,7 @@ main.markdown {
         text-decoration: underline;
     }
 
-    section.markdown-contents {
+    section.markdown-contents:not(.no-links) {
         background: var(--base);
         color: var(--text);
 

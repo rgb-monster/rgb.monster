@@ -89,8 +89,11 @@
 </script>
 
 <template>
-    <section>
-        <div class="contents show-types-listing">
+    <section class="show-types-listing">
+        <div class="header" v-if="$slots.header && showTypes.length">
+            <slot name="header"></slot>
+        </div>
+        <div class="contents">
             <ShowTypeTile
                 v-for="showType in showTypes"
                 ref="tiles"
@@ -106,23 +109,30 @@
 </template>
 
 <style lang="scss">
-    main.markdown section .contents.show-types-listing {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1em;
-        padding: 2em var(--content-horiz-padding);
-        padding-bottom: 8em;
-
-        @media (max-width: 1000px) {
-            grid-template-columns: repeat(3, 1fr);
+    .show-types-listing {
+        .header {
+            max-width: var(--page-width);
+            padding: 20px;
+            margin: 0 auto;
         }
 
-        @media (max-width: 800px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        .contents {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1em;
+            padding: 2em var(--content-horiz-padding);
 
-        @media (max-width: 600px) {
-            grid-template-columns: repeat(1, 1fr);
+            @media (max-width: 1000px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media (max-width: 800px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: 600px) {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
     }
 </style>

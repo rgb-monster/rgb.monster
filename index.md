@@ -17,21 +17,17 @@ You can catch us next at <mark class="subtle">Perth and Adelaide Fringes in Janu
 
 [🧑‍🔧️ Click here](/about-us) to find out more about us and the things we do.
 
-
-::: section large
-
-## Perth Fringe 2026
-
 :::
 
-<ShowTypesListing filter="Perth 2026" />
 
+<ShowTypesListing filter="Perth 2026">
+    <template #header>
+        <h2>Perth Fringe 2026</h2>
+    </template>
+</ShowTypesListing>
 
-::: section large
-
-## Adelaide Fringe 2026
-
-:::
-
-<ShowTypesListing filter="Adelaide 2026" />
-
+<ShowTypesListing filter="Adelaide 2026">
+    <template #header>
+        <h2>Adelaide Fringe 2026</h2>
+    </template>
+</ShowTypesListing>

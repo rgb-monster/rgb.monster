@@ -28,6 +28,10 @@ export async function loadShowTypes() {
                 showTypeInfo.tags = (showTypeInfo.tags || []).map(tag => tag.tag);
                 showTypeInfo.slug = showTypeInfo.slug || showTypeInfo.id;
 
+                // we have bit of an ID confused here
+                showTypeInfo.type = showTypeInfo.id;
+                delete showTypeInfo.id;
+
                 showTypeInfo.overrides = (showTypeInfo.overrides || []).map(rec =>
                     // filter out empty overrides
                     Object.fromEntries(Object.entries(rec).filter(([_field, val]) => val))
@@ -44,7 +48,7 @@ export async function loadShowTypes() {
             allShowTypes = [...allShowTypes, ...showTypes];
         }
 
-        byShowType = Object.fromEntries(allShowTypes.map(showType => [showType.id, showType]));
+        byShowType = Object.fromEntries(allShowTypes.map(showType => [showType.type, showType]));
     } catch (e) {
         console.error(`Failed to fetch remote data: ${e.message}`);
         byShowType = {};
