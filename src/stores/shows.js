@@ -4,7 +4,7 @@ import dt from "py-datetime";
 import {defineStore} from "pinia";
 
 import utils from "../scripts/utils.js";
-import {loadShowTypes, getShowMetas} from "../scripts/metas.js";
+import {loadShowTypes} from "../scripts/metas.js";
 import {Sieve} from "../scripts/sieve.js";
 
 export const useStore = defineStore("shows", {
@@ -40,7 +40,7 @@ export const useStore = defineStore("shows", {
             this.shows.forEach(show => {
                 if (!byType[show.show_type]) {
                     byType[show.show_type] = {
-                        ...getShowMetas(this.remoteShowTypes, show),
+                        ...show.metas,
                         title: show.title,
                         emoji: show.emoji,
                         duration: show.duration,
@@ -87,8 +87,8 @@ export const useStore = defineStore("shows", {
 
                 let sources = [
                     "https://confirmed.show/api/v1/rgb-monster/shows.json",
-                    "https://confirmed.show/api/v1/rgb-presents/shows.json",
-                    "https://confirmed.show/api/v1/bowtie/shows.json",
+                    // "https://confirmed.show/api/v1/rgb-presents/shows.json",
+                    // "https://confirmed.show/api/v1/bowtie/shows.json",
                 ];
 
                 await this.fetchShowTypes();
@@ -113,24 +113,28 @@ export const useStore = defineStore("shows", {
                         show.date = dt.datetime(show.date - dt.timedelta({days: 1}));
                     }
 
-                    let metas = getShowMetas(this.remoteShowTypes, show);
+                    let showMetas = _getShowMetas(this.remoteShowTypes[show.show_type], show);
+
+                    let ticketsURL = showMetas.tickets || "";
+                    if (ticketsURL && ticketsURL.includes("tickets.edfringe.com")) {
+                        // fringe has brokeneth the ability to deep-link
+                        // ticketsURL = `${ticketsURL}?day=${show.date.strftime("%d-%m-%Y")}`;
+                        // TODO - i could bring this brain into metas on confirmed if anyone resumes deep-linking
+                        // showMetas.tickets = ticketsURL;
+                    }
 
                     // name -> title (we have both of them and that then becomes awfully confusing)
-                    // we want to use the metas one where available as that allows overriding act/production-facing
+                    // we want to use the showMetas one where available as that allows overriding act/production-facing
                     // title for cosmetic reasons
-                    show.title = metas.title || show.name;
+                    show.title = showMetas.title || show.name;
                     delete show.name;
-
-                    if (!metas) {
-                        return show;
-                    }
 
                     let acts = show.acts;
                     if (show.total_act_spots > acts.length) {
                         acts.push({empty: true, count: show.total_act_spots - acts.length});
                     }
 
-                    return {...show, ...metas, metas, acts};
+                    return {...show, ...showMetas, metas: showMetas, acts};
                 });
 
                 this.allShows = [...this.shows];
@@ -152,3 +156,36 @@ export const useStore = defineStore("shows", {
         },
     },
 });
+
+function _getShowMetas(metas, show) {
+    metas = JSON.parse(JSON.stringify(metas || {}));
+    let overrides = metas.overrides;
+    delete metas.overrides;
+    if (overrides.length) {
+        // find the override that matches our situation best
+        let currentScore = 0;
+        let matched = {};
+
+        let mappings = {
+            city: show.venue?.city,
+            venue: show.venue?.name,
+            time: show.ts.strftime("%H:%M"),
+        };
+        for (let override of overrides) {
+            let matches = Object.entries(override)
+                .map(([field, val]) => (mappings[field] || show[field]) == val)
+                .filter(match => match);
+            if (matches.length > currentScore) {
+                matched = override;
+                currentScore = matches.length;
+            }
+        }
+        Object.keys(mappings).forEach(key => {
+            // make sure we don't overwrite city, venue, and time with the filter stuff
+            delete matched[key];
+        });
+
+        metas = {...metas, ...matched};
+    }
+    return metas;
+}

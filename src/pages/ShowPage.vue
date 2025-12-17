@@ -34,7 +34,7 @@
                 return Math.max(-Math.pow(factor, 2), -300);
             },
 
-            metas: state => state.showInfo,
+            metas: state => state.shows[0]?.metas || {},
             slug: state => state.showInfo.slug,
 
             showsSieve() {
@@ -247,7 +247,7 @@
                             <div v-if="loaded">{{ dates }}</div>
                         </div>
 
-                        <div>
+                        <!-- <div>
                             <Icon name="location_on" />
                             <div v-if="loaded">{{ topShow?.venue?.name }}</div>
                         </div>
@@ -255,7 +255,7 @@
                         <div>
                             <Icon name="schedule" />
                             <div v-if="loaded">{{ topShow?.ts?.strftime("%H:%M") }}</div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="tags">
@@ -295,7 +295,6 @@
             <section class="show-description">
                 <div class="contents" v-html="showDescription" />
             </section>
-
 
             <section v-if="metas.squareVideo" class="video">
                 <div class="contents">

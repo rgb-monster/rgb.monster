@@ -20,18 +20,26 @@ export async function loadShowTypes() {
             }
             let showTypes = await response.json();
 
-            showTypes = showTypes
-                .filter(showType => Object.keys(showType.meta).length > 0)
-                .map(showType => {
-                    let meta = {...showType, ...showType.meta};
-                    delete meta.meta;
+            showTypes = showTypes.map(showType => {
+                // flatten metas into the main record
+                let showTypeInfo = {...showType, ...showType.meta};
+                delete showTypeInfo.meta;
 
-                    meta.tags = (meta.tags || []).map(tag => tag.tag);
-                    meta.slug = meta.slug || meta.id;
-                    meta.title = meta.title || meta.name;
-                    delete meta.name;
-                    return meta;
-                });
+                showTypeInfo.tags = (showTypeInfo.tags || []).map(tag => tag.tag);
+                showTypeInfo.slug = showTypeInfo.slug || showTypeInfo.id;
+
+                showTypeInfo.overrides = (showTypeInfo.overrides || []).map(rec =>
+                    // filter out empty overrides
+                    Object.fromEntries(Object.entries(rec).filter(([_field, val]) => val))
+                );
+
+                // prefer title over the name field
+                // (title is the override while name is what we have in confirmed by default)
+                showTypeInfo.title = showTypeInfo.title || showTypeInfo.name;
+                delete showTypeInfo.name;
+
+                return showTypeInfo;
+            });
 
             allShowTypes = [...allShowTypes, ...showTypes];
         }
@@ -43,48 +51,4 @@ export async function loadShowTypes() {
     }
 
     return byShowType;
-}
-
-export function getShowMetas(byShowType, show) {
-    // based on show's venue and time match it with the right metas
-
-    let meta = byShowType[show.show_type] || {};
-
-    let overrides = meta.overrides;
-    delete meta.meta;
-    delete meta.overrides;
-
-    if (overrides) {
-        // find the override that matches our situation best
-        let currentScore = 0;
-        let matched = null;
-
-        let mappings = {
-            city: show.venue?.city,
-            venue: show.venue?.name,
-            time: show.ts.strftime("%H:%M"),
-        };
-        for (let override of overrides) {
-            let matches = Object.entries(override)
-                .map((field, val) => (mappings[field] || show[field]) == val)
-                .filter(match => match);
-            if (matches.length > currentScore) {
-                matched = override;
-                currentScore = matches.length;
-            }
-        }
-
-        if (matched) {
-            meta = {...meta, ...matched};
-        }
-    }
-
-    let ticketsURL = meta.tickets || "";
-    if (ticketsURL && ticketsURL.includes("tickets.edfringe.com")) {
-        // fringe has brokeneth the ability to deep-link
-        // ticketsURL = `${ticketsURL}?day=${show.date.strftime("%d-%m-%Y")}`;
-        // metas.tickets = ticketsURL;
-    }
-
-    return meta;
 }

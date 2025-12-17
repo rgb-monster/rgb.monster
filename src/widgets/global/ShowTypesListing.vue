@@ -1,5 +1,4 @@
 <script>
-    import {getShowMetas} from "../../scripts/metas.js";
     import {useStore} from "/src/stores/shows.js";
     import utils from "/src/scripts/utils.js";
 
@@ -35,24 +34,26 @@
                 let byType = {};
                 this.shows.forEach(show => {
                     byType[show.show_type] = byType[show.show_type] || {
-                        ...getShowMetas(this.store.remoteShowTypes, show),
+                        ...show.metas,
                         title: show.title,
                         emoji: show.emoji,
                         duration: show.duration,
                         description: show.public_description,
+                        tags: show.tags,
                         shows: [],
                     };
 
                     byType[show.show_type].shows.push(show);
                 });
 
-                return utils.sort(
+                let res = utils.sort(
                     Object.values(byType).map(rec => ({
                         ...rec,
                         shows: utils.sort(rec.shows, show => show.ts),
                     })),
                     showType => showType.title.toLowerCase().trim()
                 );
+                return res;
             },
         },
 
