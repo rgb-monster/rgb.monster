@@ -105,7 +105,7 @@ export default async () => {
                     let td = extractTimesDates(scheduled?.shows || []);
                     description = `${td.topShow.ts.strftime("%H:%M")} ${td.topShow.venue.name}, ${td.dates}`;
                 } else {
-                    description = show.shortDescription;
+                    description = show.shortDescription || "";
                 }
 
                 extra.push(["meta", {name: "og:title", content: show.title}]);
