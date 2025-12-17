@@ -1,9 +1,9 @@
 {
     "devDependencies": {
-        "sass": "^1.89.2",
+        "sass": "^1.97.0",
         "vite-svg-loader": "^5.1.0",
-        "vitepress": "^1.6.3",
-        "vue": "^3.5.17"
+        "vitepress": "^1.6.4",
+        "vue": "^3.5.25"
     },
     "scripts": {
         "vue": "vitepress dev --host",
@@ -11,10 +11,10 @@
         "preview": "vitepress preview"
     },
     "dependencies": {
-        "axios": "^1.10.0",
-        "chroma-js": "^3.1.2",
+        "axios": "^1.13.2",
+        "chroma-js": "^3.2.0",
         "markdown-it-container": "^4.0.0",
-        "pinia": "^3.0.3",
+        "pinia": "^3.0.4",
         "py-datetime": "^0.9.1"
     }
 }
