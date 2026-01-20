@@ -1,9 +1,9 @@
 {
     "devDependencies": {
-        "sass": "^1.97.0",
+        "sass": "^1.97.2",
         "vite-svg-loader": "^5.1.0",
         "vitepress": "^1.6.4",
-        "vue": "^3.5.25"
+        "vue": "^3.5.27"
     },
     "scripts": {
         "vue": "vitepress dev --host",
