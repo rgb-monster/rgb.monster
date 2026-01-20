@@ -39,6 +39,15 @@ export default async () => {
                 },
             ],
 
+            [
+                "script",
+                {
+                    src: "https://fast.bentonow.com?site_uuid=f89c78149bd78558e888710d5dba78c6",
+                    defer: "defer",
+                    async: "async",
+                },
+            ],
+
             ["meta", {property: "og:site_name", content: "RGB Monster"}],
             ["meta", {property: "og:type", content: "website"}],
 
