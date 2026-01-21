@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex" />
+        <title>Content Manager</title>
+        <link rel="cms-config-url" type="text/yaml" href="/admin/config.yml" />
+    </head>
+    <body>
+        <!-- Include the script that builds the page and powers Decap CMS -->
+        <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.0.0/dist/markdown-it.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/markdown-it-container@4.0.0/dist/markdown-it-container.min.js"></script>
+
+        <script>
+            // Helper to find the production stylesheet
+            async function registerProductionStyles() {
+                try {
+                    let response = await fetch("/");
+                    let text = await response.text();
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(text, "text/html");
+
+                    // VitePress uses 'preload stylesheet' or similar. We rely on filename convention.
+                    let links = Array.from(doc.querySelectorAll("link"));
+                    links = links.filter(link => {
+                        let href = link.getAttribute("href");
+                        return href && href.includes("assets/") && href.endsWith(".css");
+                    });
+
+                    links.forEach(link => {
+                        CMS.registerPreviewStyle(link.getAttribute("href"));
+                    });
+                } catch (e) {
+                    console.error("Failed to find production stylesheet:", e);
+                    return null;
+                }
+            }
+
+            async function run() {
+                await registerProductionStyles();
+
+                // Dynamic Page Loading
+                let pages = [];
+                const response = await fetch("/admin/config.yml");
+                const yamlText = await response.text();
+                const config = jsyaml.load(yamlText);
+                const pagesCollection = config.collections.find(c => c.name === "pages");
+                if (pagesCollection && pagesCollection.files) {
+                    pages = pagesCollection.files.map(f => f.name);
+                }
+
+                const h = window.h || (window.React && window.React.createElement) || CMS.h;
+
+                // Setup markdown-it to match proper site config
+                const md = window.markdownit({
+                    html: true,
+                    linkify: true,
+                    typographer: true,
+                });
+
+                // Register markdown-it-container for 'section'
+                // This matches logic in config.mjs
+                if (window.markdownitContainer) {
+                    md.use(window.markdownitContainer, "section", {
+                        render: function (tokens, idx) {
+                            var m = tokens[idx].info.trim().match(/^section\s+(.*)$/);
+                            if (tokens[idx].nesting === 1) {
+                                // opening tag
+                                return `<section class="markdown-contents ${
+                                    m ? md.utils.escapeHtml(m[1]) : ""
+                                }"><div class="contents">\n`;
+                            } else {
+                                // closing tag
+                                return "</div></section>\n";
+                            }
+                        },
+                    });
+                }
+
+                const PagePreview = ({entry, widgetFor}) => {
+                    const layout = entry.getIn(["data", "layout"]) || "normal";
+                    const body = entry.getIn(["data", "body"]) || "";
+
+                    if (!h) return null;
+
+                    // Render markdown using our custom md instance
+                    // Note: widgetFor('body') is replaced by our rendered HTML
+                    const htmlContent = md.render(body);
+
+                    return h(
+                        "div",
+                        {className: "theme-container"},
+                        h("main", {
+                            className: `markdown ${layout}`,
+                            dangerouslySetInnerHTML: {__html: htmlContent},
+                        })
+                    );
+                };
+
+                pages.forEach(page => CMS.registerPreviewTemplate(page, PagePreview));
+            }
+
+            run();
+        </script>
+    </body>
+</html>
