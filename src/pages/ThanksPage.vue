@@ -73,7 +73,7 @@
                 if (show) {
                     this.redirectToMostRecent(show);
                 } else {
-                    this.shows = [];
+                    this.show = null;
                 }
 
                 this.loading = false;
@@ -116,11 +116,12 @@
 <template>
     <div class="thanks-page">
         <div
-            v-if="loading || !this.shows"
+            v-if="loading || isEmpty(shows) || !show"
             style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; align-items: center"
         >
             <h1 v-if="loading">Loading...</h1>
-            <h1 v-else-if="!show">No recent shows!</h1>
+            <h1 v-else-if="isEmpty(shows)">No recent shows!</h1>
+            <h1 v-else-if="!show">Could not find show!</h1>
         </div>
 
         <template v-else>
