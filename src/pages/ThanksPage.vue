@@ -70,18 +70,23 @@
 
             let now = dt.datetime.utcnow();
             let shows = this.shows.filter(
-                show =>
-                    !show.excludeThanks && dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
+                show => dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
             );
 
             // sort by most recent first
             shows = utils.sort(shows, show => -show.ts_utc);
 
+            shows.forEach(show => {
+                // filter out empty acts
+                show.acts = show.acts.filter(act => act.name);
+            });
+
             if (this.showType) {
+                // filter by show type if provided
                 shows = shows.filter(show => show.show_type == this.showType);
-                shows.forEach(show => {
-                    show.acts = show.acts.filter(act => act.name);
-                });
+            } else {
+                // otherwise grab the most recent one that we haven't told to be excluded
+                shows = shows.filter(!show.excludeThanks);
             }
 
             if (shows.length) {
