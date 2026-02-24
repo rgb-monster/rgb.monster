@@ -20,10 +20,6 @@
                     tiktok: handle => `https://tiktok.com/@${handle}`,
                     facebook: handle => `https://facebook.com/${handle}`,
                 },
-
-                email: "",
-                submitting: false,
-                subscribed: false,
             };
         },
         computed: {
@@ -42,6 +38,7 @@
             },
             slug: state => state.searchParams.get("show"),
             showType: state => state.searchParams.get("type"),
+            showID: state => state.searchParams.get("id"),
 
             shows: state => state.store.allShows,
 
@@ -64,22 +61,7 @@
         methods: {
             redirectToMostRecent(show) {
                 this.show = show;
-                window.history.replaceState(null, null, `${window.location.origin}/thanks?type=${this.show.id}`);
-            },
-
-            async subscribeToMailingList() {
-                // determine mailing list name
-                if (!this.mailinglist) {
-                    return;
-                }
-                this.submitting = true;
-
-                await this.$requests.post("mailinglist", {
-                    email: this.email,
-                    mailinglist: this.mailinglist,
-                });
-                this.submitting = false;
-                this.subscribed = true;
+                window.history.replaceState(null, null, `${window.location.origin}/thanks?id=${this.show.id}`);
             },
         },
 
@@ -95,11 +77,15 @@
             // sort by most recent first
             shows = utils.sort(shows, show => -show.ts_utc);
 
-            if (!this.showType) {
+            if (this.showType) {
+                shows = shows.filter(show => show.show_type == this.showType);
+                shows.forEach(show => {
+                    show.acts = show.acts.filter(act => act.name);
+                });
+            }
+
+            if (shows.length) {
                 this.redirectToMostRecent(shows[0]);
-            } else {
-                this.show = shows.find(show => show.id == this.showType);
-                this.show.acts = this.show.acts.filter(act => act.name);
             }
 
             this.loaded = true;
@@ -111,10 +97,13 @@
 
 <template>
     <div class="thanks-page">
-        <template v-if="!loaded"> <h1>Loading...</h1></template>
-        <template v-else-if="!show">
-            <h1>No recent shows!</h1>
-        </template>
+        <div
+            v-if="!loaded || !show"
+            style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; align-items: center"
+        >
+            <h1 v-if="!loaded">Loading...</h1>
+            <h1 v-else-if="!show">No recent shows!</h1>
+        </div>
 
         <template v-else>
             <div class="splash">
@@ -174,10 +163,16 @@
                 </template>
 
                 <template v-if="mailinglist">
-                    <template v-if="subscribed">
-                        <h1 style="margin-top: 1em; margin-bottom: 0.5em">You're in</h1>
+                    <MailingList :tag="mailinglist">
+                        <template #prompt>
+                            <p>
+                                We produce lots of different comedy shows, and send occasional emails with ticket
+                                offers, show recommendations, and insider tips. Subscribe to our
+                                <em>no-spam {{ show.venue.city }} comedy mailing list </em> and don't miss a show!
+                            </p>
+                        </template>
 
-                        <div v-if="subscribed" style="text-align: center; line-height: 150%">
+                        <template #thanks>
                             Thank you for subscribing! If you're looking for a good laugh on the go, we also have an
                             Instagram page with lots of comedy clips!
 
@@ -200,54 +195,8 @@
                                     See Instagram
                                 </a>
                             </div>
-                        </div>
-                    </template>
-
-                    <template v-else>
-                        <h1 style="margin: 1em auto">Stay in the loop</h1>
-                        <div style="line-height: 150%">
-                            <p>
-                                We produce lots of different comedy shows, and send occasional emails with ticket
-                                offers, show recommendations, and insider tips. Subscribe to our
-                                <em>no-spam {{ show.venue.city }} comedy mailing list </em> and don't miss a show!
-                            </p>
-
-                            <form
-                                @submit.prevent="subscribeToMailingList"
-                                style="display: grid; justify-content: center; gap: 20px; margin: 1em 0"
-                            >
-                                <input
-                                    name="email"
-                                    type="email"
-                                    v-model="email"
-                                    style="
-                                        padding: 10px;
-                                        border: 2px solid var(--base);
-                                        border-radius: 10px;
-                                        width: 20em;
-                                    "
-                                    placeholder="email@domain.com"
-                                />
-                                <div style="display: flex; justify-content: center">
-                                    <button
-                                        :disabled="!emailOk(email) || submitting"
-                                        style="
-                                            background: var(--base);
-                                            color: var(--text);
-                                            text-align: center;
-                                            padding: 20px;
-                                            border-radius: 10px;
-                                            font-family: var(--rgb-font);
-                                            text-transform: uppercase;
-                                            font-size: 1.2em;
-                                        "
-                                    >
-                                        {{ !submitting ? "Subscribe" : "Subscribing&hellip;" }}
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </template>
+                        </template>
+                    </MailingList>
                 </template>
             </div>
         </template>
