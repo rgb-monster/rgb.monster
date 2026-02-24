@@ -75,7 +75,6 @@
                 } else {
                     this.show = null;
                 }
-
                 this.loading = false;
 
                 return;
@@ -99,7 +98,7 @@
                 shows = shows.filter(show => show.show_type == this.showType);
             } else {
                 // otherwise grab the most recent one that we haven't told to be excluded
-                shows = shows.filter(!show.excludeThanks);
+                shows = shows.filter(show => !show.excludeThanks);
             }
 
             if (shows.length) {
@@ -184,6 +183,8 @@
                 <template v-if="mailinglist">
                     <MailingList :tag="mailinglist">
                         <template #prompt>
+                            <h1 style="margin: 1em auto">Stay in the loop</h1>
+
                             <p>
                                 We produce lots of different comedy shows, and send occasional emails with ticket
                                 offers, show recommendations, and insider tips. Subscribe to our
@@ -192,25 +193,13 @@
                         </template>
 
                         <template #thanks>
+                            <h1 style="margin-top: 1em; margin-bottom: 0.5em">You're in</h1>
+
                             Thank you for subscribing! If you're looking for a good laugh on the go, we also have an
                             Instagram page with lots of comedy clips!
 
                             <div style="display: flex; justify-content: center">
-                                <a
-                                    style="
-                                        background: var(--base);
-                                        color: var(--text);
-                                        text-align: center;
-                                        padding: 10px 20px;
-                                        border-radius: 10px;
-                                        font-family: var(--rgb-font);
-                                        text-transform: uppercase;
-                                        font-size: 1.2em;
-                                        margin: 1em 0;
-                                    "
-                                    href="https://www.instagram.com/rgbmonster"
-                                    target="_blank"
-                                >
+                                <a class="big-button insta" href="https://www.instagram.com/rgbmonster" target="_blank">
                                     See Instagram
                                 </a>
                             </div>
@@ -311,6 +300,31 @@
             &.placeholder {
                 background: var(--accent-burgundy);
                 padding: 10px;
+            }
+        }
+
+        .mailinglist-form {
+            .big-button {
+                background: var(--base);
+                color: var(--text);
+                text-align: center;
+                padding: 20px;
+                border-radius: 10px;
+                font-family: var(--rgb-font);
+                text-transform: uppercase;
+                font-size: 1.2em;
+            }
+
+            .insta {
+                background: var(--base);
+                color: var(--text);
+                text-align: center;
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-family: var(--rgb-font);
+                text-transform: uppercase;
+                font-size: 1.2em;
+                margin: 1em 0;
             }
         }
 
