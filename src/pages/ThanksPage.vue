@@ -10,7 +10,7 @@
             return {
                 store: useStore(),
 
-                loaded: false,
+                loading: true,
                 notFound: false,
                 show: null,
 
@@ -68,6 +68,19 @@
         async mounted() {
             await this.store.fetchShows();
 
+            if (this.showID) {
+                let show = this.shows.find(show => show.id == this.showID);
+                if (show) {
+                    this.redirectToMostRecent(show);
+                } else {
+                    this.shows = [];
+                }
+
+                this.loading = false;
+
+                return;
+            }
+
             let now = dt.datetime.utcnow();
             let shows = this.shows.filter(
                 show => dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
@@ -93,7 +106,7 @@
                 this.redirectToMostRecent(shows[0]);
             }
 
-            this.loaded = true;
+            this.loading = false;
         },
 
         beforeUnmount() {},
@@ -103,10 +116,10 @@
 <template>
     <div class="thanks-page">
         <div
-            v-if="!loaded || !show"
+            v-if="loading || !this.shows"
             style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; align-items: center"
         >
-            <h1 v-if="!loaded">Loading...</h1>
+            <h1 v-if="loading">Loading...</h1>
             <h1 v-else-if="!show">No recent shows!</h1>
         </div>
 
