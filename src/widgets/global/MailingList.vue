@@ -82,7 +82,7 @@
         </div>
     </template>
 
-    <template else>
+    <template v-else>
         <h1 style="margin-top: 1em; margin-bottom: 0.5em">You're in</h1>
 
         <div v-if="subscribed" style="text-align: center; line-height: 150%">
