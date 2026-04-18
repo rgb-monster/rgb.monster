@@ -161,7 +161,7 @@ function _getShowMetas(metas, show) {
     metas = JSON.parse(JSON.stringify(metas || {}));
     let overrides = metas.overrides;
     delete metas.overrides;
-    if (overrides.length) {
+    if ((overrides || []).length) {
         // find the override that matches our situation best
         let currentScore = 0;
         let matched = {};
