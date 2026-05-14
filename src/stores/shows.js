@@ -102,7 +102,7 @@ export const useStore = defineStore("shows", {
                 this.shows = data.map(show => {
                     show.ts = dt.datetime.strptime(show.ts, "%Y-%m-%d %H:%M:%S");
                     if (show.ts_utc) {
-                        show.ts_utc = dt.datetime.strptime(show.ts_utc, "%Y-%m-%d %H:%M:%S", true);
+                        show.ts_utc = dt.datetime.strptime(show.ts_utc, "%Y-%m-%dT%H:%M:%SZ", true);
                     } else {
                         show.ts_utc = show.ts; // in absence of ts_utc (meaning we don't have a timezone, use ts as tsutc)
                     }
