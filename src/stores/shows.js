@@ -86,7 +86,7 @@ export const useStore = defineStore("shows", {
                 this.loading = true;
 
                 let sources = [
-                    "https://confirmed.show/api/v1/rgb-monster/shows.json",
+                    "https://confirmed.show/api/v1/rgb-monster/shows.json?future_shows_limit=180",
                     // "https://confirmed.show/api/v1/rgb-presents/shows.json",
                     // "https://confirmed.show/api/v1/bowtie/shows.json",
                 ];
