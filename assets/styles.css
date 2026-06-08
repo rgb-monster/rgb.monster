@@ -1,0 +1,370 @@
+:root {
+    --font-size-xs: clamp(0.75rem, 1vw, 0.875rem);
+    --font-size-sm: clamp(0.875rem, 1.25vw, 1rem);
+    --font-size-base: clamp(1rem, 1.5vw, 1.125rem);
+    --font-size-lg: clamp(1.125rem, 2vw, 1.25rem);
+    --font-size-xl: clamp(1.25rem, 2.5vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 3vw, 1.875rem);
+    --font-size-3xl: clamp(1.875rem, 4vw, 2.25rem);
+    --font-size-4xl: clamp(2.25rem, 5vw, 3rem);
+    --font-size-5xl: clamp(3rem, 6vw, 4rem);
+    --font-size-6xl: clamp(4rem, 7vw, 5rem);
+
+    --pink: #ed7dab;
+    --blue: #4e639c;
+    --brown: #7d3a43;
+    --beige: #f5e6c9;
+    --yellow: #fede63;
+    --light: #fff;
+    --dark: #333;
+
+    --pink-faint: #ed7dab88;
+    --blue-faint: #4e639c88;
+    --brown-faint: #7d3a4388;
+    --beige-faint: #f5e6c988;
+    --yellow-faint: #fede6388;
+
+    --accent-yellow: #ffd24e;
+    --accent-pink: #ed7dab;
+    --accent-red: #e1391c;
+    --accent-blue: #4f5b97;
+    --accent-green: #65b762;
+    --accent-burgundy: #712529;
+    --accent-yellow-light: #ffd24e;
+    --accent-pink-light: #f1ccdc;
+    --accent-red-light: #e1391c;
+    --accent-blue-light: #4f5b97;
+    --accent-green-light: #65b762;
+    --accent-burgundy-light: #712529;
+
+    --chrome: hsl(357, 51%, 19%);
+    --chrome-x1: hsl(357, 51%, 24%);
+    --chrome-x2: hsl(357, 51%, 29%);
+
+    --em: #ed7dab;
+
+    --chrome-text: #f7f0e3;
+
+    --base: hsl(39, 56%, 93%);
+    --base-1: hsl(39, 56%, 88%);
+    --base-2: hsl(39, 56%, 83%);
+    --text: #333;
+
+    --light: #fafafa;
+
+    --control: #72b0ff;
+
+    --label: #999;
+
+    --shadow: #ece3cc;
+
+    --body-font: Lato, Arial, Helvetica;
+
+    --header-font: Hammersmith One;
+    --header-color: var(--accent-burgundy);
+
+    --transparent-shadow: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--font-size-base);
+}
+
+h1,
+h2 {
+    font-family: var(--header-font);
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1;
+    transform: translateY(-0.1em);
+}
+
+h1 {
+    font-size: var(--font-size-4xl);
+    color: var(--header-color);
+    font-family: var(--header-font);
+    font-weight: 600;
+
+    .ink-header-contents {
+        color: var(--header-color);
+        font-size: var(--font-size-3xl);
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 0.025em;
+        --dynamic-shadow: min(calc(1px + 0.3vw), 3px);
+        text-shadow: var(--dynamic-shadow) var(--dynamic-shadow) rgba(0, 0, 0, 0.4);
+        transform: translateY(0.05em);
+    }
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+}
+
+section {
+    main {
+        max-width: 1000px;
+        position: relative;
+        margin: 0 auto;
+
+        padding: 0 1em;
+        padding-bottom: 3em;
+    }
+}
+
+em {
+    font-style: normal;
+    color: var(--pink);
+
+    &.red {
+        color: var(--accent-red);
+    }
+}
+
+.ellipsize {
+    display: block;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.scrollbar {
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+
+        &:vertical {
+            width: 15px;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: var(--base-1);
+    }
+
+    &.rounded {
+        &::-webkit-scrollbar-track {
+            border-radius: 10px;
+        }
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: var(--base-1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        border: 5px solid var(--base-1);
+        background-color: var(--base-5);
+        min-height: 40px;
+
+        &:hover {
+            background-color: var(--base-7);
+        }
+    }
+}
+
+.theme-container {
+    min-height: 100vh;
+    background: var(--base);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+}
+
+.theme-container.md-toast {
+    --base: #fff;
+    .doodle,
+    .curtains-left,
+    .curtains-right,
+    .about-tickets {
+        display: none;
+    }
+}
+
+@keyframes slidebg {
+    to {
+        background-position: 100vw;
+    }
+}
+
+.theme-container.md-afterparty {
+    main.markdown {
+        .sticky-header {
+            background-image: linear-gradient(90deg, #00c0ff 0%, #ffcf00 49%, #fc4f4f 80%, #00c0ff 100%);
+            animation: slidebg 5s linear infinite;
+        }
+
+        section.cta button {
+            border: none;
+            background-image: linear-gradient(90deg, #00c0ff 0%, #ffcf00 49%, #fc4f4f 80%, #00c0ff 100%);
+            animation: slidebg 30s linear infinite;
+
+            .button-inner {
+                background: #fff;
+            }
+        }
+    }
+}
+
+main.markdown {
+    flex-grow: 1;
+
+    &.normal {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2em;
+    }
+}
+
+.flexer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.long-short {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 5px;
+}
+
+.short-long {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 5px;
+}
+
+mark {
+    background-color: var(--accent-pink);
+    padding: 3px;
+
+    &.subtle {
+        background-color: var(--accent-yellow);
+    }
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+button,
+a {
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+button:disabled,
+button.disabled,
+a.disabled {
+    pointer-events: none;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: var(--font-size-2xl); /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: "liga";
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#__nuxt {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .page {
+        flex-grow: 1;
+        width: 100%;
+        background-color: var(--bg);
+        color: var(--color);
+
+        --accent-bg: var(--accent-yellow);
+        --accent-fg: var(--dark);
+    }
+}
+
+em {
+    font-style: normal;
+    color: var(--accent-fg);
+    background: var(--accent-bg);
+    padding: 0.1em 0.15em;
+}
+
+.theme-base {
+    --bg: var(--base);
+    --color: var(--page-fg);
+}
+
+.theme-white {
+    --bg: white;
+    --color: dark;
+}
+
+.theme-pink {
+    --color: var(--beige);
+    --bg: var(--pink);
+    --header-color: var(--light);
+}
+
+.theme-blue {
+    --bg: var(--blue);
+    --color: var(--beige);
+    --header-color: var(--light);
+}
+.theme-brown {
+    --bg: var(--brown);
+    --color: var(--beige);
+    --header-color: var(--light);
+}
+.theme-beige {
+    --bg: var(--beige);
+    --color: var(--dark);
+}
+.theme-yellow {
+    --bg: var(--yellow);
+    --color: var(--dark);
+}
+
+.theme-light {
+    --bg: var(--light);
+    --color: var(--dark);
+}
+
+.theme-dark {
+    --bg: var(--dark);
+    --color: var(--light);
+    --header-color: var(--light);
+}
+
+.with-confetti {
+    background-image: url(/new/confetti.svg);
+    background-size: 30%;
+}

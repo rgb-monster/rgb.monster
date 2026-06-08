@@ -1,0 +1,7 @@
+[build]
+    command = "npm run generate"
+    publish = "dist"
+
+[configuration]
+    # Automatically forwards paths like /about/index.html to /about
+    pretty_urls = true

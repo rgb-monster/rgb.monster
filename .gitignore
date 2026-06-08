@@ -1,4 +1,33 @@
-.vitepress/cache
-.vitepress/dist
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+app/show-types-generated.json
+app/show-types-titles.json
+app/show-types-metadata.json
+
+# Node dependencies
 node_modules
 
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Local certificates
+.cert
+
+# Prettier
+.prettierrc
