@@ -44,7 +44,7 @@
     // Resolve description and sharing image for social cards dynamically
     let pageDescription =
         "RGB Monster is an unusual comedy production. Live comedy, interactive shows, and spectacular events.";
-    let pageImage = "https://rgb.monster/new/monstervision.webp";
+    let pageImage = "https://rgb.monster/social.webp";
     let showTypeMetadata = import.meta.dev ? config.public.showTypeMetadata : showTypeMetadataStatic;
 
     if (isShowTypePage) {
