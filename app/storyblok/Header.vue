@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <h1 class="ink-header" v-editable="blok" :style="{'text-align': blok.align}">
+    <h1 class="ink-header" v-editable="blok" :style="{'text-align': blok.align || 'inherit'}">
         <div class="ink-header-contents">{{ blok.title }}</div>
     </h1>
 </template>

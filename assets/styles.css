@@ -64,6 +64,8 @@
     --header-color: var(--accent-burgundy);
 
     --transparent-shadow: rgba(0, 0, 0, 0.4);
+
+    --page-width: 1000px;
 }
 
 body {
@@ -104,7 +106,7 @@ h2 {
 
 section {
     main {
-        max-width: 1000px;
+        max-width: var(--page-width);
         position: relative;
         margin: 0 auto;
 

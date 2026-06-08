@@ -103,6 +103,8 @@
 
         .shows {
             display: grid;
+            max-width: var(--page-width);
+            margin: 0 auto;
 
             grid-template-columns: repeat(
                 var(--grid-placement, auto-fill),

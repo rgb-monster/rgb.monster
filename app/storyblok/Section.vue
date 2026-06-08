@@ -4,7 +4,7 @@
 
 <template>
     <section class="toplevel" :class="[`theme-${blok.colour}`, blok.swoosh ? 'swoosh' : 'no-swoosh']" v-editable="blok">
-        <div class="container" :style="{'text-align': blok.align}">
+        <div class="container" :style="{'text-align': blok.align || 'inherit'}">
             <StoryblokComponent v-for="currentBlok in blok.contents" :key="currentBlok._uid" :blok="currentBlok" />
             <slot />
         </div>
@@ -16,6 +16,9 @@
         color: var(--color);
         background-color: var(--bg);
         position: relative;
+        &:first-child {
+            padding-top: 1em;
+        }
 
         &.swoosh {
             min-height: 0em;
@@ -71,6 +74,8 @@
 
         .container {
             padding: 0.625em 1.25em;
+            max-width: var(--page-width);
+            margin: 0 auto;
         }
 
         &.swoosh .container {
