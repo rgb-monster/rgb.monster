@@ -35,7 +35,7 @@ export const useStore = defineStore("shows", {
             let filterFuncs = {
                 from: val => show => show.date >= val,
                 to: val => show => show.date <= val,
-                city: val => show => show.venue?.city == val,
+                city: val => show => (show.venue?.city || "").toLowerCase() == (val || "").toLowerCase(),
             };
 
             let filters = Object.entries(this.filter).map(([field, val]) => {
