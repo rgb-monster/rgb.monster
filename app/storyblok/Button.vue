@@ -17,9 +17,9 @@
 </script>
 
 <template>
-    <a :href="href" :target="target" :class="['button', `${blok.size}`, `${blok.style}`, `${blok.color}`]">
+    <NuxtLink :href="href" :target="target" :class="['button', `${blok.size}`, `${blok.style}`, `${blok.color}`]">
         {{ blok.label }}
-    </a>
+    </NuxtLink>
 </template>
 
 <style>
