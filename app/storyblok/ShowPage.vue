@@ -54,6 +54,18 @@
             updateScrollPos() {
                 this.scrollY = window.scrollY;
             },
+
+            goToTickets() {
+                // Fire the Facebook Pixel event
+                if (typeof window !== "undefined" && window.fbq) {
+                    window.fbq("track", "InitiateCheckout", {
+                        content_name: this.metas.slug,
+                    });
+                }
+
+                // Open the URL in a new tab
+                window.open(this.metas.tickets, "_blank", "noopener");
+            },
         },
 
         async mounted() {
@@ -146,7 +158,7 @@
 
                 <section class="cta">
                     <main :class="{'not-ready': loading || !topShow}">
-                        <button @click="jumpToDates()" v-if="loading || upcomingShows.length > 1">
+                        <button @click="goToTickets()" v-if="loading || upcomingShows.length > 1">
                             <div class="button-inner">
                                 <template v-if="!metas.cta">
                                     <Icon name="local_activity" />

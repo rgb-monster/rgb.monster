@@ -43,6 +43,15 @@
                     this.activeAct = act;
                 }
             },
+
+            trackTickets() {
+                // Fire the Facebook Pixel event
+                if (typeof window !== "undefined" && window.fbq) {
+                    window.fbq("track", "InitiateCheckout", {
+                        content_name: this.metas.slug,
+                    });
+                }
+            },
         },
     };
 </script>
@@ -62,7 +71,13 @@
                 </a>
                 <div class="shows">
                     <template v-for="show in date.shows">
-                        <a class="show-tile" :href="show.tickets" target="blank" v-if="!metas.showLineup">
+                        <a
+                            class="show-tile"
+                            :href="show.tickets"
+                            target="blank"
+                            v-if="!metas.showLineup"
+                            @click="trackTickets()"
+                        >
                             <div class="time">
                                 {{ show.ts.strftime("%H:%M") }}
 
@@ -196,6 +211,7 @@
                                 target="blank"
                                 class="action"
                                 v-if="show.tickets_available === undefined || show.tickets_available > 0"
+                                @click="trackTickets()"
                             >
                                 {{ metas.payment == "unticketed" ? "More Details" : "Get tickets" }}
                             </a>
