@@ -9,8 +9,8 @@
             class="container"
             :style="{
                 'text-align': blok.align || 'inherit',
-                'padding-top': blok.padding_top !== undefined ? `${blok.padding_top}px` : null,
-                'padding-bottom': blok.padding_bottom !== undefined ? `${blok.padding_bottom}px` : null,
+                'padding-top': ![undefined, null, ''].includes(blok.padding_top) ? `${blok.padding_top}px` : null,
+                'padding-bottom': ![undefined, null, ''].includes(blok.padding_bottom) ? `${blok.padding_bottom}px` : null,
             }"
         >
             <Header v-if="blok.header" :blok="{title: blok.header}" />
