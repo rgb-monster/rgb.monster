@@ -1,4 +1,5 @@
 <script setup>
+    import Header from "./Header.vue";
     defineProps({blok: Object});
 </script>
 
@@ -12,6 +13,7 @@
                 'padding-bottom': blok.padding_bottom !== undefined ? `${blok.padding_bottom}px` : null,
             }"
         >
+            <Header v-if="blok.header" :blok="{title: blok.header}" />
             <StoryblokComponent v-for="currentBlok in blok.contents" :key="currentBlok._uid" :blok="currentBlok" />
             <slot />
         </div>
