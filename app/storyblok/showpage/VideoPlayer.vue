@@ -32,7 +32,7 @@
         <main>
             <button class="player" :class="{playing: videoPlaying}" @click="togglePlayback">
                 <video playsinline ref="video" @play="videoPlaying = true" @pause="videoPlaying = false">
-                    <source :src="metas.squareVideo" type="video/mp4" />
+                    <source :src="metas.squareVideo" type="video/webm" />
                 </video>
                 <div class="play-controls">
                     <div class="play-icon"><Icon name="play_arrow" /></div>
