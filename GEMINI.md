@@ -1,53 +1,38 @@
-# RGB Monster - Project Instructions & Guidelines
+# Instructions & Guidelines
 
-Welcome to the `rgb.monster` Nuxt project repository. This document serves as a shared guide for developers and AI agents (such as Gemini CLI) to maintain the architectural integrity, build efficiency, and styling conventions of the application.
+## Architecture & Structure
 
----
+- **Technology**: Nuxt 4, SSG-only. Source files are in the `app/` directory.
+- **Data Flow**: The `app/modules/prerender.ts` module is critical. It caches external API data into local JSON files (`app/show-types-*.json`) during the build. This enables synchronous data fetching in components like `app/pages/[...slug].vue` to prevent hydration mismatches.
+- **State Management**: `app/shows.js` is the Pinia store for handling show data.
 
-## 🛠️ Architecture & Structure
+## Core Conventions & Rules
 
-This project uses **Nuxt 4** with the source files structured under the `app/` directory (the default `srcDir` for Nuxt v4).
+### Naming & Style
+1. **Variables**: Descriptive names. No single-letter names (except for coordinates/indices). Use `let`, not `const`.
+2. **Language**: No technical jargon (e.g., use "enrich" not "hydrate"). No passive voice in UI text.
+3. **Comments**: Avoid trivial or redundant comments.
+4. **Logic**: No double negations (`!!`), use `Boolean()`. No strict comparisons (`===`/`!==`), use `==`/`!=` or truthiness. No single-line `if` statements.
 
-### Key Files & Components
+### HTML, CSS & UI
+5. **HTML**: Use semantic tags. Use `<button>` for actions, `<a>` for navigation.
+6. **Modals**: No native JS `prompt()`/`confirm()`/`alert()`. Use custom UI components.
+7. **CSS**: Never use `!important`.
 
-- **`nuxt.config.ts`**: The main configuration file, kept highly clean and declarative. Imports `defineNuxtConfig` explicitly from `nuxt/config`.
-- **`app/modules/prerender.ts`**: A dedicated, local Nuxt module that handles:
-    1.  Fetching and writing show type slugs to `app/show-types-generated.json`.
-    2.  Fetching and writing show type title mappings to `app/show-types-titles.json`.
-    3.  Hooking into Nitro's `prerender:routes` to register both show-type routes and standard published Storyblok content pages (`/about`, `/fringe`, etc.) for static site generation.
-    4.  **Performance Optimization**: Employs module-level caching to guarantee that Storyblok and Google Storage APIs are fetched **exactly once** during the entire build process.
-- **`app/pages/[...slug].vue`**: The dynamic router.
-    - Loads `app/show-types-generated.json` and `app/show-types-titles.json` synchronously.
-    - **SEO Titles**: Resolves page titles synchronously on both server and client (avoiding asynchronous store fetching during page initialization) to guarantee **zero hydration mismatches**.
-- **`app/shows.js`**: The Pinia store, which resolves and processes shows and show-types in parallel using a unified `fetchShows` action.
+### Component Architecture
+8. **Vue**: Use Options API exclusively.
+9. **File Structure**: Order blocks: `<script>` -> `<template>` -> `<style>`.
+10. **Options Order**: `components` -> `props` -> `data` -> `computed` -> `watch` -> `methods` -> `hooks`. No `name` property.
+11. **Global Filters**: Functions from `utils.filters` are available in templates. New filters can be added there.
 
----
+### Workflow & Communication
+12. **Verification**: Skip all verification/build steps post-modification. User handles all testing.
+13. **Scope**: Edits must be focused on the user's request. Do not modify unrelated files.
+14. **History**: Do not revert user's changes from previous prompts unless there is a direct conflict.
+15. **Tone**: Matter-of-fact, direct communication. No filler, apologies, or excitement.
 
-## ⚠️ Core Conventions & Rules
-
-To prevent regressions, please strictly follow these rules when modifying the codebase:
-
-1. use descriptive variable names - avoid single letter vars, like x, y, etc, unless it really refers to, say window
-   positions (x, y), or the item's ordinal number (i)
-2. avoid using overly technical jargon like "hydrate", use "enrich" or a more descriptive word in these cases
-3. avoid trivial code comments
-4. avoid double negations like !!. For javascript use Boolean instead. Apply this same philosophy to all your thinking -
-   a double negation is not easy to parse and harms readability
-5. use let instead of const. do not use single line if statements. observe the coding practices from the codebase and
-   adhere to them
-6. never ever use CSS's !important
-7. avoid strict comparisons in javascript
-8. don't be too excited in your communication (using exclamation points etc) - be matter of fact. don't add unnecessary
-   phrases like "let me know if you need anything else" etc
-9. keep your edits focused and do not edit stuff you were not asked to. you can inform user if you spotted something
-   though
-10. avoid undoing changes i've made between prompts unless they are in contradiction to what i'm asking
-11. This project never uses SSR. It only uses SSG and development. So you don't have to concern yourself with SSR.
-
----
-
-## 🚀 Common Commands
+## Common Commands
 
 - `npx nuxi prepare`: Re-registers local modules and regenerates TypeScript typings and local build-time JSON caches.
-- `npm run dev`: Runs the local development server with mkcert HTTPS enabled.
-- `npm run build`: Compiles, bundles, and pre-renders the entire static application (112+ routes).
+- `npm run dev`: Runs local development server with mkcert HTTPS.
+- `npm run build`: Compiles, bundles, and pre-renders the static application.
