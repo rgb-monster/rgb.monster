@@ -60,7 +60,7 @@ export default defineNuxtConfig({
                 {
                     innerHTML: `
 window.__PRELOADED_DATA__ = {
-  showTypesPromise: fetch('https://storage.googleapis.com/confirmed-static-api/rgb-monster/show-types.json', { mode: 'cors', credentials: 'same-origin' })
+  showTypesPromise: fetch('https://st.confirmed.show/api/rgb-monster/show-types.json', { mode: 'cors', credentials: 'same-origin' })
     .then(r => r.ok ? r.json() : [])
     .catch(() => []),
   showsPromise: fetch('https://confirmed.show/api/v1/rgb-monster/shows.json?future_shows_limit=360', { mode: 'cors', credentials: 'same-origin' })

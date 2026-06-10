@@ -33,7 +33,7 @@ async function getShowTypes() {
 
     try {
         const showTypesResponse = await fetch(
-            "https://storage.googleapis.com/confirmed-static-api/rgb-monster/show-types.json"
+            "https://st.confirmed.show/api/rgb-monster/show-types.json"
         );
         if (!showTypesResponse.ok) {
             console.error(`[Prerender Module] Failed to fetch show types: ${showTypesResponse.statusText}`);
@@ -123,11 +123,11 @@ export default defineNuxtModule({
         const slugs = await getShowTypeSlugs();
         const titlesMap = await getShowTypeTitlesMap();
         let metadataMap = await getShowTypeMetadataMap();
-        
+
         const slugsFilePath = path.resolve(nuxt.options.rootDir, "app/show-types-generated.json");
         const titlesFilePath = path.resolve(nuxt.options.rootDir, "app/show-types-titles.json");
         let metadataFilePath = path.resolve(nuxt.options.rootDir, "app/show-types-metadata.json");
-        
+
         await fs.writeFile(slugsFilePath, JSON.stringify(slugs, null, 2));
         await fs.writeFile(titlesFilePath, JSON.stringify(titlesMap, null, 2));
         await fs.writeFile(metadataFilePath, JSON.stringify(metadataMap, null, 2));
