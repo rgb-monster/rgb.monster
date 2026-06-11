@@ -7,11 +7,13 @@
 
     import Showcase from "./Showcase.vue";
     import Section from "./Section.vue";
+    import Catalog from "./Catalog.vue";
 
     export default {
         components: {
             Showcase,
             Section,
+            Catalog,
         },
         props: {
             blok: Object,
@@ -29,6 +31,7 @@
         computed: {
             standard: state => [undefined, true].includes(state.blok.standard_structure),
             slug: state => state.route.params.slug[0],
+            filters: state => state.route.query,
             theme: state => state.blok.colour || "beige",
             curtains: state => !state.blok.hide_curtains,
             loading: state => state.store.loading,
@@ -41,6 +44,7 @@
 
             shows: state => state.store.currentShows,
             metas: state => state.store.currentMetas,
+            seeAlso: state => (utils.isEmpty(state.metas.see_also) ? null : state.metas.see_also),
             topShow: state => state.shows[0],
             upcomingShows() {
                 return this.shows.filter(show => show.ts > this.now);
@@ -79,9 +83,9 @@
             );
 
             this.store.setFilter({
-                from: this.route.query.from,
-                to: this.route.query.to,
-                city: this.route.query.festival,
+                from: this.filters.from,
+                to: this.filters.to,
+                city: this.filters.festival,
             });
             this.store.setCurrentShow(this.slug);
             await this.store.fetchShows();
@@ -149,8 +153,10 @@
                                 </div>
                             </div>
 
-                            <div class="tags">
-                                <div v-for="(tag, idx) in metas.tags" :key="idx" :class="tag.tag">{{ tag.tag }}</div>
+                            <div class="tags" v-if="!isEmpty(metas.tags)">
+                                <template v-for="(tag, idx) in metas.tags" :key="idx">
+                                    <div v-if="tag" :class="tag">{{ tag }}</div>
+                                </template>
                             </div>
                         </main>
                     </section>
@@ -193,6 +199,22 @@
                 <template v-if="!loading && upcomingShows.length > 1">
                     <component is="showpage-about-tickets" />
                     <component is="showpage-shows" />
+                </template>
+
+                <template v-if="!loading && seeAlso">
+                    <section style="padding-top: 3em">
+                        <main style="padding-bottom: 0">
+                            <h1>You might also enjoy these shows</h1>
+                        </main>
+                    </section>
+                    <Catalog
+                        :blok="{
+                            date_from: this.filters.from,
+                            date_to: this.filters.to,
+                            city: this.filters.festival,
+                            show_types: seeAlso,
+                        }"
+                    />
                 </template>
             </template>
         </template>
@@ -417,6 +439,18 @@
         section.show-description {
             line-height: 1.8;
             font-size: var(--font-size-xl);
+        }
+
+        .show-catalog {
+            .shows {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .show-type-tile {
+                    width: 300px;
+                }
+            }
         }
 
         p {
