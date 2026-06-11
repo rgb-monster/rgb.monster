@@ -33,7 +33,12 @@
 
             sortedShowTypes() {
                 let byType = this.store.filteredShowsByType;
-                let res = utils.sort(Object.values(byType), rec => rec.details.name);
+                let res = utils.sort(Object.values(byType), rec =>
+                    rec.details.title
+                        .toLowerCase()
+                        .replace(/^the/i, "")
+                        .replace(/[^a-z0-9]/g, "")
+                );
 
                 if (!utils.isEmpty(this.blok.show_types)) {
                     res = res.filter(rec => this.blok.show_types.includes(rec.details.type));
