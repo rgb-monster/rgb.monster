@@ -203,7 +203,7 @@
                 <template v-if="!loading && seeAlso">
                     <section style="padding-top: 3em">
                         <main style="padding-bottom: 0">
-                            <h1>You might also enjoy these shows</h1>
+                            <h2 style="margin-bottom: 0">You might also enjoy these shows</h2>
                         </main>
                     </section>
                     <Catalog
@@ -213,6 +213,7 @@
                             city: this.filters.festival,
                             show_types: seeAlso,
                         }"
+                        style="padding-top: 20px"
                     />
                 </template>
             </template>
