@@ -33,16 +33,19 @@
             grouped: state => utils.sort(Object.values(state.showsByDate), date => date.date),
             upcoming: state => state.grouped.filter(day => day.ts > state.now),
 
+            currentFestivalDates: state => state.store.filteredShows.map(show => show.date),
+
             allDays() {
-                let [grouped, byDate] = [this.grouped, this.showsByDate];
-                if (utils.isEmpty(grouped)) {
+                let byDate = this.showsByDate;
+                if (utils.isEmpty(byDate)) {
                     return {times: [], days: []};
                 }
-                let first = grouped.slice(0)[0].date;
+
+                let first = dt.datetime(Math.min(...this.currentFestivalDates));
                 let startOffset = -first.weekday();
                 let rangeStart = dt.datetime(first + dt.timedelta({days: startOffset}));
 
-                let last = grouped.slice(-1)[0].date;
+                let last = dt.datetime(Math.max(...this.currentFestivalDates));
                 let endOffset = (7 - last.weekday()) % 7;
                 let rangeEnd = dt.datetime(last + dt.timedelta({days: endOffset}));
 
