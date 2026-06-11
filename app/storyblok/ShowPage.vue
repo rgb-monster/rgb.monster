@@ -197,7 +197,6 @@
                 <component is="showpage-quotes-carousel" />
 
                 <template v-if="!loading && upcomingShows.length > 1">
-                    <component is="showpage-about-tickets" />
                     <component is="showpage-shows" />
                 </template>
 
