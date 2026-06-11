@@ -513,7 +513,7 @@
             }
 
             .time-header-corner {
-                font-size: var(--font-size-xs);
+                font-size: 0.6em;
                 text-transform: uppercase;
                 color: var(--label);
                 font-weight: 600;
@@ -561,6 +561,7 @@
                 z-index: 9;
                 background: #fafafa;
                 border-right: 2px solid var(--shadow);
+                padding: 0 5px;
             }
 
             .show-cell {
