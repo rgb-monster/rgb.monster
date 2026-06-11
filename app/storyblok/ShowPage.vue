@@ -229,6 +229,11 @@
         --square-size: 60px;
         --within-curtains: min(1000px, 55vw);
 
+        h2 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+
         .cover {
             transition: all 300ms;
             overflow: hidden;

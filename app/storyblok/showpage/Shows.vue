@@ -129,9 +129,8 @@
 <template>
     <section class="shows-listing">
         <main>
-            <h2>{{ blok?.title || "Upcoming Shows" }}</h2>
-
             <div class="compact-view" v-if="!expandedView">
+                <h2>{{ blok?.title || "Dates &amp; Times" }}</h2>
                 <div class="matrix-container">
                     <div
                         class="matrix-grid"
@@ -302,13 +301,14 @@
             </div>
 
             <div class="expanded-view" v-else>
+                <h2>{{ blok?.title || "Upcoming Shows" }}</h2>
                 <div v-for="day in upcoming" :key="day.date">
                     <a
                         :id="day.date.strftime('%Y_%m_%d')"
                         :href="`#${day.date.strftime('%Y_%m_%d')}`"
                         class="date-anchor"
                     >
-                        <h2>{{ day.date.strftime("%A") }}, {{ humanDate(day.date) }}</h2>
+                        <div class="day-header">{{ day.date.strftime("%A") }}, {{ humanDate(day.date) }}</div>
                     </a>
                     <div class="shows">
                         <template v-for="show in day.shows" :key="show.id">
@@ -818,6 +818,13 @@
         }
 
         .expanded-view {
+            .day-header {
+                color: var(--header-color);
+                font-weight: 600;
+                font-size: 1.25em;
+                letter-spacing: 0.025em;
+            }
+
             .lineup {
                 .headshots {
                     display: flex;
