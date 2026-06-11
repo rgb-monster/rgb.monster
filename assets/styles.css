@@ -65,7 +65,8 @@
 
     --transparent-shadow: rgba(0, 0, 0, 0.4);
 
-    --page-width: 1000px;
+    /* fits 4 show tiles horiz on desktop */
+    --page-width: 1190px;
 }
 
 body {
