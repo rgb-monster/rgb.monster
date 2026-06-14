@@ -1,5 +1,4 @@
 <script setup>
-    import {computed} from "vue";
     import showTypeTitlesStatic from "~/show-types-titles.json";
     import showTypeSlugsStatic from "~/show-types-generated.json";
     import showTypeMetadataStatic from "~/show-types-metadata.json";
@@ -46,9 +45,9 @@
         "RGB Monster is an unusual comedy production. Live comedy, interactive shows, and spectacular events.";
     let pageImage = "https://rgb.monster/social.webp";
     let showTypeMetadata = import.meta.dev ? config.public.showTypeMetadata : showTypeMetadataStatic;
+    let meta = showTypeMetadata[slugStr];
 
-    if (isShowTypePage) {
-        let meta = showTypeMetadata[slugStr] || {};
+    if (meta) {
         if (meta.description) {
             pageDescription = meta.description;
         }
@@ -57,11 +56,11 @@
         }
     } else if (story?.value && story.value.content) {
         let content = story.value.content;
-        let metaDesc = content.meta_description || content.description || content.summary;
+        let metaDesc = content.social_description;
         if (metaDesc) {
             pageDescription = metaDesc.replace(/<[^>]*>/g, "");
         }
-        let metaImg = content.meta_image || content.image || content.og_image;
+        let metaImg = content.social_card?.url;
         if (metaImg) {
             pageImage = metaImg;
         }
