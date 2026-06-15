@@ -34,7 +34,7 @@
             sortedShowTypes() {
                 let byType = this.store.filteredShowsByType;
                 let res = utils.sort(Object.values(byType), rec =>
-                    rec.details.title
+                    (rec.details.title || "")
                         .toLowerCase()
                         .replace(/^the/i, "")
                         .replace(/[^a-z0-9]/g, "")
