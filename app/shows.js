@@ -137,18 +137,22 @@ export const useStore = defineStore("shows", {
                 return;
             }
 
-            const showTypesPromise = _getPreloadedPromise("showTypesPromise");
-            const showsPromise = _getPreloadedPromise("showsPromise");
+            // Each source is { type, data: Promise }; results are partitioned by type below.
+            const sources = _getPreloadedPromise("sources");
 
-            if (!showTypesPromise || !showsPromise) {
+            if (!sources || sources.some(source => !source?.data)) {
                 return;
             }
 
-            _showsPromise = Promise.all([showTypesPromise, showsPromise])
-                .then(([showTypes, showsData]) => {
+            _showsPromise = Promise.all(sources.map(source => source.data))
+                .then(results => {
+                    // collect and merge all resolved lists of a given source type into one
+                    const collect = type => results.filter((_, i) => sources[i].type === type).flat();
+                    const showTypes = collect("show-types");
+                    const showsData = collect("shows");
+
                     if (typeof window !== "undefined" && window.__PRELOADED_DATA__) {
-                        delete window.__PRELOADED_DATA__.showTypesPromise;
-                        delete window.__PRELOADED_DATA__.showsPromise;
+                        delete window.__PRELOADED_DATA__.sources;
                     }
 
                     // 1. Process Show Types

@@ -1,7 +1,7 @@
 <script setup>
-    import showTypeTitlesStatic from "~/show-types-titles.json";
-    import showTypeSlugsStatic from "~/show-types-generated.json";
-    import showTypeMetadataStatic from "~/show-types-metadata.json";
+    import showTypeTitlesStatic from "~/generated/show-types-titles.json";
+    import showTypeSlugsStatic from "~/generated/show-types-generated.json";
+    import showTypeMetadataStatic from "~/generated/show-types-metadata.json";
 
     let slug = useRoute().params.slug;
     let slugStr = slug && slug.length > 0 ? slug.join("/") : "home";

@@ -124,9 +124,12 @@ export default defineNuxtModule({
         const titlesMap = await getShowTypeTitlesMap();
         let metadataMap = await getShowTypeMetadataMap();
 
-        const slugsFilePath = path.resolve(nuxt.options.rootDir, "app/show-types-generated.json");
-        const titlesFilePath = path.resolve(nuxt.options.rootDir, "app/show-types-titles.json");
-        let metadataFilePath = path.resolve(nuxt.options.rootDir, "app/show-types-metadata.json");
+        const generatedDir = path.resolve(nuxt.options.rootDir, "app/generated");
+        await fs.mkdir(generatedDir, {recursive: true});
+
+        const slugsFilePath = path.resolve(generatedDir, "show-types-generated.json");
+        const titlesFilePath = path.resolve(generatedDir, "show-types-titles.json");
+        let metadataFilePath = path.resolve(generatedDir, "show-types-metadata.json");
 
         await fs.writeFile(slugsFilePath, JSON.stringify(slugs, null, 2));
         await fs.writeFile(titlesFilePath, JSON.stringify(titlesMap, null, 2));

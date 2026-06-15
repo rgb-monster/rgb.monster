@@ -5,9 +5,7 @@
 .nitro
 .cache
 dist
-app/show-types-generated.json
-app/show-types-titles.json
-app/show-types-metadata.json
+app/generated
 
 # Node dependencies
 node_modules

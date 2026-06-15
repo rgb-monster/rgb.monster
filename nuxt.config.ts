@@ -1,6 +1,20 @@
 import {defineNuxtConfig} from "nuxt/config";
 import mkcert from "vite-plugin-mkcert";
 
+// Single source of truth for the data fetched into window.__PRELOADED_DATA__.
+// Edit this list to add/remove sources; each entry is tagged with its data type so the
+// store can tell show types and shows apart. The preload script is generated from it.
+const DATA_SOURCES = [
+    {type: "show-types", url: "https://st.confirmed.show/api/rgb-monster/show-types.json"},
+    {type: "shows", url: "https://confirmed.show/api/v1/rgb-monster/shows.json?future_shows_limit=360"},
+    {type: "shows", url: "https://confirmed.show/api/v1/rgb-presents/shows.json?future_shows_limit=360"},
+    {type: "shows", url: "https://confirmed.show/api/v1/bowtie/shows.json?future_shows_limit=360"},
+];
+
+// A fetch() that resolves to JSON, or [] on any failure.
+const fetchJson = (url: string) =>
+    `fetch('${url}', { mode: 'cors', credentials: 'same-origin' }).then(r => r.ok ? r.json() : []).catch(() => [])`;
+
 export default defineNuxtConfig({
     compatibilityDate: "2026-01-13",
     devtools: {enabled: false},
@@ -58,26 +72,17 @@ export default defineNuxtConfig({
             ],
             script: [
                 {
-                    innerHTML: `
-window.__PRELOADED_DATA__ = {
-  showTypesPromise: fetch('https://st.confirmed.show/api/rgb-monster/show-types.json', { mode: 'cors', credentials: 'same-origin' })
-    .then(r => r.ok ? r.json() : [])
-    .catch(() => []),
-  showsPromise: fetch('https://confirmed.show/api/v1/rgb-monster/shows.json?future_shows_limit=360', { mode: 'cors', credentials: 'same-origin' })
-    .then(r => r.ok ? r.json() : [])
-    .catch(() => [])
-};
-                    `,
+                    innerHTML: `window.__PRELOADED_DATA__ = { sources: [${DATA_SOURCES.map(s => `{ type: '${s.type}', data: ${fetchJson(s.url)} }`).join(", ")}] };`,
                 },
                 {
                     src: "https://plausible.io/js/script.tagged-events.outbound-links.js",
                     "data-domain": "rgb.monster",
-                    defer: "defer",
+                    defer: true,
                 },
                 {
                     src: "https://fast.bentonow.com?site_uuid=f89c78149bd78558e888710d5dba78c6",
-                    defer: "defer",
-                    async: "async",
+                    defer: true,
+                    async: true,
                 },
                 {
                     innerHTML: `!function(f,b,e,v,n,t,s)
