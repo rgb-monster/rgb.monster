@@ -255,7 +255,7 @@
             background: var(--chrome);
             color: var(--chrome-text);
 
-            top: -100px;
+            top: -10em;
 
             transition: top 300ms ease;
 
