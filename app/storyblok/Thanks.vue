@@ -201,7 +201,7 @@
                             </div>
                             <div class="about-act">
                                 <div class="act-name">{{ act.name }}</div>
-                                <div>
+                                <div class="linkage">
                                     <a v-if="act.website" :href="socialURLs.website(act.website)" target="_blank">
                                         <div v-html="socialIcons.website" class="social-icon" />
                                     </a>
@@ -302,8 +302,21 @@
         }
 
         .about-act {
+            max-width: 30em;
+            padding: 5px;
             .act-name {
                 font-weight: 600;
+                font-size: 1.2em;
+            }
+
+            .linkage {
+                display: flex;
+                flex-wrap: wrap;
+                margin-left: -10px;
+
+                a {
+                    padding: 10px 10px;
+                }
             }
 
             img {
@@ -344,7 +357,7 @@
 
         .headshot {
             border-radius: 50%;
-            max-height: 90px;
+            max-height: 100px;
             aspect-ratio: 1/1;
 
             &.placeholder {
