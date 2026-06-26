@@ -24,6 +24,7 @@
                     instagram: handle => `https://instagram.com/${handle}`,
                     tiktok: handle => `https://tiktok.com/@${handle}`,
                     facebook: handle => `https://facebook.com/${handle}`,
+                    website: url => (url.startsWith("http") ? url : `https://${url}`),
                 },
                 socialIcons: {
                     instagram:
@@ -56,6 +57,22 @@
             showType: state => state.searchParams.get("type"),
             showID: state => state.searchParams.get("id"),
 
+            // "before" => the show you're about to see (welcome), "after" => the show you just saw (thanks)
+            isBefore() {
+                return this.blok.timing == "before";
+            },
+
+            // "Today" only reads right in the afternoon — phrase it by the show's start hour
+            actTime() {
+                let hours = this.show?.ts.hour;
+                return hours < 12 ? "This morning" : hours < 17 ? "Today" : "This evening";
+            },
+            // lowercase variant for mid-sentence use, e.g. "your hosts this evening"
+            hostTime() {
+                let hours = this.show?.ts.hour;
+                return hours < 12 ? "morning" : hours < 17 ? "afternoon" : "evening";
+            },
+
             shows: state => state.store.filteredShows,
 
             mailinglist() {
@@ -70,61 +87,77 @@
                 } else if (knownCities.includes(city)) {
                     listName = city;
                 }
-                return listName;
+                return {tag: listName, tags: [showType]};
             },
         },
 
         methods: {
-            redirectToMostRecent(show) {
+            selectShow(show) {
                 this.show = show;
-                window.history.replaceState(null, null, `${window.location.origin}/thanks/?id=${this.show.id}`);
+                window.history.replaceState(
+                    null,
+                    null,
+                    `${window.location.origin}${window.location.pathname}?id=${this.show.id}`
+                );
+            },
+
+            async loadShow() {
+                await this.store.fetchShows();
+
+                if (this.showID) {
+                    let show = this.shows.find(show => show.id == this.showID);
+                    if (show) {
+                        this.selectShow(show);
+                    } else {
+                        this.show = null;
+                    }
+                    this.loading = false;
+
+                    return;
+                }
+
+                let now = dt.datetime.utcnow();
+                let shows;
+                if (this.isBefore) {
+                    // before: shows that haven't ended yet (about to see / in progress)
+                    shows = this.shows.filter(
+                        show => dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) >= now
+                    );
+                    // sort by soonest first
+                    shows = utils.sort(shows, show => show.ts_utc);
+                } else {
+                    // after: shows that have already ended (just saw)
+                    shows = this.shows.filter(
+                        show => dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
+                    );
+                    // sort by most recent first
+                    shows = utils.sort(shows, show => -show.ts_utc);
+                }
+
+                shows.forEach(show => {
+                    // filter out empty acts
+                    show.acts = show.acts.filter(act => act.name);
+                });
+
+                if (this.showType) {
+                    // filter by show type if provided
+                    shows = shows.filter(show => show.show_type == this.showType);
+                } else {
+                    // otherwise grab the nearest one that we haven't told to be excluded
+                    shows = shows.filter(show => !show.excludeThanks);
+                }
+
+                if (shows.length) {
+                    this.selectShow(shows[0]);
+                }
+
+                this.loading = false;
             },
         },
 
         async mounted() {
-            await this.store.fetchShows();
-
-            if (this.showID) {
-                let show = this.shows.find(show => show.id == this.showID);
-                if (show) {
-                    this.redirectToMostRecent(show);
-                } else {
-                    this.show = null;
-                }
-                this.loading = false;
-
-                return;
-            }
-
-            let now = dt.datetime.utcnow();
-            let shows = this.shows.filter(
-                show => dt.datetime(show.ts_utc + dt.timedelta({minutes: show.duration - 10})) < now
-            );
-
-            // sort by most recent first
-            shows = utils.sort(shows, show => -show.ts_utc);
-
-            shows.forEach(show => {
-                // filter out empty acts
-                show.acts = show.acts.filter(act => act.name);
-            });
-
-            if (this.showType) {
-                // filter by show type if provided
-                shows = shows.filter(show => show.show_type == this.showType);
-            } else {
-                // otherwise grab the most recent one that we haven't told to be excluded
-                shows = shows.filter(show => !show.excludeThanks);
-            }
-
-            if (shows.length) {
-                this.redirectToMostRecent(shows[0]);
-            }
-
-            this.loading = false;
+            await this.loadShow();
         },
-
-        beforeUnmount() {},
     };
 </script>
 
@@ -132,7 +165,7 @@
     <section class="thanks-block center">
         <div v-if="loading || isEmpty(shows) || !show" class="loading-indicator">
             <h1 v-if="loading">Loading...</h1>
-            <h1 v-else-if="isEmpty(shows)">No recent shows!</h1>
+            <h1 v-else-if="isEmpty(shows)">{{ isBefore ? "No upcoming shows!" : "No recent shows!" }}</h1>
             <h1 v-else-if="!show">Could not find show!</h1>
         </div>
 
@@ -141,16 +174,24 @@
                 <img :src="show.coverThumb" />
             </div>
 
-            <h1>
+            <h1 v-if="isBefore">
+                Welcome to <em>{{ show.title }}</em> on<br />
+                <em>{{ humanTs(show.ts) }}</em>
+            </h1>
+            <h1 v-else>
                 Thank you for coming to <em>{{ show.title }}</em> on<br />
                 <em>{{ humanTs(show.ts) }}</em>
             </h1>
 
             <template v-for="category in ['acts', 'hosts']" :key="category">
                 <div class="act-listing">
-                    <h2 v-if="category == 'acts'">Today you saw these acts!</h2>
-                    <h2 v-if="category == 'hosts' && show.hosts.length > 1">And your hosts!</h2>
-                    <h2 v-else-if="category == 'hosts' && show.hosts.length == 1">And your host!</h2>
+                    <h2 v-if="category == 'acts'">
+                        {{ isBefore ? "You are about to see the following acts!" : `${actTime} you saw these acts!` }}
+                    </h2>
+                    <h2 v-if="category == 'hosts' && show.hosts.length > 1">And your hosts this {{ hostTime }}!</h2>
+                    <h2 v-else-if="category == 'hosts' && show.hosts.length == 1">
+                        And your host this {{ hostTime }}!
+                    </h2>
 
                     <template v-for="(act, idx) in show[category]" :key="act">
                         <template v-if="act.name">
@@ -161,7 +202,7 @@
                             <div class="about-act">
                                 <div class="act-name">{{ act.name }}</div>
                                 <div>
-                                    <a v-if="act.website" :href="act.website" target="_blank">
+                                    <a v-if="act.website" :href="socialURLs.website(act.website)" target="_blank">
                                         <div v-html="socialIcons.website" class="social-icon" />
                                     </a>
 
@@ -195,7 +236,7 @@
             </template>
 
             <template v-if="mailinglist">
-                <Mailinglist :blok="{mailinglist}">
+                <Mailinglist :blok="mailinglist">
                     <template #prompt>
                         <h1 style="margin: 1em auto">Stay in the loop</h1>
 
