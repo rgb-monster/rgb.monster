@@ -17,7 +17,7 @@
         },
         computed: {
             tag: state => state.blok?.tag || "newsletter",
-            listName: state => (state.tag == "newsletter" ? null : utils.capitalise(state.tag)),
+            listName: state => (state.tag == "newsletter" ? null : utils.capitalize(state.tag)),
             introRich: state =>
                 !utils.isRichTextEmpty(state.blok.intro_block) ? renderRichText(state.blok.intro_block) : null,
             thanksRich: state =>
@@ -58,11 +58,11 @@
                         recommendations, and insider tips.
                         <template v-if="listName">
                             Subscribe to our
-                            <em>no-spam {{ listName }} comedy mailing list </em> and don't miss a show!
+                            <em>no-spam {{ listName }} comedy mailing list</em> and don't miss a show!
                         </template>
                         <template v-else>
                             Subscribe to our
-                            <em>no-spam comedy mailing list </em> and don't miss a show!
+                            <em>no-spam comedy mailing list</em> and don't miss a show!
                         </template>
                     </div>
                 </template>
