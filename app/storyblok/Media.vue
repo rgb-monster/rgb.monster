@@ -58,7 +58,7 @@
 </script>
 
 <template>
-    <template v-if="blok.file?.url">
+    <div v-if="blok.file?.url" class="media-container" :class="blok.full_width ? null : 'regular-width'">
         <div class="video-container" v-if="isVideo" @click="togglePlay" v-editable="blok">
             <video
                 ref="videoPlayer"
@@ -79,46 +79,55 @@
         </div>
 
         <img v-else v-editable="blok" :src="blok.file.url" :alt="blok.alt" />
-    </template>
+    </div>
 </template>
 
 <style>
-    .video-container {
-        display: inline-flex;
-        justify-content: center;
-        position: relative;
-        cursor: pointer;
+    .media-container {
         width: 100%;
+        margin: 0 auto;
 
-        .play-overlay-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 4.5rem;
-            height: 4.5rem;
-            background: rgba(0, 0, 0, 0.6);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
+        &.regular-width {
+            max-width: 500px;
+        }
+
+        .video-container {
+            display: inline-flex;
             justify-content: center;
-            color: #ffffff;
-            pointer-events: none;
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
-        }
+            position: relative;
+            cursor: pointer;
+            width: 100%;
 
-        &:hover .play-overlay-btn {
-            background: rgba(0, 0, 0, 0.8);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
+            .play-overlay-btn {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 4.5rem;
+                height: 4.5rem;
+                background: rgba(0, 0, 0, 0.6);
+                border: none;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffffff;
+                pointer-events: none;
+                transition:
+                    background 0.2s ease,
+                    transform 0.2s ease;
+            }
 
-        .play-icon {
-            width: 2rem;
-            height: 2rem;
-            margin-left: 0.25rem;
+            &:hover .play-overlay-btn {
+                background: rgba(0, 0, 0, 0.8);
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+
+            .play-icon {
+                width: 2rem;
+                height: 2rem;
+                margin-left: 0.25rem;
+            }
         }
     }
 </style>

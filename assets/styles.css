@@ -75,7 +75,8 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3 {
     font-family: var(--header-font);
     color: var(--header-color);
     text-transform: uppercase;
@@ -103,6 +104,16 @@ h1 {
 
 h2 {
     font-size: var(--font-size-3xl);
+}
+
+h3 {
+    padding-top: 20px;
+    text-align: center;
+}
+
+ul {
+    list-style: disc;
+    padding-left: 1.5em;
 }
 
 section {
