@@ -14,5 +14,9 @@
         font-size: var(--font-size-3xl);
         width: 100%;
         color: var(--foreground);
+
+        &:first-child {
+            padding-top: 40px;
+        }
     }
 </style>
