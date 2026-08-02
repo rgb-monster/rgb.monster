@@ -376,7 +376,7 @@
         }
 
         section.cta {
-            background: var(--bg-1);
+            background: var(--bg);
             padding: 2em;
             opacity: 1;
             transition: opacity 500ms ease;

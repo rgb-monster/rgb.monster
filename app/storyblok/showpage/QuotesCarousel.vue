@@ -62,13 +62,12 @@
 
 <style lang="css">
     .quotes-carousel {
-        font-size: 3em;
+        font-size: clamp(1.25rem, 4vw, 2rem);
         gap: 5px;
 
-        .inner {
+        main {
             position: relative;
-            display: flex;
-            flex-direction: column;
+            overflow: hidden;
         }
 
         .rating-stars {
@@ -83,8 +82,9 @@
         .quote-container {
             position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
             opacity: 0;
-            min-width: 100%;
 
             transition: opacity 1000ms ease;
 
