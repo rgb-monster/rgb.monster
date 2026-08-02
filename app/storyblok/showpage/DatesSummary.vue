@@ -24,7 +24,7 @@
 <style lang="css">
     .dates-summary {
         main {
-            font-family: var(--rgb-font);
+            font-family: var(--header-font);
             color: #999;
             font-size: var(--font-size-xl);
             font-weight: 600;

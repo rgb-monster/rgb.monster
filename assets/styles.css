@@ -5,68 +5,240 @@
     --font-size-lg: clamp(1.125rem, 2vw, 1.25rem);
     --font-size-xl: clamp(1.25rem, 2.5vw, 1.5rem);
     --font-size-2xl: clamp(1.5rem, 3vw, 1.875rem);
+    --font-size-md: clamp(1.0625rem, 1.75vw, 1.1875rem);
     --font-size-3xl: clamp(1.875rem, 4vw, 2.25rem);
     --font-size-4xl: clamp(2.25rem, 5vw, 3rem);
     --font-size-5xl: clamp(3rem, 6vw, 4rem);
     --font-size-6xl: clamp(4rem, 7vw, 5rem);
 
+    /* ------------------------------------------------------------------
+       Palette. Raw colours, never used directly by a component — they only
+       feed the theme tokens further down.
+       ------------------------------------------------------------------ */
     --pink: #ed7dab;
     --blue: #4e639c;
     --brown: #7d3a43;
     --beige: #f5e6c9;
     --yellow: #fede63;
-    --light: #fff;
+    --light: #fafafa;
     --dark: #333;
+    --base: hsl(39, 56%, 93%);
 
-    --pink-faint: #ed7dab88;
-    --blue-faint: #4e639c88;
-    --brown-faint: #7d3a4388;
-    --beige-faint: #f5e6c988;
-    --yellow-faint: #fede6388;
-
+    /* categorical accents: these mean a thing (a tag kind, a warning) rather
+       than belonging to a theme, so they stay constant across all of them */
     --accent-yellow: #ffd24e;
     --accent-pink: #ed7dab;
     --accent-red: #e1391c;
     --accent-blue: #4f5b97;
     --accent-green: #65b762;
     --accent-burgundy: #712529;
-    --accent-yellow-light: #ffd24e;
-    --accent-pink-light: #f1ccdc;
-    --accent-red-light: #e1391c;
-    --accent-blue-light: #4f5b97;
-    --accent-green-light: #65b762;
-    --accent-burgundy-light: #854548;
 
     --chrome: hsl(357, 51%, 19%);
     --chrome-x1: hsl(357, 51%, 24%);
     --chrome-x2: hsl(357, 51%, 29%);
-
-    --em: #ed7dab;
-
     --chrome-text: #f7f0e3;
 
-    --base: hsl(39, 56%, 93%);
-    --base-1: hsl(39, 56%, 88%);
-    --base-2: hsl(39, 56%, 83%);
+    --control: #72b0ff;
     --text: #333;
 
-    --light: #fafafa;
-
-    --control: #72b0ff;
-
-    --label: #999;
-
-    --shadow: #ece3cc;
-
     --body-font: Lato, Arial, Helvetica;
-
     --header-font: Hammersmith One;
-    --header-color: var(--accent-burgundy);
 
     --transparent-shadow: rgba(0, 0, 0, 0.4);
 
     /* fits 4 show tiles horiz on desktop */
     --page-width: 1190px;
+}
+
+/* ----------------------------------------------------------------------
+   Theme tokens.
+
+   Every section carries a .theme-* class, and each one below answers the
+   same ten questions. Style against these, never against the palette, and
+   a blok drops into any section without knowing which one it landed in.
+
+     surfaces   --bg        the section itself
+                --bg-1      raised off it: cards, tiles, inputs
+                --bg-2      raised again: borders, dividers, wells
+
+     text       --color         body copy
+                --color-muted   captions, meta, disabled
+                --color-heading h1-h3
+
+     intent     --accent / --accent-text   complementary highlight: links,
+                                           marks, the thing you want looked at
+                --cta / --cta-text         the one strong action per view
+
+                --panel / --panel-2        a surface that stands OFF the
+                                           section rather than blending into
+                                           it; see the .panel class below
+
+   Light themes step their surfaces darker, dark themes step them lighter,
+   so --bg-1 always reads as "nearer the viewer" whichever way round it is.
+   ---------------------------------------------------------------------- */
+:root,
+.theme-base {
+    --bg: var(--base);
+    --bg-1: hsl(39, 56%, 88%);
+    --bg-2: hsl(39, 56%, 83%);
+
+    --color: var(--text);
+    --color-muted: #7d7568;
+    --color-heading: var(--accent-burgundy);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    --cta: var(--chrome-x1);
+    --cta-text: var(--chrome-text);
+
+    --panel: var(--light);
+    --panel-2: hsl(39, 56%, 86%);
+}
+
+.theme-white {
+    --bg: #fff;
+    --bg-1: #f2f2f2;
+    --bg-2: #e8e8e8;
+
+    --color: var(--dark);
+    --color-muted: #6b6b6b;
+    --color-heading: var(--accent-burgundy);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    --cta: var(--chrome-x1);
+    --cta-text: var(--chrome-text);
+
+    --panel: var(--base);
+    --panel-2: hsl(39, 56%, 85%);
+}
+
+.theme-light {
+    --bg: var(--light);
+    --bg-1: #f0f0f0;
+    --bg-2: #e6e6e6;
+
+    --color: var(--dark);
+    --color-muted: #6b6b6b;
+    --color-heading: var(--accent-burgundy);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    --cta: var(--chrome-x1);
+    --cta-text: var(--chrome-text);
+
+    --panel: var(--base);
+    --panel-2: hsl(39, 56%, 85%);
+}
+
+.theme-beige {
+    --bg: var(--beige);
+    --bg-1: #ede0c3;
+    --bg-2: #e5d8ba;
+
+    --color: var(--dark);
+    --color-muted: #7d7361;
+    --color-heading: var(--accent-burgundy);
+
+    /* yellow on beige is barely a highlight, so pink carries it here */
+    --accent: var(--accent-pink);
+    --accent-text: var(--dark);
+    --cta: var(--chrome-x1);
+    --cta-text: var(--chrome-text);
+
+    --panel: var(--light);
+    --panel-2: #e5d8ba;
+}
+
+.theme-yellow {
+    --bg: var(--yellow);
+    --bg-1: #ffe888;
+    --bg-2: #fff0ad;
+
+    --color: var(--dark);
+    --color-muted: #7a6c33;
+    --color-heading: var(--accent-burgundy);
+
+    --accent: var(--accent-burgundy);
+    --accent-text: var(--chrome-text);
+    --cta: var(--chrome-x1);
+    --cta-text: var(--chrome-text);
+
+    --panel: var(--light);
+    --panel-2: #e8e0cd;
+}
+
+.theme-pink {
+    --bg: var(--pink);
+    --bg-1: #f09cbe;
+    --bg-2: #f3b9d1;
+
+    --color: var(--beige);
+    --color-muted: #f0cdc2;
+    --color-heading: var(--light);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    --cta: var(--chrome-x1);
+    --cta-text: var(--chrome-text);
+
+    --panel: var(--beige);
+    --panel-2: #e0cfae;
+}
+
+.theme-blue {
+    --bg: var(--blue);
+    --bg-1: #5e75b3;
+    --bg-2: #6f87c6;
+
+    --color: var(--beige);
+    --color-muted: #c3bfc0;
+    --color-heading: var(--light);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    /* burgundy on blue goes muddy, so the action borrows the accent */
+    --cta: var(--accent-yellow);
+    --cta-text: var(--dark);
+
+    --panel: var(--beige);
+    --panel-2: #e0cfae;
+}
+
+.theme-brown {
+    --bg: var(--brown);
+    --bg-1: #964a54;
+    --bg-2: #a95c66;
+
+    --color: var(--beige);
+    --color-muted: #cbaa9a;
+    --color-heading: var(--light);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    --cta: var(--accent-yellow);
+    --cta-text: var(--dark);
+
+    --panel: var(--beige);
+    --panel-2: #e0cfae;
+}
+
+.theme-dark {
+    --bg: var(--dark);
+    --bg-1: #444;
+    --bg-2: #555;
+
+    --color: var(--light);
+    --color-muted: #b4b4b4;
+    --color-heading: var(--light);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    --cta: var(--accent-yellow);
+    --cta-text: var(--dark);
+
+    --panel: var(--beige);
+    --panel-2: #e0cfae;
 }
 
 body {
@@ -78,7 +250,7 @@ h1,
 h2,
 h3 {
     font-family: var(--header-font);
-    color: var(--header-color);
+    color: var(--color-heading);
     text-transform: uppercase;
     font-weight: 400;
     line-height: 1;
@@ -91,7 +263,7 @@ h1 {
     font-weight: 600;
 
     .ink-header-contents {
-        color: var(--header-color);
+        color: var(--color-heading);
         font-size: var(--font-size-3xl);
         text-transform: uppercase;
         text-align: center;
@@ -127,15 +299,6 @@ section {
     }
 }
 
-em {
-    font-style: normal;
-    color: var(--pink);
-
-    &.red {
-        color: var(--accent-red);
-    }
-}
-
 .ellipsize {
     display: block;
     white-space: nowrap;
@@ -153,7 +316,7 @@ em {
     }
 
     &::-webkit-scrollbar-track {
-        background-color: var(--base-1);
+        background-color: var(--bg-1);
     }
 
     &.rounded {
@@ -163,31 +326,31 @@ em {
     }
 
     &::-webkit-scrollbar-corner {
-        background-color: var(--base-1);
+        background-color: var(--bg-1);
     }
 
     &::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        border: 5px solid var(--base-1);
-        background-color: var(--base-5);
+        border: 5px solid var(--bg-1);
+        background-color: var(--bg-2);
         min-height: 40px;
 
         &:hover {
-            background-color: var(--base-7);
+            background-color: var(--color-muted);
         }
     }
 }
 
 .theme-container {
     min-height: 100vh;
-    background: var(--base);
-    color: var(--text);
+    background: var(--bg);
+    color: var(--color);
     display: flex;
     flex-direction: column;
 }
 
 .theme-container.md-toast {
-    --base: #fff;
+    --bg: #fff;
     .doodle,
     .curtains-left,
     .curtains-right,
@@ -252,7 +415,10 @@ main.markdown {
 }
 
 mark {
+    /* categorical, not thematic: a mark means the same thing on every
+       background, so it names its own text colour rather than inheriting one */
     background-color: var(--accent-pink);
+    color: var(--dark);
     padding: 3px;
 
     &.subtle {
@@ -319,63 +485,79 @@ body {
         width: 100%;
         background-color: var(--bg);
         color: var(--color);
-
-        --accent-bg: var(--accent-yellow);
-        --accent-fg: var(--dark);
     }
 }
 
 em {
     font-style: normal;
-    color: var(--accent-fg);
-    background: var(--accent-bg);
+    color: var(--accent-text);
+    background: var(--accent);
     padding: 0.1em 0.15em;
+
+    &.red {
+        background: none;
+        color: var(--accent-red);
+    }
 }
 
-.theme-base {
-    --bg: var(--base);
-    --color: var(--page-fg);
-}
+/* A panel is a card that has to stand off its section rather than blend into
+   it — a show tile, a form, anything that reads as a separate object.
 
-.theme-white {
-    --bg: white;
-    --color: dark;
-}
+   --bg-1 is the wrong tool for that: it is a step away from the background, so
+   on a saturated theme a card built from it is nearly invisible. Every theme
+   instead names a --panel, which is always a light warm surface, and a panel
+   re-enters the light end of the system by pointing the tokens at panel values.
+   That means anything nested inside one keeps working without knowing it moved:
+   headings, muted text, tags and actions all resolve against the card. */
+.panel {
+    /* painted straight from --panel rather than through the remapped --bg, and
+       with fallbacks: an unresolvable var() here would compute to transparent,
+       and a panel rendering as nothing is worse than one in the wrong colour */
+    background: var(--panel, #fafafa);
+    border: 2px solid var(--panel-2, #ece3cc);
+    color: var(--dark);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.09);
 
-.theme-pink {
-    --color: var(--beige);
-    --bg: var(--pink);
-    --header-color: var(--light);
-}
+    /* and now re-point the tokens so anything nested inside resolves against
+       the card it is sitting on rather than the section behind it */
+    --bg: var(--panel, #fafafa);
+    --bg-1: var(--panel, #fafafa);
+    --bg-2: var(--panel-2, #ece3cc);
 
-.theme-blue {
-    --bg: var(--blue);
-    --color: var(--beige);
-    --header-color: var(--light);
-}
-.theme-brown {
-    --bg: var(--brown);
-    --color: var(--beige);
-    --header-color: var(--light);
-}
-.theme-beige {
-    --bg: var(--beige);
     --color: var(--dark);
-}
-.theme-yellow {
-    --bg: var(--yellow);
-    --color: var(--dark);
+    --color-muted: #7d7568;
+    --color-heading: var(--accent-burgundy);
+
+    --accent: var(--accent-yellow);
+    --accent-text: var(--dark);
+    --cta: var(--chrome-x1);
+    --cta-text: var(--chrome-text);
+
+    /* a panel is always a light warm surface, which is what the categorical
+       accents were picked for, so tags keep their full strength in here */
+    --tag-strength: 100%;
 }
 
-.theme-light {
-    --bg: var(--light);
-    --color: var(--dark);
-}
+/* Show tags. The colour says which kind of show it is, so it stays constant
+   across themes rather than following one — but it gets pulled towards the
+   theme's text colour so that a pink tag is still readable on a pink section.
+   Components lay .tags out themselves; only the colours live here. */
+.tags > * {
+    font-weight: 600;
+    --tag: var(--accent-pink);
+    color: color-mix(in srgb, var(--tag) var(--tag-strength, 70%), var(--color));
 
-.theme-dark {
-    --bg: var(--dark);
-    --color: var(--light);
-    --header-color: var(--light);
+    &.kids {
+        --tag: var(--accent-yellow);
+    }
+
+    &.format {
+        --tag: var(--accent-green);
+    }
+
+    &.unique {
+        --tag: var(--accent-red);
+    }
 }
 
 .with-confetti {

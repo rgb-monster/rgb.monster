@@ -65,11 +65,14 @@
             }
         }
 
-        a {
+        /* prose links only. this used to apply to every <a> in the section, which
+           meant it also repainted links that are whole components - buttons, show
+           tiles, ticket actions - and beat their own hover styles on specificity */
+        .richtext-block a {
             font-weight: 600;
             padding: 0.1em 0.3em;
-            background: var(--accent-yellow);
-            color: var(--dark);
+            background: var(--accent);
+            color: var(--accent-text);
 
             transition:
                 background 200ms ease,

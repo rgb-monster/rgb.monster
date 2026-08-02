@@ -52,9 +52,9 @@
         transition: background 200ms;
         color: var(--button-text);
         background: var(--button-bg);
-        --button-text: var(--chrome-btn-text);
-        --button-bg: var(--chrome-btn);
-        --outline: var(--base);
+        --button-text: var(--cta-text);
+        --button-bg: var(--cta);
+        --outline: var(--bg);
 
         & > * {
             /* button itself is clickable and we do not allow any interaction within it */
@@ -89,7 +89,7 @@
         }
 
         &.destructive {
-            --button-bg: var(--destructive);
+            --button-bg: var(--accent-red);
         }
 
         &.action {
@@ -101,30 +101,30 @@
         }
 
         &.outline {
-            --button-text: var(--base-text);
-            --button-bg: var(--input-base);
-            --outline: var(--base-6);
+            --button-text: var(--color);
+            --button-bg: var(--bg-1);
+            --outline: var(--color-muted);
 
-            border: 1px solid var(--base-text);
+            border: 1px solid var(--color);
             margin: 0;
 
             &:disabled,
             &.disabled {
                 pointer-events: none;
-                background: var(--input-base);
+                background: var(--bg-1);
                 opacity: 0.3;
             }
 
             &.destructive {
-                border: 1px solid var(--destructive);
-                color: var(--destructive);
+                border: 1px solid var(--accent-red);
+                color: var(--accent-red);
             }
         }
 
         &.blank {
-            --button-text: var(--base-text);
-            --button-bg: var(--base);
-            --outline: var(--base-6);
+            --button-text: var(--color);
+            --button-bg: var(--bg);
+            --outline: var(--color-muted);
 
             &:focus-visible {
                 outline: 1px dashed var(--outline);
@@ -148,14 +148,14 @@
         &:disabled,
         &.disabled {
             pointer-events: none;
-            --button-text: var(--base-text-2);
-            --button-bg: var(--base-2);
+            --button-text: var(--color-muted);
+            --button-bg: var(--bg-2);
         }
 
         &.btn-icon {
-            --button-text: var(--base-text);
-            --button-bg: var(--base);
-            --outline: var(--base-6);
+            --button-text: var(--color);
+            --button-bg: var(--bg);
+            --outline: var(--color-muted);
             display: flex;
             width: auto;
             height: auto;
@@ -177,13 +177,13 @@
             }
 
             &:hover {
-                background: var(--base-1);
+                background: var(--bg-1);
             }
 
             &:focus-visible {
                 .button-contents {
                     outline: none;
-                    border: 1px dashed var(--base-text);
+                    border: 1px dashed var(--color);
                 }
             }
 
@@ -197,7 +197,7 @@
         padding: 0;
 
         &:disabled {
-            color: var(--label);
+            color: var(--color-muted);
             pointer-events: none;
         }
     }

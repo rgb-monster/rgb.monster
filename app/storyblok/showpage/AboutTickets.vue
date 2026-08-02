@@ -98,14 +98,14 @@
         .box {
             z-index: 100;
             padding: 20px;
-            background: #fff;
-            border: 5px solid var(--chrome-x2);
+            background: var(--bg-1);
+            border: 5px solid var(--color-heading);
             border-radius: 15px;
             box-shadow: 5px 5px var(--transparent-shadow);
         }
 
         .box header {
-            color: var(--chrome-x2);
+            color: var(--color-heading);
             font-size: var(--font-size-xl);
             margin-bottom: 15px;
         }

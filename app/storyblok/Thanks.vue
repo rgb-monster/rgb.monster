@@ -285,7 +285,7 @@
 
             em {
                 background: none;
-                color: var(--pink);
+                color: var(--color-heading);
             }
         }
 

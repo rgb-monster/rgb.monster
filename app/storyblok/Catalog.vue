@@ -69,7 +69,7 @@
         <div class="shows">
             <template v-for="{details} in sortedShowTypes" :key="details.type">
                 <NuxtLink
-                    class="show-type-tile"
+                    class="show-type-tile panel"
                     :class="(details.tags || [])[0]"
                     :href="`/${details.slug}${filterIfPresent}`"
                 >
@@ -120,17 +120,12 @@
             gap: 1em;
         }
 
+        /* surface, border, shadow and every token inside come from .panel */
         .show-type-tile {
             max-width: 23em;
 
             border-radius: 8px;
-            background: var(--light);
-            transition:
-                border 300ms ease,
-                box-shadow 300ms ease;
-
-            border: 2px solid var(--shadow);
-            box-shadow: 0 1px 5px var(--shadow);
+            transition: border-color 300ms ease;
 
             display: flex;
             flex-direction: column;
@@ -146,7 +141,7 @@
             }
 
             &:hover {
-                --shadow: var(--accent-pink);
+                border-color: var(--accent-pink);
             }
 
             .cover-image {
@@ -196,23 +191,6 @@
                 flex-wrap: wrap;
                 gap: 5px;
                 padding: 0.3em 0;
-
-                & > div {
-                    font-weight: 600;
-                    color: var(--accent-pink);
-
-                    &.kids {
-                        color: var(--accent-yellow);
-                    }
-
-                    &.format {
-                        color: var(--accent-green);
-                    }
-
-                    &.unique {
-                        color: var(--accent-red);
-                    }
-                }
             }
         }
 

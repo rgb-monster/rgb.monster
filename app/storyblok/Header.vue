@@ -13,7 +13,7 @@
         position: relative;
         font-size: var(--font-size-3xl);
         width: 100%;
-        color: var(--foreground);
+        color: var(--color);
 
         &:first-child {
             padding-top: 40px;

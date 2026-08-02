@@ -69,13 +69,13 @@
         object-fit: cover;
         border-radius: 50%;
         display: inline-flex;
-        background: var(--base-2);
+        background: var(--bg-2);
         align-items: center;
         justify-content: center;
         user-select: none;
         font-size: var(--font-size-lg);
         font-weight: 600;
-        color: var(--base-6);
+        color: var(--color-muted);
         opacity: 1;
 
         & > * {
@@ -89,7 +89,7 @@
         .icon {
             height: 50%;
             width: 50%;
-            color: var(--base-6);
+            color: var(--color-muted);
         }
 
         img {

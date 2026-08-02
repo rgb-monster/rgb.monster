@@ -281,7 +281,7 @@
             }
 
             h1 {
-                color: #fff;
+                color: var(--chrome-text);
                 font-size: var(--font-size-3xl);
                 margin-top: 4px; /* manually pushed the header down for visual vertical alignment */
             }
@@ -313,7 +313,7 @@
 
             .partnership {
                 font-weight: 600;
-                color: var(--label);
+                color: var(--color-muted);
                 margin-bottom: 10px;
 
                 mark {
@@ -331,7 +331,7 @@
             }
 
             .location {
-                font-family: var(--rgb-font);
+                font-family: var(--header-font);
                 color: #999;
                 font-size: var(--font-size-xl);
                 font-weight: 400;
@@ -364,33 +364,19 @@
             }
 
             .tags {
-                font-family: var(--rgb-font);
-                color: var(--accent-pink);
+                font-family: var(--header-font);
                 font-size: var(--font-size-xl);
-                font-weight: 400;
                 margin-top: 1em;
 
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 20px;
-
-                .kids {
-                    color: var(--accent-yellow);
-                }
-
-                .format {
-                    color: var(--accent-green);
-                }
-
-                .unique {
-                    color: var(--accent-red);
-                }
             }
         }
 
         section.cta {
-            background: var(--base);
+            background: var(--bg-1);
             padding: 2em;
             opacity: 1;
             transition: opacity 500ms ease;

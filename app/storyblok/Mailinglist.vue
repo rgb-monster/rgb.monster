@@ -116,27 +116,27 @@
             margin: 1em 0;
 
             input {
-                color: var(--dark);
-                background: var(--light);
+                color: var(--color);
+                background: var(--bg-1);
                 padding: 10px;
-                border: 2px solid var(--base);
+                border: 2px solid var(--bg-2);
                 border-radius: 10px;
                 width: 20em;
             }
         }
 
         .big-button {
-            background: var(--pink);
-            color: var(--text);
+            background: var(--cta);
+            color: var(--cta-text);
             text-align: center;
             padding: 20px;
             border-radius: 10px;
-            font-family: var(--rgb-font);
+            font-family: var(--header-font);
             text-transform: uppercase;
             font-size: 1.2em;
 
             &:disabled {
-                background: var(--base-2);
+                background: var(--bg-2);
             }
         }
     }

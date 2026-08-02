@@ -30,7 +30,7 @@
 
         h1,
         h2 {
-            color: var(--header-color);
+            color: var(--color-heading);
             font-family: var(--header-font);
             font-weight: 600;
 

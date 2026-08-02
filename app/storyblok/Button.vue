@@ -24,9 +24,9 @@
 
 <style>
     a.button {
-        --btn-color: var(--header-color);
-        --btn-hover: var(--bg);
-        --text-color: var(--bg);
+        /* no colour picked in Storyblok: fall back to the section's own action */
+        --btn-color: var(--cta);
+        --text-color: var(--cta-text);
 
         display: inline-flex;
         align-items: center;
@@ -53,36 +53,31 @@
             font-size: 18px;
         }
 
-        /* Color Mappings */
+        /* the editor picks one of the categorical accents; these mean the same
+           thing on any background, so they do not follow the section theme */
         &.yellow {
             --btn-color: var(--accent-yellow);
-            --btn-hover: var(--accent-yellow-light);
-            --text-color: #111;
+            --text-color: var(--dark);
         }
         &.pink {
             --btn-color: var(--accent-pink);
-            --btn-hover: var(--accent-pink-light);
-            --text-color: #111;
+            --text-color: var(--dark);
         }
         &.red {
             --btn-color: var(--accent-red);
-            --btn-hover: var(--accent-red-light);
-            --text-color: #fff;
+            --text-color: var(--light);
         }
         &.blue {
             --btn-color: var(--accent-blue);
-            --btn-hover: var(--accent-blue-light);
-            --text-color: #fff;
+            --text-color: var(--light);
         }
         &.green {
             --btn-color: var(--accent-green);
-            --btn-hover: var(--accent-green-light);
-            --text-color: #fff;
+            --text-color: var(--light);
         }
         &.burgundy {
             --btn-color: var(--accent-burgundy);
-            --btn-hover: var(--accent-burgundy-light);
-            --text-color: #fff;
+            --text-color: var(--light);
         }
 
         /* Styles */
@@ -91,10 +86,15 @@
             color: var(--text-color);
             border-color: var(--btn-color);
 
+            /* every hover states its own background: a button must not inherit one
+               from whatever it happens to be sitting inside.
+               hover darkens rather than lightens - four of the six colours carry
+               light text, and brightening those washes the label out */
             &:hover {
-                background: var(--btn-hover);
-                border-color: var(--btn-hover);
+                background: var(--btn-color);
                 color: var(--text-color);
+                border-color: var(--btn-color);
+                filter: brightness(0.9);
             }
         }
 
@@ -104,6 +104,8 @@
             border-color: var(--btn-color);
 
             &:hover {
+                background: var(--btn-color);
+                color: var(--text-color);
             }
         }
 
@@ -115,6 +117,9 @@
             padding-right: 0;
 
             &:hover {
+                background: transparent;
+                color: var(--btn-color);
+                text-decoration: underline;
             }
         }
     }

@@ -482,10 +482,10 @@
 
             .matrix-container {
                 overflow-x: auto;
-                border: 1px solid var(--shadow);
+                border: 1px solid var(--bg-2);
                 border-radius: 12px;
                 background: rgba(255, 255, 255, 0.05);
-                box-shadow: 0 4px 20px var(--shadow);
+                box-shadow: 0 4px 20px var(--bg-2);
                 margin-bottom: 2em;
                 -webkit-overflow-scrolling: touch;
             }
@@ -494,8 +494,8 @@
                 display: grid;
                 width: max-content;
                 min-width: 100%;
-                font-family: var(--rgb-font);
-                background: var(--shadow);
+                font-family: var(--header-font);
+                background: var(--bg-2);
                 gap: 1px;
                 padding-bottom: 5px;
             }
@@ -515,24 +515,24 @@
             .time-header-corner {
                 font-size: 0.6em;
                 text-transform: uppercase;
-                color: var(--label);
+                color: var(--color-muted);
                 font-weight: 600;
                 min-width: 3.2em;
                 position: sticky;
                 left: 0;
                 z-index: 10;
-                background: #fafafa;
-                border-right: 2px solid var(--shadow);
+                background: var(--bg-1);
+                border-right: 2px solid var(--bg-2);
             }
 
             .day-header {
                 min-width: 1.6em;
-                background: #fafafa;
+                background: var(--bg-1);
 
                 .day-name {
                     font-size: 10px;
                     text-transform: uppercase;
-                    color: var(--label);
+                    color: var(--color-muted);
                     font-weight: 600;
                 }
 
@@ -543,11 +543,11 @@
                 }
 
                 &.is-today {
-                    background: var(--chrome-x1);
-                    color: var(--chrome-text);
+                    background: var(--cta);
+                    color: var(--cta-text);
 
                     .day-name {
-                        color: var(--chrome-text);
+                        color: var(--cta-text);
                     }
                 }
             }
@@ -555,17 +555,17 @@
             .time-cell {
                 font-weight: 600;
                 font-size: 10px;
-                color: var(--label);
+                color: var(--color-muted);
                 position: sticky;
                 left: 0;
                 z-index: 9;
-                background: #fafafa;
-                border-right: 2px solid var(--shadow);
+                background: var(--bg-1);
+                border-right: 2px solid var(--bg-2);
                 padding: 0 5px;
             }
 
             .show-cell {
-                background: var(--light);
+                background: var(--bg-1);
                 padding: 0;
                 aspect-ratio: 1;
             }
@@ -596,20 +596,18 @@
 
                 &:hover {
                     transform: scale(1.2);
-                    background-color: rgba(var(--chrome-x1), 0.1);
 
                     .dot-inner {
-                        background-color: var(--chrome);
+                        background-color: var(--cta);
                     }
                 }
 
                 &.is-selected {
                     transform: scale(1.2);
-                    background-color: rgba(var(--chrome), 0.15);
-                    border: 1px dashed var(--chrome);
+                    border: 1px dashed var(--cta);
 
                     .dot-inner {
-                        background-color: var(--chrome);
+                        background-color: var(--cta);
                         transform: scale(0.8);
                     }
                 }
@@ -631,8 +629,8 @@
             }
 
             .selected-show-details {
-                background: var(--light);
-                border: 1px solid var(--shadow);
+                background: var(--bg-1);
+                border: 1px solid var(--bg-2);
                 border-radius: 12px;
                 padding: 1.5em;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -647,13 +645,13 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    border-bottom: 1px solid var(--shadow);
+                    border-bottom: 1px solid var(--bg-2);
                     padding-bottom: 0.8em;
                     margin-bottom: 1em;
 
                     h3 {
                         margin: 0;
-                        font-family: var(--rgb-font);
+                        font-family: var(--header-font);
                         font-size: var(--font-size-xl);
                         text-transform: uppercase;
                         letter-spacing: 0.05em;
@@ -663,7 +661,7 @@
                         background: none;
                         border: none;
                         cursor: pointer;
-                        color: var(--label);
+                        color: var(--color-muted);
                         padding: 4px;
                         display: flex;
                         align-items: center;
@@ -672,7 +670,7 @@
                         transition: background-color 200ms ease;
 
                         &:hover {
-                            background-color: var(--shadow);
+                            background-color: var(--bg-2);
                         }
                     }
                 }
@@ -693,7 +691,7 @@
 
                     .venue-name {
                         font-size: var(--font-size-md);
-                        color: var(--label);
+                        color: var(--color-muted);
                         margin-top: 4px;
                     }
                 }
@@ -709,8 +707,8 @@
                 .action {
                     display: inline-block;
                     padding: 12px 24px;
-                    background: var(--chrome);
-                    color: var(--chrome-text);
+                    background: var(--cta);
+                    color: var(--cta-text);
                     font-weight: 600;
                     border-radius: 6px;
                     text-decoration: none;
@@ -724,7 +722,7 @@
 
                 .lineup {
                     margin-top: 0.5em;
-                    border-top: 1px dashed var(--shadow);
+                    border-top: 1px dashed var(--bg-2);
                     padding-top: 1em;
 
                     .headshots {
@@ -755,14 +753,14 @@
                             width: 60px;
                             height: 60px;
                             border-radius: 50%;
-                            border: 2px solid var(--light);
+                            border: 2px solid var(--bg-1);
                         }
 
                         .overlay {
                             position: absolute;
                             top: 0;
                             left: 0;
-                            background: var(--light);
+                            background: var(--bg-1);
                             pointer-events: none;
                             opacity: 0;
                             transition: opacity 300ms ease;
@@ -771,8 +769,8 @@
                         &.active {
                             z-index: 300;
                             .headshot {
-                                border: 2px solid var(--light);
-                                box-shadow: 0 0 5px 2px var(--light);
+                                border: 2px solid var(--bg-1);
+                                box-shadow: 0 0 5px 2px var(--bg-1);
                             }
                         }
 
@@ -785,8 +783,8 @@
 
                     .act-details {
                         margin-top: 10px;
-                        background: #fdfdfd;
-                        border: 1px solid var(--shadow);
+                        background: var(--bg-1);
+                        border: 1px solid var(--bg-2);
                         border-radius: 8px;
                         padding: 10px;
 
@@ -820,7 +818,7 @@
 
         .expanded-view {
             .day-header {
-                color: var(--header-color);
+                color: var(--color-heading);
                 font-weight: 600;
                 font-size: 1.25em;
                 letter-spacing: 0.025em;
@@ -851,14 +849,14 @@
                         width: 80px;
                         height: 80px;
                         border-radius: 50%;
-                        border: 3px solid #fff;
+                        border: 3px solid var(--bg-1);
                     }
 
                     .overlay {
                         position: absolute;
                         top: 0;
                         left: 0;
-                        background: #fff;
+                        background: var(--bg-1);
                         pointer-events: none;
                         opacity: 0;
                         transition: opacity 300ms ease;
@@ -867,8 +865,8 @@
                     &.active {
                         z-index: 300;
                         .headshot {
-                            border: 3px solid #fff;
-                            box-shadow: 0 0 5px 2px #fff;
+                            border: 3px solid var(--bg-1);
+                            box-shadow: 0 0 5px 2px var(--bg-1);
                         }
                     }
                     &.faded {
@@ -895,8 +893,8 @@
 
             .date-anchor {
                 display: block;
-                color: var(--chrome);
-                border-bottom: 2px solid var(--chrome);
+                color: var(--color-heading);
+                border-bottom: 2px solid var(--color-heading);
                 text-align: left;
                 padding: 5px;
                 text-transform: uppercase;
@@ -911,11 +909,11 @@
             }
 
             .show-tile {
-                background: #fff;
+                background: var(--bg-1);
                 display: inline-block;
                 padding: 10px;
                 border-radius: 10px;
-                border: 1px solid var(--shadow);
+                border: 1px solid var(--bg-2);
                 transition:
                     background 300ms ease,
                     color 300ms ease;
@@ -931,11 +929,11 @@
             }
 
             .action {
-                color: var(--chrome-x1);
+                color: var(--cta);
                 border-radius: 5px;
                 padding: 8px;
-                background: var(--chrome-x1);
-                color: var(--chrome-text);
+                background: var(--cta);
+                color: var(--cta-text);
                 font-weight: 600;
                 cursor: pointer;
                 margin-top: 5px;
@@ -955,17 +953,17 @@
                 }
 
                 &.sold-out {
-                    color: var(--label);
+                    color: var(--color-muted);
                 }
             }
 
             a.show-tile:hover {
-                background: var(--chrome);
-                color: var(--chrome-text);
+                background: var(--cta);
+                color: var(--cta-text);
             }
 
             a.show-tile:hover .action {
-                background: var(--chrome);
+                background: var(--cta);
             }
 
             div.show-tile a.action {
