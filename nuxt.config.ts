@@ -100,6 +100,13 @@ export default defineNuxtConfig({
         },
     },
 
+    nitro: {
+        prerender: {
+            // Not linked from anywhere, so the crawler would never reach it
+            routes: ["/toast-live"],
+        },
+    },
+
     ssr: true,
 
     devServer: {
