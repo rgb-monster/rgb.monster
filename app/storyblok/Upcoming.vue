@@ -123,20 +123,26 @@
             <div class="cards" v-else>
                 <div class="upcoming-card panel" v-for="show in upcoming" :key="show.id">
                     <NuxtLink class="body" :href="`/${show.slug}`">
-                        <div class="when">
-                            {{ whenLabel(show) }}
-                            <Icon name="nights_stay" class="late-night-icon" v-if="show.ts.hour <= 5" />
+                        <div class="cover-image" v-if="show.coverThumb">
+                            <img :src="show.coverThumb" alt="" />
                         </div>
 
-                        <div class="title" v-html="show.title" />
+                        <div class="details">
+                            <div class="when">
+                                {{ whenLabel(show) }}
+                                <Icon name="nights_stay" class="late-night-icon" v-if="show.ts.hour <= 5" />
+                            </div>
 
-                        <div class="venue" v-if="show.venue">
-                            <Icon name="place" />
-                            {{ show.venue.name }}
-                        </div>
+                            <div class="title" v-html="show.title" />
 
-                        <div class="tags" v-if="!isEmpty(show.tags)">
-                            <div v-for="tag in show.tags.slice(0, 2)" :key="tag" :class="tag">{{ tag }}</div>
+                            <div class="venue" v-if="show.venue">
+                                <Icon name="place" />
+                                {{ show.venue.name }}
+                            </div>
+
+                            <div class="tags" v-if="!isEmpty(show.tags)">
+                                <div v-for="tag in show.tags.slice(0, 2)" :key="tag" :class="tag">{{ tag }}</div>
+                            </div>
                         </div>
                     </NuxtLink>
 
@@ -203,12 +209,29 @@
             }
 
             .body {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                color: inherit;
+            }
+
+            .cover-image {
+                display: flex;
+
+                img {
+                    width: 100%;
+                    aspect-ratio: 16 / 9;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            .details {
                 display: grid;
                 gap: 5px;
                 padding: 1rem;
                 flex-grow: 1;
                 align-content: start;
-                color: inherit;
             }
 
             .when {
@@ -305,9 +328,25 @@
                 align-items: stretch;
 
                 .body {
+                    flex-direction: row;
+                    align-items: stretch;
+                    min-width: 0;
+                }
+
+                /* a square sliver alongside the text, rather than a band above it */
+                .cover-image {
+                    flex: none;
+                    width: 4.5rem;
+
+                    img {
+                        height: 100%;
+                        aspect-ratio: 1;
+                    }
+                }
+
+                .details {
                     padding: 0.6rem 0.75rem;
                     gap: 1px;
-                    flex-grow: 1;
                     min-width: 0;
                 }
 
