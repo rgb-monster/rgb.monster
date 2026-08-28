@@ -2,6 +2,7 @@
     command = "npm run generate"
     publish = "dist"
 
-[configuration]
-    # Automatically forwards paths like /about/index.html to /about
-    pretty_urls = true
+[build.processing.html]
+    # Off: the trailing slash it adds (/about -> /about/) no longer matches the
+    # prerendered route, and Nuxt drops the query and hash when it corrects that
+    pretty_urls = false
